@@ -1,0 +1,25 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,
+    open: true,
+  },
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return;
+          if (id.includes('echarts')) return 'vendor-echarts';
+          if (id.includes('@reduxjs') || id.includes('react-redux')) return 'vendor-redux';
+          if (id.includes('i18next')) return 'vendor-i18n';
+          if (id.includes('@mui') || id.includes('@emotion')) return 'vendor-mui';
+          if (id.includes('react-router')) return 'vendor-router';
+        },
+      },
+    },
+  },
+});
