@@ -54,6 +54,14 @@ async function start() {
       });
     });
 
+    // Disable caching globally for all API routes to prevent RTK Query staleness
+    server.addHook('onSend', async (_request, reply, payload) => {
+      reply.header('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+      reply.header('Pragma', 'no-cache');
+      reply.header('Expires', '0');
+      return payload;
+    });
+
     // Global Error Handler
     server.setErrorHandler((error: any, request, reply) => {
       server.log.error(error);

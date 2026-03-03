@@ -2542,5 +2542,253 @@
     },
     "scrapedAt": "2026-03-03T13:39:48.018Z",
     "scrapedBy": "crawler"
+  },
+  {
+    "id": "24af6af8-c6bf-4d26-8b6f-3aad0a3b0e0a",
+    "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed)",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DHJ9SCJ4/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": 807.5,
+      "itemPrice": 807.5,
+      "originalPrice": 809.95,
+      "averageRating": 4.3,
+      "reviewsCount": 2426,
+      "isPrime": false,
+      "asin": "B0DHJ9SCJ4",
+      "brand": "Visit the Amazon Renewed Store",
+      "availability": "In Stock",
+      "deliveryInfo": "FREE delivery Sunday, March 8",
+      "category": "Cell Phones & Accessories",
+      "features": [
+        "6.9\" LTPO Super Retina XDR OLED, 120Hz, HDR10, Dolby Vision, 1320x2868px at 460ppi, 1000 nits (typ), 2000 nits (HBM), 4685mAh Battery",
+        "256GB 8GB RAM, Apple A18 Pro (3nm), Hexa-core (2x4.05 GHz + 4x2.42 GHz), Apple GPU 6-core, iOS 18, upgradable to iOS 18.3",
+        "Rear camera: 48MP, f/1.8 (wide) + 12MP, f/2.8 (periscope telephoto) 5x optical zoom + 48MP, f/2.2 (ultrawide), TOF 3D LiDAR scanner (depth), Front Camera: 12MP, f/1.9 (wide)",
+        "3G: HSDPA 850/900/1700(AWS)/1900/2100, 4G LTE: 1/2/3/4/5/7/8/12/13/14/17/18/19/20/25/26/28/29/30/32/34/38/39/40/41/42/48/53/66/71, 1/2/3/5/7/8/12/14/20/25/26/28/29/30/38/40/41/48/53/66/70/71/75/76/77/78/79/258/260/261 SA/NSA/Sub6/mmWave - Dual eSIM",
+        "Unlocked for freedom to choose your carrier. Compatible with both GSM & CDMA networks. The phone is unlocked to work with all GSM Carriers & CDMA Carriers Including AT&T, T-Mobile, Verizon, Straight Talk., Etc."
+      ],
+      "imageUrl": "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX342_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX342_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX385_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX425_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX466_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX679_.jpg"
+      ],
+      "salesVolume": "500+ bought in past month",
+      "bestSellerRank": "#647 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #10 in Renewed Smartphones #13 in Cell Phones",
+      "bsrCategories": [
+        {
+          "rank": 647,
+          "category": "Cell Phones & Accessories"
+        }
+      ],
+      "currency": "USD",
+      "buyBox": {
+        "sellerName": "BlueChip Wireless",
+        "price": 807.5,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-03T21:59:51.916Z"
+      },
+      "priceObservedAt": "2026-03-03T21:59:51.916Z",
+      "itemPriceObservedAt": "2026-03-03T21:59:51.916Z",
+      "priceUSD": 807.5,
+      "itemPriceUSD": 807.5,
+      "discountPercentage": 0,
+      "dataQualityScore": 100,
+      "priceAnomalyDetected": true,
+      "priceAnomalyReason": "Raw item price 807.50 deviates 3002.8% from median 26.02.",
+      "rawPrice": 807.5,
+      "rawItemPrice": 807.5
+    },
+    "scrapedAt": "2026-03-03T21:59:51.916Z",
+    "scrapedBy": "crawler"
+  },
+  {
+    "id": "75b3bb13-50f0-4035-adfb-69596351a535",
+    "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed)",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DHJ9SCJ4/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": 807.5,
+      "itemPrice": 807.5,
+      "originalPrice": 809.95,
+      "averageRating": 4.3,
+      "reviewsCount": 2426,
+      "isPrime": false,
+      "asin": "B0DHJ9SCJ4",
+      "brand": "Visit the Amazon Renewed Store",
+      "availability": "In Stock",
+      "deliveryInfo": "FREE delivery Sunday, March 8",
+      "category": "Cell Phones & Accessories",
+      "features": [
+        "6.9\" LTPO Super Retina XDR OLED, 120Hz, HDR10, Dolby Vision, 1320x2868px at 460ppi, 1000 nits (typ), 2000 nits (HBM), 4685mAh Battery",
+        "256GB 8GB RAM, Apple A18 Pro (3nm), Hexa-core (2x4.05 GHz + 4x2.42 GHz), Apple GPU 6-core, iOS 18, upgradable to iOS 18.3",
+        "Rear camera: 48MP, f/1.8 (wide) + 12MP, f/2.8 (periscope telephoto) 5x optical zoom + 48MP, f/2.2 (ultrawide), TOF 3D LiDAR scanner (depth), Front Camera: 12MP, f/1.9 (wide)",
+        "3G: HSDPA 850/900/1700(AWS)/1900/2100, 4G LTE: 1/2/3/4/5/7/8/12/13/14/17/18/19/20/25/26/28/29/30/32/34/38/39/40/41/42/48/53/66/71, 1/2/3/5/7/8/12/14/20/25/26/28/29/30/38/40/41/48/53/66/70/71/75/76/77/78/79/258/260/261 SA/NSA/Sub6/mmWave - Dual eSIM",
+        "Unlocked for freedom to choose your carrier. Compatible with both GSM & CDMA networks. The phone is unlocked to work with all GSM Carriers & CDMA Carriers Including AT&T, T-Mobile, Verizon, Straight Talk., Etc."
+      ],
+      "imageUrl": "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX342_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX342_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX385_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX425_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX466_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX679_.jpg"
+      ],
+      "salesVolume": "500+ bought in past month",
+      "bestSellerRank": "#647 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #10 in Renewed Smartphones #13 in Cell Phones",
+      "bsrCategories": [
+        {
+          "rank": 647,
+          "category": "Cell Phones & Accessories"
+        }
+      ],
+      "currency": "USD",
+      "buyBox": {
+        "sellerName": "BlueChip Wireless",
+        "price": 807.5,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-03T22:08:49.866Z"
+      },
+      "priceObservedAt": "2026-03-03T22:08:49.866Z",
+      "itemPriceObservedAt": "2026-03-03T22:08:49.866Z",
+      "priceUSD": 807.5,
+      "itemPriceUSD": 807.5,
+      "discountPercentage": 0,
+      "dataQualityScore": 100,
+      "priceAnomalyDetected": true,
+      "priceAnomalyReason": "Raw item price 807.50 deviates 94.2% from median 415.81.",
+      "rawPrice": 807.5,
+      "rawItemPrice": 807.5
+    },
+    "scrapedAt": "2026-03-03T22:08:49.866Z",
+    "scrapedBy": "crawler"
+  },
+  {
+    "id": "c7fa5a29-087d-4276-a3c4-66a4013ac8b4",
+    "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed)",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DHJ9SCJ4/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": 807.5,
+      "itemPrice": 807.5,
+      "originalPrice": 809.95,
+      "averageRating": 4.3,
+      "reviewsCount": 2426,
+      "isPrime": false,
+      "asin": "B0DHJ9SCJ4",
+      "brand": "Visit the Amazon Renewed Store",
+      "availability": "In Stock",
+      "deliveryInfo": "FREE delivery Sunday, March 8",
+      "category": "Cell Phones & Accessories",
+      "features": [
+        "6.9\" LTPO Super Retina XDR OLED, 120Hz, HDR10, Dolby Vision, 1320x2868px at 460ppi, 1000 nits (typ), 2000 nits (HBM), 4685mAh Battery",
+        "256GB 8GB RAM, Apple A18 Pro (3nm), Hexa-core (2x4.05 GHz + 4x2.42 GHz), Apple GPU 6-core, iOS 18, upgradable to iOS 18.3",
+        "Rear camera: 48MP, f/1.8 (wide) + 12MP, f/2.8 (periscope telephoto) 5x optical zoom + 48MP, f/2.2 (ultrawide), TOF 3D LiDAR scanner (depth), Front Camera: 12MP, f/1.9 (wide)",
+        "3G: HSDPA 850/900/1700(AWS)/1900/2100, 4G LTE: 1/2/3/4/5/7/8/12/13/14/17/18/19/20/25/26/28/29/30/32/34/38/39/40/41/42/48/53/66/71, 1/2/3/5/7/8/12/14/20/25/26/28/29/30/38/40/41/48/53/66/70/71/75/76/77/78/79/258/260/261 SA/NSA/Sub6/mmWave - Dual eSIM",
+        "Unlocked for freedom to choose your carrier. Compatible with both GSM & CDMA networks. The phone is unlocked to work with all GSM Carriers & CDMA Carriers Including AT&T, T-Mobile, Verizon, Straight Talk., Etc."
+      ],
+      "imageUrl": "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX342_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX342_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX385_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX425_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX466_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX679_.jpg"
+      ],
+      "salesVolume": "500+ bought in past month",
+      "bestSellerRank": "#647 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #10 in Renewed Smartphones #13 in Cell Phones",
+      "bsrCategories": [
+        {
+          "rank": 647,
+          "category": "Cell Phones & Accessories"
+        }
+      ],
+      "currency": "USD",
+      "buyBox": {
+        "sellerName": "BlueChip Wireless",
+        "price": 807.5,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-03T22:12:29.079Z"
+      },
+      "priceObservedAt": "2026-03-03T22:12:29.079Z",
+      "itemPriceObservedAt": "2026-03-03T22:12:29.079Z",
+      "priceUSD": 807.5,
+      "itemPriceUSD": 807.5,
+      "discountPercentage": 0,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-03T22:12:29.079Z",
+    "scrapedBy": "crawler"
+  },
+  {
+    "id": "8b8124a0-1d78-42f2-9296-b025a1c2c5d1",
+    "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed)",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DHJ9SCJ4/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": 807.5,
+      "itemPrice": 807.5,
+      "originalPrice": 809.95,
+      "averageRating": 4.3,
+      "reviewsCount": 2426,
+      "isPrime": false,
+      "asin": "B0DHJ9SCJ4",
+      "brand": "Visit the Amazon Renewed Store",
+      "availability": "In Stock",
+      "deliveryInfo": "FREE delivery Sunday, March 8",
+      "category": "Cell Phones & Accessories",
+      "features": [
+        "6.9\" LTPO Super Retina XDR OLED, 120Hz, HDR10, Dolby Vision, 1320x2868px at 460ppi, 1000 nits (typ), 2000 nits (HBM), 4685mAh Battery",
+        "256GB 8GB RAM, Apple A18 Pro (3nm), Hexa-core (2x4.05 GHz + 4x2.42 GHz), Apple GPU 6-core, iOS 18, upgradable to iOS 18.3",
+        "Rear camera: 48MP, f/1.8 (wide) + 12MP, f/2.8 (periscope telephoto) 5x optical zoom + 48MP, f/2.2 (ultrawide), TOF 3D LiDAR scanner (depth), Front Camera: 12MP, f/1.9 (wide)",
+        "3G: HSDPA 850/900/1700(AWS)/1900/2100, 4G LTE: 1/2/3/4/5/7/8/12/13/14/17/18/19/20/25/26/28/29/30/32/34/38/39/40/41/42/48/53/66/71, 1/2/3/5/7/8/12/14/20/25/26/28/29/30/38/40/41/48/53/66/70/71/75/76/77/78/79/258/260/261 SA/NSA/Sub6/mmWave - Dual eSIM",
+        "Unlocked for freedom to choose your carrier. Compatible with both GSM & CDMA networks. The phone is unlocked to work with all GSM Carriers & CDMA Carriers Including AT&T, T-Mobile, Verizon, Straight Talk., Etc."
+      ],
+      "imageUrl": "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX342_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX342_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX385_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX425_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX466_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX679_.jpg"
+      ],
+      "salesVolume": "500+ bought in past month",
+      "bestSellerRank": "#647 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #10 in Renewed Smartphones #13 in Cell Phones",
+      "bsrCategories": [
+        {
+          "rank": 647,
+          "category": "Cell Phones & Accessories"
+        }
+      ],
+      "currency": "USD",
+      "buyBox": {
+        "sellerName": "BlueChip Wireless",
+        "price": 807.5,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-03T22:18:57.587Z"
+      },
+      "priceObservedAt": "2026-03-03T22:18:57.587Z",
+      "itemPriceObservedAt": "2026-03-03T22:18:57.587Z",
+      "priceUSD": 807.5,
+      "itemPriceUSD": 807.5,
+      "discountPercentage": 0,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-03T22:18:57.587Z",
+    "scrapedBy": "crawler"
   }
 ]

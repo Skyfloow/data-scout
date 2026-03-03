@@ -22,7 +22,7 @@ import { alpha } from '@mui/material/styles';
 import SendIcon from '@mui/icons-material/Send';
 import CloseIcon from '@mui/icons-material/Close';
 import RocketLaunchOutlinedIcon from '@mui/icons-material/RocketLaunchOutlined';
-import { useTriggerScrapeMutation, apiSlice, API_BASE_URL } from '../store/apiSlice';
+import { useTriggerScrapeMutation, useGetJobStatusQuery, apiSlice, API_BASE_URL } from '../store/apiSlice';
 import { ScraperType } from '../types';
 import { useDispatch } from 'react-redux';
 import { logger } from '../utils/logger';
@@ -38,9 +38,30 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState('');
   const [toastSeverity, setToastSeverity] = useState<'success' | 'error'>('success');
+  const [currentJobId, setCurrentJobId] = useState<string | null>(null);
 
   const [triggerScrape, { isLoading: isStarting }] = useTriggerScrapeMutation();
   const dispatch = useDispatch();
+
+  const { data: jobStatus } = useGetJobStatusQuery(currentJobId as string, {
+    skip: !currentJobId,
+    pollingInterval: 2000,
+  });
+
+  useEffect(() => {
+    if (jobStatus) {
+      if (jobStatus.status === 'completed') {
+        setCurrentJobId(null);
+        dispatch(apiSlice.util.invalidateTags(['Products', 'Metrics']));
+        setToastSeverity('success');
+        setToastMessage('Сбор успешно завершен! Данные обновлены.');
+      } else if (jobStatus.status === 'failed') {
+        setCurrentJobId(null);
+        setToastSeverity('error');
+        setToastMessage(`Ошибка сбора: ${jobStatus.error || 'Неизвестная ошибка'}`);
+      }
+    }
+  }, [jobStatus, dispatch]);
 
   useEffect(() => {
     if (open) {
@@ -74,10 +95,10 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
     }
 
     try {
-      await triggerScrape({ url, scraper }).unwrap();
-      dispatch(apiSlice.util.invalidateTags(['Products', 'Metrics']));
+      const response = await triggerScrape({ url, scraper }).unwrap();
+      setCurrentJobId(response.jobId);
       setToastSeverity('success');
-      setToastMessage('Задача запущена успешно.');
+      setToastMessage('Задача запущена в фоне. Пожалуйста, подождите...');
       handleModalClose();
     } catch (err: any) {
       setErrorMsg('Не удалось запустить сбор. Проверьте, работает ли сервер.');

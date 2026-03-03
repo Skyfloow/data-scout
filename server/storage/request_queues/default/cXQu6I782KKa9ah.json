@@ -1,9 +1,0 @@
-{
-	"id": "cXQu6I782KKa9ah",
-	"json": "{\"id\":\"cXQu6I782KKa9ah\",\"url\":\"https://www.amazon.com/dp/B0DHJ9SCJ4\",\"loadedUrl\":\"https://www.amazon.com/dp/B0DHJ9SCJ4\",\"uniqueKey\":\"https://www.amazon.com/dp/B0DHJ9SCJ4\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2026-03-03T14:21:26.040Z\"}",
-	"method": "GET",
-	"orderNo": null,
-	"retryCount": 0,
-	"uniqueKey": "https://www.amazon.com/dp/B0DHJ9SCJ4",
-	"url": "https://www.amazon.com/dp/B0DHJ9SCJ4"
-}

@@ -38,6 +38,7 @@ export class ScrapingService {
       }
 
       if (result.error || !result.product) {
+        logger.error(`[Job ${jobId}] Scraping failed: ${result.error || 'No product'}`);
         jobService.updateJobStatus(jobId, 'failed', undefined, result.error || 'Scraping returned no product');
         return;
       }

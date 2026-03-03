@@ -1,6 +1,6 @@
 {
   "https://www.amazon.com/apple-iphone-version-desert-titanium/dp/b0dhj9scj4/ref=sr_1_24": {
-    "id": "4eaa7100-aaac-4e84-9c78-d400db852aae",
+    "id": "8b8124a0-1d78-42f2-9296-b025a1c2c5d1",
     "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed)",
     "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DHJ9SCJ4/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
     "marketplace": "amazon",
@@ -9,7 +9,7 @@
       "itemPrice": 807.5,
       "originalPrice": 809.95,
       "averageRating": 4.3,
-      "reviewsCount": 2415,
+      "reviewsCount": 2426,
       "isPrime": false,
       "asin": "B0DHJ9SCJ4",
       "brand": "Visit the Amazon Renewed Store",
@@ -34,10 +34,10 @@
         "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX679_.jpg"
       ],
       "salesVolume": "500+ bought in past month",
-      "bestSellerRank": "#646 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+      "bestSellerRank": "#647 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #10 in Renewed Smartphones #13 in Cell Phones",
       "bsrCategories": [
         {
-          "rank": 646,
+          "rank": 647,
           "category": "Cell Phones & Accessories"
         }
       ],
@@ -47,20 +47,16 @@
         "price": 807.5,
         "isFBA": false,
         "isAmazon": false,
-        "observedAt": "2026-03-03T13:30:23.622Z"
+        "observedAt": "2026-03-03T22:18:57.587Z"
       },
-      "priceObservedAt": "2026-03-03T13:30:23.622Z",
-      "itemPriceObservedAt": "2026-03-03T13:30:23.622Z",
+      "priceObservedAt": "2026-03-03T22:18:57.587Z",
+      "itemPriceObservedAt": "2026-03-03T22:18:57.587Z",
       "priceUSD": 807.5,
       "itemPriceUSD": 807.5,
       "discountPercentage": 0,
-      "dataQualityScore": 100,
-      "priceAnomalyDetected": true,
-      "priceAnomalyReason": "Raw item price 807.50 deviates 3246.5% from median 24.13.",
-      "rawPrice": 807.5,
-      "rawItemPrice": 807.5
+      "dataQualityScore": 100
     },
-    "scrapedAt": "2026-03-03T13:30:23.622Z",
+    "scrapedAt": "2026-03-03T22:18:57.587Z",
     "scrapedBy": "crawler"
   },
   "https://www.amazon.de/-/en/samsung-smartphone-contract-manufacturer-exclusive/dp/b0g58wv7x4": {

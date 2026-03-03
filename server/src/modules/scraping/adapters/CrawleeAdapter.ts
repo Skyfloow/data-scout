@@ -68,7 +68,7 @@ export class CrawleeAdapter implements IScraper {
         launchContext: {
           launcher: chromium,
           launchOptions: {
-            headless: false,
+            headless: process.env.NODE_ENV === 'production' ? true : false,
             args: [
               '--no-sandbox',
               '--disable-setuid-sandbox',
@@ -480,8 +480,6 @@ export class CrawleeAdapter implements IScraper {
                  const html = await page.content();
                  fs.writeFileSync(path.join(snapshotDir, `noprice-${snapshotId}.html`), html);
              } catch (err) {}
-          } else {
-             await page.screenshot({ path: path.join(snapshotDir, `${snapshotId}.jpg`), type: 'jpeg', quality: 80, fullPage: true });
           }
           
           let marketplace = 'unknown';
