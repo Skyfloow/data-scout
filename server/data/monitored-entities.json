@@ -1,0 +1,34 @@
+[
+  {
+    "id": "80f7bd7e-0d19-4273-97e0-5fccc1b9847d",
+    "type": "keyword",
+    "value": "iphone 15 case",
+    "marketplace": "amazon.com",
+    "intervalHours": 0.16666666666666666,
+    "addedAt": "2026-02-27T23:14:38.640Z",
+    "status": "paused",
+    "lastScrapedAt": "2026-02-28T16:02:07.315Z"
+  },
+  {
+    "id": "7898ea4f-e11a-4696-aa0c-fe3a65835402",
+    "type": "product",
+    "value": "https://www.amazon.com/dp/B01N05APQY",
+    "marketplace": "amazon.com",
+    "intervalHours": 0.16666666666666666,
+    "addedAt": "2026-03-03T14:21:23.472Z",
+    "status": "paused",
+    "lastScrapedAt": "2026-03-03T14:31:24.565Z",
+    "lastRunAt": "2026-03-03T14:31:24.565Z"
+  },
+  {
+    "id": "1d6287c5-43fb-4d63-91f5-8f5c08b4b994",
+    "type": "product",
+    "value": "https://www.amazon.com/dp/B0DHJ9SCJ4",
+    "marketplace": "amazon.com",
+    "intervalHours": 0.16666666666666666,
+    "addedAt": "2026-03-03T14:21:23.479Z",
+    "status": "paused",
+    "lastScrapedAt": "2026-03-03T14:31:24.416Z",
+    "lastRunAt": "2026-03-03T14:31:24.416Z"
+  }
+]

@@ -1,0 +1,5 @@
+{
+  "scrapingStrategy": "hybrid",
+  "defaultScraper": "crawler",
+  "proxyMode": "direct"
+}

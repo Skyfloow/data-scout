@@ -1,0 +1,774 @@
+{
+  "https://www.amazon.com/samsung-smartphone-unlocked-processor-proscaler/dp/b0f3dlqc16": [
+    {
+      "price": 372.83,
+      "priceUSD": 406.38,
+      "currency": "EUR",
+      "scrapedAt": "2026-02-27T15:36:01.412Z"
+    },
+    {
+      "price": 372.83,
+      "priceUSD": 372.83,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T16:35:28.664Z"
+    },
+    {
+      "price": 372.83,
+      "priceUSD": 372.83,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T17:02:03.126Z"
+    },
+    {
+      "price": 372.83,
+      "priceUSD": 372.83,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T17:10:34.156Z"
+    },
+    {
+      "price": 326.65,
+      "priceUSD": 326.65,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T17:22:12.532Z"
+    }
+  ],
+  "https://www.amazon.com/google-pixel-smartphone-assistant-fast-charging/dp/b0fftv1lxz/ref=sr_1_7": [
+    {
+      "price": 584.73,
+      "priceUSD": 637.36,
+      "currency": "EUR",
+      "scrapedAt": "2026-02-27T15:41:38.262Z"
+    },
+    {
+      "price": 0,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T15:42:57.287Z"
+    },
+    {
+      "price": 584.73,
+      "priceUSD": 584.73,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T16:38:45.624Z"
+    },
+    {
+      "price": 584.73,
+      "priceUSD": 584.73,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T17:04:41.986Z"
+    },
+    {
+      "price": 0,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T17:07:26.720Z"
+    }
+  ],
+  "https://www.amazon.com/western-digital-10tb-internal-drive/dp/b0f4r3ycl6": [
+    {
+      "price": 211.85,
+      "priceUSD": 211.85,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T17:26:18.375Z"
+    },
+    {
+      "price": 249.99,
+      "priceUSD": 249.99,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T17:26:32.887Z"
+    }
+  ],
+  "https://www.amazon.com/chanel-pre-loved-quilted-calfskin-flap/dp/b0gpylhm9z/ref=sr_1_1": [
+    {
+      "price": 0,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T17:39:02.945Z"
+    }
+  ],
+  "https://www.amazon.com/nespresso-vertuoline-seller-assortment-count/dp/b01n05apqy/": [
+    {
+      "price": 10.58,
+      "priceUSD": 10.58,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T17:40:04.177Z"
+    }
+  ],
+  "asin:B0FFTV1LXZ": [
+    {
+      "price": 583.86,
+      "priceUSD": 583.86,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T22:08:27.601Z"
+    },
+    {
+      "price": 583.86,
+      "priceUSD": 583.86,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T01:36:58.559Z"
+    },
+    {
+      "price": 583.86,
+      "priceUSD": 583.86,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T02:49:35.952Z"
+    },
+    {
+      "price": 583.86,
+      "priceUSD": 583.86,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T03:50:23.756Z"
+    },
+    {
+      "price": 583.86,
+      "priceUSD": 583.86,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T04:51:34.553Z"
+    },
+    {
+      "price": 583.86,
+      "priceUSD": 583.86,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T05:52:12.605Z"
+    },
+    {
+      "price": 585.55,
+      "priceUSD": 585.55,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T06:53:41.085Z"
+    },
+    {
+      "price": 585.55,
+      "priceUSD": 585.55,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T07:58:43.279Z"
+    },
+    {
+      "price": 585.55,
+      "priceUSD": 585.55,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T09:12:06.362Z"
+    },
+    {
+      "price": 585.55,
+      "priceUSD": 585.55,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T10:16:48.275Z"
+    },
+    {
+      "price": 585.55,
+      "priceUSD": 585.55,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T11:26:18.165Z"
+    },
+    {
+      "price": 585.55,
+      "priceUSD": 585.55,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T12:28:11.648Z"
+    },
+    {
+      "price": 584.81,
+      "priceUSD": 584.81,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T13:28:11.685Z"
+    },
+    {
+      "price": 583.97,
+      "priceUSD": 583.97,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T14:28:11.760Z"
+    }
+  ],
+  "asin:B0F4R3YCL6": [
+    {
+      "price": 362.14,
+      "priceUSD": 362.14,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T22:41:28.107Z"
+    }
+  ],
+  "asin:B0F3DLQC16": [
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T23:09:45.184Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T23:20:38.369Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-27T23:50:47.015Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T00:00:46.974Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T00:10:47.005Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T00:48:31.965Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T01:04:30.674Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T01:20:44.012Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T01:36:58.339Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T01:53:11.958Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T02:09:50.284Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T02:28:15.466Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T02:49:35.733Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T02:59:36.116Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T03:23:54.909Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T03:34:21.208Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T03:50:23.547Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T04:06:42.579Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T04:22:56.099Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T04:35:21.137Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T04:51:34.319Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T05:08:04.855Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T05:24:18.666Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T05:36:28.102Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T05:52:12.414Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T06:08:42.704Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T06:24:56.489Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T06:37:27.236Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T06:53:40.900Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T07:10:01.511Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T07:26:23.228Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T07:42:29.697Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T07:58:43.064Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T08:14:57.526Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T08:33:41.753Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T08:49:40.017Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T09:12:06.140Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T09:27:56.398Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T09:44:10.072Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T10:00:34.455Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T10:16:48.438Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T10:33:02.445Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T10:49:16.315Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T11:10:26.614Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T11:26:17.939Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T11:42:31.580Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T11:55:29.068Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T12:12:14.557Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T12:28:11.457Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T12:44:18.740Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T12:56:30.997Z"
+    },
+    {
+      "price": 372.27,
+      "priceUSD": 372.27,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T13:12:44.422Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T13:25:04.680Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T13:45:53.768Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T13:55:53.662Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T14:05:54.025Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T14:15:53.765Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T14:25:53.784Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T14:35:53.856Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T14:45:53.793Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T14:55:53.705Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T15:05:53.663Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "itemPrice": 372.34,
+      "itemPriceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T15:21:23.476Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "itemPrice": 372.34,
+      "itemPriceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T15:38:00.450Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "itemPrice": 372.34,
+      "itemPriceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T15:52:07.814Z"
+    },
+    {
+      "price": 372.34,
+      "priceUSD": 372.34,
+      "itemPrice": 372.34,
+      "itemPriceUSD": 372.34,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T16:02:07.871Z"
+    }
+  ],
+  "asin:B0D364RMMP": [
+    {
+      "price": 348.95,
+      "priceUSD": 348.95,
+      "itemPrice": 348.95,
+      "itemPriceUSD": 348.95,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T15:24:20.258Z"
+    }
+  ],
+  "asin:B01N05APQY": [
+    {
+      "price": 10.57,
+      "priceUSD": 10.57,
+      "itemPrice": 10.57,
+      "itemPriceUSD": 10.57,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T15:25:25.791Z"
+    },
+    {
+      "price": 42,
+      "priceUSD": 42,
+      "itemPrice": 42,
+      "itemPriceUSD": 42,
+      "currency": "USD",
+      "scrapedAt": "2026-03-03T12:31:07.029Z",
+      "priceObservedAt": "2026-03-03T12:31:07.029Z",
+      "itemPriceObservedAt": "2026-03-03T12:31:07.029Z"
+    }
+  ],
+  "asin:B0DHJ9SCJ4": [
+    {
+      "price": 24.13,
+      "priceUSD": 24.13,
+      "itemPrice": 24.13,
+      "itemPriceUSD": 24.13,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T15:26:15.520Z"
+    },
+    {
+      "price": 27.92,
+      "priceUSD": 27.92,
+      "itemPrice": 27.92,
+      "itemPriceUSD": 27.92,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T15:38:42.227Z"
+    },
+    {
+      "price": 24.13,
+      "priceUSD": 24.13,
+      "itemPrice": 24.13,
+      "itemPriceUSD": 24.13,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T16:05:10.413Z"
+    },
+    {
+      "price": 24.13,
+      "priceUSD": 24.13,
+      "itemPrice": 24.13,
+      "itemPriceUSD": 24.13,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T16:14:47.265Z"
+    },
+    {
+      "price": 814.44,
+      "priceUSD": 814.44,
+      "itemPrice": 814.44,
+      "itemPriceUSD": 814.44,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T16:15:19.198Z"
+    },
+    {
+      "price": 24.13,
+      "priceUSD": 24.13,
+      "itemPrice": 24.13,
+      "itemPriceUSD": 24.13,
+      "currency": "USD",
+      "scrapedAt": "2026-02-28T16:43:25.013Z"
+    },
+    {
+      "price": 0,
+      "currency": "USD",
+      "scrapedAt": "2026-03-01T13:23:04.941Z"
+    },
+    {
+      "price": 0,
+      "currency": "USD",
+      "scrapedAt": "2026-03-02T19:21:01.181Z"
+    },
+    {
+      "price": 24.13,
+      "priceUSD": 817.75,
+      "itemPrice": 24.13,
+      "itemPriceUSD": 817.75,
+      "currency": "USD",
+      "scrapedAt": "2026-03-02T19:21:17.663Z"
+    },
+    {
+      "price": 0,
+      "currency": "USD",
+      "scrapedAt": "2026-03-02T19:38:51.076Z"
+    },
+    {
+      "price": 0,
+      "currency": "USD",
+      "scrapedAt": "2026-03-02T19:50:09.882Z"
+    },
+    {
+      "price": 0,
+      "currency": "USD",
+      "scrapedAt": "2026-03-02T20:36:37.802Z"
+    },
+    {
+      "price": 24.13,
+      "priceUSD": 807.5,
+      "itemPrice": 24.13,
+      "itemPriceUSD": 807.5,
+      "currency": "USD",
+      "scrapedAt": "2026-03-03T11:59:02.492Z"
+    },
+    {
+      "price": 24.13,
+      "priceUSD": 807.5,
+      "itemPrice": 24.13,
+      "itemPriceUSD": 807.5,
+      "currency": "USD",
+      "scrapedAt": "2026-03-03T12:03:27.115Z"
+    },
+    {
+      "price": 807.5,
+      "priceUSD": 807.5,
+      "itemPrice": 807.5,
+      "itemPriceUSD": 807.5,
+      "currency": "USD",
+      "scrapedAt": "2026-03-03T12:18:24.440Z",
+      "priceObservedAt": "2026-03-03T12:18:24.440Z",
+      "itemPriceObservedAt": "2026-03-03T12:18:24.440Z"
+    },
+    {
+      "price": 807.5,
+      "priceUSD": 807.5,
+      "itemPrice": 807.5,
+      "itemPriceUSD": 807.5,
+      "currency": "USD",
+      "scrapedAt": "2026-03-03T12:28:02.547Z",
+      "priceObservedAt": "2026-03-03T12:28:02.547Z",
+      "itemPriceObservedAt": "2026-03-03T12:28:02.547Z"
+    },
+    {
+      "price": 807.5,
+      "priceUSD": 807.5,
+      "itemPrice": 807.5,
+      "itemPriceUSD": 807.5,
+      "currency": "USD",
+      "scrapedAt": "2026-03-03T13:01:32.172Z",
+      "priceObservedAt": "2026-03-03T13:01:32.172Z",
+      "itemPriceObservedAt": "2026-03-03T13:01:32.172Z"
+    }
+  ],
+  "https://www.amazon.com/apple-iphone-version-desert-titanium/dp/b0dhj9scj4/ref=sr_1_24": [
+    {
+      "price": 807.5,
+      "priceUSD": 807.5,
+      "itemPrice": 807.5,
+      "itemPriceUSD": 807.5,
+      "currency": "USD",
+      "scrapedAt": "2026-03-03T11:48:25.199Z"
+    }
+  ],
+  "asin:B0G58WV7X4": [
+    {
+      "price": 1461.18,
+      "priceUSD": 1592.69,
+      "itemPrice": 1461.18,
+      "itemPriceUSD": 1592.69,
+      "currency": "EUR",
+      "scrapedAt": "2026-03-03T12:33:05.949Z",
+      "priceObservedAt": "2026-03-03T12:33:05.949Z",
+      "itemPriceObservedAt": "2026-03-03T12:33:05.949Z"
+    }
+  ]
+}
