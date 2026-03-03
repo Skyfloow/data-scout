@@ -1,91 +1,91 @@
-# 🚀 Scrap Data MVP
+# 🚀 Scrap Data MVP (Data Scout)
 
 A compact full-stack platform for **market scraping**, **continuous monitoring**, and **keyword ranking history**.
 
 ## ✨ What You Get
 
 - 🖥️ **Frontend (`scrapper-ui`)**: React + Vite dashboard with monitoring workflows
-- ⚙️ **Backend (`server`)**: Fastify API for scraping jobs, history storage, and scheduler logic
+- ⚙️ **Backend (`server`)**: Fastify API for scraping jobs (Crawlee/Playwright + Firecrawl), history storage, and scheduler logic
+- 🐳 **Dockerized**: Easy setup and deployment via Docker Compose
 - 📚 **API Docs**: Built-in Swagger UI
 
 ## 🧱 Monorepo Structure
 
 ```text
-Scrap_data_MVP/
-├── scrapper-ui/   # Frontend app
-├── server/        # Backend API
-└── README.md
+data-scout/
+├── scrapper-ui/       # Frontend app (Vite + React)
+├── server/            # Backend API (Fastify + Crawlee)
+└── docker-compose.yml # Main Docker orchestration
 ```
 
-## ⚡ Quick Start
+## 🐳 Quick Start (Docker - Recommended)
 
-1. Install dependencies
+The easiest way to run the application is using Docker Compose. This ensures all dependencies (including headless browsers for scraping) are correctly configured.
 
-```bash
-cd scrapper-ui && npm install
-cd ../server && npm install
-```
+1.  **Start the application:**
 
-2. Configure backend environment
+    ```bash
+    docker compose up -d --build
+    ```
 
-```bash
-cd ../server
-cp .env.example .env
-```
+2.  **Access the interfaces:**
+    *   **Frontend UI:** [http://localhost:8080](http://localhost:8080)
+    *   **Backend API:** [http://localhost:3001/api](http://localhost:3001/api) (Mapped inside from 3000)
+    *   **Swagger Docs:** [http://localhost:3001/docs](http://localhost:3001/docs)
 
-3. Set backend port to match frontend API base URL
+3.  **Logs & Management:**
+    ```bash
+    # View all logs
+    docker compose logs -f
 
-```env
-PORT=3001
-```
+    # Stop the application
+    docker compose down
+    ```
 
-4. Start backend
+*(Note: The server `.env` variables and data files persist in the `./server/data` and `./server/storage` folders).*
 
-```bash
-npm run dev
-```
+---
 
-5. Start frontend (new terminal)
+## ⚡ Local Development (Without Docker)
 
-```bash
-cd ../scrapper-ui
-npm start
-```
+If you prefer to run services natively for development:
 
-## 🌐 Local URLs
+1. **Install dependencies**
+    ```bash
+    cd scrapper-ui && npm install
+    cd ../server && npm install
+    ```
 
-- Frontend: [http://localhost:3000](http://localhost:3000)
-- Backend API: [http://localhost:3001/api](http://localhost:3001/api)
-- Swagger UI: [http://localhost:3001/docs](http://localhost:3001/docs)
-- Healthcheck: [http://localhost:3001/health](http://localhost:3001/health)
+2. **Configure backend environment**
+    ```bash
+    cd server
+    cp .env.example .env
+    # Ensure PORT=3000 in your .env
+    ```
 
-## 📘 Swagger Documentation
+3. **Start fastify backend**
+    ```bash
+    npm run dev
+    ```
 
-After the backend is running, open:
-
-- [http://localhost:3001/docs](http://localhost:3001/docs)
-
-If your backend uses a different port, replace `3001` with that port.
+4. **Start Vite frontend (new terminal)**
+    ```bash
+    cd scrapper-ui
+    npm run dev
+    ```
 
 ## 🛠️ Build & Test
 
-Frontend:
-
+**Frontend:**
 ```bash
 cd scrapper-ui
 npm run build
-npm test -- --watchAll=false --watchman=false
+npm run test:ui
 ```
 
-Backend:
-
+**Backend:**
 ```bash
 cd server
 npm run build
 npm test
 ```
-
-## 📝 Notes
-
-- The frontend currently calls `http://localhost:3001/api/` from `scrapper-ui/src/store/apiSlice.ts`.
-- If backend runs on another port, update that constant or align your `.env` port.
