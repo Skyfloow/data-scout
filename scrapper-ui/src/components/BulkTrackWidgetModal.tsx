@@ -140,6 +140,7 @@ export default function BulkTrackWidgetModal({ open, onClose }: BulkTrackWidgetM
                   <MenuItem value="amazon.com">Amazon US (.com)</MenuItem>
                   <MenuItem value="amazon.co.uk">Amazon UK (.co.uk)</MenuItem>
                   <MenuItem value="amazon.de">Amazon DE (.de)</MenuItem>
+                  <MenuItem value="etsy.com">Etsy (.com)</MenuItem>
                 </Select>
               </FormControl>
 

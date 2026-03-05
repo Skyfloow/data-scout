@@ -195,15 +195,15 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
             <TextField
               fullWidth
               size="medium"
-              label="URL товара (Amazon)"
+              label="URL товара (Amazon, Etsy)"
               variant="outlined"
-              placeholder="https://amazon.com/dp/B08N5WRWNW..."
+              placeholder="https://amazon.com/dp/... или https://etsy.com/listing/..."
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               disabled={isStarting}
               required
               autoFocus
-              helperText="Поддерживаются прямые product URL (Amazon)."
+              helperText="Поддерживаются прямые product URL (Amazon, Etsy)."
               sx={{
                 '& .MuiInputBase-root': { bgcolor: 'background.paper' },
                 '& .MuiInputLabel-root': {

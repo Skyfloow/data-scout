@@ -1,5 +1,14 @@
 import { ExtractorContext, ExtractorResult } from '../extractors/types';
-import { ProductMetrics, Offer, Variation, RelatedProduct, BsrCategory, BuyBoxInfo, LightningDeal } from '../../../types';
+import {
+  ProductMetrics,
+  Offer,
+  Variation,
+  RelatedProduct,
+  BsrCategory,
+  BuyBoxInfo,
+  LightningDeal,
+  AmazonMarketplaceMetrics,
+} from '../../../types';
 import { parsePrice, parseCurrency, parseStockCount, detectCurrencyFromDomain } from '../../../utils/parsers';
 import { extractAsin } from './amazon-offers';
 import * as cheerio from 'cheerio';
@@ -963,6 +972,26 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
     .get()
     .filter((f: any) => f.length > 0)
     .slice(0, 15);
+
+  const amazonMetrics: AmazonMarketplaceMetrics = {
+    asin: metrics.asin,
+    buyBox: metrics.buyBox,
+    bsrCategories: metrics.bsrCategories,
+    bestSellerRank: metrics.bestSellerRank,
+    isPrime: metrics.isPrime,
+    isAmazonChoice: metrics.isAmazonChoice,
+    isBestSeller: metrics.isBestSeller,
+    isClimateFriendly: metrics.isClimateFriendly,
+    sellerCount: metrics.sellerCount,
+    offers: metrics.offers,
+    newOffersCount: metrics.newOffersCount,
+    usedOffersCount: metrics.usedOffersCount,
+    collectibleOffersCount: metrics.collectibleOffersCount,
+    lightningDeal: metrics.lightningDeal,
+    subscribeAndSavePrice: metrics.subscribeAndSavePrice,
+    subscribeAndSavePercent: metrics.subscribeAndSavePercent,
+  };
+  metrics.amazonMetrics = amazonMetrics;
 
   return { title, metrics, success: true };
 };

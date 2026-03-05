@@ -88,7 +88,7 @@ async function scheduledScrape(entity: MonitoredEntity): Promise<void> {
       logger.info(`Completed for Product ${entity.value} - price: ${stabilized.metrics.price}`);
     }
   } else if (entity.type === 'keyword') {
-    const result = await crawlerAdapter.scrapeAmazonSearch(entity.value, entity.marketplace);
+    const result = await crawlerAdapter.scrapeSearch(entity.value, entity.marketplace);
     if (result.result) {
        await storageService.saveSerpResult(result.result);
        logger.info(`Completed SERP for Keyword ${entity.value}`);

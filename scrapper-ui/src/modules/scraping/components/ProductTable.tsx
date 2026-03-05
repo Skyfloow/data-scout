@@ -129,6 +129,7 @@ function ProductTable() {
               <Select value={filterSource} label={t('table.source')} onChange={(e) => setFilterSource(e.target.value)}>
                 <MenuItem value="all">{t('table.allSources')}</MenuItem>
                 <MenuItem value="amazon">Amazon</MenuItem>
+                <MenuItem value="etsy">Etsy</MenuItem>
                 <MenuItem value="ebay">eBay</MenuItem>
               </Select>
             </FormControl>

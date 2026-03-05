@@ -10,7 +10,7 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ShieldIcon from '@mui/icons-material/Shield';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
-import { useGetProductsQuery, useGetMetricsQuery } from '../../../store/apiSlice';
+import { useGetProductsQuery } from '../../../store/apiSlice';
 import { Product } from '../../../types';
 import { calcValueScore, calcGrossMargin } from '../../../utils/metrics';
 import { formatCompactNumber, formatCurrency } from '../../../utils/formatters';
@@ -89,71 +89,91 @@ function MetricCard({ title, value, subtitle, icon, tooltip, loading, accent }: 
 function MetricsCards() {
   const { t } = useTranslation();
   const { data, isLoading } = useGetProductsQuery({});
-  const { data: metricsData, isLoading: isMetricsLoading } = useGetMetricsQuery();
   
   const metrics = useMemo(() => {
     const rawProducts: Product[] = data?.data || [];
     const products = getLatestUniqueProducts(rawProducts);
-    if (products.length === 0) return null;
+    const amazonProducts = products.filter((p) => p.marketplace.toLowerCase().includes('amazon'));
+    const etsyProducts = products.filter((p) => p.marketplace.toLowerCase().includes('etsy'));
 
-    let totalPrices = 0, productsWithPrice = 0;
-    let totalDiscount = 0, productsWithDiscount = 0;
-    let fbaCount = 0;
-    let totalTrust = 0;
-    let totalValue = 0;
-    let totalMargin = 0;
-    let bestOpportunity = { score: 0, name: '' };
-
-    products.forEach(p => {
-      const price = getEffectivePrice(p);
-      if (price && price > 0) { totalPrices += price; productsWithPrice++; }
-
-      if (p.metrics.discountPercentage) {
-        totalDiscount += p.metrics.discountPercentage;
-        productsWithDiscount++;
+    const buildSegment = (segment: Product[], mode: 'amazon' | 'etsy') => {
+      if (segment.length === 0) {
+        return {
+          count: 0,
+          avgPrice: '$0.00',
+          avgValue: '0/100',
+          avgMargin: '$0.00',
+          avgTrust: '0/100',
+          avgDiscount: '0%',
+          specialShare: '0%',
+          bestTitle: t('dashboard.noData'),
+        };
       }
 
-      if (p.metrics.buyBox?.isFBA) fbaCount++;
+      let totalPrices = 0;
+      let productsWithPrice = 0;
+      let totalValue = 0;
+      let totalMargin = 0;
+      let totalTrust = 0;
+      let totalDiscount = 0;
+      let productsWithDiscount = 0;
+      let specialCount = 0;
+      let best = { score: 0, title: '' };
 
-      const rating = p.metrics.averageRating || 0;
-      const trust = ((rating / 5) * 0.6 + (p.metrics.isAmazonChoice ? 0.2 : 0) + (p.metrics.isBestSeller ? 0.2 : 0)) * 100;
-      totalTrust += trust;
+      segment.forEach((p) => {
+        const price = getEffectivePrice(p);
+        if (price > 0) {
+          totalPrices += price;
+          productsWithPrice++;
+        }
 
-      // Value Score from utility
-      totalValue += calcValueScore(p.metrics);
-      
-      // Global Gross Margin estimation
-      const { marginAmount } = calcGrossMargin(p.metrics);
-      totalMargin += marginAmount;
+        totalValue += calcValueScore(p.metrics);
+        totalMargin += calcGrossMargin(p.metrics).marginAmount;
 
-      // Opportunity: discount × (reviews/10000) × (1/sellerCount)
-      const discount = p.metrics.discountPercentage || 0;
-      const reviews = p.metrics.reviewsCount || 0;
-      const sellers = p.metrics.sellerCount || 1;
-      const opportunity = discount * (reviews / 10000) * (1 / sellers);
-      if (opportunity > bestOpportunity.score) {
-        bestOpportunity = { score: opportunity, name: p.title.substring(0, 28) + '…' };
-      }
-    });
+        const rating = p.metrics.averageRating || 0;
+        const trust = mode === 'amazon'
+          ? ((rating / 5) * 0.6 + (p.metrics.isAmazonChoice ? 0.2 : 0) + (p.metrics.isBestSeller ? 0.2 : 0)) * 100
+          : ((rating / 5) * 0.75 + ((p.metrics.etsyMetrics?.isStarSeller || p.metrics.isStarSeller) ? 0.25 : 0)) * 100;
+        totalTrust += trust;
 
-    const avgPrice = productsWithPrice > 0 ? (totalPrices / productsWithPrice) : 0;
-    const avgDiscount = productsWithDiscount > 0 ? Math.round(totalDiscount / productsWithDiscount) : 0;
-    const fbaPercent = Math.round((fbaCount / products.length) * 100);
-    const avgTrust = Math.round(totalTrust / products.length);
-    const avgValue = Math.round(totalValue / products.length);
+        if (p.metrics.discountPercentage) {
+          totalDiscount += p.metrics.discountPercentage;
+          productsWithDiscount++;
+        }
+
+        if (mode === 'amazon' && (p.metrics.amazonMetrics?.isPrime || p.metrics.isPrime)) specialCount++;
+        if (mode === 'etsy' && (p.metrics.etsyMetrics?.isDigitalDownload || p.metrics.isDigitalDownload)) specialCount++;
+
+        const opportunity = (p.metrics.discountPercentage || 0) * ((p.metrics.reviewsCount || 0) / 10000) * (1 / Math.max(1, p.metrics.sellerCount || 1));
+        if (opportunity > best.score) {
+          best = { score: opportunity, title: `${p.title.substring(0, 28)}…` };
+        }
+      });
+
+      const avgPrice = productsWithPrice ? totalPrices / productsWithPrice : 0;
+      const avgValue = Math.round(totalValue / segment.length);
+      const avgTrust = Math.round(totalTrust / segment.length);
+      const avgDiscount = productsWithDiscount ? Math.round(totalDiscount / productsWithDiscount) : 0;
+      const specialShare = Math.round((specialCount / segment.length) * 100);
+
+      return {
+        count: segment.length,
+        avgPrice: formatCurrency(avgPrice),
+        avgValue: `${avgValue}/100`,
+        avgMargin: formatCurrency(totalMargin, true),
+        avgTrust: `${avgTrust}/100`,
+        avgDiscount: `${avgDiscount}%`,
+        specialShare: `${specialShare}%`,
+        bestTitle: best.title || t('dashboard.noData'),
+      };
+    };
 
     return {
-      totalScraped: formatCompactNumber(metricsData?.uniqueProducts || products.length),
-      avgPrice: formatCurrency(avgPrice),
-      avgDiscount: avgDiscount > 0 ? `${avgDiscount}%` : t('dashboard.noData'),
-      fbaPercent: `${fbaPercent}%`,
-      trustIndex: `${avgTrust}/100`,
-      valueScore: `${avgValue}/100`,
-      totalMarginFormatted: formatCurrency(totalMargin, true),
-      opportunityScore: bestOpportunity.score > 0 ? bestOpportunity.score.toFixed(1) : '0',
-      opportunityName: bestOpportunity.name || t('dashboard.noData'),
+      totalScraped: formatCompactNumber(products.length),
+      amazon: buildSegment(amazonProducts, 'amazon'),
+      etsy: buildSegment(etsyProducts, 'etsy'),
     };
-  }, [data, metricsData?.uniqueProducts, t]);
+  }, [data, t]);
 
   return (
     <Grid container spacing={3}>
@@ -169,118 +189,118 @@ function MetricsCards() {
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <MetricCard
-          title="Median Price"
-          value={formatCurrency(metricsData?.medianPrice || 0)}
+          title="Amazon Count"
+          value={metrics?.amazon.count || 0}
           icon={<TrendingUpIcon fontSize="small" />}
-          tooltip="Медианная цена по последнему состоянию уникальных товаров."
-          subtitle="Устойчива к ценовым выбросам"
-          loading={isMetricsLoading}
+          tooltip="Количество уникальных Amazon товаров в текущем срезе."
+          subtitle={`Avg price: ${metrics?.amazon.avgPrice || '$0.00'}`}
+          loading={isLoading}
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <MetricCard 
-          title={t('dashboard.estMargin')} 
-          value={metrics?.totalMarginFormatted || '$0'} 
-          subtitle={t('dashboard.grossProfitForecast')}
+          title="Etsy Count" 
+          value={metrics?.etsy.count || 0} 
+          subtitle={`Avg price: ${metrics?.etsy.avgPrice || '$0.00'}`}
           icon={<LocalOfferIcon sx={{ color: 'success.main' }} fontSize="small" /> }
           loading={isLoading}
-          tooltip={t('dashboard.estMarginTooltip')}
+          tooltip="Количество уникальных Etsy товаров в текущем срезе."
           accent="success.main"
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <MetricCard 
-          title={t('dashboard.avgPrice')}
-          value={metrics?.avgPrice || '$0.00'}
+          title="Amazon Margin"
+          value={metrics?.amazon.avgMargin || '$0.00'}
           icon={<TrendingUpIcon fontSize="small" />}
-          tooltip={t('dashboard.avgPriceTooltip')}
-          subtitle={`${t('dashboard.discount')}: ${metrics?.avgDiscount || '0%'}`}
+          tooltip="Суммарный расчетный margin по Amazon товарам."
+          subtitle={`Discount avg: ${metrics?.amazon.avgDiscount || '0%'}`}
           loading={isLoading}
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 3 }}>
         <MetricCard 
-          title={t('dashboard.avgValue')}
-          value={metrics?.valueScore || '0/100'}
+          title="Etsy Margin"
+          value={metrics?.etsy.avgMargin || '$0.00'}
           icon={<ThumbUpAltIcon fontSize="small" />}
-          tooltip={t('dashboard.avgValueTooltip')}
-          subtitle={t('dashboard.priceQualityRatio')}
+          tooltip="Суммарный расчетный margin по Etsy товарам."
+          subtitle={`Discount avg: ${metrics?.etsy.avgDiscount || '0%'}`}
           loading={isLoading}
           accent="success.main"
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <MetricCard 
-          title={t('dashboard.fbaShare')}
-          value={metrics?.fbaPercent || '0%'}
+          title="Amazon Prime Share"
+          value={metrics?.amazon.specialShare || '0%'}
           icon={<SpeedIcon fontSize="small" />}
-          tooltip={t('dashboard.fbaShareTooltip')}
-          subtitle={t('dashboard.useAmazonWarehouse')}
+          tooltip="Доля Prime среди Amazon товаров."
+          subtitle={`Value: ${metrics?.amazon.avgValue || '0/100'}`}
           loading={isLoading}
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <MetricCard 
-          title={t('dashboard.marketTrust')}
-          value={metrics?.trustIndex || '0/100'}
+          title="Etsy Digital Share"
+          value={metrics?.etsy.specialShare || '0%'}
           icon={<StarIcon fontSize="small" />}
-          tooltip={t('dashboard.marketTrustTooltip')}
-          subtitle={t('dashboard.trustIndex')}
+          tooltip="Доля digital-download среди Etsy товаров."
+          subtitle={`Value: ${metrics?.etsy.avgValue || '0/100'}`}
           loading={isLoading}
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <MetricCard 
-          title={t('dashboard.bestFind')}
-          value={metrics?.opportunityScore || '0'}
+          title="Amazon Best Opportunity"
+          value={metrics?.amazon.avgTrust || '0/100'}
           icon={<EmojiObjectsIcon fontSize="small" />}
-          tooltip={t('dashboard.bestFindTooltip')}
-          subtitle={metrics?.opportunityName || t('dashboard.noData')}
+          tooltip="Trust индекс Amazon сегмента."
+          subtitle={metrics?.amazon.bestTitle || t('dashboard.noData')}
           loading={isLoading}
           accent="warning.main"
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <MetricCard
-          title="BuyBox Coverage"
-          value={`${metricsData?.buyBoxCoveragePercent || 0}%`}
+          title="Etsy Trust"
+          value={metrics?.etsy.avgTrust || '0/100'}
           icon={<ShoppingCartIcon fontSize="small" />}
-          tooltip="Доля товаров, где удалось извлечь реальную Buy Box цену."
-          subtitle={`Avg sellers: ${metricsData?.avgSellerCount || 0}`}
-          loading={isMetricsLoading}
+          tooltip="Trust индекс Etsy сегмента."
+          subtitle={metrics?.etsy.bestTitle || t('dashboard.noData')}
+          loading={isLoading}
           accent="info.main"
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <MetricCard
-          title="Discounted Share"
-          value={`${metricsData?.discountedProductsPercent || 0}%`}
+          title="Amazon Value"
+          value={metrics?.amazon.avgValue || '0/100'}
           icon={<LocalOfferIcon fontSize="small" />}
-          tooltip="Процент товаров с активной скидкой."
-          subtitle={`Prime share: ${metricsData?.primeProductsPercent || 0}%`}
-          loading={isMetricsLoading}
+          tooltip="Средний Value score по Amazon."
+          subtitle={`Trust: ${metrics?.amazon.avgTrust || '0/100'}`}
+          loading={isLoading}
           accent="warning.main"
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 6 }}>
         <MetricCard 
-          title={t('dashboard.coverage')}
-          value={`${metricsData?.dataCoveragePercent || 0}%`}
+          title="Etsy Value"
+          value={metrics?.etsy.avgValue || '0/100'}
           icon={<FactCheckIcon fontSize="small" />}
-          tooltip={t('dashboard.coverageTooltip')}
-          subtitle={t('dashboard.parsingQuality')}
-          loading={isMetricsLoading}
+          tooltip="Средний Value score по Etsy."
+          subtitle={`Trust: ${metrics?.etsy.avgTrust || '0/100'}`}
+          loading={isLoading}
           accent="primary.main"
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 6 }}>
         <MetricCard 
-          title={t('dashboard.priceStability')}
-          value={`${metricsData?.stableProductsPercent || 100}%`}
+          title="Marketplace Segregated KPI"
+          value="ON"
           icon={<ShieldIcon fontSize="small" />}
-          tooltip={t('dashboard.priceStabilityTooltip')}
-          subtitle={`${t('dashboard.anomaliesDetected')}: ${metricsData?.anomaliesCount || 0}`}
-          loading={isMetricsLoading}
+          tooltip="KPI считаются отдельно для Amazon и Etsy, без смешения данных."
+          subtitle="Amazon/Etsy metrics separated"
+          loading={isLoading}
           accent="secondary.main"
         />
       </Grid>

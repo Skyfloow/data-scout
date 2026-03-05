@@ -50,6 +50,7 @@ describe('amazonExtractor price resolution', () => {
     const $ = cheerio.load(html);
     const result = await amazonExtractor({ $, html, url: 'https://www.amazon.com/dp/B000000000' });
     expect(result.metrics.price).toBeCloseTo(749.99, 2);
+    expect(result.metrics.amazonMetrics?.asin).toBe('B000000000');
   });
 
   it('ignores installment value and picks one-time price', async () => {

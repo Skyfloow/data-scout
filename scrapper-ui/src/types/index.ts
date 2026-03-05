@@ -90,6 +90,48 @@ export interface LightningDeal {
   endsAt?: string;
 }
 
+export interface ShippingProfileEntry {
+  region: string;
+  eta?: string;
+  price?: number;
+  currency?: string;
+  raw?: string;
+}
+
+export interface AmazonMarketplaceMetrics {
+  asin?: string;
+  buyBox?: BuyBoxInfo;
+  bsrCategories?: BsrCategory[];
+  bestSellerRank?: string;
+  isPrime?: boolean;
+  isAmazonChoice?: boolean;
+  isBestSeller?: boolean;
+  isClimateFriendly?: boolean;
+  sellerCount?: number;
+  offers?: Offer[];
+  newOffersCount?: number;
+  usedOffersCount?: number;
+  collectibleOffersCount?: number;
+  lightningDeal?: LightningDeal;
+  subscribeAndSavePrice?: number;
+  subscribeAndSavePercent?: number;
+}
+
+export interface EtsyMarketplaceMetrics {
+  shippingProfiles?: ShippingProfileEntry[];
+  dispatchTime?: string;
+  dispatchMinDays?: number;
+  dispatchMaxDays?: number;
+  madeToOrder?: boolean;
+  materials?: string[];
+  tags?: string[];
+  isDigitalDownload?: boolean;
+  shopAgeText?: string;
+  shopAgeYears?: number;
+  isStarSeller?: boolean;
+  shopResponseRate?: number;
+}
+
 // ─── Main product metrics ───
 export interface ProductMetrics {
   price?: number;
@@ -166,6 +208,24 @@ export interface ProductMetrics {
   subscribeAndSavePrice?: number;
   subscribeAndSavePercent?: number;
   couponText?: string;
+
+  // Etsy-oriented optional fields
+  shippingProfiles?: ShippingProfileEntry[];
+  dispatchTime?: string;
+  dispatchMinDays?: number;
+  dispatchMaxDays?: number;
+  madeToOrder?: boolean;
+  materials?: string[];
+  tags?: string[];
+  isDigitalDownload?: boolean;
+  shopAgeText?: string;
+  shopAgeYears?: number;
+  isStarSeller?: boolean;
+  shopResponseRate?: number;
+
+  // Marketplace-specific structured blocks
+  amazonMetrics?: AmazonMarketplaceMetrics;
+  etsyMetrics?: EtsyMarketplaceMetrics;
 }
 
 export interface Product {

@@ -3,6 +3,8 @@ import stealthPlugin from 'puppeteer-extra-plugin-stealth';
 import { createRequire } from 'module';
 import { FetchResult } from './Fetcher';
 import { logger as baseLogger } from '../../../utils/logger';
+import { config } from '../../../config';
+import type { Page } from 'playwright';
 
 const logger = baseLogger.child({ module: 'PlaywrightFetcher' });
 
@@ -10,6 +12,19 @@ const logger = baseLogger.child({ module: 'PlaywrightFetcher' });
 chromium.use(stealthPlugin());
 
 export class PlaywrightFetcher {
+  private randomInt(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  private async humanLikeDelay(page: Page): Promise<void> {
+    const minMs = Math.max(100, config.humanDelayMinMs);
+    const maxMs = Math.max(minMs, config.humanDelayMaxMs);
+    await page.mouse.move(this.randomInt(40, 640), this.randomInt(80, 420));
+    await page.waitForTimeout(this.randomInt(minMs, maxMs));
+    await page.mouse.wheel(0, this.randomInt(250, 900));
+    await page.waitForTimeout(this.randomInt(minMs, maxMs));
+  }
+
   private buildLaunchOptions(): any {
     return {
       headless: true,
@@ -43,7 +58,8 @@ export class PlaywrightFetcher {
 
       const page = await context.newPage();
       await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await page.waitForTimeout(2000);
+      await this.humanLikeDelay(page);
+      await page.waitForTimeout(this.randomInt(700, 1700));
       const html = await page.content();
       await browser.close();
 
@@ -64,12 +80,15 @@ export class PlaywrightFetcher {
     const runtimeRequire = createRequire(__filename);
     const crawleeModuleName = 'crawlee';
     const crawlee = runtimeRequire(crawleeModuleName) as any;
-    const { PlaywrightCrawler, ProxyConfiguration } = crawlee;
+    const { PlaywrightCrawler, ProxyConfiguration, RequestQueue } = crawlee;
+
+    const requestQueue = await RequestQueue.open(Date.now().toString() + Math.random().toString());
 
     let html = '';
     let failureReason = '';
 
     const crawler = new PlaywrightCrawler({
+      requestQueue,
       maxRequestsPerCrawl: 1,
       maxRequestRetries: 1,
       requestHandlerTimeoutSecs: 60,
@@ -85,7 +104,8 @@ export class PlaywrightFetcher {
       },
       requestHandler: async ({ page }: any) => {
         await page.waitForLoadState('domcontentloaded');
-        await page.waitForTimeout(2000);
+        await this.humanLikeDelay(page);
+        await page.waitForTimeout(this.randomInt(700, 1700));
         html = await page.content();
       },
       failedRequestHandler: async ({ request }: any, error: Error) => {
@@ -95,13 +115,10 @@ export class PlaywrightFetcher {
     });
 
     await crawler.run([url]);
+    await requestQueue.drop();
 
     if (!html) {
-      return {
-        success: false,
-        error: failureReason || 'Crawlee Playwright returned empty HTML',
-        html: '',
-      };
+      throw new Error(failureReason || 'Crawlee Playwright returned empty HTML');
     }
 
     return {

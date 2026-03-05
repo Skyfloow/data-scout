@@ -9,8 +9,12 @@ import { logger as baseLogger } from '../../../utils/logger';
 import { detectCurrencyFromDomain } from '../../../utils/parsers';
 import { syncMetricsPriceFromBuyBox } from '../../../utils/price';
 import path from 'path';
+import fs from 'fs';
 import { chromium } from 'playwright-extra';
 import stealthPlugin from 'puppeteer-extra-plugin-stealth';
+import * as cheerio from 'cheerio';
+import { PlatformExtractor } from '../extractors/PlatformExtractor';
+import { metadataExtractor } from '../extractors/MetadataExtractor';
 
 chromium.use(stealthPlugin());
 
@@ -21,6 +25,21 @@ log.setLevel(log.LEVELS.WARNING);
 
 export class CrawleeAdapter implements IScraper {
   
+  private async cleanupSnapshots(): Promise<void> {
+    try {
+      const snapshotDir = path.join(process.cwd(), 'data', 'snapshots');
+      if (!fs.existsSync(snapshotDir)) return;
+      const files = await fs.promises.readdir(snapshotDir);
+      for (const file of files) {
+        if (file.endsWith('.jpg') || file.endsWith('.jpeg')) {
+          await fs.promises.unlink(path.join(snapshotDir, file)).catch(() => {});
+        }
+      }
+    } catch (err) {
+      logger.warn(`Failed to cleanup snapshots: ${(err as Error).message}`);
+    }
+  }
+
   async scrapeProduct(url: string): Promise<ProductScrapeResult> {
     try {
       const settings = await storageService.getSettings();
@@ -154,7 +173,11 @@ export class CrawleeAdapter implements IScraper {
           }
 
           const html = await page.content();
-          if (this.isAmazonBlocked(html)) {
+          let marketplace = 'unknown';
+          if (request.url.includes('amazon')) marketplace = 'amazon';
+          else if (request.url.includes('etsy')) marketplace = 'etsy';
+
+          if (marketplace === 'amazon' && this.isAmazonBlocked(html)) {
             const snapshotDir = path.join(process.cwd(), 'data', 'snapshots');
             try { 
               await page.screenshot({ path: path.join(snapshotDir, `blocked-${uuidv4()}.jpg`), type: 'jpeg', quality: 80, fullPage: true }); 
@@ -164,6 +187,44 @@ export class CrawleeAdapter implements IScraper {
             session?.markBad();
             isBlocked = true;
             throw new Error('Blocked by CAPTCHA/Anti-bot');
+          }
+
+          let metrics: Partial<ProductMetrics> = {};
+          const scrapedAt = new Date().toISOString();
+
+          // Brand-new branching logic for non-Amazon platforms handled via Cheerio
+          if (marketplace !== 'amazon') {
+             const $ = cheerio.load(html);
+             const context = { url: request.url, html, $ };
+             const extractor = new PlatformExtractor();
+             const [metaResult, platformResult] = await Promise.all([
+               metadataExtractor.extract(context),
+               extractor.extract(context)
+             ]);
+
+             const finalTitle = platformResult.title || metaResult.title || 'Unknown Product';
+             metrics = { ...metaResult.metrics, ...platformResult.metrics };
+             
+             const domainCurrency = detectCurrencyFromDomain(request.url) || 'USD';
+             metrics.currency = metrics.currency || domainCurrency;
+             metrics = syncMetricsPriceFromBuyBox(metrics, scrapedAt);
+
+             if (metrics.price) {
+                metrics.priceUSD = convertToUSD(metrics.price, metrics.currency || 'USD');
+                metrics.itemPriceUSD = convertToUSD(metrics.itemPrice || metrics.price, metrics.currency || 'USD');
+             }
+
+             productResult = {
+               id: uuidv4(),
+               title: finalTitle,
+               url: request.url,
+               marketplace,
+               metrics: metrics as Product['metrics'],
+               scrapedAt,
+               scrapedBy: 'crawler'
+             };
+             logger.info(`[Crawlee ${marketplace}] Successfully extracted ${productResult.title}`);
+             return; // Break out of Playwright's callback for this URL
           }
 
           // Browser-side Extraction! Highly accurate.
@@ -422,7 +483,7 @@ export class CrawleeAdapter implements IScraper {
           })()`);
 
           // Build metrics
-          let metrics: Partial<ProductMetrics> = {
+          metrics = {
               price: extractedData.price,
               itemPrice: extractedData.price,
               originalPrice: extractedData.originalPrice,
@@ -450,7 +511,6 @@ export class CrawleeAdapter implements IScraper {
 
           const domainCurrency = detectCurrencyFromDomain(request.url) || 'USD';
           metrics.currency = extractedData.currency || domainCurrency;
-          const scrapedAt = new Date().toISOString();
           metrics.buyBox = {
             sellerName: extractedData.buyBoxSeller,
             price: metrics.price || 0,
@@ -482,12 +542,9 @@ export class CrawleeAdapter implements IScraper {
              } catch (err) {}
           }
           
-          let marketplace = 'unknown';
-          if (request.url.includes('amazon')) marketplace = 'amazon';
-
           productResult = {
             id: uuidv4(),
-            title: extractedData.title,
+            title: extractedData ? extractedData.title : 'Unknown Product',
             url: request.url,
             marketplace,
             metrics: metrics as Product['metrics'],
@@ -515,6 +572,9 @@ export class CrawleeAdapter implements IScraper {
       if (!productResult) {
         return { error: `Failed to fetch URL. Reason: ${failureReason || 'No product data extracted'}` };
       }
+
+      // Cleanup snapshots to avoid accumulating unnecessary images on success
+      await this.cleanupSnapshots();
 
       return { product: productResult };
 

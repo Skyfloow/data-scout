@@ -39,6 +39,7 @@ HOST=0.0.0.0
 NODE_ENV=development
 DATA_DIR=./data
 FIRECRAWL_API_KEY=your_api_key_here
+ETSY_FORCE_FIRECRAWL=false
 ```
 
 ## ▶️ Run in Development

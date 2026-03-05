@@ -94,9 +94,9 @@ export default function ScrapeForm() {
           <TextField
             fullWidth
             size="small"
-            label="Product URL"
+            label="Product URL (Amazon, Etsy)"
             variant="outlined"
-            placeholder="https://amazon.com/..."
+            placeholder="https://amazon.com/... or https://etsy.com/..."
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             disabled={isStarting || isPolling}

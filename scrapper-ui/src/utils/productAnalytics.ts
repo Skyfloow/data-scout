@@ -3,7 +3,7 @@ import { Product } from '../types';
 const normalizeUrl = (url: string): string => url.toLowerCase().split('?')[0];
 
 export const getProductIdentity = (product: Product): string => {
-  const asin = product.metrics.asin?.trim();
+  const asin = (product.metrics.amazonMetrics?.asin || product.metrics.asin)?.trim();
   if (asin) return `asin:${asin.toUpperCase()}`;
   return `url:${normalizeUrl(product.url)}`;
 };

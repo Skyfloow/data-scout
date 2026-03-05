@@ -132,6 +132,10 @@ export default function ProductDetailPage() {
   }
 
   const effectivePrice = resolveMetricPrice(m);
+  const isAmazon = product.marketplace.toLowerCase().includes('amazon');
+  const isEtsy = product.marketplace.toLowerCase().includes('etsy');
+  const am = m.amazonMetrics;
+  const em = m.etsyMetrics;
   const listingStrength = calcListingStrength(m, product.title);
   const salesVolume = calcSalesVolume(m);
   const revenuePotential = calcRevenuePotential(m);
@@ -147,7 +151,8 @@ export default function ProductDetailPage() {
   const axisStroke = alpha(theme.palette.text.secondary, isDark ? 0.35 : 0.25);
   const gridLine = alpha(theme.palette.divider, isDark ? 0.65 : 1);
 
-  const bsrOpt = m.bsrCategories && m.bsrCategories.length > 0 ? {
+  const bsrSource = am?.bsrCategories || m.bsrCategories;
+  const bsrOpt = bsrSource && bsrSource.length > 0 ? {
     backgroundColor: 'transparent',
     textStyle: { color: chartTextSecondary, fontFamily: 'Inter, Helvetica, Arial, sans-serif' },
     tooltip: {
@@ -158,7 +163,7 @@ export default function ProductDetailPage() {
     },
     xAxis: {
       type: 'category' as const,
-      data: m.bsrCategories.map((b) => b.category.substring(0, 20)),
+      data: bsrSource.map((b) => b.category.substring(0, 20)),
       axisLabel: { fontSize: 11, rotate: 15, color: chartTextSecondary },
       axisLine: { lineStyle: { color: axisStroke } },
       axisTick: { lineStyle: { color: axisStroke } },
@@ -175,7 +180,7 @@ export default function ProductDetailPage() {
     },
     series: [{
       type: 'bar',
-      data: m.bsrCategories.map((b) => b.rank),
+      data: bsrSource.map((b) => b.rank),
       itemStyle: { color: theme.palette.primary.main, borderRadius: [4, 4, 0, 0] },
       barMaxWidth: 60,
     }],
@@ -211,7 +216,8 @@ export default function ProductDetailPage() {
     }],
   };
 
-  const offerBars = (m.offers || [])
+  const offersSource = am?.offers || m.offers || [];
+  const offerBars = offersSource
     .slice()
     .sort((a, b) => a.price - b.price)
     .slice(0, 8);
@@ -277,7 +283,59 @@ export default function ProductDetailPage() {
   } : null;
 
   const observedAt = m.buyBox?.observedAt || m.priceObservedAt || m.itemPriceObservedAt || product.scrapedAt;
-  const buyBoxType = m.buyBox?.isAmazon ? 'Amazon' : m.buyBox?.isFBA ? 'FBA' : m.buyBox ? 'FBM' : 'Unknown';
+  const buyBox = am?.buyBox || m.buyBox;
+  const buyBoxType = buyBox?.isAmazon ? 'Amazon' : buyBox?.isFBA ? 'FBA' : buyBox ? 'FBM' : 'Unknown';
+  const etsyIsDigital = Boolean(em?.isDigitalDownload ?? m.isDigitalDownload);
+  const etsyResponseRateRaw = em?.shopResponseRate ?? m.shopResponseRate;
+  const etsyResponseRate = typeof etsyResponseRateRaw === 'number' && etsyResponseRateRaw >= 1 && etsyResponseRateRaw <= 100
+    ? etsyResponseRateRaw
+    : undefined;
+  const etsyDispatchMinDays = em?.dispatchMinDays ?? m.dispatchMinDays;
+  const etsyDispatchMaxDays = em?.dispatchMaxDays ?? m.dispatchMaxDays;
+  const etsyDispatchLabel = etsyDispatchMinDays !== undefined && etsyDispatchMaxDays !== undefined
+    ? etsyDispatchMinDays === etsyDispatchMaxDays
+      ? `${etsyDispatchMinDays} days`
+      : `${etsyDispatchMinDays}-${etsyDispatchMaxDays} days`
+    : (em?.dispatchTime || m.dispatchTime);
+  const etsyShopAgeYears = em?.shopAgeYears ?? m.shopAgeYears;
+  const etsyShopAgeText = em?.shopAgeText || m.shopAgeText;
+  const etsyShopAgeLabel = etsyShopAgeYears !== undefined
+    ? `${etsyShopAgeYears}y`
+    : etsyShopAgeText;
+  const etsyMaterials = (em?.materials || m.materials || []).slice(0, 8);
+  const etsyTags = (em?.tags || m.tags || []).slice(0, 8);
+  const etsyShippingProfiles = (em?.shippingProfiles || m.shippingProfiles || [])
+    .filter((entry) => Boolean(entry?.eta) || entry?.price !== undefined)
+    .slice(0, 6);
+  const etsyStatCards: Array<{ label: string; value: string | number; tooltip: string; color?: string; multilineValue?: boolean }> = [];
+  if ((m.reviewsCount || 0) > 0) {
+    etsyStatCards.push({ label: 'Reviews', value: formatCompactNumber(m.reviewsCount || 0), tooltip: 'Количество отзывов.' });
+  }
+  if ((m.averageRating || 0) > 0) {
+    etsyStatCards.push({
+      label: 'Rating',
+      value: `${(m.averageRating || 0).toFixed(2)}/5`,
+      tooltip: 'Средняя оценка товара.',
+      color: 'secondary.main',
+    });
+  }
+  if ((m.viewsCount || 0) > 0) {
+    etsyStatCards.push({ label: 'Views', value: formatCompactNumber(m.viewsCount || 0), tooltip: 'Просмотры листинга (если доступны).' });
+  }
+  if (etsyDispatchLabel) {
+    etsyStatCards.push({ label: 'Dispatch', value: etsyDispatchLabel, tooltip: 'Срок обработки/dispatch time.', multilineValue: true });
+  }
+  if (etsyShopAgeLabel) {
+    etsyStatCards.push({ label: 'Shop Age', value: etsyShopAgeLabel, tooltip: 'Возраст магазина Etsy.' });
+  }
+  if (etsyResponseRate !== undefined) {
+    etsyStatCards.push({ label: 'Response', value: `${etsyResponseRate}%`, tooltip: 'Response rate продавца.' });
+  }
+  if (etsyIsDigital) {
+    etsyStatCards.push({ label: 'Listing Type', value: 'Digital', tooltip: 'Тип листинга: digital download.', color: 'success.main' });
+  } else if (m.madeToOrder || em?.madeToOrder) {
+    etsyStatCards.push({ label: 'Listing Type', value: 'Made to Order', tooltip: 'Товар изготавливается под заказ.', color: 'warning.main' });
+  }
 
   return (
     <Box>
@@ -296,11 +354,13 @@ export default function ProductDetailPage() {
                 {product.title}
               </Typography>
               <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 2 }}>
-                {m.asin && <Chip label={`ASIN: ${m.asin}`} size="small" variant="outlined" />}
+                {(am?.asin || m.asin) && <Chip label={`ASIN: ${am?.asin || m.asin}`} size="small" variant="outlined" />}
                 <Chip label={`${m.currency || 'USD'}`} size="small" color="secondary" />
-                {m.isAmazonChoice && <Chip label="Amazon's Choice" size="small" color="info" />}
-                {m.isBestSeller && <Chip label="Best Seller" size="small" color="warning" />}
-                {m.isPrime && <Chip label="Prime" size="small" sx={{ bgcolor: 'info.main', color: '#fff' }} />}
+                {isAmazon && (am?.isAmazonChoice || m.isAmazonChoice) && <Chip label="Amazon's Choice" size="small" color="info" />}
+                {isAmazon && (am?.isBestSeller || m.isBestSeller) && <Chip label="Best Seller" size="small" color="warning" />}
+                {isAmazon && (am?.isPrime || m.isPrime) && <Chip label="Prime" size="small" sx={{ bgcolor: 'info.main', color: '#fff' }} />}
+                {isEtsy && (em?.isStarSeller || m.isStarSeller) && <Chip label="Star Seller" size="small" color="info" />}
+                {isEtsy && etsyIsDigital && <Chip label="Digital Download" size="small" color="success" />}
                 <Chip label={product.scrapedBy} size="small" variant="outlined" />
               </Stack>
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 1.5 }} alignItems={{ xs: 'flex-start', sm: 'center' }} useFlexGap sx={{ minWidth: 0, maxWidth: '100%' }}>
@@ -323,39 +383,66 @@ export default function ProductDetailPage() {
       </Card>
 
       <Grid container spacing={3} sx={{ mb: 3 }}>
-        <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-          <StatCard label="Sales/mo" value={formatCompactNumber(salesVolume)} tooltip="Ожидаемые продажи в месяц (на основе позиции BSR)." color="secondary.main" />
-        </Grid>
-        <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-          <StatCard label="Revenue/mo" value={formatCurrency(revenuePotential, true)} tooltip="Потенциальная выручка в месяц." color="secondary.main" />
-        </Grid>
-        <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-          <StatCard
-            label="Est. Margin"
-            value={`${formatCurrency(marginAmount, true)}\n(${marginPercent}%)`}
-            tooltip="Прогноз gross прибыли по реальной цене."
-            color="success.main"
-            multilineValue
-          />
-        </Grid>
-        <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-          <StatCard label="BuyBox Type" value={buyBoxType} tooltip="Кто держит Buy Box: Amazon/FBA/FBM." />
-        </Grid>
-        <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-          <StatCard label="Sellers" value={m.sellerCount || m.offers?.length || 0} tooltip="Количество продавцов и офферов." />
-        </Grid>
-        <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-          <StatCard label="Trust" value={`${trustIndex}/100`} tooltip="Рейтинг доверия (rating + badges)." />
-        </Grid>
-        <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-          <StatCard label="Competition" value={`${competitionOpp}/100`} tooltip="Шанс входа в нишу." />
-        </Grid>
-        <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-          <StatCard label="Value Score" value={`${valueScore}/100`} tooltip="Ценность предложения (rating/discount/reviews)." color="success.main" />
-        </Grid>
-        <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-          <StatCard label="Niche Score" value={`${nicheScore}/100`} tooltip="Сводная привлекательность ниши." />
-        </Grid>
+        {isAmazon ? (
+          <>
+            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
+              <StatCard label="Sales/mo" value={formatCompactNumber(salesVolume)} tooltip="Ожидаемые продажи в месяц (на основе позиции BSR)." color="secondary.main" />
+            </Grid>
+            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
+              <StatCard label="Revenue/mo" value={formatCurrency(revenuePotential, true)} tooltip="Потенциальная выручка в месяц." color="secondary.main" />
+            </Grid>
+            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
+              <StatCard
+                label="Est. Margin"
+                value={`${formatCurrency(marginAmount, true)}\n(${marginPercent}%)`}
+                tooltip="Прогноз gross прибыли по реальной цене."
+                color="success.main"
+                multilineValue
+              />
+            </Grid>
+            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
+              <StatCard label="BuyBox Type" value={buyBoxType} tooltip="Кто держит Buy Box: Amazon/FBA/FBM." />
+            </Grid>
+            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
+              <StatCard label="Sellers" value={am?.sellerCount || m.sellerCount || offersSource.length || 0} tooltip="Количество продавцов и офферов." />
+            </Grid>
+            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
+              <StatCard label="Trust" value={`${trustIndex}/100`} tooltip="Рейтинг доверия (rating + badges)." />
+            </Grid>
+            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
+              <StatCard label="Competition" value={`${competitionOpp}/100`} tooltip="Шанс входа в нишу." />
+            </Grid>
+            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
+              <StatCard label="Value Score" value={`${valueScore}/100`} tooltip="Ценность предложения (rating/discount/reviews)." color="success.main" />
+            </Grid>
+            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
+              <StatCard label="Niche Score" value={`${nicheScore}/100`} tooltip="Сводная привлекательность ниши." />
+            </Grid>
+          </>
+        ) : (
+          <>
+            {etsyStatCards.length > 0 ? etsyStatCards.map((card) => (
+              <Grid key={card.label} size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
+                <StatCard
+                  label={card.label}
+                  value={card.value}
+                  tooltip={card.tooltip}
+                  color={card.color}
+                  multilineValue={card.multilineValue}
+                />
+              </Grid>
+            )) : (
+              <Grid size={{ xs: 12 }}>
+                <StatCard
+                  label="Etsy Signals"
+                  value="Limited data"
+                  tooltip="Недостаточно валидных Etsy-метрик для карточек."
+                  color="text.secondary"
+                />
+              </Grid>
+            )}
+          </>
+        )}
       </Grid>
 
       <Grid container spacing={3}>
@@ -397,7 +484,7 @@ export default function ProductDetailPage() {
           </Card>
         </Grid>
 
-        {offersOpt && (
+        {isAmazon && offersOpt && (
           <Grid size={{ xs: 12, md: 6 }}>
             <Card elevation={2}>
               <CardContent>
@@ -415,7 +502,7 @@ export default function ProductDetailPage() {
           </Grid>
         )}
 
-        {bsrOpt && (
+        {isAmazon && bsrOpt && (
           <Grid size={{ xs: 12, md: offersOpt ? 6 : 12 }}>
             <Card elevation={2}>
               <CardContent>
@@ -433,6 +520,72 @@ export default function ProductDetailPage() {
           </Grid>
         )}
       </Grid>
+
+      {isEtsy && (
+        <Grid container spacing={3} sx={{ mt: 0.5 }}>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Card elevation={2}>
+              <CardContent>
+                <Typography variant="h6" fontWeight="600" gutterBottom>
+                  Shipping Profiles
+                </Typography>
+                <Divider sx={{ mb: 2 }} />
+                {etsyIsDigital ? (
+                  <Typography color="text.secondary">Digital listing: shipping profiles are not applicable.</Typography>
+                ) : etsyShippingProfiles.length > 0 ? (
+                  etsyShippingProfiles.map((entry, idx) => (
+                    <Typography key={`${entry.region}-${idx}`} variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                      {entry.region}: {entry.eta || 'ETA N/A'}{entry.price !== undefined ? ` • ${entry.currency || m.currency || 'USD'} ${entry.price}` : ''}
+                    </Typography>
+                  ))
+                ) : (
+                  <Typography color="text.secondary">No reliable shipping profile data</Typography>
+                )}
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Card elevation={2}>
+              <CardContent>
+                <Typography variant="h6" fontWeight="600" gutterBottom>
+                  Etsy Shop Signals
+                </Typography>
+                <Divider sx={{ mb: 2 }} />
+                <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                  {(em?.isStarSeller || m.isStarSeller) && <Chip label="Star Seller" color="info" size="small" />}
+                  {(em?.madeToOrder || m.madeToOrder) && <Chip label="Made to Order" color="warning" size="small" />}
+                  {etsyIsDigital && <Chip label="Digital Download" color="success" size="small" />}
+                </Stack>
+                {etsyResponseRate !== undefined ? (
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1.5 }}>
+                    Response Rate: {etsyResponseRate}%
+                  </Typography>
+                ) : null}
+                {etsyShopAgeLabel ? (
+                  <Typography variant="body2" color="text.secondary">
+                    Shop Age: {etsyShopAgeLabel}
+                  </Typography>
+                ) : null}
+                {etsyMaterials.length ? (
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                    Materials: {etsyMaterials.join(', ')}
+                  </Typography>
+                ) : null}
+                {etsyTags.length ? (
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                    Tags: {etsyTags.join(', ')}
+                  </Typography>
+                ) : null}
+                {!etsyResponseRate && !etsyShopAgeLabel && !etsyMaterials.length && !etsyTags.length && !(em?.isStarSeller || m.isStarSeller) && !(em?.madeToOrder || m.madeToOrder) && !etsyIsDigital ? (
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1.5 }}>
+                    No reliable Etsy shop signals extracted.
+                  </Typography>
+                ) : null}
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      )}
 
       {m.features && m.features.length > 0 && (
         <Card elevation={2} sx={{ mt: 3 }}>

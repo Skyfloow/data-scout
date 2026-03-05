@@ -1,5 +1,6 @@
 import { ExtractorContext, ExtractorResult } from '../extractors/types';
 import { amazonExtractor } from './amazon';
+import { etsyExtractor } from './etsy';
 
 // Selectors can now be async (e.g. amazon fetches /gp/offer-listing/ in a second HTTP call)
 export type SelectorFunction = (context: ExtractorContext) => Promise<ExtractorResult> | ExtractorResult;
@@ -8,6 +9,8 @@ export type SelectorFunction = (context: ExtractorContext) => Promise<ExtractorR
 export const selectorRegistry: Record<string, SelectorFunction> = {
   'amazon.com': amazonExtractor,
   'www.amazon.com': amazonExtractor,
+  'etsy.com': etsyExtractor,
+  'www.etsy.com': etsyExtractor,
   // Future platforms:
   // 'ebay.com': ebayExtractor,
   // 'bestbuy.com': bestbuyExtractor,

@@ -567,5 +567,656 @@
     },
     "scrapedAt": "2026-02-27T14:45:28.023Z",
     "scrapedBy": "crawler"
+  },
+  "https://www.amazon.com/apple-iphone-version-desert-titanium/dp/b0dhj896ry/ref=sr_1_24": {
+    "id": "2651dddb-6d37-4edf-9064-fed3de3c866d",
+    "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Black Titanium - Unlocked (Renewed)",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DHJ896RY/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": 799,
+      "itemPrice": 799,
+      "originalPrice": 789.95,
+      "averageRating": 4.3,
+      "reviewsCount": 2428,
+      "isPrime": false,
+      "asin": "B0DHJ896RY",
+      "brand": "Visit the Amazon Renewed Store",
+      "availability": "Only 1 left in stock - order soon.",
+      "deliveryInfo": "FREE delivery Friday, March 6. Details",
+      "category": "Cell Phones & Accessories",
+      "features": [
+        "The large 6.9-inch display combines ProMotion 120Hz technology with advanced color calibration, giving movies, games, and productivity apps a spacious, crisp, and fluid visual experience that’s ideal for multitasking or immersive media consumption.",
+        "Titanium frame and reinforced edges provide a premium, durable build, reducing weight compared to stainless steel while enhancing grip and making the phone easier to handle during long sessions of video recording, gaming, or editing.",
+        "Camera system designed for versatility and precision, including ultra-wide, wide, and telephoto lenses with improved low-light and macro capabilities, giving photographers and creators a broader range of expressive tools while maintaining sharp details across the frame.",
+        "Advanced Action button offers customizable shortcuts, allowing quick access to features like capturing photos, launching apps, controlling accessibility tools, or activating automation tasks without interrupting your workflow.",
+        "Audio and video performance optimized for creators, with spatial audio, improved microphones, and stabilized video recording, providing professional-quality sound and smooth footage whether recording content, streaming, or joining video calls."
+      ],
+      "imageUrl": "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX342_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX342_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX385_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX425_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX466_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX679_.jpg"
+      ],
+      "salesVolume": "500+ bought in past month",
+      "bestSellerRank": "#622 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+      "bsrCategories": [
+        {
+          "rank": 622,
+          "category": "Cell Phones & Accessories"
+        }
+      ],
+      "currency": "USD",
+      "buyBox": {
+        "sellerName": "WirelessSource",
+        "price": 799,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-04T09:44:09.760Z"
+      },
+      "priceObservedAt": "2026-03-04T09:44:09.760Z",
+      "itemPriceObservedAt": "2026-03-04T09:44:09.760Z",
+      "priceUSD": 799,
+      "itemPriceUSD": 799,
+      "dataQualityScore": 85
+    },
+    "scrapedAt": "2026-03-04T09:44:09.760Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.com/apple-iphone-version-desert-titanium/dp/b0dhhxqjqz/ref=sr_1_24": {
+    "id": "8964ecfc-4ff1-4fd6-8ebc-86db07ca9682",
+    "title": "Apple iPhone 16 Pro Max, US Version, 256GB, White Titanium - Unlocked (Renewed)",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DHHXQJQZ/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": 823.06,
+      "itemPrice": 823.06,
+      "averageRating": 4.3,
+      "reviewsCount": 2429,
+      "isPrime": false,
+      "asin": "B0DHHXQJQZ",
+      "brand": "Visit the Amazon Renewed Store",
+      "availability": "In Stock",
+      "deliveryInfo": "FREE delivery Monday, March 9",
+      "category": "Cell Phones & Accessories",
+      "features": [
+        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
+        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
+        "This product will have a battery which exceeds 80% capacity relative to new.",
+        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
+        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
+      ],
+      "imageUrl": "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX342_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX342_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX385_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX425_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX466_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX679_.jpg"
+      ],
+      "salesVolume": "200+ bought in past month",
+      "bestSellerRank": "#622 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+      "bsrCategories": [
+        {
+          "rank": 622,
+          "category": "Cell Phones & Accessories"
+        }
+      ],
+      "currency": "USD",
+      "buyBox": {
+        "sellerName": "DirectCertified",
+        "price": 823.06,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-04T11:22:09.395Z"
+      },
+      "priceObservedAt": "2026-03-04T11:22:09.395Z",
+      "itemPriceObservedAt": "2026-03-04T11:22:09.395Z",
+      "priceUSD": 823.06,
+      "itemPriceUSD": 823.06,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-04T11:22:09.395Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.com/apple-iphone-version-desert-titanium/dp/b0dpdknpt9/ref=sr_1_24": {
+    "id": "d59ad491-1e35-4ba2-afcf-6c948685bb32",
+    "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DPDKNPT9/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": 844.97,
+      "itemPrice": 844.97,
+      "originalPrice": 999,
+      "averageRating": 4.3,
+      "reviewsCount": 2438,
+      "isPrime": false,
+      "asin": "B0DPDKNPT9",
+      "brand": "Visit the Amazon Renewed Store",
+      "availability": "Only 11 left in stock - order soon.",
+      "deliveryInfo": "FREE delivery Tomorrow, March 5. Order within 4 hrs 55 mins. Details",
+      "category": "Cell Phones & Accessories",
+      "features": [
+        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
+        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
+        "This product will have a battery which exceeds 80% capacity relative to new.",
+        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
+        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
+      ],
+      "imageUrl": "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX342_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX342_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX385_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX425_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX466_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX679_.jpg"
+      ],
+      "salesVolume": "50+ bought in past month",
+      "bestSellerRank": "#621 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+      "bsrCategories": [
+        {
+          "rank": 621,
+          "category": "Cell Phones & Accessories"
+        }
+      ],
+      "currency": "USD",
+      "buyBox": {
+        "sellerName": "Networkstore",
+        "price": 844.97,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-04T15:04:28.553Z"
+      },
+      "priceObservedAt": "2026-03-04T15:04:28.553Z",
+      "itemPriceObservedAt": "2026-03-04T15:04:28.553Z",
+      "priceUSD": 844.97,
+      "itemPriceUSD": 844.97,
+      "discountPercentage": 15,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-04T15:04:28.553Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting": {
+    "id": "7373288b-56a5-494d-bf1c-ba01c45ce7fa",
+    "title": "Candle file EASTER BUNNY floral greeting, spring, flowers, bunnies, Easter, waterslide film, candle sticker, candle tattoo, PDF, JPG, watercolor",
+    "url": "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting?ls=r&ref=landingpage_similar_listing_bot-3&sts=1&dd=1&content_source=3b3bc38a685353e649883684d589ac26%253ALT219d349c36ed90144d97e46c9239ac36a77defeb&dd_referrer=https%3A%2F%2Fwww.etsy.com%2Flisting%2F1377821468%2Fcandle-tattoos-various-motifs-water%3Fexternal%3D1%26ref%3Dhp_consolidated_gifting_listings-3%26logging_key%3D9debd94b34357f19c21404e8d922e72f5c0e3373%253A1377821468&logging_key=3b3bc38a685353e649883684d589ac26%3ALT219d349c36ed90144d97e46c9239ac36a77defeb&listing_id=1635757202&listing_slug=candle-file-easter-bunny-floral-greeting",
+    "marketplace": "etsy",
+    "metrics": {
+      "description": "CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM The Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.PLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.After downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.The finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.The candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.************************************************Would you prefer a finished print on water slide film? Then buy the candle film in our partner shop!===> https://druckbeiden7zwergen.etsy.com <===************************************************LEGAL INFORMATIONBefore using my candle files, please read the following terms of use carefully:- By purchasing the file you receive a personal license for private use of the candle file. Passing on the file to third parties is not permitted.- For commercial use, a commercial license is also required, which is available separately in the shop: https://www.etsy.com/de/listing/1564372853/1-jahres-lizenz-zur-kommerziellen- The resale of the files, both in digital and physical form (e.g. as a print on waterslide film), is prohibited.Thank you for your understanding and compliance with these legal terms. If you have any questions about the terms of use or the commercial license, please do not hesitate to contact me. CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM The Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.PLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.After downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.The finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.The candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.************************************************Would you prefer a finished print on water slide film? Then buy the candle film in our partner shop!===> https://druckbeiden7zwergen.etsy.com <===************************************************LEGAL INFORMATIONBefore using my candle files, please read the following terms of use carefully:- By purchasing the file you receive a personal license for private use of the candle file. Passing on the file to third parties is not permitted.- For commercial use, a commercial license is also required, which is available separately in the shop: https://www.etsy.com/de/listing/1564372853/1-jahres-lizenz-zur-kommerziellen- The resale of the files, both in digital and physical form (e.g. as a print on waterslide film), is prohibited.Thank you for your understanding and compliance with these legal terms. If you have any questions about the terms of use or the commercial",
+      "imageUrl": "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
+      "currency": "USD",
+      "brand": "BEIDEN7ZWERGEN",
+      "price": 3.56,
+      "itemPrice": 3.56,
+      "priceObservedAt": "2026-03-04T22:51:07.872Z",
+      "itemPriceObservedAt": "2026-03-04T22:51:07.872Z",
+      "buyBox": {
+        "sellerName": "BEIDEN7ZWERGEN",
+        "price": 3.56,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-04T22:51:07.872Z"
+      },
+      "sellerCount": 1,
+      "features": [
+        "CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM The Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.PLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.After downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.The finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.The candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.************************************************Would you prefer a finished print on water slide film? Then buy the candle film in our partner shop!===> https://druckbeiden7zwergen.etsy.com <===************************************************LEGAL INFORMATIONBefore using my candle files, please read the following terms of use carefully:- By purchasing the file you receive a personal license for private use of the candle file. Passing on the file to third parties is not permitted.- For commercial use, a commercial license is also required, which is available separately in the shop: https://www.etsy.com/de/listing/1564372853/1-jahres-lizenz-zur-kommerziellen- The resale of the files, both in digital and physical form (e.g. as a print on waterslide film), is prohibited.Thank you for your understanding and compliance with these legal terms. If you have any questions about the terms of use or the commercial license, please do not "
+      ],
+      "shippingProfiles": [
+        {
+          "region": "Default",
+          "raw": "Delivery Instant Download Your files will be available to download once payment is confirmed. Here's how. Instant download items don’t accept returns, exchanges or cancellations. Please contact the seller about any problems with your order.",
+          "eta": "Instant Download Your files will be available to download once payment is confirmed"
+        },
+        {
+          "region": "Default",
+          "raw": "Instant Download Your files will be available to download once payment is confirmed. Here's how. Instant download items don’t accept returns, exchanges or cancellations. Please contact the seller about any problems with your order."
+        }
+      ],
+      "couponText": "You can only make an offer when buying a single item",
+      "returnPolicy": "Instant download items don’t accept returns, exchanges or cancellations. Please contact the seller about any problems with your order.",
+      "imageUrls": [
+        "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
+        "https://i.etsystatic.com/45041061/r/il/522b9f/5640824384/il_fullxfull.5640824384_t8ot.jpg",
+        "https://i.etsystatic.com/45041061/r/il/c79157/5642743080/il_fullxfull.5642743080_knk6.jpg",
+        "https://i.etsystatic.com/45041061/r/il/489507/5688929211/il_fullxfull.5688929211_p3e2.jpg",
+        "https://i.etsystatic.com/45041061/r/il/905356/5566297976/il_fullxfull.5566297976_il0e.jpg"
+      ],
+      "isDigitalDownload": true,
+      "isStarSeller": true,
+      "priceUSD": 3.56,
+      "itemPriceUSD": 3.56,
+      "dataQualityScore": 90
+    },
+    "scrapedAt": "2026-03-04T22:51:07.872Z",
+    "scrapedBy": "firecrawl"
+  },
+  "https://www.etsy.com/listing/958534635/hand-decorated-easter-bunny-led-candle": {
+    "id": "11f6d4d1-be68-4a20-8b08-7942f4598513",
+    "title": "Hand Decorated Easter Bunny LED Candle – Decoupage Rabbit Family",
+    "url": "https://www.etsy.com/listing/958534635/hand-decorated-easter-bunny-led-candle?ls=s&ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=easter+led+candle&ref=sr_gallery-1-1&frs=1&sts=1&loc=1&local_signal_search=1&content_source=5fad5e53-1aec-48dd-b684-35709b9adc03%253ALT53bffca0da000a33fdd520e883aaff968b7d1d77&organic_search_click=1&logging_key=5fad5e53-1aec-48dd-b684-35709b9adc03%3ALT53bffca0da000a33fdd520e883aaff968b7d1d77",
+    "marketplace": "etsy",
+    "metrics": {
+      "description": "Easter themed candle with hand painted details that will bring festive mood to your home!The candle is decorated by hand using thermal decoupage technique.Can be made as traditional candle or as a LED one.Size and Style:- LED Medium - height 12cm(4 3/4\"), diameter 8cm(3\")- LED Large - height 15cm(6\"), diameter 7.5cm(3\")- traditional candle - height 14cm(5 1/2\"), diameter 6.8cm(2 3/4\"), 45h burn timeAbout LED-Candles:- the candle's light simulates the sparkling glow and movement of a real flame, which makes it to look like a traditional candle.- it is made from paraffin wax and uses 3 batteries AAA.- batteries are not included in the delivery.⏱️ TIMER for LED candles: you can add a TIMER to your LED candle from this listing:https://www.etsy.com/listing/980957982🎛 REMOTE CONTROL for LED candles: you can add a REMOTE to your LED candle from this listing:https://www.etsy.com/listing/1036219001*As the products are hand decorated, there may be minor differences in the details from the example shown.............................................................SHIPPING method:all items are shipped as first class priority mail with tracking number that shows when the package has left the origin country and when it is accepted by its destination postal service.SHIPPING courier:European Union and USA – Post One (private postal service)Rest of the world – Bulgarian Post / Post OneEXPRESS shipping: delivery in 2-4 days after dispatch - FedEx/DHL or similar............................................................All of the candles can be made both as LED candles and as traditional ones depending on your preferences.Captions, names and wishes can also be added.Please contact me if the type of candle that you want to order is not available in the option bar.Thank you! Easter themed candle with hand painted details that will bring festive mood to your home!The candle is decorated by hand using thermal decoupage technique.Can be made as traditional candle or as a LED one.Size and Style:- LED Medium - height 12cm(4 3/4\"), diameter 8cm(3\")- LED Large - height 15cm(6\"), diameter 7.5cm(3\")- traditional candle - height 14cm(5 1/2\"), diameter 6.8cm(2 3/4\"), 45h burn timeAbout LED-Candles:- the candle's light simulates the sparkling glow and movement of a real flame, which makes it to look like a traditional candle.- it is made from paraffin wax and uses 3 batteries AAA.- batteries are not included in the delivery.⏱️ TIMER for LED candles: you can add a TIMER to your LED candle from this listing:https://www.etsy.com/listing/980957982🎛 REMOTE CONTROL for LED candles: you can add a REMOTE to your LED candle from this listing:https://www.etsy.com/listing/1036219001*As the products are hand decorated, there may be minor differences in the details from the example shown.............................................................SHIPPING method:all items are shipped as first class priority mail with tracking number that shows when the package has left the origin country and when it is accepted by its destination postal service.SHIPPING courier:European Union and USA – Post One (private postal service)Rest of the world – Bulgarian Post / Post OneEXPRESS shipping: delivery in 2-4 days after dispatch - FedEx/DHL or similar............................................................All of the candles can be made both as LED candles and as traditional ones depending on your preferences.Captions, names and wishes can also be added.Please contact me if the type of candle that you want to order is not available in the option bar.Thank you! Easter themed candle with hand painted details that will bring festive mood to your home!The candle is decorated by hand using thermal decoupage technique.Can be made as traditional candle or as a LED one.Size and Style:- LED Medium - height 12cm(4 3/4\"), diameter 8cm(3\")- LED Large - height 15cm(6\"), diameter 7.5cm(3\")- traditional candle - height 14cm(5 1/2\"), diameter 6.8cm(2 3/4\"), 45h burn timeAbout LED-Candles:- the ca",
+      "imageUrl": "https://i.etsystatic.com/25756740/r/il/871693/2939325482/il_fullxfull.2939325482_phup.jpg",
+      "currency": "USD",
+      "brand": "DecoshopByMihaela",
+      "price": 46.23,
+      "itemPrice": 46.23,
+      "priceObservedAt": "2026-03-04T23:34:16.433Z",
+      "itemPriceObservedAt": "2026-03-04T23:34:16.433Z",
+      "buyBox": {
+        "sellerName": "DecoshopByMihaela",
+        "price": 46.23,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-04T23:34:16.433Z"
+      },
+      "sellerCount": 1,
+      "features": [
+        "Easter themed candle with hand painted details that will bring festive mood to your home!The candle is decorated by hand using thermal decoupage technique.Can be made as traditional candle or as a LED one.Size and Style:- LED Medium - height 12cm(4 3/4\"), diameter 8cm(3\")- LED Large - height 15cm(6\"), diameter 7.5cm(3\")- traditional candle - height 14cm(5 1/2\"), diameter 6.8cm(2 3/4\"), 45h burn timeAbout LED-Candles:- the candle's light simulates the sparkling glow and movement of a real flame, which makes it to look like a traditional candle.- it is made from paraffin wax and uses 3 batteries AAA.- batteries are not included in the delivery.⏱️ TIMER for LED candles: you can add a TIMER to your LED candle from this listing:https://www.etsy.com/listing/980957982🎛 REMOTE CONTROL for LED candles: you can add a REMOTE to your LED candle from this listing:https://www.etsy.com/listing/1036219001*As the products are hand decorated, there may be minor differences in the details from the example shown.............................................................SHIPPING method:all items are shipped as first class priority mail with tracking number that shows when the package has left the origin country and when it is accepted by its destination postal service.SHIPPING courier:European Union and USA – Post One (private postal service)Rest of the world – Bulgarian Post / Post OneEXPRESS shipping: delivery in 2-4 days after dispatch - FedEx/DHL or similar............................................................All of the candles can be made both as LED candles and as traditional ones depending on your preferences.Captions, names and wishes can also be added.Please contact me if the type of candle that you want to order is not available in the option bar.Thank you! Easter themed candle with hand painted details that will bring festive mood to your home!The candle is decorated by hand using thermal decoupage technique.Can be made as traditional candle or as a LED one.Size and "
+      ],
+      "couponText": "You can only make an offer when buying a single item",
+      "returnPolicy": "Shipping and return policies Loading Order today to get by Mar 16-25 Your order should arrive by this date if you buy today. To calculate an estimated delivery date you can count on, we look at things like the carrier's latest transit times, the seller's processing time and shipping history, and where the order is shipping to and from. Returns accepted Buyers are responsible for return shipping costs. If the item is not returned in its original condition, the buyer is responsible for any loss in",
+      "imageUrls": [
+        "https://i.etsystatic.com/25756740/r/il/871693/2939325482/il_fullxfull.2939325482_phup.jpg",
+        "https://i.etsystatic.com/25756740/r/il/a2fe5e/4690809836/il_fullxfull.4690809836_h77c.jpg",
+        "https://i.etsystatic.com/25756740/r/il/6460f8/3802489605/il_fullxfull.3802489605_3ohs.jpg",
+        "https://i.etsystatic.com/25756740/r/il/502ddb/4739007569/il_fullxfull.4739007569_lqu1.jpg",
+        "https://i.etsystatic.com/25756740/r/il/91dffd/4739003287/il_fullxfull.4739003287_jbto.jpg",
+        "https://i.etsystatic.com/25756740/r/il/ff80bc/3721859681/il_fullxfull.3721859681_f3s2.jpg",
+        "https://i.etsystatic.com/25756740/r/il/3dcc85/3721863819/il_fullxfull.3721863819_exsn.jpg",
+        "https://i.etsystatic.com/25756740/r/il/2739a4/4120222483/il_fullxfull.4120222483_losm.jpg",
+        "https://i.etsystatic.com/25756740/r/il/a797a9/2902845157/il_fullxfull.2902845157_q6bl.jpg",
+        "https://i.etsystatic.com/25756740/r/il/be62e2/4739006395/il_fullxfull.4739006395_89v0.jpg"
+      ],
+      "materials": [
+        "Paraffin wax"
+      ],
+      "isDigitalDownload": false,
+      "isStarSeller": true,
+      "etsyMetrics": {
+        "materials": [
+          "Paraffin wax"
+        ],
+        "isDigitalDownload": false,
+        "isStarSeller": true
+      },
+      "variations": [
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "LED Medium ($46.23)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "LED Large ($48.66)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "traditional candle ($46.23)",
+          "available": true
+        }
+      ],
+      "priceUSD": 46.23,
+      "itemPriceUSD": 46.23,
+      "dataQualityScore": 90
+    },
+    "scrapedAt": "2026-03-04T23:34:16.433Z",
+    "scrapedBy": "firecrawl"
+  },
+  "https://www.etsy.com/listing/4331252453/duck-phone-case-candlelight-dinner": {
+    "id": "7aaae05f-3164-42ab-8f24-5bc60162a158",
+    "title": "Duck Phone Case Candlelight dinner Animal Cover fit for iPhone 16 Pro Max 15 14 13 12 11 XS Plus Samsung S25 S24 A55 A54,Tough Phone case",
+    "url": "https://www.etsy.com/listing/4331252453/duck-phone-case-candlelight-dinner",
+    "marketplace": "etsy",
+    "metrics": {
+      "description": "Upgrade Your Phone in Style! 🚀✨https://kazecovers.etsy.comVibely Cases – Where protection meets elegance! Our premium phone cases are crafted for a perfect fit and sleek design, making them the ultimate companion for your device.Why Choose Our Cases? 🔍✔ Military-Grade Protection 🛡️ – Built to defend against drops, scratches, and daily wear—so your phone stays safe in style!✔ Premium Materials 💎 – Hard PC shell + soft TPU lining for double-layer shock absorption.✔ Slim Yet Tough 📱 – No bulk, just reliable defense against life’s little accidents.✔ Silicone Inner Liner � – Extra cushioning to absorb impact if your phone takes a tumble. (Want a case without it? Just message us!)Compatible With: 📱✅ iPhone (15/14/13/12/11/Pro Max/8 & more)✅ Samsung (Check available sizes)Shipping & Policies 🚚✉️📦 Fast Shipping: Delivered in 2-10 business days after ordering.⚠ No Returns/Exchanges: Due to customization, all sales are final.Need Help? 🤝💬We’re here for you! Reach out anytime—our team is ready to assist.💖 Thank you for supporting our small business! Your trust means everything to us. #VibelyProtected 🛡️💫✨ Ready to shield your phone in style? Grab yours today! 🛒🔥 Upgrade Your Phone in Style! 🚀✨https://kazecovers.etsy.comVibely Cases – Where protection meets elegance! Our premium phone cases are crafted for a perfect fit and sleek design, making them the ultimate companion for your device.Why Choose Our Cases? 🔍✔ Military-Grade Protection 🛡️ – Built to defend against drops, scratches, and daily wear—so your phone stays safe in style!✔ Premium Materials 💎 – Hard PC shell + soft TPU lining for double-layer shock absorption.✔ Slim Yet Tough 📱 – No bulk, just reliable defense against life’s little accidents.✔ Silicone Inner Liner � – Extra cushioning to absorb impact if your phone takes a tumble. (Want a case without it? Just message us!)Compatible With: 📱✅ iPhone (15/14/13/12/11/Pro Max/8 & more)✅ Samsung (Check available sizes)Shipping & Policies 🚚✉️📦 Fast Shipping: Delivered in 2-10 business days after ordering.⚠ No Returns/Exchanges: Due to customization, all sales are final.Need Help? 🤝💬We’re here for you! Reach out anytime—our team is ready to assist.💖 Thank you for supporting our small business! Your trust means everything to us. #VibelyProtected 🛡️💫✨ Ready to shield your phone in style? Grab yours today! 🛒🔥 Upgrade Your Phone in Style! 🚀✨https://kazecovers.etsy.comVibely Cases – Where protection meets elegance! Our premium phone cases are crafted for a perfect fit and sleek design, making them the ultimate companion for your device.Why Choose Our Cases? 🔍✔ Military-Grade Protection 🛡️ – Built to defend against drops, scratches, and daily wear—so your phone stays safe in style!✔ Premium Materials 💎 – Hard PC shell + soft TPU lining for double-layer shock absorption.✔ Slim Yet Tough 📱 – No bulk, just reliable defense against life’s little accidents.✔ Silicone Inner Liner � – Extra cushioning to absorb impact if your phone takes a tumble. (Want a case without it? Just message us!)Compatible With: 📱✅ iPhone (15/14/13/12/11/Pro Max/8 & more)✅ Samsung (Check available sizes)Shipping & Policies 🚚✉️📦 Fast Shipping: Delivered in 2-10 business days after ordering.⚠ No Returns/Exchanges: Due to customization, all sales are final.Need Help? 🤝💬We’re here for you! Reach out anytime—our team is ready to assist.💖 Thank you for supporting our small business! Your trust means everything to us. #VibelyProtected 🛡️💫✨ Ready to shield your phone in style? Grab yours today! 🛒🔥 Upgrade Your Phone in Style! 🚀✨https://kazecovers.etsy.comVibely Cases – Where protection meets elegance! Our premium phone cases are crafted for a perfect fit and sleek design, making them the ultimate companion for your device.Why Choose Our Cases? 🔍✔ Military-Grade Protection 🛡️ – Built to defend against drops, scratches, and daily wear—so your phone stays safe in style!✔ Premium Materials 💎 – Hard PC shell + soft TPU lining for doubl",
+      "imageUrl": "https://i.etsystatic.com/59431531/r/il/a1a664/7046799361/il_fullxfull.7046799361_99q1.jpg",
+      "currency": "USD",
+      "brand": "KazeCovers",
+      "price": 14.4,
+      "itemPrice": 14.4,
+      "priceObservedAt": "2026-03-05T20:56:38.006Z",
+      "itemPriceObservedAt": "2026-03-05T20:56:38.006Z",
+      "buyBox": {
+        "sellerName": "KazeCovers",
+        "price": 14.4,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-05T20:56:38.006Z"
+      },
+      "sellerCount": 1,
+      "features": [
+        "Upgrade Your Phone in Style! 🚀✨https://kazecovers.etsy.comVibely Cases – Where protection meets elegance! Our premium phone cases are crafted for a perfect fit and sleek design, making them the ultimate companion for your device.Why Choose Our Cases? 🔍✔ Military-Grade Protection 🛡️ – Built to defend against drops, scratches, and daily wear—so your phone stays safe in style!✔ Premium Materials 💎 – Hard PC shell + soft TPU lining for double-layer shock absorption.✔ Slim Yet Tough 📱 – No bulk, just reliable defense against life’s little accidents.✔ Silicone Inner Liner � – Extra cushioning to absorb impact if your phone takes a tumble. (Want a case without it? Just message us!)Compatible With: 📱✅ iPhone (15/14/13/12/11/Pro Max/8 & more)✅ Samsung (Check available sizes)Shipping & Policies 🚚✉️📦 Fast Shipping: Delivered in 2-10 business days after ordering.⚠ No Returns/Exchanges: Due to customization, all sales are final.Need Help? 🤝💬We’re here for you! Reach out anytime—our team is ready to assist.💖 Thank you for supporting our small business! Your trust means everything to us. #VibelyProtected 🛡️💫✨ Ready to shield your phone in style? Grab yours today! 🛒🔥 Upgrade Your Phone in Style! 🚀✨https://kazecovers.etsy.comVibely Cases – Where protection meets elegance! Our premium phone cases are crafted for a perfect fit and sleek design, making them the ultimate companion for your device.Why Choose Our Cases? 🔍✔ Military-Grade Protection 🛡️ – Built to defend against drops, scratches, and daily wear—so your phone stays safe in style!✔ Premium Materials 💎 – Hard PC shell + soft TPU lining for double-layer shock absorption.✔ Slim Yet Tough 📱 – No bulk, just reliable defense against life’s little accidents.✔ Silicone Inner Liner � – Extra cushioning to absorb impact if your phone takes a tumble. (Want a case without it? Just message us!)Compatible With: 📱✅ iPhone (15/14/13/12/11/Pro Max/8 & more)✅ Samsung (Check available sizes)Shipping & Policies 🚚✉️📦 Fast S"
+      ],
+      "couponText": "40% off",
+      "returnPolicy": "Shipping and return policies Loading Order today to get by Mar 11-24 Your order should arrive by this date if you buy today. To calculate an estimated delivery date you can count on, we look at things like the carrier's latest transit times, the seller's processing time and shipping history, and where the order is shipping to and from. Returns & exchanges accepted Buyers are responsible for return shipping costs. If the item is not returned in its original condition, the buyer is responsible for",
+      "imageUrls": [
+        "https://i.etsystatic.com/59431531/r/il/a1a664/7046799361/il_fullxfull.7046799361_99q1.jpg",
+        "https://i.etsystatic.com/59431531/r/il/3889e6/6998824614/il_fullxfull.6998824614_hji1.jpg",
+        "https://i.etsystatic.com/59431531/r/il/52499e/6998824688/il_fullxfull.6998824688_ozvt.jpg",
+        "https://i.etsystatic.com/59431531/r/il/8804ee/6954517347/il_fullxfull.6954517347_pwwv.jpg",
+        "https://i.etsystatic.com/59431531/r/il/329ab4/7046799435/il_fullxfull.7046799435_3lp6.jpg",
+        "https://i.etsystatic.com/59431531/r/il/fe6031/6998823072/il_fullxfull.6998823072_mem2.jpg",
+        "https://i.etsystatic.com/59431531/r/il/37ba4c/7046798699/il_fullxfull.7046798699_9zsf.jpg",
+        "https://i.etsystatic.com/59431531/r/il/14baca/7046801035/il_fullxfull.7046801035_luw7.jpg"
+      ],
+      "materials": [
+        "TPU Gel",
+        "TPU",
+        "UV Print",
+        "Clear Plactic",
+        "Upgrade Your Phone in Style! 🚀✨https",
+        "scratches",
+        "Pro Max",
+        "Exchanges: Due to customization"
+      ],
+      "isDigitalDownload": false,
+      "isStarSeller": true,
+      "etsyMetrics": {
+        "materials": [
+          "TPU Gel",
+          "TPU",
+          "UV Print",
+          "Clear Plactic",
+          "Upgrade Your Phone in Style! 🚀✨https",
+          "scratches",
+          "Pro Max",
+          "Exchanges: Due to customization"
+        ],
+        "isDigitalDownload": false,
+        "isStarSeller": true
+      },
+      "variations": [
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 16 ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 16 Pro ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 16 Plus ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 16 Pro Max ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 15 ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 15 Pro ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 15 Plus ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 15 Pro Max ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 14 ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 14 Pro ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 14 Plus ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 14 Pro Max ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 13 ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 13 MInI ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 13 Pro ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 13 Pro Max ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 12 ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 12 MInI ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 12 Pro ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 12 Pro Max ($16.80 - $20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 11 ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 11 Pro ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 11 Pro Max ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone X ($14.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone XR ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone XS ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone XS MAX ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 8 ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "IPhone 8 Plus ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Samsung Galaxy S25 ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Galaxy S25 Plus ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Galaxy S25 Ultra ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Galaxy S24 ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Galaxy S24 Plus ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Galaxy S24 Ultra ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Galaxy S23 ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Galaxy S23 Plus ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Galaxy S23 Ultra ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Galaxy S22 ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Galaxy S22 Plus ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Galaxy S22 Ultra ($16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Tough Matte Case ($14.40 - $16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "Tough Glossy Case ($14.40 - $16.80)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "MagSafe Tough Glossy ($20.40)",
+          "available": true
+        },
+        {
+          "asin": "",
+          "attribute": "Variation",
+          "value": "MagSafe Tough Matte ($20.40)",
+          "available": true
+        }
+      ],
+      "priceUSD": 14.4,
+      "itemPriceUSD": 14.4,
+      "dataQualityScore": 90
+    },
+    "scrapedAt": "2026-03-05T20:56:38.006Z",
+    "scrapedBy": "firecrawl"
   }
 }

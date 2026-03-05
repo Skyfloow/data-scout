@@ -2790,5 +2790,380 @@
     },
     "scrapedAt": "2026-03-03T22:18:57.587Z",
     "scrapedBy": "crawler"
+  },
+  {
+    "id": "2651dddb-6d37-4edf-9064-fed3de3c866d",
+    "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Black Titanium - Unlocked (Renewed)",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DHJ896RY/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": 799,
+      "itemPrice": 799,
+      "originalPrice": 789.95,
+      "averageRating": 4.3,
+      "reviewsCount": 2428,
+      "isPrime": false,
+      "asin": "B0DHJ896RY",
+      "brand": "Visit the Amazon Renewed Store",
+      "availability": "Only 1 left in stock - order soon.",
+      "deliveryInfo": "FREE delivery Friday, March 6. Details",
+      "category": "Cell Phones & Accessories",
+      "features": [
+        "The large 6.9-inch display combines ProMotion 120Hz technology with advanced color calibration, giving movies, games, and productivity apps a spacious, crisp, and fluid visual experience that’s ideal for multitasking or immersive media consumption.",
+        "Titanium frame and reinforced edges provide a premium, durable build, reducing weight compared to stainless steel while enhancing grip and making the phone easier to handle during long sessions of video recording, gaming, or editing.",
+        "Camera system designed for versatility and precision, including ultra-wide, wide, and telephoto lenses with improved low-light and macro capabilities, giving photographers and creators a broader range of expressive tools while maintaining sharp details across the frame.",
+        "Advanced Action button offers customizable shortcuts, allowing quick access to features like capturing photos, launching apps, controlling accessibility tools, or activating automation tasks without interrupting your workflow.",
+        "Audio and video performance optimized for creators, with spatial audio, improved microphones, and stabilized video recording, providing professional-quality sound and smooth footage whether recording content, streaming, or joining video calls."
+      ],
+      "imageUrl": "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX342_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX342_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX385_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX425_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX466_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61bOls8zUZL._AC_SX679_.jpg"
+      ],
+      "salesVolume": "500+ bought in past month",
+      "bestSellerRank": "#622 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+      "bsrCategories": [
+        {
+          "rank": 622,
+          "category": "Cell Phones & Accessories"
+        }
+      ],
+      "currency": "USD",
+      "buyBox": {
+        "sellerName": "WirelessSource",
+        "price": 799,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-04T09:44:09.760Z"
+      },
+      "priceObservedAt": "2026-03-04T09:44:09.760Z",
+      "itemPriceObservedAt": "2026-03-04T09:44:09.760Z",
+      "priceUSD": 799,
+      "itemPriceUSD": 799,
+      "dataQualityScore": 85
+    },
+    "scrapedAt": "2026-03-04T09:44:09.760Z",
+    "scrapedBy": "crawler"
+  },
+  {
+    "id": "8964ecfc-4ff1-4fd6-8ebc-86db07ca9682",
+    "title": "Apple iPhone 16 Pro Max, US Version, 256GB, White Titanium - Unlocked (Renewed)",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DHHXQJQZ/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": 823.06,
+      "itemPrice": 823.06,
+      "averageRating": 4.3,
+      "reviewsCount": 2429,
+      "isPrime": false,
+      "asin": "B0DHHXQJQZ",
+      "brand": "Visit the Amazon Renewed Store",
+      "availability": "In Stock",
+      "deliveryInfo": "FREE delivery Monday, March 9",
+      "category": "Cell Phones & Accessories",
+      "features": [
+        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
+        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
+        "This product will have a battery which exceeds 80% capacity relative to new.",
+        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
+        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
+      ],
+      "imageUrl": "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX342_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX342_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX385_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX425_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX466_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61SF3HaHYwL._AC_SX679_.jpg"
+      ],
+      "salesVolume": "200+ bought in past month",
+      "bestSellerRank": "#622 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+      "bsrCategories": [
+        {
+          "rank": 622,
+          "category": "Cell Phones & Accessories"
+        }
+      ],
+      "currency": "USD",
+      "buyBox": {
+        "sellerName": "DirectCertified",
+        "price": 823.06,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-04T11:22:09.395Z"
+      },
+      "priceObservedAt": "2026-03-04T11:22:09.395Z",
+      "itemPriceObservedAt": "2026-03-04T11:22:09.395Z",
+      "priceUSD": 823.06,
+      "itemPriceUSD": 823.06,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-04T11:22:09.395Z",
+    "scrapedBy": "crawler"
+  },
+  {
+    "id": "83f15e6c-46ed-4410-a815-a63e73380b03",
+    "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DPDKNPT9/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": 844.97,
+      "itemPrice": 844.97,
+      "originalPrice": 999,
+      "averageRating": 4.3,
+      "reviewsCount": 2429,
+      "isPrime": false,
+      "asin": "B0DPDKNPT9",
+      "brand": "Visit the Amazon Renewed Store",
+      "availability": "Only 12 left in stock - order soon.",
+      "deliveryInfo": "FREE delivery Tomorrow, March 5. Order within 8 hrs 19 mins. Details",
+      "category": "Cell Phones & Accessories",
+      "features": [
+        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
+        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
+        "This product will have a battery which exceeds 80% capacity relative to new.",
+        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
+        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
+      ],
+      "imageUrl": "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX342_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX342_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX385_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX425_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX466_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX679_.jpg"
+      ],
+      "salesVolume": "50+ bought in past month",
+      "bestSellerRank": "#622 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+      "bsrCategories": [
+        {
+          "rank": 622,
+          "category": "Cell Phones & Accessories"
+        }
+      ],
+      "currency": "USD",
+      "buyBox": {
+        "sellerName": "Networkstore",
+        "price": 844.97,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-04T11:40:27.344Z"
+      },
+      "priceObservedAt": "2026-03-04T11:40:27.344Z",
+      "itemPriceObservedAt": "2026-03-04T11:40:27.344Z",
+      "priceUSD": 844.97,
+      "itemPriceUSD": 844.97,
+      "discountPercentage": 15,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-04T11:40:27.344Z",
+    "scrapedBy": "crawler"
+  },
+  {
+    "id": "d59ad491-1e35-4ba2-afcf-6c948685bb32",
+    "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DPDKNPT9/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": 844.97,
+      "itemPrice": 844.97,
+      "originalPrice": 999,
+      "averageRating": 4.3,
+      "reviewsCount": 2438,
+      "isPrime": false,
+      "asin": "B0DPDKNPT9",
+      "brand": "Visit the Amazon Renewed Store",
+      "availability": "Only 11 left in stock - order soon.",
+      "deliveryInfo": "FREE delivery Tomorrow, March 5. Order within 4 hrs 55 mins. Details",
+      "category": "Cell Phones & Accessories",
+      "features": [
+        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
+        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
+        "This product will have a battery which exceeds 80% capacity relative to new.",
+        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
+        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
+      ],
+      "imageUrl": "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX342_.jpg",
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX342_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX385_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX425_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX466_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX522_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX569_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX679_.jpg"
+      ],
+      "salesVolume": "50+ bought in past month",
+      "bestSellerRank": "#621 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+      "bsrCategories": [
+        {
+          "rank": 621,
+          "category": "Cell Phones & Accessories"
+        }
+      ],
+      "currency": "USD",
+      "buyBox": {
+        "sellerName": "Networkstore",
+        "price": 844.97,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-04T15:04:28.553Z"
+      },
+      "priceObservedAt": "2026-03-04T15:04:28.553Z",
+      "itemPriceObservedAt": "2026-03-04T15:04:28.553Z",
+      "priceUSD": 844.97,
+      "itemPriceUSD": 844.97,
+      "discountPercentage": 15,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-04T15:04:28.553Z",
+    "scrapedBy": "crawler"
+  },
+  {
+    "id": "3e2679a2-fbfa-4f5d-8e0c-a1829dc111c8",
+    "title": "- [Homepage](",
+    "url": "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting?ls=r&ref=landingpage_similar_listing_bot-3&sts=1&dd=1&content_source=3b3bc38a685353e649883684d589ac26%253ALT219d349c36ed90144d97e46c9239ac36a77defeb&dd_referrer=https%3A%2F%2Fwww.etsy.com%2Flisting%2F1377821468%2Fcandle-tattoos-various-motifs-water%3Fexternal%3D1%26ref%3Dhp_consolidated_gifting_listings-3%26logging_key%3D9debd94b34357f19c21404e8d922e72f5c0e3373%253A1377821468&logging_key=3b3bc38a685353e649883684d589ac26%3ALT219d349c36ed90144d97e46c9239ac36a77defeb&listing_id=1635757202&listing_slug=candle-file-easter-bunny-floral-greeting",
+    "marketplace": "etsy",
+    "metrics": {
+      "description": "",
+      "imageUrl": "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
+      "currency": "USD",
+      "brand": "BEIDEN7ZWERGEN",
+      "buyBox": {
+        "sellerName": "BEIDEN7ZWERGEN",
+        "price": 0,
+        "isFBA": false,
+        "isAmazon": false
+      },
+      "features": [
+        "CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM The Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.PLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.After downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.The finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.The candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.************************************************Would you prefer a finished print on water slide film? Then buy the candle film in our partner shop!===> https://druckbeiden7zwergen.etsy.com <===************************************************LEGAL INFORMATIONBefore using my candle files, please read the following terms of use carefully:- By purchasing the file you receive a personal license for private use of the candle file. Passing on the file to third parties is not permitted.- For commercial use, a commercial license is also required, which is available separately in the shop: https://www.etsy.com/de/listing/1564372853/1-jahres-lizenz-zur-kommerziellen- The resale of the files, both in digital and physical form (e.g. as a print on waterslide film), is prohibited.Thank you for your understanding and compliance with these legal terms. If you have any questions about the terms of use or the commercial license, please do not "
+      ],
+      "imageUrls": [
+        "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
+        "https://i.etsystatic.com/45041061/r/il/522b9f/5640824384/il_fullxfull.5640824384_t8ot.jpg",
+        "https://i.etsystatic.com/45041061/r/il/c79157/5642743080/il_fullxfull.5642743080_knk6.jpg",
+        "https://i.etsystatic.com/45041061/r/il/489507/5688929211/il_fullxfull.5688929211_p3e2.jpg",
+        "https://i.etsystatic.com/45041061/r/il/905356/5566297976/il_fullxfull.5566297976_il0e.jpg"
+      ],
+      "dataQualityScore": 60
+    },
+    "scrapedAt": "2026-03-04T22:16:23.797Z",
+    "scrapedBy": "firecrawl"
+  },
+  {
+    "id": "71172918-de0f-4ea0-8adc-4b0062e6fa4f",
+    "title": "- [Homepage](",
+    "url": "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting?ls=r&ref=landingpage_similar_listing_bot-3&sts=1&dd=1&content_source=3b3bc38a685353e649883684d589ac26%253ALT219d349c36ed90144d97e46c9239ac36a77defeb&dd_referrer=https%3A%2F%2Fwww.etsy.com%2Flisting%2F1377821468%2Fcandle-tattoos-various-motifs-water%3Fexternal%3D1%26ref%3Dhp_consolidated_gifting_listings-3%26logging_key%3D9debd94b34357f19c21404e8d922e72f5c0e3373%253A1377821468&logging_key=3b3bc38a685353e649883684d589ac26%3ALT219d349c36ed90144d97e46c9239ac36a77defeb&listing_id=1635757202&listing_slug=candle-file-easter-bunny-floral-greeting",
+    "marketplace": "etsy",
+    "metrics": {
+      "description": "",
+      "imageUrl": "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
+      "currency": "USD",
+      "brand": "BEIDEN7ZWERGEN",
+      "buyBox": {
+        "sellerName": "BEIDEN7ZWERGEN",
+        "price": 0,
+        "isFBA": false,
+        "isAmazon": false
+      },
+      "features": [
+        "CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM The Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.PLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.After downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.The finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.The candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.************************************************Would you prefer a finished print on water slide film? Then buy the candle film in our partner shop!===> https://druckbeiden7zwergen.etsy.com <===************************************************LEGAL INFORMATIONBefore using my candle files, please read the following terms of use carefully:- By purchasing the file you receive a personal license for private use of the candle file. Passing on the file to third parties is not permitted.- For commercial use, a commercial license is also required, which is available separately in the shop: https://www.etsy.com/de/listing/1564372853/1-jahres-lizenz-zur-kommerziellen- The resale of the files, both in digital and physical form (e.g. as a print on waterslide film), is prohibited.Thank you for your understanding and compliance with these legal terms. If you have any questions about the terms of use or the commercial license, please do not "
+      ],
+      "imageUrls": [
+        "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
+        "https://i.etsystatic.com/45041061/r/il/522b9f/5640824384/il_fullxfull.5640824384_t8ot.jpg",
+        "https://i.etsystatic.com/45041061/r/il/c79157/5642743080/il_fullxfull.5642743080_knk6.jpg",
+        "https://i.etsystatic.com/45041061/r/il/489507/5688929211/il_fullxfull.5688929211_p3e2.jpg",
+        "https://i.etsystatic.com/45041061/r/il/905356/5566297976/il_fullxfull.5566297976_il0e.jpg"
+      ],
+      "dataQualityScore": 60
+    },
+    "scrapedAt": "2026-03-04T22:38:32.817Z",
+    "scrapedBy": "firecrawl"
+  },
+  {
+    "id": "ca8e1530-3644-4ca4-9cca-8091c251f8ff",
+    "title": "Candle file EASTER BUNNY floral greeting, spring, flowers, bunnies, Easter, waterslide film, candle sticker, candle tattoo, PDF, JPG, watercolor",
+    "url": "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting?ls=r&ref=landingpage_similar_listing_bot-3&sts=1&dd=1&content_source=3b3bc38a685353e649883684d589ac26%253ALT219d349c36ed90144d97e46c9239ac36a77defeb&dd_referrer=https%3A%2F%2Fwww.etsy.com%2Flisting%2F1377821468%2Fcandle-tattoos-various-motifs-water%3Fexternal%3D1%26ref%3Dhp_consolidated_gifting_listings-3%26logging_key%3D9debd94b34357f19c21404e8d922e72f5c0e3373%253A1377821468&logging_key=3b3bc38a685353e649883684d589ac26%3ALT219d349c36ed90144d97e46c9239ac36a77defeb&listing_id=1635757202&listing_slug=candle-file-easter-bunny-floral-greeting",
+    "marketplace": "etsy",
+    "metrics": {
+      "description": "",
+      "imageUrl": "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
+      "currency": "USD",
+      "brand": "BEIDEN7ZWERGEN",
+      "price": 3.56,
+      "itemPrice": 3.56,
+      "buyBox": {
+        "sellerName": "BEIDEN7ZWERGEN",
+        "price": 3.56,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-04T22:42:14.450Z"
+      },
+      "features": [
+        "CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM The Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.PLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.After downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.The finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.The candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.************************************************Would you prefer a finished print on water slide film? Then buy the candle film in our partner shop!===> https://druckbeiden7zwergen.etsy.com <===************************************************LEGAL INFORMATIONBefore using my candle files, please read the following terms of use carefully:- By purchasing the file you receive a personal license for private use of the candle file. Passing on the file to third parties is not permitted.- For commercial use, a commercial license is also required, which is available separately in the shop: https://www.etsy.com/de/listing/1564372853/1-jahres-lizenz-zur-kommerziellen- The resale of the files, both in digital and physical form (e.g. as a print on waterslide film), is prohibited.Thank you for your understanding and compliance with these legal terms. If you have any questions about the terms of use or the commercial license, please do not "
+      ],
+      "imageUrls": [
+        "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
+        "https://i.etsystatic.com/45041061/r/il/522b9f/5640824384/il_fullxfull.5640824384_t8ot.jpg",
+        "https://i.etsystatic.com/45041061/r/il/c79157/5642743080/il_fullxfull.5642743080_knk6.jpg",
+        "https://i.etsystatic.com/45041061/r/il/489507/5688929211/il_fullxfull.5688929211_p3e2.jpg",
+        "https://i.etsystatic.com/45041061/r/il/905356/5566297976/il_fullxfull.5566297976_il0e.jpg"
+      ],
+      "priceObservedAt": "2026-03-04T22:42:14.450Z",
+      "itemPriceObservedAt": "2026-03-04T22:42:14.450Z",
+      "priceUSD": 3.56,
+      "itemPriceUSD": 3.56,
+      "dataQualityScore": 90
+    },
+    "scrapedAt": "2026-03-04T22:42:14.450Z",
+    "scrapedBy": "firecrawl"
+  },
+  {
+    "id": "ac3abc7a-c799-419b-b08d-4a29649f13f7",
+    "title": "Candle file EASTER BUNNY floral greeting, spring, flowers, bunnies, Easter, waterslide film, candle sticker, candle tattoo, PDF, JPG, watercolor",
+    "url": "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting?ls=r&ref=landingpage_similar_listing_bot-3&sts=1&dd=1&content_source=3b3bc38a685353e649883684d589ac26%253ALT219d349c36ed90144d97e46c9239ac36a77defeb&dd_referrer=https%3A%2F%2Fwww.etsy.com%2Flisting%2F1377821468%2Fcandle-tattoos-various-motifs-water%3Fexternal%3D1%26ref%3Dhp_consolidated_gifting_listings-3%26logging_key%3D9debd94b34357f19c21404e8d922e72f5c0e3373%253A1377821468&logging_key=3b3bc38a685353e649883684d589ac26%3ALT219d349c36ed90144d97e46c9239ac36a77defeb&listing_id=1635757202&listing_slug=candle-file-easter-bunny-floral-greeting",
+    "marketplace": "etsy",
+    "metrics": {
+      "description": "",
+      "imageUrl": "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
+      "currency": "USD",
+      "brand": "BEIDEN7ZWERGEN",
+      "price": 3.56,
+      "itemPrice": 3.56,
+      "buyBox": {
+        "sellerName": "BEIDEN7ZWERGEN",
+        "price": 3.56,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-04T22:42:40.555Z"
+      },
+      "features": [
+        "CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM The Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.PLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.After downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.The finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.The candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.************************************************Would you prefer a finished print on water slide film? Then buy the candle film in our partner shop!===> https://druckbeiden7zwergen.etsy.com <===************************************************LEGAL INFORMATIONBefore using my candle files, please read the following terms of use carefully:- By purchasing the file you receive a personal license for private use of the candle file. Passing on the file to third parties is not permitted.- For commercial use, a commercial license is also required, which is available separately in the shop: https://www.etsy.com/de/listing/1564372853/1-jahres-lizenz-zur-kommerziellen- The resale of the files, both in digital and physical form (e.g. as a print on waterslide film), is prohibited.Thank you for your understanding and compliance with these legal terms. If you have any questions about the terms of use or the commercial license, please do not "
+      ],
+      "imageUrls": [
+        "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
+        "https://i.etsystatic.com/45041061/r/il/522b9f/5640824384/il_fullxfull.5640824384_t8ot.jpg",
+        "https://i.etsystatic.com/45041061/r/il/c79157/5642743080/il_fullxfull.5642743080_knk6.jpg",
+        "https://i.etsystatic.com/45041061/r/il/489507/5688929211/il_fullxfull.5688929211_p3e2.jpg",
+        "https://i.etsystatic.com/45041061/r/il/905356/5566297976/il_fullxfull.5566297976_il0e.jpg"
+      ],
+      "priceObservedAt": "2026-03-04T22:42:40.555Z",
+      "itemPriceObservedAt": "2026-03-04T22:42:40.555Z",
+      "priceUSD": 3.56,
+      "itemPriceUSD": 3.56,
+      "dataQualityScore": 90
+    },
+    "scrapedAt": "2026-03-04T22:42:40.555Z",
+    "scrapedBy": "firecrawl"
   }
 ]

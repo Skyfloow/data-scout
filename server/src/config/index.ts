@@ -37,4 +37,7 @@ export const config = {
   swaggerEnabled: parseBoolean(process.env.ENABLE_SWAGGER, (process.env.NODE_ENV || 'development') !== 'production'),
   jobRetentionMs: parseNumber(process.env.JOB_RETENTION_MS, 24 * 60 * 60 * 1000),
   maxJobs: parseNumber(process.env.MAX_JOBS, 10000),
+  etsyForceFirecrawl: parseBoolean(process.env.ETSY_FORCE_FIRECRAWL, false),
+  humanDelayMinMs: parseNumber(process.env.HUMAN_DELAY_MIN_MS, 400),
+  humanDelayMaxMs: parseNumber(process.env.HUMAN_DELAY_MAX_MS, 1200),
 };

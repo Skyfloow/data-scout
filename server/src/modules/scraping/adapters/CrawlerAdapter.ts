@@ -12,9 +12,11 @@ import { convertToUSD } from '../../../services/CurrencyService';
 import { storageService } from '../../storage/services/StorageService';
 import { proxyManager } from '../../proxy/services/ProxyManager';
 import { extractAmazonSerp } from '../extractors/amazonSerp';
+import { extractEtsySerp } from '../extractors/etsySerp';
 import { SerpResult } from '../../../types';
 import { logger as baseLogger } from '../../../utils/logger';
 import { syncMetricsPriceFromBuyBox } from '../../../utils/price';
+import { config } from '../../../config';
 
 const logger = baseLogger.child({ module: 'CrawlerAdapter' });
 
@@ -40,8 +42,19 @@ const pickBestTitle = (...candidates: Array<string | undefined>): string => {
   return 'Unknown Product';
 };
 
-function isAmazonBlocked(success: boolean, html: string): boolean {
+function isBotBlocked(success: boolean, html: string, url: string = ''): boolean {
   if (!success || !html) return true;
+  if (url.includes('etsy.com')) {
+      if (html.includes('Pardon Our Interruption') || 
+          html.includes('distil_ident_challenge') || 
+          html.includes('px-captcha') ||
+          html.includes('cloudflare') ||
+          html.includes('cf-turnstile') ||
+          html.includes('challenges.cloudflare.com')) {
+          return true;
+      }
+      return false;
+  }
   return html.includes('action="/errors/validateCaptcha"') ||
          html.includes('api-services-support@amazon.com') ||
          (html.includes('To discuss automated access to Amazon data') && html.includes('contact'));
@@ -51,12 +64,22 @@ export class CrawlerAdapter implements IScraper {
   
   async scrapeProduct(url: string): Promise<ProductScrapeResult> {
     try {
+      if (url.includes('etsy.com')) {
+          if (config.firecrawlApiKey && config.etsyForceFirecrawl) {
+              logger.info('[CrawlerAdapter] ETSY_FORCE_FIRECRAWL=true, using Firecrawl for Etsy product.');
+              const FCAdapter = require('./FirecrawlAdapter').FireCrawlAdapter;
+              const fc = new FCAdapter();
+              return await fc.scrapeProduct(url);
+          }
+      }
+
       const settings = await storageService.getSettings();
       const strategy = settings.scrapingStrategy || 'hybrid';
       
       let fetchResult: FetchResult | undefined;
       const maxRetries = 3;
       let lastError = '';
+      let isBlocked = false;
 
       for (let attempt = 0; attempt < maxRetries; attempt++) {
         const proxyUrl = await proxyManager.getProxyString();
@@ -70,7 +93,7 @@ export class CrawlerAdapter implements IScraper {
 
           if (strategy === 'hybrid') {
             const contentStr = fetchResult.html || '';
-            if (isAmazonBlocked(fetchResult.success, contentStr)) {
+            if (isBotBlocked(fetchResult.success, contentStr, url)) {
               logger.warn(`Blocked detected. Falling back to Playwright Stealth...`);
               fetchResult = await playwrightFetcher.fetchHtml(url, proxyUrl);
             }
@@ -78,10 +101,11 @@ export class CrawlerAdapter implements IScraper {
         }
 
         const contentStr = fetchResult.html || '';
-        if (fetchResult.success && fetchResult.html && !isAmazonBlocked(fetchResult.success, contentStr)) {
+        if (fetchResult.success && fetchResult.html && !isBotBlocked(fetchResult.success, contentStr, url)) {
           break; // Success
         } else {
-          lastError = fetchResult.error || (isAmazonBlocked(fetchResult.success, contentStr) ? 'Blocked by CAPTCHA/Anti-bot' : 'Unknown Error');
+          isBlocked = isBotBlocked(fetchResult.success, contentStr, url);
+          lastError = fetchResult.error || (isBlocked ? 'Blocked by CAPTCHA/Anti-bot' : 'Unknown Error');
           logger.warn(`Attempt ${attempt + 1} failed for ${url}: ${lastError}`);
           if (proxyUrl) {
             proxyManager.markAsDead(proxyUrl);
@@ -90,6 +114,12 @@ export class CrawlerAdapter implements IScraper {
       }
 
       if (!fetchResult || !fetchResult.success || !fetchResult.html) {
+        if (url.includes('etsy.com') && config.firecrawlApiKey && lastError.toLowerCase().includes('blocked')) {
+          logger.warn('[CrawlerAdapter] Etsy local fetch blocked after retries. Falling back to Firecrawl.');
+          const FCAdapter = require('./FirecrawlAdapter').FireCrawlAdapter;
+          const fc = new FCAdapter();
+          return await fc.scrapeProduct(url);
+        }
         return { error: `Failed to fetch URL after ${maxRetries} attempts. Last error: ${lastError}` };
       }
 
@@ -152,6 +182,7 @@ export class CrawlerAdapter implements IScraper {
       if (url.includes('amazon')) marketplace = 'amazon';
       else if (url.includes('ebay')) marketplace = 'ebay';
       else if (url.includes('bestbuy')) marketplace = 'bestbuy';
+      else if (url.includes('etsy')) marketplace = 'etsy';
 
       // Build Product — all fields from finalMetrics flow through automatically
       const product: Product = {
@@ -171,10 +202,29 @@ export class CrawlerAdapter implements IScraper {
     }
   }
 
-  async scrapeAmazonSearch(keyword: string, marketplace: string): Promise<{ result?: SerpResult, error?: string }> {
+  async scrapeSearch(keyword: string, marketplace: string): Promise<{ result?: SerpResult, error?: string }> {
     try {
-      const tld = marketplace.toLowerCase().replace('amazon.', '') || 'com';
-      const url = `https://www.amazon.${tld}/s?k=${encodeURIComponent(keyword)}`;
+      let url = '';
+      if (marketplace.includes('amazon')) {
+          const tld = marketplace.toLowerCase().replace('amazon.', '') || 'com';
+          url = `https://www.amazon.${tld}/s?k=${encodeURIComponent(keyword)}`;
+      } else if (marketplace.includes('etsy')) {
+          url = `https://www.etsy.com/search?q=${encodeURIComponent(keyword)}`;
+          
+          if (config.firecrawlApiKey && config.etsyForceFirecrawl) {
+              logger.info('[CrawlerAdapter] ETSY_FORCE_FIRECRAWL=true, using Firecrawl for Etsy SERP.');
+              const FireCrawlApp = require('@mendable/firecrawl-js').default;
+              const fc = new FireCrawlApp({ apiKey: config.firecrawlApiKey });
+              const res = await fc.scrapeUrl(url, { formats: ['html'], timeout: 60000 });
+              if (res.success && res.html) {
+                  return { result: extractEtsySerp(res.html, keyword, marketplace) };
+              } else {
+                  return { error: `Failed to fetch Etsy SERP via Firecrawl. Error: ${res.error}` };
+              }
+          }
+      } else {
+          return { error: 'Unsupported marketplace for search' };
+      }
 
       const settings = await storageService.getSettings();
       const strategy = settings.scrapingStrategy || 'hybrid';
@@ -195,7 +245,7 @@ export class CrawlerAdapter implements IScraper {
 
           if (strategy === 'hybrid') {
             const contentStr = fetchResult.html || '';
-            if (isAmazonBlocked(fetchResult.success, contentStr)) {
+            if (isBotBlocked(fetchResult.success, contentStr, url)) {
               logger.warn(`SERP block detected. Try ${attempt + 1}. Falling back to Playwright...`);
               fetchResult = await playwrightFetcher.fetchHtml(url, proxyUrl);
             }
@@ -203,10 +253,10 @@ export class CrawlerAdapter implements IScraper {
         }
 
         const contentStr = fetchResult.html || '';
-        if (fetchResult.success && fetchResult.html && !isAmazonBlocked(fetchResult.success, contentStr)) {
+        if (fetchResult.success && fetchResult.html && !isBotBlocked(fetchResult.success, contentStr, url)) {
           break; // Success
         } else {
-          lastError = fetchResult.error || (isAmazonBlocked(fetchResult.success, contentStr) ? 'Blocked by CAPTCHA/Anti-bot' : 'Unknown Error');
+          lastError = fetchResult.error || (isBotBlocked(fetchResult.success, contentStr, url) ? 'Blocked by CAPTCHA/Anti-bot' : 'Unknown Error');
           logger.warn(`SERP attempt ${attempt + 1} failed: ${lastError}`);
           if (proxyUrl) {
             proxyManager.markAsDead(proxyUrl);
@@ -215,10 +265,28 @@ export class CrawlerAdapter implements IScraper {
       }
 
       if (!fetchResult || !fetchResult.success || !fetchResult.html) {
-        return { error: `Failed to fetch SERP after ${maxRetries} attempts. Last Error: ${lastError}` };
+          if (config.firecrawlApiKey && lastError.toLowerCase().includes('blocked')) {
+              logger.warn(`SERP block detected locally. Falling back to Firecrawl for SERP...`);
+              const FireCrawlApp = require('@mendable/firecrawl-js').default;
+              const fc = new FireCrawlApp({ apiKey: config.firecrawlApiKey });
+              const res = await fc.scrapeUrl(url, { formats: ['html'], timeout: 60000 });
+              if (res.success && res.html) {
+                  fetchResult = { success: true, html: res.html };
+              } else {
+                  return { error: `Failed to fetch SERP via Firecrawl. Error: ${res.error}` };
+              }
+          } else {
+              return { error: `Failed to fetch SERP after ${maxRetries} attempts. Last Error: ${lastError}` };
+          }
       }
 
-      const serpResult = extractAmazonSerp(fetchResult.html, keyword, marketplace);
+      let serpResult;
+      if (marketplace.includes('amazon')) {
+          serpResult = extractAmazonSerp(fetchResult.html, keyword, marketplace);
+      } else if (marketplace.includes('etsy')) {
+          serpResult = extractEtsySerp(fetchResult.html, keyword, marketplace);
+      }
+      
       return { result: serpResult };
 
     } catch (err: any) {
