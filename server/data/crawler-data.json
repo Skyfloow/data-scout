@@ -3165,5 +3165,153 @@
     },
     "scrapedAt": "2026-03-04T22:42:40.555Z",
     "scrapedBy": "firecrawl"
+  },
+  {
+    "id": "199297cd-f1b7-41a0-9fd1-d5941e4b5baf",
+    "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked",
+    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DPDKNPT9/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "description": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium) About this item This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers. There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length. This product will have a battery which exceeds 80% capacity relative to new. Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box. This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied. › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX522_.jpg",
+      "currency": "USD",
+      "brand": "Amazon Renewed",
+      "asin": "B0DPDKNPT9",
+      "price": 842.3,
+      "itemPrice": 842.3,
+      "originalPrice": 999,
+      "discountPercentage": 16,
+      "averageRating": 4.3,
+      "reviewsCount": 2514,
+      "availability": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
+      "isAmazonChoice": false,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery March 12 - 16. Details Or Prime members get FREE delivery Tomorrow, March 10. Order within 2 hrs 11 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); }));",
+      "modelNumber": "A3084",
+      "manufacturer": "Apple",
+      "dateFirstAvailable": "October 20, 2024",
+      "isPrime": false,
+      "salesVolume": "50+ bought in past month",
+      "isClimateFriendly": true,
+      "videoCount": 6,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0CRJSBN5M",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
+        },
+        {
+          "asin": "B0DNTC3HXX",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
+        },
+        {
+          "asin": "B0CMZDBVWT",
+          "title": "Apple iPhone 15 Pro Max, 256GB, Blue Titanium - Unlocked (Renewed)"
+        }
+      ],
+      "bsrCategories": [
+        {
+          "rank": 706,
+          "category": "Cell Phones &amp; Accessories"
+        },
+        {
+          "rank": 9,
+          "category": "Renewed Smartphones"
+        },
+        {
+          "rank": 12,
+          "category": "Cell Phones"
+        }
+      ],
+      "bestSellerRank": "#706 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+      "buyBox": {
+        "sellerName": "tigerphonestigerphones",
+        "price": 842.3,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-09T15:48:45.553Z"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "tigerphonestigerphones",
+        "price": 842.3,
+        "currency": "USD",
+        "condition": "New",
+        "isFBA": false,
+        "isAmazon": false
+      },
+      "offers": [
+        {
+          "sellerName": "tigerphonestigerphones",
+          "price": 842.3,
+          "currency": "USD",
+          "stockStatus": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
+          "stockCount": 1,
+          "condition": "New",
+          "isFBA": false
+        }
+      ],
+      "sellerCount": 1,
+      "averageOfferPrice": 842.3,
+      "lowestOfferPrice": 842.3,
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/41uYfnaGVPL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/61OolG0W6iL.jpg"
+      ],
+      "category": "Cell Phones & Accessories > Cell Phones",
+      "features": [
+        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
+        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
+        "This product will have a battery which exceeds 80% capacity relative to new.",
+        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
+        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
+      ],
+      "amazonMetrics": {
+        "asin": "B0DPDKNPT9",
+        "buyBox": {
+          "sellerName": "tigerphonestigerphones",
+          "price": 842.3,
+          "isFBA": false,
+          "isAmazon": false
+        },
+        "bsrCategories": [
+          {
+            "rank": 706,
+            "category": "Cell Phones &amp; Accessories"
+          },
+          {
+            "rank": 9,
+            "category": "Renewed Smartphones"
+          },
+          {
+            "rank": 12,
+            "category": "Cell Phones"
+          }
+        ],
+        "bestSellerRank": "#706 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+        "isPrime": false,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 1,
+        "offers": [
+          {
+            "sellerName": "tigerphonestigerphones",
+            "price": 842.3,
+            "currency": "USD",
+            "stockStatus": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
+            "stockCount": 1,
+            "condition": "New",
+            "isFBA": false
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-09T15:48:45.553Z",
+      "itemPriceObservedAt": "2026-03-09T15:48:45.553Z",
+      "priceUSD": 842.3,
+      "itemPriceUSD": 842.3,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-09T15:48:45.553Z",
+    "scrapedBy": "crawler"
   }
 ]

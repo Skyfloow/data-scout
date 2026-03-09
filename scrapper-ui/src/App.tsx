@@ -1,17 +1,9 @@
-import '@fontsource/inter/300.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/inter/700.css';
-
-import React, { lazy, Suspense, useMemo } from 'react';
-import { createBrowserRouter, RouterProvider, ScrollRestoration, Outlet } from 'react-router-dom';
-import { ThemeProvider, CssBaseline, Box, CircularProgress } from '@mui/material';
+import React, { lazy, Suspense } from 'react';
+import { createBrowserRouter, Outlet, RouterProvider, ScrollRestoration } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './store';
-import { ThemeModeProvider, useThemeMode } from './context/ThemeContext';
 import DashboardLayout from './components/layout/DashboardLayout';
-import { createAppTheme } from './theme';
+import { ThemeModeProvider } from './context/ThemeContext';
+import { store } from './store';
 
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const MonitoringPage = lazy(() => import('./pages/MonitoringPage'));
@@ -20,9 +12,9 @@ const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
 
 function RouteFallback() {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
-      <CircularProgress size={28} />
-    </Box>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '3rem 0' }}>
+      <span className="loader loader-dark" />
+    </div>
   );
 }
 
@@ -41,11 +33,11 @@ function RootLayout() {
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <RootLayout />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: (
           <LazyRoute>
             <DashboardPage />
@@ -53,7 +45,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "monitoring",
+        path: 'monitoring',
         element: (
           <LazyRoute>
             <MonitoringPage />
@@ -61,7 +53,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "settings",
+        path: 'settings',
         element: (
           <LazyRoute>
             <SettingsPage />
@@ -69,7 +61,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "product/:id",
+        path: 'product/:id',
         element: (
           <LazyRoute>
             <ProductDetailPage />
@@ -77,30 +69,15 @@ const router = createBrowserRouter([
         ),
       },
     ],
-  }
+  },
 ]);
 
-function ThemedApp() {
-  const { mode } = useThemeMode();
-
-  const theme = useMemo(() => createAppTheme(mode), [mode]);
-
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <RouterProvider router={router} />
-    </ThemeProvider>
-  );
-}
-
-function App() {
+export default function App() {
   return (
     <Provider store={store}>
       <ThemeModeProvider>
-        <ThemedApp />
+        <RouterProvider router={router} />
       </ThemeModeProvider>
     </Provider>
   );
 }
-
-export default App;

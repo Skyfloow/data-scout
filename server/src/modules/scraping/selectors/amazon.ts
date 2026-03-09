@@ -202,7 +202,7 @@ const extractStructuredPrice = ($: cheerio.CheerioAPI): number | undefined => {
   return jsonLdPrice;
 };
 
-const isInstallmentPriceContext = ($: cheerio.CheerioAPI, el: cheerio.Element): boolean => {
+const isInstallmentPriceContext = ($: cheerio.CheerioAPI, el: any): boolean => {
   const contextText = normalizeText(
     $(el)
       .closest(
@@ -502,6 +502,10 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
     .replace(/function\s*\(.*}/g, '') // remove functions
     .replace(/\s+/g, ' ').trim();
   metrics.availability = availabilityClean;
+  const stockCount = parseStockCount(availabilityClean);
+  if (stockCount !== null) {
+      metrics.stockCount = stockCount;
+  }
 
   // ─── 8. Badges ───
   metrics.isAmazonChoice = $('#acBadge_feature_div').length > 0 && 
@@ -524,7 +528,16 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
   // ─── 11. Coupon ───
   const couponEl = $('#promoPriceBlockMessage_feature_div').text().replace(/\s+/g, ' ').trim()
                 || $('#couponBadge').text().replace(/\s+/g, ' ').trim();
-  if (couponEl) metrics.couponText = couponEl;
+  if (couponEl) {
+    metrics.couponText = couponEl;
+    const pctMatch = couponEl.match(/Save\s+([\d.]+)%\s+with/i) || couponEl.match(/([\d.]+)%\s*coupon/i);
+    const amtMatch = couponEl.match(/Save\s+[$€£]\s?([\d.]+)\s+with/i) || couponEl.match(/[$€£]\s?([\d.]+)\s*coupon/i);
+    if (pctMatch) {
+      metrics.couponDiscountPercentage = parseFloat(pctMatch[1]);
+    } else if (amtMatch) {
+      metrics.couponDiscountAmount = parseFloat(amtMatch[1]);
+    }
+  }
 
   // ─── 12. Subscribe & Save ───
   const snsText = $('#snsPrice .a-offscreen').first().text().trim()
@@ -776,6 +789,26 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
     if (countMatch) sellerRatingsCount = parseInt(countMatch[1].replace(/,/g, ''), 10);
   }
 
+  let shipsFrom: string | undefined;
+  
+  // Attempt to parse tabular buybox for accurate ships from
+  const tabularBuyboxDiv = $('#tabular-buybox .tabular-buybox-text').toArray();
+  for (let i = 0; i < tabularBuyboxDiv.length; i++) {
+     const text = $(tabularBuyboxDiv[i]).text().trim().toLowerCase();
+     if (text.includes('ships from')) {
+        const nextSpan = $(tabularBuyboxDiv[i]).next('span, div').text() || $(tabularBuyboxDiv[i]).parent().next().text();
+        if (nextSpan) {
+           shipsFrom = normalizeText(nextSpan);
+        }
+     }
+  }
+
+  if (!shipsFrom) {
+     const match = $('#merchant-info').text().replace(/\s+/g, ' ').match(/Ships from\s+([\w\s.]+?)(?:\s+Sold by|$)/i);
+     if (match) shipsFrom = match[1].trim();
+  }
+  if (!shipsFrom && isFBA) shipsFrom = 'Amazon';
+
   if (metrics.price && metrics.price > 0) {
     metrics.buyBox = {
       sellerName: buyBoxSeller,
@@ -784,6 +817,7 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
       isAmazon,
       sellerRatingPercent,
       sellerRatingsCount,
+      shipsFrom,
     };
     metrics.selectedOffer = {
       source: 'buybox',

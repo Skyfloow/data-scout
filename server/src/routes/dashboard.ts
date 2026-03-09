@@ -1,7 +1,9 @@
 import { FastifyInstance, FastifyPluginAsync } from 'fastify';
 import { storageService } from '../modules/storage/services/StorageService';
-import { ScraperType, Product } from '../types';
-import { resolveEffectivePrice } from '../utils/price';
+import { ScraperType, Product, PriceSnapshot } from '../types';
+import { getPriceHistoryBatch } from '../services/PriceHistoryService';
+import { getMetricsDefinitionsPayload, METRICS_DEFINITIONS_VERSION } from '../services/MetricsDefinitionsService';
+import { resolveEffectivePrice, resolveEffectivePriceUSD } from '../utils/price';
 import { createApiErrorPayload, paginate } from '../utils/http';
 
 interface GetProductsQuery {
@@ -10,6 +12,17 @@ interface GetProductsQuery {
   limit?: number;
   offset?: number;
 }
+
+type SegmentMetrics = {
+  count: number;
+  avgPrice: number;
+  avgValueScore: number;
+  avgMargin: number;
+  avgTrust: number;
+  avgDiscount: number;
+  specialSharePercent: number;
+  bestOpportunityTitle: string;
+};
 
 const ProductSchema = {
   type: 'object',
@@ -33,6 +46,13 @@ const ProductSchema = {
 };
 
 const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => {
+  const readSnapshotPriceUSD = (snapshot: PriceSnapshot): number => {
+    if (snapshot.priceUSD && snapshot.priceUSD > 0) return snapshot.priceUSD;
+    if (snapshot.itemPriceUSD && snapshot.itemPriceUSD > 0) return snapshot.itemPriceUSD;
+    if (snapshot.itemPrice && snapshot.itemPrice > 0) return snapshot.itemPrice;
+    return snapshot.price > 0 ? snapshot.price : 0;
+  };
+
   const getIdentityKey = (product: Product): string => {
     const asin = product.metrics.asin?.trim();
     if (asin) return `asin:${asin.toUpperCase()}`;
@@ -49,6 +69,89 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
       }
     }
     return Array.from(latestByKey.values());
+  };
+
+  const calcValueScore = (product: Product): number => {
+    const ratingFactor = ((product.metrics.averageRating || 0) / 5) * 50;
+    const discountFactor = Math.min((product.metrics.discountPercentage || 0) / 50, 1) * 30;
+    const reviewFactor = Math.min((product.metrics.reviewsCount || 0) / 10_000, 1) * 20;
+    return Math.round(ratingFactor + discountFactor + reviewFactor);
+  };
+
+  const calcTrustScore = (product: Product, mode: 'amazon' | 'etsy'): number => {
+    const rating = product.metrics.averageRating || 0;
+    if (mode === 'amazon') {
+      return ((rating / 5) * 0.6 + (product.metrics.isAmazonChoice ? 0.2 : 0) + (product.metrics.isBestSeller ? 0.2 : 0)) * 100;
+    }
+    return ((rating / 5) * 0.75 + ((product.metrics.etsyMetrics?.isStarSeller || product.metrics.isStarSeller) ? 0.25 : 0)) * 100;
+  };
+
+  const calcGrossMarginAmount = (product: Product): number => {
+    const price = resolveEffectivePriceUSD(product.metrics) || resolveEffectivePrice(product.metrics) || 0;
+    if (!price || price <= 0) return 0;
+    return price * 0.5;
+  };
+
+  const calcSegmentMetrics = (segment: Product[], mode: 'amazon' | 'etsy'): SegmentMetrics => {
+    if (segment.length === 0) {
+      return {
+        count: 0,
+        avgPrice: 0,
+        avgValueScore: 0,
+        avgMargin: 0,
+        avgTrust: 0,
+        avgDiscount: 0,
+        specialSharePercent: 0,
+        bestOpportunityTitle: '',
+      };
+    }
+
+    let totalPrices = 0;
+    let productsWithPrice = 0;
+    let totalValue = 0;
+    let totalMargin = 0;
+    let totalTrust = 0;
+    let totalDiscount = 0;
+    let productsWithDiscount = 0;
+    let specialCount = 0;
+    let best = { score: 0, title: '' };
+
+    for (const product of segment) {
+      const price = resolveEffectivePriceUSD(product.metrics) || resolveEffectivePrice(product.metrics) || 0;
+      if (price > 0) {
+        totalPrices += price;
+        productsWithPrice++;
+      }
+
+      totalValue += calcValueScore(product);
+      totalMargin += calcGrossMarginAmount(product);
+      totalTrust += calcTrustScore(product, mode);
+
+      if (product.metrics.discountPercentage) {
+        totalDiscount += product.metrics.discountPercentage;
+        productsWithDiscount++;
+      }
+
+      if (mode === 'amazon' && (product.metrics.amazonMetrics?.isPrime || product.metrics.isPrime)) specialCount++;
+      if (mode === 'etsy' && (product.metrics.etsyMetrics?.isDigitalDownload || product.metrics.isDigitalDownload)) specialCount++;
+
+      const sellerCount = Math.max(1, product.metrics.sellerCount || product.metrics.offers?.length || 1);
+      const opportunity = (product.metrics.discountPercentage || 0) * ((product.metrics.reviewsCount || 0) / 10_000) * (1 / sellerCount);
+      if (opportunity > best.score) {
+        best = { score: opportunity, title: product.title };
+      }
+    }
+
+    return {
+      count: segment.length,
+      avgPrice: productsWithPrice > 0 ? totalPrices / productsWithPrice : 0,
+      avgValueScore: Math.round(totalValue / segment.length),
+      avgMargin: totalMargin / segment.length,
+      avgTrust: Math.round(totalTrust / segment.length),
+      avgDiscount: productsWithDiscount > 0 ? Math.round(totalDiscount / productsWithDiscount) : 0,
+      specialSharePercent: Math.round((specialCount / segment.length) * 100),
+      bestOpportunityTitle: best.title,
+    };
   };
 
   fastify.get<{ Querystring: GetProductsQuery }>(
@@ -91,6 +194,29 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
   );
 
   fastify.get(
+    '/metrics/definitions',
+    {
+      schema: {
+        description: 'Get versioned dashboard metrics contract and formulas',
+        tags: ['Dashboard'],
+        response: {
+          200: {
+            type: 'object',
+            properties: {
+              version: { type: 'string' },
+              updatedAt: { type: 'string' },
+              definitions: { type: 'object', additionalProperties: true },
+            },
+          },
+        },
+      },
+    },
+    async () => {
+      return getMetricsDefinitionsPayload();
+    }
+  );
+
+  fastify.get(
     '/metrics',
     {
       schema: {
@@ -101,6 +227,7 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
             type: 'object',
             properties: {
               averagePrice: { type: 'number' },
+              version: { type: 'string' },
               distributionBySource: {
                 type: 'object',
                 additionalProperties: { type: 'number' },
@@ -119,6 +246,37 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
               primeProductsPercent: { type: 'number' },
               medianPrice: { type: 'number' },
               avgSellerCount: { type: 'number' },
+              segmentMetrics: {
+                type: 'object',
+                properties: {
+                  amazon: {
+                    type: 'object',
+                    properties: {
+                      count: { type: 'number' },
+                      avgPrice: { type: 'number' },
+                      avgValueScore: { type: 'number' },
+                      avgMargin: { type: 'number' },
+                      avgTrust: { type: 'number' },
+                      avgDiscount: { type: 'number' },
+                      specialSharePercent: { type: 'number' },
+                      bestOpportunityTitle: { type: 'string' },
+                    },
+                  },
+                  etsy: {
+                    type: 'object',
+                    properties: {
+                      count: { type: 'number' },
+                      avgPrice: { type: 'number' },
+                      avgValueScore: { type: 'number' },
+                      avgMargin: { type: 'number' },
+                      avgTrust: { type: 'number' },
+                      avgDiscount: { type: 'number' },
+                      specialSharePercent: { type: 'number' },
+                      bestOpportunityTitle: { type: 'string' },
+                    },
+                  },
+                },
+              },
             },
           },
         },
@@ -127,6 +285,9 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
     async () => {
       const allProducts = await storageService.getAllProducts();
       const products = getLatestUniqueProducts(allProducts);
+      const historyBatch = await getPriceHistoryBatch(
+        products.map((p) => ({ id: p.id, url: p.url, asin: p.metrics.asin }))
+      );
       
       let totalPrice = 0;
       let productsWithPrice = 0;
@@ -144,7 +305,7 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
 
       for (const p of products) {
         // Price aggregation
-        const effectivePrice = resolveEffectivePrice(p.metrics);
+        const effectivePrice = resolveEffectivePriceUSD(p.metrics) || resolveEffectivePrice(p.metrics);
         if (effectivePrice && effectivePrice > 0) {
           totalPrice += effectivePrice;
           productsWithPrice++;
@@ -164,7 +325,7 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
         // Data Coverage Score (title, price, brand, imageUrl, availability)
         let filledFields = 0;
         if (p.title && p.title !== 'Unknown Product') filledFields++;
-        if (p.metrics.price && p.metrics.price > 0) filledFields++;
+        if (effectivePrice && effectivePrice > 0) filledFields++;
         if (p.metrics.brand) filledFields++;
         if (p.metrics.imageUrl) filledFields++;
         if (p.metrics.availability) filledFields++;
@@ -172,10 +333,10 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
         totalGoldenFields += (filledFields / MAX_GOLDEN_FIELDS);
 
         // Price Stability (Anomalies)
-        if (p.priceHistory && p.priceHistory.length >= 2) {
-          const hist = p.priceHistory;
-          const latest = hist[hist.length - 1].price;
-          const previous = hist[hist.length - 2].price;
+        const hist = historyBatch[p.id] || [];
+        if (hist.length >= 2) {
+          const latest = readSnapshotPriceUSD(hist[hist.length - 1]!);
+          const previous = readSnapshotPriceUSD(hist[hist.length - 2]!);
           if (previous > 0) {
             const diffPct = Math.abs(latest - previous) / previous;
             if (diffPct > 0.3) {
@@ -213,8 +374,11 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
       const discountedProductsPercent = products.length > 0 ? Math.round((discountedCount / products.length) * 100) : 0;
       const primeProductsPercent = products.length > 0 ? Math.round((primeCount / products.length) * 100) : 0;
       const avgSellerCount = products.length > 0 ? parseFloat((totalSellerCount / products.length).toFixed(2)) : 0;
+      const amazonProducts = products.filter((p) => p.marketplace.toLowerCase().includes('amazon'));
+      const etsyProducts = products.filter((p) => p.marketplace.toLowerCase().includes('etsy'));
 
       return {
+        version: METRICS_DEFINITIONS_VERSION,
         averagePrice,
         medianPrice,
         distributionBySource,
@@ -228,6 +392,10 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
         discountedProductsPercent,
         primeProductsPercent,
         avgSellerCount,
+        segmentMetrics: {
+          amazon: calcSegmentMetrics(amazonProducts, 'amazon'),
+          etsy: calcSegmentMetrics(etsyProducts, 'etsy'),
+        },
       };
     }
   );

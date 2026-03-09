@@ -1,40 +1,45 @@
 import React, { useMemo, useState } from 'react';
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Checkbox,
-  Chip,
-  CircularProgress,
-  FormControl,
-  IconButton,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TableSortLabel,
-  Tooltip,
-  Typography,
-} from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { ArrowDownWideNarrow, ArrowUpWideNarrow, ExternalLink, FileSpreadsheet, Trash2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { alpha } from '@mui/material/styles';
 import { useDeleteProductsMutation, useGetProductsQuery } from '../../../store/apiSlice';
 import { Product, ScraperType } from '../../../types';
+import { downloadCsv } from '../../../utils/export';
+import { Button } from '../../../components/ui/button';
+import { Card, CardContent, CardTitle } from '../../../components/ui/card';
+import { Badge } from '../../../components/ui/badge';
+import { Checkbox } from '../../../components/ui/checkbox';
+import { Alert } from '../../../components/ui/alert';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select';
+import { Table, TableWrap, TBody, TD, TH, THead, TR } from '../../../components/ui/table';
 
 type SortKey = 'date' | 'price' | 'bsr' | 'title';
 type SortOrder = 'asc' | 'desc';
+
+function SortButton({ active, order, onClick, children }: { active: boolean; order: SortOrder; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      style={{
+        border: 'none',
+        background: 'transparent',
+        color: 'inherit',
+        font: 'inherit',
+        padding: 0,
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 5,
+        cursor: 'pointer',
+        fontWeight: active ? 800 : 700,
+      }}
+    >
+      {children}
+      {active ? order === 'asc' ? <ArrowUpWideNarrow size={13} /> : <ArrowDownWideNarrow size={13} /> : null}
+    </button>
+  );
+}
 
 function ProductTable() {
   const { t } = useTranslation();
@@ -100,217 +105,205 @@ function ProductTable() {
     setSelected(new Set());
   };
 
+  const handleExportCsv = () => {
+    const rows: Array<Array<string | number>> = [];
+    rows.push(['id', 'title', 'marketplace', 'price', 'currency', 'rating', 'reviews', 'discount', 'bsrRank', 'scrapedAt', 'scrapedBy', 'url']);
+    for (const row of sortedProducts) {
+      const price = row.metrics.priceUSD || row.metrics.itemPriceUSD || row.metrics.buyBox?.price || row.metrics.itemPrice || row.metrics.price || 0;
+      rows.push([
+        row.id,
+        row.title,
+        row.marketplace,
+        price,
+        row.metrics.currency || 'USD',
+        row.metrics.averageRating || '',
+        row.metrics.reviewsCount || '',
+        row.metrics.discountPercentage || '',
+        row.metrics.bsrCategories?.[0]?.rank || '',
+        row.scrapedAt,
+        row.scrapedBy,
+        row.url,
+      ]);
+    }
+    downloadCsv(`products-table-${new Date().toISOString().slice(0, 10)}.csv`, rows);
+  };
+
   const allSelected = sortedProducts.length > 0 && selected.size === sortedProducts.length;
   const someSelected = selected.size > 0 && selected.size < sortedProducts.length;
 
   return (
-    <Card elevation={2}>
+    <Card>
       <CardContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3, flexWrap: 'wrap', gap: 2 }}>
-          <Typography variant="h6" fontWeight="600">
-            {t('table.marketIntelligenceData')}
-          </Typography>
+        <div className="stack-col" style={{ gap: 14 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <CardTitle>{t('table.marketIntelligenceData')}</CardTitle>
 
-          <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-            {selected.size > 0 && (
-              <Button
-                variant="outlined"
-                color="error"
-                size="small"
-                startIcon={<DeleteIcon />}
-                onClick={handleDelete}
-                disabled={isDeleting}
-              >
-                {t('table.delete')} {selected.size} {selected.size === 1 ? t('table.item') : t('table.items')}
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }} data-pdf-table-controls>
+              {selected.size > 0 ? (
+                <Button variant="destructive" size="sm" onClick={handleDelete} disabled={isDeleting}>
+                  <Trash2 size={14} />
+                  {t('table.delete')} {selected.size} {selected.size === 1 ? t('table.item') : t('table.items')}
+                </Button>
+              ) : null}
+
+              <Button variant="outline" size="sm" onClick={handleExportCsv} disabled={isLoading || sortedProducts.length === 0}>
+                <FileSpreadsheet size={14} /> Export CSV
               </Button>
-            )}
-            <FormControl size="small" sx={{ minWidth: 120 }}>
-              <InputLabel>{t('table.source')}</InputLabel>
-              <Select value={filterSource} label={t('table.source')} onChange={(e) => setFilterSource(e.target.value)}>
-                <MenuItem value="all">{t('table.allSources')}</MenuItem>
-                <MenuItem value="amazon">Amazon</MenuItem>
-                <MenuItem value="etsy">Etsy</MenuItem>
-                <MenuItem value="ebay">eBay</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl size="small" sx={{ minWidth: 120 }}>
-              <InputLabel>{t('table.scraper')}</InputLabel>
-              <Select value={filterScraper} label={t('table.scraper')} onChange={(e) => setFilterScraper(e.target.value)}>
-                <MenuItem value="all">{t('table.allEngines')}</MenuItem>
-                <MenuItem value="crawler">Crawler</MenuItem>
-                <MenuItem value="firecrawl">Firecrawl</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-        </Box>
 
-        {isLoading ? (
-          <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
-            <CircularProgress />
-          </Box>
-        ) : error ? (
-          <Typography color="error">{t('table.failedLoad')}</Typography>
-        ) : products.length === 0 ? (
-          <Typography align="center" color="text.secondary" sx={{ py: 4 }}>
-            {t('table.noProducts')}
-          </Typography>
-        ) : (
-          <TableContainer component={Paper} variant="outlined" sx={{ maxHeight: 600, overflowX: 'auto' }}>
-            <Table
-              stickyHeader
-              size="small"
-              sx={{
-                minWidth: 1100,
-                '& .MuiTableCell-stickyHeader': {
-                  zIndex: 5,
-                  bgcolor: 'background.paper',
-                },
-                '& .MuiTableRow-root:nth-of-type(even)': {
-                  bgcolor: 'action.hover',
-                },
-              }}
-            >
-              <TableHead>
-                <TableRow>
-                  <TableCell padding="checkbox" sx={{ bgcolor: 'background.paper', zIndex: 7, position: 'sticky', left: 0 }}>
-                    <Checkbox indeterminate={someSelected} checked={allSelected} onChange={(e) => handleSelectAll(e.target.checked)} />
-                  </TableCell>
-                  <TableCell sx={{ bgcolor: 'background.paper', zIndex: 7, position: 'sticky', left: 48, minWidth: 200 }}>
-                    <TableSortLabel active={sortKey === 'title'} direction={sortOrder} onClick={() => handleSort('title')}>
-                      {t('table.product')}
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell>
-                    <TableSortLabel active={sortKey === 'price'} direction={sortOrder} onClick={() => handleSort('price')}>
-                      {t('table.price')}
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell>
-                    <TableSortLabel active={sortKey === 'bsr'} direction={sortOrder} onClick={() => handleSort('bsr')}>
-                      {t('table.bsr')}
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell>{t('table.rating')}</TableCell>
-                  <TableCell>{t('table.offers')}</TableCell>
-                  <TableCell>{t('table.tags')}</TableCell>
-                  <TableCell>
-                    <TableSortLabel active={sortKey === 'date'} direction={sortOrder} onClick={() => handleSort('date')}>
-                      {t('table.scrapedAt')}
-                    </TableSortLabel>
-                  </TableCell>
-                  <TableCell sx={{ width: 52 }} />
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {sortedProducts.map((row) => (
-                  <TableRow key={row.id} hover selected={selected.has(row.id)}>
-                    <TableCell padding="checkbox" sx={{ bgcolor: 'background.paper', position: 'sticky', left: 0, zIndex: 2 }}>
-                      <Checkbox checked={selected.has(row.id)} onChange={(e) => handleSelectOne(row.id, e.target.checked)} />
-                    </TableCell>
-                    <TableCell sx={{ maxWidth: 280, bgcolor: 'background.paper', position: 'sticky', left: 48, zIndex: 2 }}>
-                      <Tooltip title={row.title}>
+              <Select value={filterSource} onValueChange={setFilterSource}>
+                <SelectTrigger style={{ width: 140 }}>
+                  <SelectValue placeholder={t('table.source')} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">{t('table.allSources')}</SelectItem>
+                  <SelectItem value="amazon">Amazon</SelectItem>
+                  <SelectItem value="etsy">Etsy</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Select value={filterScraper} onValueChange={setFilterScraper}>
+                <SelectTrigger style={{ width: 140 }}>
+                  <SelectValue placeholder={t('table.scraper')} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">{t('table.allEngines')}</SelectItem>
+                  <SelectItem value="crawler">Crawler</SelectItem>
+                  <SelectItem value="firecrawl">Firecrawl</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {isLoading ? (
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '2.2rem 0' }}>
+              <span className="loader loader-dark" />
+            </div>
+          ) : error ? (
+            <Alert variant="destructive">{t('table.failedLoad')}</Alert>
+          ) : products.length === 0 ? (
+            <div className="text-center muted" style={{ padding: '2rem 0' }}>
+              {t('table.noProducts')}
+            </div>
+          ) : (
+            <TableWrap data-pdf-expand-scroll data-pdf-table style={{ maxHeight: 600 }}>
+              <Table style={{ minWidth: 1100 }}>
+                <THead>
+                  <TR>
+                    <TH style={{ width: 42 }} data-pdf-exclude>
+                      <Checkbox
+                        checked={allSelected || (someSelected ? 'indeterminate' : false)}
+                        onCheckedChange={(checked) => handleSelectAll(Boolean(checked))}
+                        aria-label="Select all"
+                      />
+                    </TH>
+                    <TH style={{ minWidth: 220 }}>
+                      <SortButton active={sortKey === 'title'} order={sortOrder} onClick={() => handleSort('title')}>
+                        {t('table.product')}
+                      </SortButton>
+                    </TH>
+                    <TH>
+                      <SortButton active={sortKey === 'price'} order={sortOrder} onClick={() => handleSort('price')}>
+                        {t('table.price')}
+                      </SortButton>
+                    </TH>
+                    <TH>
+                      <SortButton active={sortKey === 'bsr'} order={sortOrder} onClick={() => handleSort('bsr')}>
+                        {t('table.bsr')}
+                      </SortButton>
+                    </TH>
+                    <TH>{t('table.rating')}</TH>
+                    <TH>{t('table.offers')}</TH>
+                    <TH>{t('table.tags')}</TH>
+                    <TH>
+                      <SortButton active={sortKey === 'date'} order={sortOrder} onClick={() => handleSort('date')}>
+                        {t('table.scrapedAt')}
+                      </SortButton>
+                    </TH>
+                    <TH style={{ width: 56 }} data-pdf-exclude />
+                  </TR>
+                </THead>
+                <TBody>
+                  {sortedProducts.map((row) => (
+                    <TR key={row.id}>
+                      <TD data-pdf-exclude>
+                        <Checkbox checked={selected.has(row.id)} onCheckedChange={(checked) => handleSelectOne(row.id, Boolean(checked))} />
+                      </TD>
+                      <TD style={{ maxWidth: 300 }}>
                         <Link
                           to={`/product/${row.id}`}
+                          className="link"
                           style={{
-                            color: 'var(--mui-palette-primary-main)',
-                            textDecoration: 'none',
-                            fontWeight: 500,
+                            fontWeight: 700,
                             display: 'block',
                             whiteSpace: 'nowrap',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
                           }}
+                          title={row.title}
                         >
                           {row.title}
                         </Link>
-                      </Tooltip>
-                      <Box sx={{ mt: 0.5 }}>
-                        <Chip label={row.marketplace} size="small" variant="outlined" sx={{ height: 20, fontSize: '0.7rem', mr: 0.5 }} />
-                        <Chip label={row.scrapedBy} size="small" color={row.scrapedBy === 'firecrawl' ? 'warning' : 'info'} variant="filled" sx={{ height: 20, fontSize: '0.7rem' }} />
-                      </Box>
-                    </TableCell>
-                    <TableCell sx={{ minWidth: 108 }}>
-                      <Typography fontWeight="bold" sx={{ lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        ${(row.metrics.priceUSD || row.metrics.buyBox?.price || row.metrics.itemPrice || row.metrics.price || 0).toFixed(2)}
-                      </Typography>
-                      {row.metrics.discountPercentage ? (
-                        <Typography variant="caption" color="success.main" sx={{ display: 'block', lineHeight: 1.2 }}>
-                          -{row.metrics.discountPercentage}%
-                        </Typography>
-                      ) : null}
-                    </TableCell>
-                    <TableCell>
-                      {row.metrics.bsrCategories?.[0] ? (
-                        <Box>
-                          <Typography variant="body2" fontWeight="600">
-                            #{row.metrics.bsrCategories[0].rank.toLocaleString()}
-                          </Typography>
-                          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', maxWidth: 120, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                            {row.metrics.bsrCategories[0].category}
-                          </Typography>
-                        </Box>
-                      ) : (
-                        <Typography variant="body2" color="text.secondary">
-                          N/A
-                        </Typography>
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      {row.metrics.averageRating ? (
-                        <Box>
-                          <Typography variant="body2">
-                            <Box component="span" sx={{ color: 'warning.main' }}>★</Box> {row.metrics.averageRating.toFixed(1)}
-                          </Typography>
-                          <Typography variant="caption" color="text.secondary">
-                            ({row.metrics.reviewsCount?.toLocaleString()})
-                          </Typography>
-                        </Box>
-                      ) : (
-                        <Typography variant="body2" color="text.secondary">
-                          —
-                        </Typography>
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
-                        {row.metrics.sellerCount && <Chip label={`${row.metrics.sellerCount} ${t('table.sellers')}`} size="small" variant="outlined" />}
-                        {row.metrics.newOffersCount && <Chip label={`${row.metrics.newOffersCount} ${t('table.new')}`} size="small" color="success" variant="outlined" />}
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                      <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
-                        {row.metrics.isPrime && <Chip label={t('table.prime')} size="small" sx={{ bgcolor: 'info.main', color: '#fff', fontWeight: 'bold', height: 22 }} />}
-                        {row.metrics.buyBox?.isFBA && (
-                          <Chip
-                            label="FBA"
-                            size="small"
-                            sx={{
-                              bgcolor: (theme) => theme.palette.mode === 'dark' ? alpha(theme.palette.primary.main, 0.28) : alpha(theme.palette.primary.main, 0.16),
-                              color: 'text.primary',
-                              fontWeight: 'bold',
-                              height: 22,
-                            }}
-                          />
+                        <div style={{ display: 'flex', gap: 6, marginTop: 6, flexWrap: 'wrap' }}>
+                          <Badge variant="outline">{row.marketplace}</Badge>
+                          <Badge variant={row.scrapedBy === 'firecrawl' ? 'warning' : 'secondary'}>{row.scrapedBy}</Badge>
+                        </div>
+                      </TD>
+                      <TD style={{ minWidth: 120 }}>
+                        <div style={{ fontWeight: 800 }}>${(row.metrics.priceUSD || row.metrics.buyBox?.price || row.metrics.itemPrice || row.metrics.price || 0).toFixed(2)}</div>
+                        {row.metrics.discountPercentage ? <div style={{ color: 'var(--success)', fontSize: '0.76rem' }}>-{row.metrics.discountPercentage}%</div> : null}
+                      </TD>
+                      <TD>
+                        {row.metrics.bsrCategories?.[0] ? (
+                          <>
+                            <div style={{ fontWeight: 700 }}>#{row.metrics.bsrCategories[0].rank.toLocaleString()}</div>
+                            <div className="muted" style={{ fontSize: '0.74rem' }} title={row.metrics.bsrCategories[0].category}>
+                              {row.metrics.bsrCategories[0].category}
+                            </div>
+                          </>
+                        ) : (
+                          <span className="muted">N/A</span>
                         )}
-                        {row.metrics.isAmazonChoice && <Chip label="Choice" size="small" color="info" sx={{ height: 22 }} />}
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body2">{row.scrapedAt ? format(new Date(row.scrapedAt), 'MMM dd, HH:mm') : '—'}</Typography>
-                    </TableCell>
-                    <TableCell align="center" sx={{ px: 0.5 }}>
-                      <Tooltip title={t('table.openMarketplace')}>
-                        <IconButton size="small" color="primary" component="a" href={row.url} target="_blank" rel="noopener noreferrer">
-                          <OpenInNewIcon fontSize="small" />
-                        </IconButton>
-                      </Tooltip>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        )}
+                      </TD>
+                      <TD>
+                        {row.metrics.averageRating ? (
+                          <>
+                            <div>
+                              <span style={{ color: 'var(--warning)' }}>★</span> {row.metrics.averageRating.toFixed(1)}
+                            </div>
+                            <div className="muted" style={{ fontSize: '0.74rem' }}>
+                              ({row.metrics.reviewsCount?.toLocaleString()})
+                            </div>
+                          </>
+                        ) : (
+                          <span className="muted">—</span>
+                        )}
+                      </TD>
+                      <TD>
+                        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                          {row.metrics.sellerCount ? <Badge variant="outline">{row.metrics.sellerCount} {t('table.sellers')}</Badge> : null}
+                          {row.metrics.newOffersCount ? <Badge variant="success">{row.metrics.newOffersCount} {t('table.new')}</Badge> : null}
+                        </div>
+                      </TD>
+                      <TD>
+                        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                          {row.metrics.isPrime ? <Badge variant="secondary">{t('table.prime')}</Badge> : null}
+                          {row.metrics.buyBox?.isFBA ? <Badge variant="default">FBA</Badge> : null}
+                          {row.metrics.isAmazonChoice ? <Badge variant="warning">Choice</Badge> : null}
+                        </div>
+                      </TD>
+                      <TD>{row.scrapedAt ? format(new Date(row.scrapedAt), 'MMM dd, HH:mm') : '—'}</TD>
+                      <TD className="text-right" data-pdf-exclude>
+                        <a className="icon-btn" href={row.url} target="_blank" rel="noopener noreferrer" title={t('table.openMarketplace')}>
+                          <ExternalLink size={14} />
+                        </a>
+                      </TD>
+                    </TR>
+                  ))}
+                </TBody>
+              </Table>
+            </TableWrap>
+          )}
+        </div>
       </CardContent>
     </Card>
   );

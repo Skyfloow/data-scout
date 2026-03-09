@@ -1,13 +1,335 @@
+:root {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  width: 100%;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  color: var(--fg);
+  background:
+    radial-gradient(
+      1200px 460px at 50% -220px,
+      color-mix(in oklab, var(--primary) 16%, transparent) 0%,
+      transparent 65%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--bg) 85%, white 15%) 0%,
+      var(--bg) 100%
+    );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+.page-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.page-subtitle,
+.muted {
+  color: var(--fg-muted);
+}
+
+.stack-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.metric-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .metric-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.app-card {
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  background: var(--bg-elevated);
+  border-radius: 12px;
+}
+
+:root.dark .app-card {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card-header,
+.card-content,
+.card-footer {
+  padding: 16px;
+}
+
+.card-header {
+  padding-bottom: 8px;
+}
+
+.card-footer {
+  border-top: 1px solid var(--border);
+}
+
+.card-title {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.card-description {
+  color: var(--fg-muted);
+  font-size: 0.875rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--fg-muted);
+}
+
+.field-help {
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+}
+
+.table-wrap {
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-elevated);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-th,
+.table-td {
+  border-bottom: 1px solid var(--border);
+  padding: 10px 12px;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table-th {
+  background: var(--bg-soft);
+  color: var(--fg-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table-row:hover {
+  background: color-mix(in oklab, var(--bg-soft) 68%, var(--bg-elevated) 32%);
+}
+
+.icon-btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-elevated);
+  color: var(--fg-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.icon-btn:hover {
+  color: var(--primary);
+  border-color: color-mix(in oklab, var(--primary) 45%, var(--border));
+}
+
+.loader {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid color-mix(in oklab, var(--fg) 20%, transparent);
+  border-top-color: var(--fg);
+  animation: spin 0.8s linear infinite;
+}
+
+.loader-dark {
+  border-top-color: var(--fg);
+}
+
+.skeleton {
+  background: color-mix(in oklab, var(--fg) 10%, transparent);
+  border-radius: 10px;
+}
+
+.toast {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 120;
+  min-width: 240px;
+  max-width: min(420px, calc(100vw - 32px));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: var(--bg-elevated);
+}
+
+.toast-success {
+  border-color: color-mix(in oklab, var(--success) 35%, var(--border));
+}
+
+.toast-error {
+  border-color: color-mix(in oklab, var(--danger) 35%, var(--border));
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.link {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.desktop-sidebar {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .desktop-sidebar {
+    display: block;
+  }
+
+  .mobile-nav-toggle {
+    display: none;
+  }
+
+  .dashboard-main {
+    padding: 22px 20px 84px !important;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fix Ant Design Modal scrollbar shift for fixed FAB */
+body.ant-scrolling-effect .fab-container {
+  margin-right: 15px; /* Offset to prevent jump when scrollbar is hidden */
+}
+
+/* Fix missing transparent selection hover bug in Antd Select */
+.ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-active) {
+  background-color: transparent !important;
+  font-weight: 700;
+}
+
+.modal-scroll-area {
+  padding: 0 18px 10px;
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+/* Mobile Modal Layout Optimizations */
+@media (max-width: 768px) {
+  .ant-modal .ant-modal-body {
+    padding: 12px 6px !important;
+  }
+  
+  .ant-modal {
+    margin: 0 auto !important;
+    top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .modal-scroll-area {
+    padding: 0 4px 10px !important;
+  }
 }

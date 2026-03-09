@@ -1,4 +1,5 @@
 import { ProductMetrics } from '../types';
+import { convertToUSD } from '../services/CurrencyService';
 
 export function resolveEffectivePrice(metrics: Partial<ProductMetrics>): number | undefined {
   const buyBoxPrice = metrics.buyBox?.price;
@@ -6,6 +7,18 @@ export function resolveEffectivePrice(metrics: Partial<ProductMetrics>): number 
   if (metrics.itemPrice && metrics.itemPrice > 0) return metrics.itemPrice;
   if (metrics.price && metrics.price > 0) return metrics.price;
   return undefined;
+}
+
+export function resolveEffectivePriceUSD(metrics: Partial<ProductMetrics>): number | undefined {
+  if (metrics.priceUSD && metrics.priceUSD > 0) return metrics.priceUSD;
+  if (metrics.itemPriceUSD && metrics.itemPriceUSD > 0) return metrics.itemPriceUSD;
+  if (metrics.landedPriceUSD && metrics.landedPriceUSD > 0) return metrics.landedPriceUSD;
+
+  const local = resolveEffectivePrice(metrics);
+  if (!local || local <= 0) return undefined;
+
+  const currency = metrics.currency || 'USD';
+  return convertToUSD(local, currency);
 }
 
 export function syncMetricsPriceFromBuyBox(

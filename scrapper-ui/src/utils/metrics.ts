@@ -1,7 +1,7 @@
 import { ProductMetrics } from '../types';
 
 export function resolveMetricPrice(m: ProductMetrics): number {
-  return m.priceUSD || m.buyBox?.price || m.itemPrice || m.price || 0;
+  return m.priceUSD || m.itemPriceUSD || m.buyBox?.price || m.itemPrice || m.price || 0;
 }
 
 /**
@@ -14,7 +14,7 @@ export function calcListingStrength(m: ProductMetrics, titleArg?: string): numbe
   const titleScore = Math.min(title.length / 150, 1) * 2.5;            // Title quality:   0-2.5
   const reviewScore = Math.min((m.reviewsCount || 0) / 500, 1) * 2.5;  // Social proof:    0-2.5
   const ratingScore = ((m.averageRating || 0) / 5) * 2.0;              // Star rating:     0-2.0
-  const imageScore  = Math.min((m.imageUrls?.length || 1) / 6, 1) * 1.5; // Media richness: 0-1.5
+  const imageScore  = Math.min((m.imageUrls?.length || 0) / 6, 1) * 1.5; // Media richness: 0-1.5
   const featureScore = Math.min((m.features?.length || 0) / 5, 1) * 1.0; // Bullet points:  0-1.0
   const badgeScore = (m.isAmazonChoice ? 0.5 : 0) + (m.isBestSeller ? 0.5 : 0); // Badges: 0-1.0
 

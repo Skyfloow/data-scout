@@ -1,7 +1,7 @@
 import * as cheerio from 'cheerio';
 import { ExtractorContext, ExtractorResult } from '../extractors/types';
 import { EtsyMarketplaceMetrics, ProductMetrics, ShippingProfileEntry, Variation } from '../../../types';
-import { parsePrice, parseCurrency } from '../../../utils/parsers';
+import { parsePrice, parseCurrency, parseStockCount } from '../../../utils/parsers';
 
 const normalizeText = (input: string): string => input.replace(/\s+/g, ' ').trim();
 const normalizeTitle = (value: string): string =>
@@ -581,6 +581,25 @@ export const etsyExtractor = async (context: ExtractorContext): Promise<Extracto
       '',
     ),
   );
+
+  let shopRating: number | undefined;
+  let shopReviewsCount: number | undefined;
+  const shopHeaderContainer = normalizeText(shopNameNode.closest('.wt-display-flex-xs, .wt-grid__item-xs-12').text() || $('.shop-name-and-sales, [data-buy-box-region="shop-info"]').text());
+  
+  const shopRatingMatch = shopHeaderContainer.match(/([\d.]+)\s*(?:out of 5|stars?)/i) || shopHeaderContainer.match(/Rating:\s*([\d.]+)/i);
+  if (shopRatingMatch) shopRating = parseFloat(shopRatingMatch[1]);
+  
+  const shopReviewsMatch = shopHeaderContainer.match(/\(([\d,]+)\s*(?:reviews?)?\)/i) || shopHeaderContainer.match(/([\d,]+)\s*reviews?/i);
+  if (shopReviewsMatch) shopReviewsCount = parseInt(shopReviewsMatch[1].replace(/,/g, ''), 10);
+
+  // Exclude item reviews from getting matched accidentally
+  if (shopReviewsCount && metrics.reviewsCount && shopReviewsCount === metrics.reviewsCount) {
+      if (shopHeaderContainer.length > 200) {
+          shopReviewsCount = undefined;
+          shopRating = undefined;
+      }
+  }
+
   if (shopName && metrics.price && metrics.price > 0) {
     metrics.brand = shopName;
     metrics.buyBox = {
@@ -593,11 +612,16 @@ export const etsyExtractor = async (context: ExtractorContext): Promise<Extracto
     metrics.brand = shopName;
   }
   
-  // Shop Sales
+  // Shop Sales & Item Sales
   const shopSalesText = normalizeText($('.wt-text-caption span:contains("Sales")').parent().text() || $('span:contains("sales")').text());
+  const itemSalesText = normalizeText($('span:contains("bought this"), p:contains("bought this")').first().text());
   const shopSalesMatch = shopSalesText.match(/([\d,]+)\s+Sales/i);
-  if (shopSalesMatch) {
-    metrics.salesVolume = shopSalesMatch[1].replace(/,/g, ''); // We can store shop sales here or create a new field. We map to salesVolume for now.
+  const itemSalesMatch = itemSalesText.match(/(\d[\d,]*)\+?\s*bought/i);
+
+  if (itemSalesMatch) {
+    metrics.salesVolume = `${itemSalesMatch[1].replace(/,/g, '')} bought`;
+  } else if (shopSalesMatch) {
+    metrics.salesVolume = `Shop: ${shopSalesMatch[1].replace(/,/g, '')}`;
   }
 
   if (shopName) {
@@ -628,19 +652,33 @@ export const etsyExtractor = async (context: ExtractorContext): Promise<Extracto
   if (badgesText.toLowerCase().includes('bestseller')) {
       metrics.isBestSeller = true;
   }
+
+  // Customization & Gift Wrapping
+  const bodyText = normalizeText($('body').text());
+  if (/add your personalization/i.test(bodyText) || $('#personalization-input').length > 0) {
+      metrics.isPersonalizable = true;
+  }
+  if (/gift wrapping available/i.test(bodyText) || $('[data-buy-box-region="gift-wrap"]').length > 0) {
+      metrics.hasGiftWrapping = true;
+  }
   
-  // 8. In Baskets
-  const urgencyText = normalizeText($('div[data-buy-box-region="urgency-message"]').text());
-  if (urgencyText.includes('basket')) {
-      metrics.availability = urgencyText; // e.g., "In 20+ peoples baskets"
-      if (!metrics.salesVolume) {
-        metrics.salesVolume = urgencyText;
-      }
+  // 8. In Baskets & Stock Handling
+  const urgencyText = normalizeText($('div[data-buy-box-region="urgency-message"]').text() || $('p:contains("basket"), p:contains("cart")').text());
+  
+  if (urgencyText.includes('basket') || urgencyText.includes('cart')) {
+      const match = urgencyText.match(/(\d[\d,]*)\+?\s*(?:people|shoppers?)?/i);
+      metrics.availability = match ? `In ${match[1]}+ carts` : urgencyText;
   } else {
     const availabilityFromOffers = normalizeText(String(toArray(jsonLd?.offers)[0]?.availability || ''));
     if (availabilityFromOffers) {
       metrics.availability = availabilityFromOffers.split('/').pop() || availabilityFromOffers;
     }
+  }
+
+  const stockText = normalizeText($('p:contains("left"), span:contains("left"), div:contains("left")').first().text());
+  const stockCount = parseStockCount(stockText);
+  if (stockCount !== null) {
+      metrics.stockCount = stockCount;
   }
 
   // 8b. Delivery and shipping
@@ -779,6 +817,8 @@ export const etsyExtractor = async (context: ExtractorContext): Promise<Extracto
     shopAgeYears: metrics.shopAgeYears,
     isStarSeller: metrics.isStarSeller,
     shopResponseRate: metrics.shopResponseRate,
+    shopRating: shopRating,
+    shopReviewsCount: shopReviewsCount,
   };
   metrics.etsyMetrics = etsyMetrics;
 

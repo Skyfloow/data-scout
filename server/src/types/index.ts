@@ -79,6 +79,7 @@ export interface BuyBoxInfo {
   observedAt?: string;
   sellerRatingPercent?: number;
   sellerRatingsCount?: number;
+  shipsFrom?: string;
 }
 
 export interface LightningDeal {
@@ -128,6 +129,8 @@ export interface EtsyMarketplaceMetrics {
   shopAgeYears?: number;
   isStarSeller?: boolean;
   shopResponseRate?: number;
+  shopRating?: number;
+  shopReviewsCount?: number;
 }
 
 // ─── Main product metrics ───
@@ -163,6 +166,7 @@ export interface ProductMetrics {
   originalPrice?: number;
   discountPercentage?: number;
   availability?: string;
+  stockCount?: number;
   deliveryInfo?: string;
   currency?: string;
   offers?: Offer[];
@@ -206,6 +210,8 @@ export interface ProductMetrics {
   subscribeAndSavePrice?: number;
   subscribeAndSavePercent?: number;
   couponText?: string;
+  couponDiscountAmount?: number;
+  couponDiscountPercentage?: number;
 
   // Etsy-oriented optional fields
   shippingProfiles?: ShippingProfileEntry[];
@@ -220,6 +226,8 @@ export interface ProductMetrics {
   shopAgeYears?: number;
   isStarSeller?: boolean;
   shopResponseRate?: number;
+  isPersonalizable?: boolean;
+  hasGiftWrapping?: boolean;
 
   // Marketplace-specific structured blocks
   amazonMetrics?: AmazonMarketplaceMetrics;

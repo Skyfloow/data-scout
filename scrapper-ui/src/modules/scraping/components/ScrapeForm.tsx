@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Box, 
-  Card, 
-  CardContent, 
-  Typography, 
-  TextField, 
-  Button, 
-  FormControl, 
-  InputLabel, 
-  Select, 
-  MenuItem, 
-  CircularProgress,
-  Alert
-} from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
-import { useTriggerScrapeMutation, useGetJobStatusQuery, apiSlice } from '../../../store/apiSlice';
-import { ScraperType } from '../../../types';
+import React, { useEffect, useState } from 'react';
+import { Send } from 'lucide-react';
 import { useDispatch } from 'react-redux';
+import { useGetJobStatusQuery, useTriggerScrapeMutation, apiSlice } from '../../../store/apiSlice';
+import { ScraperType } from '../../../types';
+import { Alert } from '../../../components/ui/alert';
+import { Button } from '../../../components/ui/button';
+import { Card, CardContent, CardTitle } from '../../../components/ui/card';
+import { Input } from '../../../components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select';
 
 export default function ScrapeForm() {
   const [url, setUrl] = useState('');
@@ -24,28 +15,23 @@ export default function ScrapeForm() {
   const [currentJobId, setCurrentJobId] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-
   const [triggerScrape, { isLoading: isStarting }] = useTriggerScrapeMutation();
   const dispatch = useDispatch();
 
-  // Polling via RTK Query if there is an active job ID
   const { data: jobStatus } = useGetJobStatusQuery(currentJobId as string, {
     skip: !currentJobId,
     pollingInterval: 2000,
   });
 
-  // Handle completion or failure based on polling status
   useEffect(() => {
-    if (jobStatus) {
-      if (jobStatus.status === 'completed') {
-        setCurrentJobId(null);
-        setErrorMsg(null);
-        // Invalidate cache to refetch products & metrics
-        dispatch(apiSlice.util.invalidateTags(['Products', 'Metrics']));
-      } else if (jobStatus.status === 'failed') {
-        setCurrentJobId(null);
-        setErrorMsg(jobStatus.error || 'The scraping job failed.');
-      }
+    if (!jobStatus) return;
+    if (jobStatus.status === 'completed') {
+      setCurrentJobId(null);
+      setErrorMsg(null);
+      dispatch(apiSlice.util.invalidateTags(['Products', 'Metrics']));
+    } else if (jobStatus.status === 'failed') {
+      setCurrentJobId(null);
+      setErrorMsg(jobStatus.error || 'The scraping job failed.');
     }
   }, [jobStatus, dispatch]);
 
@@ -54,7 +40,6 @@ export default function ScrapeForm() {
     setErrorMsg(null);
     setCurrentJobId(null);
 
-    // Basic URL validation
     try {
       new URL(url);
     } catch {
@@ -66,7 +51,7 @@ export default function ScrapeForm() {
       const response = await triggerScrape({ url, scraper }).unwrap();
       setCurrentJobId(response.jobId);
       setUrl('');
-    } catch (err: any) {
+    } catch {
       setErrorMsg('Failed to start scraping job. Ensure server is running.');
     }
   };
@@ -74,61 +59,40 @@ export default function ScrapeForm() {
   const isPolling = currentJobId !== null;
 
   return (
-    <Card elevation={2}>
+    <Card>
       <CardContent>
-        <Typography variant="h6" gutterBottom fontWeight="600">
-          New Scrape Task
-        </Typography>
-        
-        {errorMsg && (
-          <Alert severity="error" sx={{ mb: 2 }}>{errorMsg}</Alert>
-        )}
-        
-        {jobStatus?.status === 'pending' && (
-          <Alert severity="info" sx={{ mb: 2 }}>
-            Job is in progress [{currentJobId}]...
-          </Alert>
-        )}
+        <CardTitle>New Scrape Task</CardTitle>
 
-        <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
-          <TextField
-            fullWidth
-            size="small"
-            label="Product URL (Amazon, Etsy)"
-            variant="outlined"
-            placeholder="https://amazon.com/... or https://etsy.com/..."
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            disabled={isStarting || isPolling}
-            sx={{ flexGrow: 1, minWidth: '250px' }}
-            required
-          />
-          
-          <FormControl size="small" sx={{ minWidth: 150 }}>
-            <InputLabel>Scraper Engine</InputLabel>
-            <Select
-              value={scraper}
-              label="Scraper Engine"
-              onChange={(e) => setScraper(e.target.value as ScraperType)}
+        <div className="stack-col" style={{ gap: 12, marginTop: 12 }}>
+          {errorMsg ? <Alert variant="destructive">{errorMsg}</Alert> : null}
+          {jobStatus?.status === 'pending' ? <Alert variant="info">Job is in progress [{currentJobId}]...</Alert> : null}
+
+          <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+            <Input
+              placeholder="https://amazon.com/... or https://etsy.com/..."
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
               disabled={isStarting || isPolling}
-            >
-              <MenuItem value="crawler">Native Crawler</MenuItem>
-              <MenuItem value="firecrawl">Firecrawl (LLM)</MenuItem>
+              style={{ flexGrow: 1, minWidth: 250 }}
+              required
+            />
+
+            <Select value={scraper} onValueChange={(value) => setScraper(value as ScraperType)}>
+              <SelectTrigger style={{ width: 172 }}>
+                <SelectValue placeholder="Scraper Engine" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="crawler">Native Crawler</SelectItem>
+                <SelectItem value="firecrawl">Firecrawl (LLM)</SelectItem>
+              </SelectContent>
             </Select>
-          </FormControl>
 
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            disabled={isStarting || isPolling || !url}
-            endIcon={isStarting || isPolling ? <CircularProgress size={20} color="inherit" /> : <SendIcon />}
-            sx={{ height: 40, px: 4 }}
-          >
-            {isStarting || isPolling ? 'Scraping...' : 'Run'}
-          </Button>
-        </Box>
-
+            <Button htmlType="submit" disabled={isStarting || isPolling || !url}>
+              <Send size={15} />
+              {isStarting || isPolling ? 'Scraping...' : 'Run'}
+            </Button>
+          </form>
+        </div>
       </CardContent>
     </Card>
   );

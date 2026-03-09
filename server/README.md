@@ -61,6 +61,10 @@ npm start
 npm test
 ```
 
+### Metrics Contract
+
+- `GET /api/metrics` formulas and data sources: [`docs/metrics_definitions.md`](./docs/metrics_definitions.md)
+
 ## 📘 Swagger API Docs
 
 When the server is running, open:

@@ -7,6 +7,7 @@ import { jobService } from '../../storage/services/JobService';
 import { storageService } from '../../storage/services/StorageService';
 import { appendPriceSnapshot, getPriceHistory } from '../../../services/PriceHistoryService';
 import { calculateDataQualityScore } from '../../../utils/scoring';
+import { isCriticalDataMissing } from '../extractors/types';
 import { stabilizeProductPriceWithHistory } from '../../../services/PriceAnomalyService';
 import { logger as baseLogger } from '../../../utils/logger';
 
@@ -37,45 +38,58 @@ export class ScrapingService {
 
       if (scraper === 'crawler') {
         result = await this.crawleeAdapter.scrapeProduct(url);
-        if ((result.error || !result.product)) {
+        const isDataMissing = result.product ? isCriticalDataMissing(result.product) : true;
+
+        if (result.error || isDataMissing) {
           logger.warn(
-            `[Job ${jobId}] Crawlee failed for ${url}.` +
+            `[Job ${jobId}] Crawlee (+ LLM) failed or missing critical data for ${url}.` +
             ` ${result.error ? ` Reason: ${result.error}.` : ''}` +
-            ' Trying Firecrawl fallback...',
+            ' Trying Firecrawl (+ LLM) fallback...',
           );
           const fallbackResult = await this.firecrawlAdapter.scrapeProduct(url);
+          const fallbackIsMissing = fallbackResult.product ? isCriticalDataMissing(fallbackResult.product) : true;
+
           if (!fallbackResult.error && fallbackResult.product) {
-            result = fallbackResult;
+            // If fallback succeeded completely, or original didn't even return a product, use fallback
+            if (!fallbackIsMissing || !result.product) {
+              result = fallbackResult;
+            }
           }
         }
       } else {
         result = await this.firecrawlAdapter.scrapeProduct(url);
-        if (result.error || !result.product) {
-          const firecrawlError = result.error || 'Firecrawl returned no product';
+        const isDataMissing = result.product ? isCriticalDataMissing(result.product) : true;
+
+        if (result.error || isDataMissing) {
+          const firecrawlError = result.error || 'Firecrawl missing critical data';
           logger.warn(
-            `[Job ${jobId}] Firecrawl failed for ${url}.` +
+            `[Job ${jobId}] Firecrawl (+ LLM) failed or missing critical data for ${url}.` +
             ` ${result.error ? ` Reason: ${result.error}.` : ''}` +
-            ' Trying Crawlee fallback...',
+            ' Trying Crawlee (+ LLM) fallback...',
           );
           const fallbackResult = await this.crawleeAdapter.scrapeProduct(url);
+          const fallbackIsMissing = fallbackResult.product ? isCriticalDataMissing(fallbackResult.product) : true;
+
           if (!fallbackResult.error && fallbackResult.product) {
-            result = fallbackResult;
+            if (!fallbackIsMissing || !result.product) {
+              result = fallbackResult;
+            }
           } else {
             const crawleeError = fallbackResult.error || 'Crawlee fallback returned no product';
             if (url.toLowerCase().includes('etsy')) {
               logger.warn(
-                `[Job ${jobId}] Crawlee fallback also failed for ${url}.` +
-                ` ${fallbackResult.error ? ` Reason: ${fallbackResult.error}.` : ''}` +
-                ' Trying legacy crawler fallback...',
+                `[Job ${jobId}] Crawlee fallback also failed for ${url}. Trying legacy crawler...`,
               );
               const legacyResult = await this.legacyCrawlerAdapter.scrapeProduct(url);
-              if (!legacyResult.error && legacyResult.product) {
+              const legacyIsMissing = legacyResult.product ? isCriticalDataMissing(legacyResult.product) : true;
+
+              if (!legacyResult.error && legacyResult.product && (!legacyIsMissing || !result.product)) {
                 result = legacyResult;
-              } else {
-                const legacyError = legacyResult.error || 'Legacy crawler fallback returned no product';
-                result = { error: `Firecrawl failed: ${firecrawlError}; Crawlee fallback failed: ${crawleeError}; Legacy fallback failed: ${legacyError}` };
+              } else if (!result.product) {
+                const legacyError = legacyResult.error || 'Legacy crawler fallback failed';
+                result = { error: `Firecrawl failed: ${firecrawlError}; Crawlee failed: ${crawleeError}; Legacy failed: ${legacyError}` };
               }
-            } else {
+            } else if (!result.product) {
               result = { error: `Firecrawl failed: ${firecrawlError}; Crawlee fallback failed: ${crawleeError}` };
             }
           }

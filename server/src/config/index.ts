@@ -31,6 +31,7 @@ export const config = {
   dataDir,
   dataDirPath: path.resolve(process.cwd(), dataDir),
   firecrawlApiKey: process.env.FIRECRAWL_API_KEY || '',
+  geminiApiKey: process.env.GEMINI_API_KEY || '',
   corsOrigins,
   apiKeys,
   authEnabled: apiKeys.length > 0,

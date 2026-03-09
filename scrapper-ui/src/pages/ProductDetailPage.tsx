@@ -1,21 +1,6 @@
-import React, { useMemo } from 'react';
-import { useParams, Link as RouterLink, useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Chip,
-  CircularProgress,
-  Divider,
-  Grid,
-  Stack,
-  Tooltip,
-  Typography,
-} from '@mui/material';
-import { alpha, useTheme } from '@mui/material/styles';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import React, { useMemo, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { AlertCircle, ArrowLeft, FileDown, Info } from 'lucide-react';
 import ReactECharts from 'echarts-for-react';
 import { useGetPriceHistoryQuery, useGetProductByIdQuery } from '../store/apiSlice';
 import {
@@ -30,11 +15,22 @@ import {
   resolveMetricPrice,
 } from '../utils/metrics';
 import { formatCompactNumber, formatCurrency } from '../utils/formatters';
+import { exportElementToPdf } from '../utils/export';
+import { Badge } from '../components/ui/badge';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardTitle } from '../components/ui/card';
+import { Separator } from '../components/ui/separator';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../components/ui/tooltip';
 
 function InfoTip({ text }: { text: string }) {
   return (
-    <Tooltip title={text} arrow placement="top">
-      <InfoOutlinedIcon sx={{ fontSize: 16, color: 'text.secondary', cursor: 'help', ml: 0.75 }} />
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button className="icon-btn" style={{ width: 20, height: 20, borderRadius: 999 }}>
+          <Info size={12} />
+        </button>
+      </TooltipTrigger>
+      <TooltipContent>{text}</TooltipContent>
     </Tooltip>
   );
 }
@@ -53,34 +49,24 @@ function StatCard({
   multilineValue?: boolean;
 }) {
   return (
-    <Card elevation={2} sx={{ height: '100%' }}>
-      <CardContent sx={{ textAlign: 'center', p: 1.5, '&:last-child': { pb: 1.5 } }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 0.75, gap: 0.5, overflow: 'hidden' }}>
-          <Tooltip title={tooltip} arrow placement="top">
-            <InfoOutlinedIcon sx={{ fontSize: 13, color: 'text.disabled', cursor: 'help', flexShrink: 0 }} />
-          </Tooltip>
-          <Typography variant="caption" color="text.secondary" fontWeight="700" textTransform="uppercase" letterSpacing="0.6px" noWrap>
-            {label}
-          </Typography>
-        </Box>
-        <Typography
-          variant={multilineValue ? 'h6' : 'h5'}
-          fontWeight="700"
-          color={color || 'text.primary'}
-          noWrap={!multilineValue}
-          sx={
-            multilineValue
-              ? {
-                  whiteSpace: 'pre-line',
-                  overflowWrap: 'anywhere',
-                  wordBreak: 'break-word',
-                  lineHeight: 1.25,
-                }
-              : undefined
-          }
+    <Card>
+      <CardContent>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+          <InfoTip text={tooltip} />
+          <span style={{ fontSize: '0.72rem', color: 'var(--fg-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>{label}</span>
+        </div>
+        <div
+          style={{
+            fontSize: multilineValue ? '1.12rem' : '1.28rem',
+            fontWeight: 800,
+            color: color || 'var(--fg)',
+            whiteSpace: multilineValue ? 'pre-line' : 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
         >
           {value}
-        </Typography>
+        </div>
       </CardContent>
     </Card>
   );
@@ -89,14 +75,14 @@ function StatCard({
 export default function ProductDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const theme = useTheme();
   const { data, isLoading, error } = useGetProductByIdQuery(id || '');
   const product = data?.data;
   const m = product?.metrics;
 
-  const { data: historyData } = useGetPriceHistoryQuery(product?.url || '', {
-    skip: !product?.url,
-  });
+  const { data: historyData } = useGetPriceHistoryQuery(product?.url || '', { skip: !product?.url });
+
+  const pdfRef = useRef<HTMLDivElement | null>(null);
+  const [isExportingPdf, setIsExportingPdf] = useState(false);
 
   const historySeries = useMemo(() => {
     const history = Array.isArray(historyData?.history) ? historyData.history : [];
@@ -112,22 +98,20 @@ export default function ProductDetailPage() {
 
   if (isLoading) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', p: 8 }}>
-        <CircularProgress />
-      </Box>
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '3rem 0' }}>
+        <span className="loader loader-dark" />
+      </div>
     );
   }
 
   if (error || !product || !m) {
     return (
-      <Box sx={{ p: 4 }}>
-        <Typography color="error" variant="h6">
-          Product not found (ID: {id})
-        </Typography>
-        <Button component={RouterLink} to="/" startIcon={<ArrowBackIcon />} sx={{ mt: 2 }}>
-          Back to Dashboard
+      <div className="stack-col" style={{ gap: 12 }}>
+        <h2 style={{ color: 'var(--danger)' }}>Product not found (ID: {id})</h2>
+        <Button variant="outline" onClick={() => navigate('/')}>
+          <ArrowLeft size={16} /> Back to Dashboard
         </Button>
-      </Box>
+      </div>
     );
   }
 
@@ -145,75 +129,55 @@ export default function ProductDetailPage() {
   const valueScore = calcValueScore(m);
   const { marginAmount, marginPercent } = calcGrossMargin(m);
 
-  const isDark = theme.palette.mode === 'dark';
-  const chartTextPrimary = theme.palette.text.primary;
-  const chartTextSecondary = theme.palette.text.secondary;
-  const axisStroke = alpha(theme.palette.text.secondary, isDark ? 0.35 : 0.25);
-  const gridLine = alpha(theme.palette.divider, isDark ? 0.65 : 1);
+  const primary = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#0ea5ff';
+  const success = getComputedStyle(document.documentElement).getPropertyValue('--success').trim() || '#0cbc78';
+  const warning = getComputedStyle(document.documentElement).getPropertyValue('--warning').trim() || '#f6b631';
+  const info = getComputedStyle(document.documentElement).getPropertyValue('--info').trim() || '#05a5d6';
+  const textSecondary = getComputedStyle(document.documentElement).getPropertyValue('--fg-muted').trim() || '#66788f';
+  const border = getComputedStyle(document.documentElement).getPropertyValue('--border').trim() || '#d0dce8';
 
   const bsrSource = am?.bsrCategories || m.bsrCategories;
-  const bsrOpt = bsrSource && bsrSource.length > 0 ? {
-    backgroundColor: 'transparent',
-    textStyle: { color: chartTextSecondary, fontFamily: 'Inter, Helvetica, Arial, sans-serif' },
-    tooltip: {
-      trigger: 'axis' as const,
-      backgroundColor: isDark ? alpha('#0B1220', 0.95) : alpha('#FFFFFF', 0.98),
-      borderColor: alpha(theme.palette.divider, 0.7),
-      textStyle: { color: chartTextPrimary },
-    },
-    xAxis: {
-      type: 'category' as const,
-      data: bsrSource.map((b) => b.category.substring(0, 20)),
-      axisLabel: { fontSize: 11, rotate: 15, color: chartTextSecondary },
-      axisLine: { lineStyle: { color: axisStroke } },
-      axisTick: { lineStyle: { color: axisStroke } },
-    },
-    yAxis: {
-      type: 'value' as const,
-      name: 'Rank',
-      inverse: true,
-      nameTextStyle: { color: chartTextSecondary },
-      axisLabel: { color: chartTextSecondary },
-      splitLine: { lineStyle: { color: gridLine } },
-      axisLine: { show: false },
-      axisTick: { show: false },
-    },
-    series: [{
-      type: 'bar',
-      data: bsrSource.map((b) => b.rank),
-      itemStyle: { color: theme.palette.primary.main, borderRadius: [4, 4, 0, 0] },
-      barMaxWidth: 60,
-    }],
-    grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
-  } : null;
+  const bsrOpt = bsrSource?.length
+    ? {
+        tooltip: { trigger: 'axis' as const },
+        xAxis: {
+          type: 'category' as const,
+          data: bsrSource.map((b) => b.category.substring(0, 20)),
+          axisLabel: { fontSize: 11, rotate: 15, color: textSecondary },
+        },
+        yAxis: {
+          type: 'value' as const,
+          inverse: true,
+          axisLabel: { color: textSecondary },
+          splitLine: { lineStyle: { color: border } },
+        },
+        series: [{ type: 'bar', data: bsrSource.map((b) => b.rank), itemStyle: { color: primary, borderRadius: [4, 4, 0, 0] } }],
+        grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+      }
+    : null;
 
   const gaugeOpt = {
-    series: [{
-      type: 'gauge',
-      min: 0,
-      max: 10,
-      progress: {
-        show: true,
-        width: 18,
-        itemStyle: {
-          color: listingStrength >= 7 ? theme.palette.success.main : listingStrength >= 4 ? theme.palette.warning.main : theme.palette.error.main,
+    series: [
+      {
+        type: 'gauge',
+        min: 0,
+        max: 10,
+        progress: {
+          show: true,
+          width: 16,
+          itemStyle: {
+            color: listingStrength >= 7 ? success : listingStrength >= 4 ? warning : 'var(--danger)',
+          },
         },
+        pointer: { show: false },
+        axisLine: { lineStyle: { width: 16 } },
+        axisTick: { show: false },
+        splitLine: { show: false },
+        axisLabel: { show: false },
+        detail: { valueAnimation: true, fontSize: 30, fontWeight: 'bold', offsetCenter: [0, '0%'], formatter: '{value}/10' },
+        data: [{ value: Math.round(listingStrength * 10) / 10 }],
       },
-      pointer: { show: false },
-      axisLine: { lineStyle: { width: 18, color: [[1, alpha(theme.palette.divider, isDark ? 0.7 : 1)]] } },
-      axisTick: { show: false },
-      splitLine: { show: false },
-      axisLabel: { show: false },
-      detail: {
-        valueAnimation: true,
-        fontSize: 32,
-        fontWeight: 'bold',
-        color: chartTextPrimary,
-        offsetCenter: [0, '0%'],
-        formatter: '{value}/10',
-      },
-      data: [{ value: Math.round(listingStrength * 10) / 10 }],
-    }],
+    ],
   };
 
   const offersSource = am?.offers || m.offers || [];
@@ -222,386 +186,199 @@ export default function ProductDetailPage() {
     .sort((a, b) => a.price - b.price)
     .slice(0, 8);
 
-  const offersOpt = offerBars.length > 0 ? {
-    tooltip: {
-      trigger: 'axis' as const,
-      formatter: (p: any) => `<b>${offerBars[p[0].dataIndex]?.sellerName || ''}</b><br/>$${p[0].value}`,
-    },
-    xAxis: {
-      type: 'value' as const,
-      axisLabel: { color: chartTextSecondary },
-      splitLine: { lineStyle: { color: gridLine } },
-      axisLine: { show: false },
-      axisTick: { show: false },
-    },
-    yAxis: {
-      type: 'category' as const,
-      data: offerBars.map((o) => o.sellerName.substring(0, 18)),
-      axisLabel: { color: chartTextSecondary },
-      axisLine: { show: false },
-      axisTick: { show: false },
-    },
-    series: [{
-      type: 'bar',
-      data: offerBars.map((o) => Number(o.price.toFixed(2))),
-      itemStyle: { color: theme.palette.info.main, borderRadius: [0, 4, 4, 0] },
-      barMaxWidth: 20,
-    }],
-    grid: { left: '2%', right: '4%', bottom: '3%', containLabel: true },
-  } : null;
+  const offersOpt = offerBars.length
+    ? {
+        tooltip: { trigger: 'axis' as const },
+        xAxis: { type: 'value' as const, axisLabel: { color: textSecondary }, splitLine: { lineStyle: { color: border } } },
+        yAxis: { type: 'category' as const, data: offerBars.map((o) => o.sellerName.substring(0, 18)), axisLabel: { color: textSecondary } },
+        series: [{ type: 'bar', data: offerBars.map((o) => Number(o.price.toFixed(2))), itemStyle: { color: info, borderRadius: [0, 4, 4, 0] } }],
+        grid: { left: '2%', right: '4%', bottom: '3%', containLabel: true },
+      }
+    : null;
 
-  const historyOpt = historySeries.length > 1 ? {
-    tooltip: {
-      trigger: 'axis' as const,
-      formatter: (p: any) => `Time: <b>${p[0].axisValue}</b><br/>Price: <b>$${p[0].value}</b>`,
-    },
-    xAxis: {
-      type: 'category' as const,
-      data: historySeries.map((x) => x.time.toLocaleString([], { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })),
-      axisLabel: { color: chartTextSecondary, rotate: 20, fontSize: 10 },
-      axisLine: { show: false },
-      axisTick: { show: false },
-    },
-    yAxis: {
-      type: 'value' as const,
-      axisLabel: { color: chartTextSecondary },
-      splitLine: { lineStyle: { color: gridLine } },
-      axisLine: { show: false },
-      axisTick: { show: false },
-    },
-    series: [{
-      type: 'line',
-      data: historySeries.map((x) => Number(x.price.toFixed(2))),
-      smooth: true,
-      symbol: 'circle',
-      symbolSize: 7,
-      lineStyle: { width: 3, color: theme.palette.warning.main },
-      itemStyle: { color: theme.palette.warning.main },
-      areaStyle: { color: alpha(theme.palette.warning.main, 0.18) },
-    }],
-    grid: { left: '2%', right: '2%', bottom: '8%', containLabel: true },
-  } : null;
+  const historyOpt = historySeries.length > 1
+    ? {
+        tooltip: { trigger: 'axis' as const },
+        xAxis: {
+          type: 'category' as const,
+          data: historySeries.map((x) => x.time.toLocaleString([], { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })),
+          axisLabel: { color: textSecondary, rotate: 20, fontSize: 10 },
+        },
+        yAxis: { type: 'value' as const, axisLabel: { color: textSecondary }, splitLine: { lineStyle: { color: border } } },
+        series: [{ type: 'line', data: historySeries.map((x) => Number(x.price.toFixed(2))), smooth: true, symbol: 'circle', symbolSize: 7, lineStyle: { width: 3, color: warning }, itemStyle: { color: warning } }],
+        grid: { left: '2%', right: '2%', bottom: '8%', containLabel: true },
+      }
+    : null;
 
   const observedAt = m.buyBox?.observedAt || m.priceObservedAt || m.itemPriceObservedAt || product.scrapedAt;
   const buyBox = am?.buyBox || m.buyBox;
   const buyBoxType = buyBox?.isAmazon ? 'Amazon' : buyBox?.isFBA ? 'FBA' : buyBox ? 'FBM' : 'Unknown';
   const etsyIsDigital = Boolean(em?.isDigitalDownload ?? m.isDigitalDownload);
-  const etsyResponseRateRaw = em?.shopResponseRate ?? m.shopResponseRate;
-  const etsyResponseRate = typeof etsyResponseRateRaw === 'number' && etsyResponseRateRaw >= 1 && etsyResponseRateRaw <= 100
-    ? etsyResponseRateRaw
-    : undefined;
-  const etsyDispatchMinDays = em?.dispatchMinDays ?? m.dispatchMinDays;
-  const etsyDispatchMaxDays = em?.dispatchMaxDays ?? m.dispatchMaxDays;
-  const etsyDispatchLabel = etsyDispatchMinDays !== undefined && etsyDispatchMaxDays !== undefined
-    ? etsyDispatchMinDays === etsyDispatchMaxDays
-      ? `${etsyDispatchMinDays} days`
-      : `${etsyDispatchMinDays}-${etsyDispatchMaxDays} days`
-    : (em?.dispatchTime || m.dispatchTime);
-  const etsyShopAgeYears = em?.shopAgeYears ?? m.shopAgeYears;
-  const etsyShopAgeText = em?.shopAgeText || m.shopAgeText;
-  const etsyShopAgeLabel = etsyShopAgeYears !== undefined
-    ? `${etsyShopAgeYears}y`
-    : etsyShopAgeText;
-  const etsyMaterials = (em?.materials || m.materials || []).slice(0, 8);
-  const etsyTags = (em?.tags || m.tags || []).slice(0, 8);
-  const etsyShippingProfiles = (em?.shippingProfiles || m.shippingProfiles || [])
-    .filter((entry) => Boolean(entry?.eta) || entry?.price !== undefined)
-    .slice(0, 6);
-  const etsyStatCards: Array<{ label: string; value: string | number; tooltip: string; color?: string; multilineValue?: boolean }> = [];
-  if ((m.reviewsCount || 0) > 0) {
-    etsyStatCards.push({ label: 'Reviews', value: formatCompactNumber(m.reviewsCount || 0), tooltip: 'Количество отзывов.' });
-  }
-  if ((m.averageRating || 0) > 0) {
-    etsyStatCards.push({
-      label: 'Rating',
-      value: `${(m.averageRating || 0).toFixed(2)}/5`,
-      tooltip: 'Средняя оценка товара.',
-      color: 'secondary.main',
-    });
-  }
-  if ((m.viewsCount || 0) > 0) {
-    etsyStatCards.push({ label: 'Views', value: formatCompactNumber(m.viewsCount || 0), tooltip: 'Просмотры листинга (если доступны).' });
-  }
-  if (etsyDispatchLabel) {
-    etsyStatCards.push({ label: 'Dispatch', value: etsyDispatchLabel, tooltip: 'Срок обработки/dispatch time.', multilineValue: true });
-  }
-  if (etsyShopAgeLabel) {
-    etsyStatCards.push({ label: 'Shop Age', value: etsyShopAgeLabel, tooltip: 'Возраст магазина Etsy.' });
-  }
-  if (etsyResponseRate !== undefined) {
-    etsyStatCards.push({ label: 'Response', value: `${etsyResponseRate}%`, tooltip: 'Response rate продавца.' });
-  }
-  if (etsyIsDigital) {
-    etsyStatCards.push({ label: 'Listing Type', value: 'Digital', tooltip: 'Тип листинга: digital download.', color: 'success.main' });
-  } else if (m.madeToOrder || em?.madeToOrder) {
-    etsyStatCards.push({ label: 'Listing Type', value: 'Made to Order', tooltip: 'Товар изготавливается под заказ.', color: 'warning.main' });
-  }
+
+  const exportProductPdf = async () => {
+    if (!pdfRef.current) return;
+    setIsExportingPdf(true);
+    try {
+      await exportElementToPdf(pdfRef.current, `product-${product.id}-${new Date().toISOString().slice(0, 10)}.pdf`);
+    } finally {
+      setIsExportingPdf(false);
+    }
+  };
 
   return (
-    <Box>
-      <Button onClick={() => navigate(-1)} startIcon={<ArrowBackIcon />} sx={{ mb: 3 }}>
-        Back to Dashboard
-      </Button>
+    <TooltipProvider>
+      <div className="stack-col" style={{ gap: 14 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+          <Button variant="outline" onClick={() => navigate(-1)}>
+            <ArrowLeft size={16} /> Back to Dashboard
+          </Button>
+          <Button onClick={exportProductPdf} disabled={isExportingPdf}>
+            <FileDown size={16} />
+            {isExportingPdf ? 'Exporting PDF...' : 'Export PDF'}
+          </Button>
+        </div>
 
-      <Card elevation={2} sx={{ mb: 3 }}>
-        <CardContent>
-          <Grid container spacing={3} alignItems="center">
-            <Grid size={{ xs: 12, md: 2 }}>
-              {m.imageUrl && <Box component="img" src={m.imageUrl} alt={product.title} sx={{ width: '100%', maxWidth: 150, borderRadius: 1, objectFit: 'contain' }} />}
-            </Grid>
-            <Grid size={{ xs: 12, md: 10 }}>
-              <Typography variant="h5" fontWeight="700" gutterBottom>
-                {product.title}
-              </Typography>
-              <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 2 }}>
-                {(am?.asin || m.asin) && <Chip label={`ASIN: ${am?.asin || m.asin}`} size="small" variant="outlined" />}
-                <Chip label={`${m.currency || 'USD'}`} size="small" color="secondary" />
-                {isAmazon && (am?.isAmazonChoice || m.isAmazonChoice) && <Chip label="Amazon's Choice" size="small" color="info" />}
-                {isAmazon && (am?.isBestSeller || m.isBestSeller) && <Chip label="Best Seller" size="small" color="warning" />}
-                {isAmazon && (am?.isPrime || m.isPrime) && <Chip label="Prime" size="small" sx={{ bgcolor: 'info.main', color: '#fff' }} />}
-                {isEtsy && (em?.isStarSeller || m.isStarSeller) && <Chip label="Star Seller" size="small" color="info" />}
-                {isEtsy && etsyIsDigital && <Chip label="Digital Download" size="small" color="success" />}
-                <Chip label={product.scrapedBy} size="small" variant="outlined" />
-              </Stack>
-              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 1, sm: 1.5 }} alignItems={{ xs: 'flex-start', sm: 'center' }} useFlexGap sx={{ minWidth: 0, maxWidth: '100%' }}>
-                <Typography variant="h4" fontWeight="700" color="secondary.main" sx={{ lineHeight: 1.15, maxWidth: '100%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  ${effectivePrice.toFixed(2)}
-                </Typography>
-                {m.originalPrice && m.originalPrice > effectivePrice && (
-                  <Typography variant="body1" color="text.secondary" sx={{ textDecoration: 'line-through', flexShrink: 0 }}>
-                    ${m.originalPrice.toFixed(2)}
-                  </Typography>
-                )}
-                {m.discountPercentage ? <Chip label={`-${m.discountPercentage}%`} size="small" color="success" sx={{ flexShrink: 0 }} /> : null}
-              </Stack>
-              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                Price observed: {new Date(observedAt).toLocaleString()}
-              </Typography>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
+        <div ref={pdfRef} className="stack-col" style={{ gap: 14 }}>
+          <Card data-pdf-block>
+            <CardContent>
+              <div className="grid" style={{ gridTemplateColumns: 'minmax(100px, 160px) 1fr', gap: 14 }}>
+                <div>
+                  {m.imageUrl ? <img src={m.imageUrl} alt={product.title} style={{ width: '100%', borderRadius: 12, objectFit: 'contain' }} /> : null}
+                </div>
+                <div className="stack-col" style={{ gap: 8 }}>
+                  <h2 style={{ fontSize: '1.25rem', lineHeight: 1.35 }}>{product.title}</h2>
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                    {am?.asin || m.asin ? <Badge variant="outline">ASIN: {am?.asin || m.asin}</Badge> : null}
+                    <Badge variant="secondary">{m.currency || 'USD'}</Badge>
+                    {isAmazon && (am?.isAmazonChoice || m.isAmazonChoice) ? <Badge variant="secondary">Amazon's Choice</Badge> : null}
+                    {isAmazon && (am?.isBestSeller || m.isBestSeller) ? <Badge variant="warning">Best Seller</Badge> : null}
+                    {isAmazon && (am?.isPrime || m.isPrime) ? <Badge variant="default">Prime</Badge> : null}
+                    {isEtsy && (em?.isStarSeller || m.isStarSeller) ? <Badge variant="secondary">Star Seller</Badge> : null}
+                    {isEtsy && etsyIsDigital ? <Badge variant="success">Digital Download</Badge> : null}
+                    <Badge variant="outline">{product.scrapedBy}</Badge>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+                    <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--primary)' }}>${effectivePrice.toFixed(2)}</div>
+                    {m.originalPrice && m.originalPrice > effectivePrice ? (
+                      <div style={{ textDecoration: 'line-through', color: 'var(--fg-muted)' }}>${m.originalPrice.toFixed(2)}</div>
+                    ) : null}
+                    {m.discountPercentage ? <Badge variant="success">-{m.discountPercentage}%</Badge> : null}
+                  </div>
+                  <div className="muted" style={{ fontSize: '0.84rem' }}>
+                    Price observed: {new Date(observedAt).toLocaleString()}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
-      <Grid container spacing={3} sx={{ mb: 3 }}>
-        {isAmazon ? (
-          <>
-            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-              <StatCard label="Sales/mo" value={formatCompactNumber(salesVolume)} tooltip="Ожидаемые продажи в месяц (на основе позиции BSR)." color="secondary.main" />
-            </Grid>
-            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-              <StatCard label="Revenue/mo" value={formatCurrency(revenuePotential, true)} tooltip="Потенциальная выручка в месяц." color="secondary.main" />
-            </Grid>
-            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-              <StatCard
-                label="Est. Margin"
-                value={`${formatCurrency(marginAmount, true)}\n(${marginPercent}%)`}
-                tooltip="Прогноз gross прибыли по реальной цене."
-                color="success.main"
-                multilineValue
-              />
-            </Grid>
-            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-              <StatCard label="BuyBox Type" value={buyBoxType} tooltip="Кто держит Buy Box: Amazon/FBA/FBM." />
-            </Grid>
-            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-              <StatCard label="Sellers" value={am?.sellerCount || m.sellerCount || offersSource.length || 0} tooltip="Количество продавцов и офферов." />
-            </Grid>
-            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-              <StatCard label="Trust" value={`${trustIndex}/100`} tooltip="Рейтинг доверия (rating + badges)." />
-            </Grid>
-            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-              <StatCard label="Competition" value={`${competitionOpp}/100`} tooltip="Шанс входа в нишу." />
-            </Grid>
-            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-              <StatCard label="Value Score" value={`${valueScore}/100`} tooltip="Ценность предложения (rating/discount/reviews)." color="success.main" />
-            </Grid>
-            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-              <StatCard label="Niche Score" value={`${nicheScore}/100`} tooltip="Сводная привлекательность ниши." />
-            </Grid>
-          </>
-        ) : (
-          <>
-            {etsyStatCards.length > 0 ? etsyStatCards.map((card) => (
-              <Grid key={card.label} size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
-                <StatCard
-                  label={card.label}
-                  value={card.value}
-                  tooltip={card.tooltip}
-                  color={card.color}
-                  multilineValue={card.multilineValue}
-                />
-              </Grid>
-            )) : (
-              <Grid size={{ xs: 12 }}>
-                <StatCard
-                  label="Etsy Signals"
-                  value="Limited data"
-                  tooltip="Недостаточно валидных Etsy-метрик для карточек."
-                  color="text.secondary"
-                />
-              </Grid>
+          <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 12 }} data-pdf-block>
+            {isAmazon ? (
+              <>
+                <StatCard label="Sales/mo" value={formatCompactNumber(salesVolume)} tooltip="Ожидаемые продажи в месяц (на основе позиции BSR)." color="var(--primary)" />
+                <StatCard label="Revenue/mo" value={formatCurrency(revenuePotential, true)} tooltip="Потенциальная выручка в месяц." color="var(--primary)" />
+                <StatCard label="Est. Margin" value={`${formatCurrency(marginAmount, true)}\n(${marginPercent}%)`} tooltip="Прогноз gross прибыли по реальной цене." color="var(--success)" multilineValue />
+                <StatCard label="BuyBox Type" value={buyBoxType} tooltip="Кто держит Buy Box: Amazon/FBA/FBM." />
+                <StatCard label="Trust" value={`${trustIndex}/100`} tooltip="Рейтинг доверия (rating + badges)." />
+                <StatCard label="Competition" value={`${competitionOpp}/100`} tooltip="Шанс входа в нишу." />
+                <StatCard label="Value Score" value={`${valueScore}/100`} tooltip="Ценность предложения (rating/discount/reviews)." color="var(--success)" />
+                <StatCard label="Niche Score" value={`${nicheScore}/100`} tooltip="Сводная привлекательность ниши." />
+              </>
+            ) : (
+              <>
+                <StatCard label="Margin" value={`${formatCurrency(marginAmount, true)}\n(${marginPercent}%)`} tooltip="Прогноз gross прибыли." color="var(--success)" multilineValue />
+                <StatCard label="Trust" value={`${trustIndex}/100`} tooltip="Индекс доверия." />
+                <StatCard label="Value" value={`${valueScore}/100`} tooltip="Ценность предложения." color="var(--success)" />
+                <StatCard label="Competition" value={`${competitionOpp}/100`} tooltip="Оценка конкурентности." />
+                <StatCard label="Niche" value={`${nicheScore}/100`} tooltip="Привлекательность ниши." />
+                <StatCard label="Reviews" value={formatCompactNumber(m.reviewsCount || 0)} tooltip="Количество отзывов." />
+              </>
             )}
-          </>
-        )}
-      </Grid>
+          </div>
 
-      <Grid container spacing={3}>
-        <Grid size={{ xs: 12, md: 4 }}>
-          <Card elevation={2}>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <Typography variant="h6" fontWeight="600" color="text.primary">
-                  Listing Strength
-                </Typography>
-                <InfoTip text="Score 0-10: title, rating, reviews, images, features, badges." />
-              </Box>
-              <Box sx={{ height: 250 }}>
-                <ReactECharts option={gaugeOpt} style={{ height: '100%' }} />
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        <Grid size={{ xs: 12, md: 8 }}>
-          <Card elevation={2}>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <Typography variant="h6" fontWeight="600" color="text.primary">
-                  Price History
-                </Typography>
-                <InfoTip text="История реальной цены по наблюдениям (buyBox/itemPrice)." />
-              </Box>
-              <Box sx={{ height: 250 }}>
-                {historyOpt ? (
-                  <ReactECharts option={historyOpt} style={{ height: '100%' }} />
-                ) : (
-                  <Box sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Typography color="text.secondary">Недостаточно данных по истории цены</Typography>
-                  </Box>
-                )}
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {isAmazon && offersOpt && (
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Card elevation={2}>
+          <div className="grid grid-2" data-pdf-block>
+            <Card>
               <CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                  <Typography variant="h6" fontWeight="600" color="text.primary">
-                    Offers Price Ladder
-                  </Typography>
-                  <InfoTip text="Топ офферов по цене: сравнение продавцов." />
-                </Box>
-                <Box sx={{ height: 250 }}>
-                  <ReactECharts option={offersOpt} style={{ height: '100%' }} />
-                </Box>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                  <CardTitle>Listing Strength</CardTitle>
+                  <InfoTip text="Score 0-10: title, rating, reviews, images, features, badges." />
+                </div>
+                <div style={{ height: 250 }}>
+                  <ReactECharts option={gaugeOpt} style={{ height: '100%' }} />
+                </div>
               </CardContent>
             </Card>
-          </Grid>
-        )}
 
-        {isAmazon && bsrOpt && (
-          <Grid size={{ xs: 12, md: offersOpt ? 6 : 12 }}>
-            <Card elevation={2}>
+            <Card>
               <CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                  <Typography variant="h6" fontWeight="600" color="text.primary">
-                    BSR by Category
-                  </Typography>
-                  <InfoTip text="Best Seller Rank по категориям. Ниже = лучше." />
-                </Box>
-                <Box sx={{ height: 250 }}>
-                  <ReactECharts option={bsrOpt} style={{ height: '100%' }} />
-                </Box>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                  <CardTitle>Price History</CardTitle>
+                  <InfoTip text="История реальной цены по наблюдениям (buyBox/itemPrice)." />
+                </div>
+                <div style={{ height: 250 }}>
+                  {historyOpt ? (
+                    <ReactECharts option={historyOpt} style={{ height: '100%' }} />
+                  ) : (
+                    <div className="text-center muted" style={{ paddingTop: 90 }} data-pdf-exclude>
+                      Недостаточно данных по истории цены
+                    </div>
+                  )}
+                </div>
               </CardContent>
             </Card>
-          </Grid>
-        )}
-      </Grid>
 
-      {isEtsy && (
-        <Grid container spacing={3} sx={{ mt: 0.5 }}>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Card elevation={2}>
+            {isAmazon && offersOpt ? (
+              <Card>
+                <CardContent>
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                    <CardTitle>Offers Price Ladder</CardTitle>
+                    <InfoTip text="Топ офферов по цене: сравнение продавцов." />
+                  </div>
+                  <div style={{ height: 250 }}>
+                    <ReactECharts option={offersOpt} style={{ height: '100%' }} />
+                  </div>
+                </CardContent>
+              </Card>
+            ) : null}
+
+            {isAmazon && bsrOpt ? (
+              <Card>
+                <CardContent>
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                    <CardTitle>BSR by Category</CardTitle>
+                    <InfoTip text="Best Seller Rank по категориям. Ниже = лучше." />
+                  </div>
+                  <div style={{ height: 250 }}>
+                    <ReactECharts option={bsrOpt} style={{ height: '100%' }} />
+                  </div>
+                </CardContent>
+              </Card>
+            ) : null}
+          </div>
+
+          {m.features?.length ? (
+            <Card data-pdf-block>
               <CardContent>
-                <Typography variant="h6" fontWeight="600" gutterBottom>
-                  Shipping Profiles
-                </Typography>
-                <Divider sx={{ mb: 2 }} />
-                {etsyIsDigital ? (
-                  <Typography color="text.secondary">Digital listing: shipping profiles are not applicable.</Typography>
-                ) : etsyShippingProfiles.length > 0 ? (
-                  etsyShippingProfiles.map((entry, idx) => (
-                    <Typography key={`${entry.region}-${idx}`} variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                      {entry.region}: {entry.eta || 'ETA N/A'}{entry.price !== undefined ? ` • ${entry.currency || m.currency || 'USD'} ${entry.price}` : ''}
-                    </Typography>
-                  ))
-                ) : (
-                  <Typography color="text.secondary">No reliable shipping profile data</Typography>
-                )}
+                <CardTitle>Bullet Points / Features</CardTitle>
+                <Separator style={{ margin: '10px 0 12px' }} />
+                <div className="stack-col" style={{ gap: 8 }}>
+                  {m.features.map((f, i) => (
+                    <div key={i} style={{ paddingLeft: 10, borderLeft: '3px solid var(--primary)', color: 'var(--fg-muted)' }}>
+                      {f}
+                    </div>
+                  ))}
+                </div>
               </CardContent>
             </Card>
-          </Grid>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Card elevation={2}>
-              <CardContent>
-                <Typography variant="h6" fontWeight="600" gutterBottom>
-                  Etsy Shop Signals
-                </Typography>
-                <Divider sx={{ mb: 2 }} />
-                <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-                  {(em?.isStarSeller || m.isStarSeller) && <Chip label="Star Seller" color="info" size="small" />}
-                  {(em?.madeToOrder || m.madeToOrder) && <Chip label="Made to Order" color="warning" size="small" />}
-                  {etsyIsDigital && <Chip label="Digital Download" color="success" size="small" />}
-                </Stack>
-                {etsyResponseRate !== undefined ? (
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1.5 }}>
-                    Response Rate: {etsyResponseRate}%
-                  </Typography>
-                ) : null}
-                {etsyShopAgeLabel ? (
-                  <Typography variant="body2" color="text.secondary">
-                    Shop Age: {etsyShopAgeLabel}
-                  </Typography>
-                ) : null}
-                {etsyMaterials.length ? (
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                    Materials: {etsyMaterials.join(', ')}
-                  </Typography>
-                ) : null}
-                {etsyTags.length ? (
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                    Tags: {etsyTags.join(', ')}
-                  </Typography>
-                ) : null}
-                {!etsyResponseRate && !etsyShopAgeLabel && !etsyMaterials.length && !etsyTags.length && !(em?.isStarSeller || m.isStarSeller) && !(em?.madeToOrder || m.madeToOrder) && !etsyIsDigital ? (
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 1.5 }}>
-                    No reliable Etsy shop signals extracted.
-                  </Typography>
-                ) : null}
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      )}
+          ) : null}
 
-      {m.features && m.features.length > 0 && (
-        <Card elevation={2} sx={{ mt: 3 }}>
-          <CardContent>
-            <Typography variant="h6" fontWeight="600" gutterBottom>
-              Bullet Points / Features
-            </Typography>
-            <Divider sx={{ mb: 2 }} />
-            {m.features.map((f, i) => (
-              <Typography key={i} variant="body2" color="text.secondary" sx={{ mb: 1, pl: 2, borderLeft: '3px solid', borderColor: 'secondary.main' }}>
-                {f}
-              </Typography>
-            ))}
-          </CardContent>
-        </Card>
-      )}
-    </Box>
+          {isEtsy && !(em?.isStarSeller || m.isStarSeller || em?.madeToOrder || m.madeToOrder || etsyIsDigital) ? (
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--fg-muted)' }} data-pdf-exclude>
+              <AlertCircle size={14} /> No reliable Etsy shop signals extracted.
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </TooltipProvider>
   );
 }

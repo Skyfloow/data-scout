@@ -69,15 +69,15 @@ export class MetadataExtractor implements IExtractor {
 
       // 2. OpenGraph & Meta Tags Fallback (Fills in missing data)
       if (!title) {
-        title = $('meta[property="og:title"]').attr('content') || $('title').text().trim();
+        title = $('meta[property="og:title"]').attr('content') || $('meta[name="twitter:title"]').attr('content') || $('title').text().trim();
       }
       
       if (!metrics.description) {
-        metrics.description = $('meta[property="og:description"]').attr('content') || $('meta[name="description"]').attr('content') || '';
+        metrics.description = $('meta[property="og:description"]').attr('content') || $('meta[name="twitter:description"]').attr('content') || $('meta[name="description"]').attr('content') || '';
       }
 
       if (!metrics.imageUrl) {
-        metrics.imageUrl = $('meta[property="og:image"]').attr('content') || '';
+        metrics.imageUrl = $('meta[property="og:image"]').attr('content') || $('meta[name="twitter:image"]').attr('content') || '';
       }
 
       if (!metrics.price) {

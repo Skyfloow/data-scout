@@ -1,282 +1,254 @@
-import React, { useState } from 'react';
-import { 
-  Box, Drawer, Toolbar, List, Typography, Divider, 
-  IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText,
-  SpeedDial, SpeedDialIcon, SpeedDialAction
-} from '@mui/material';
-import { alpha } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { 
-  Menu as MenuIcon, Dashboard as DashboardIcon, 
-  Timeline as TimelineIcon, Public as PublicIcon,
-  Settings as SettingsIcon,
-  Search as SearchIcon,
-  PlaylistAdd as PlaylistAddIcon
-} from '@mui/icons-material';
+import React, { useMemo, useState } from 'react';
+import { Globe, LayoutDashboard, Menu, Plus, Radar, Search, Settings, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import ScrapWidgetModal from '../ScrapWidgetModal';
+import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
 import BulkTrackWidgetModal from '../BulkTrackWidgetModal';
+import ScrapWidgetModal from '../ScrapWidgetModal';
 
-const drawerWidth = 260;
+const drawerWidth = 264;
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrapModalOpen, setScrapModalOpen] = useState(false);
   const [bulkModalOpen, setBulkModalOpen] = useState(false);
-  const [speedDialOpen, setSpeedDialOpen] = useState(false);
-  const isMobile = useMediaQuery('(max-width:599.95px)');
+  const [actionsOpen, setActionsOpen] = useState(false);
   const location = useLocation();
   const { t } = useTranslation();
 
-  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
-  const closeSpeedDial = () => {
-    setSpeedDialOpen(false);
-    if (document.activeElement instanceof HTMLElement) {
-      document.activeElement.blur();
-    }
-  };
+  const menuItems = useMemo(
+    () => [
+      { text: t('layout.marketIntelligence'), icon: <LayoutDashboard size={18} />, path: '/' },
+      { text: t('layout.continuousMonitoring'), icon: <Radar size={18} />, path: '/monitoring' },
+    ],
+    [t]
+  );
 
-  const menuItems = [
-    { text: t('layout.marketIntelligence'), icon: <DashboardIcon />, path: '/' },
-    { text: t('layout.continuousMonitoring'), icon: <TimelineIcon />, path: '/monitoring' },
-  ];
+  const nav = (
+    <div style={{ display: 'flex', height: '100%', flexDirection: 'column', gap: 10 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 12px 6px' }}>
+        <div
+          style={{
+            width: 34,
+            height: 34,
+            borderRadius: 12,
+            border: '1px solid var(--border)',
+            background: 'color-mix(in oklab, var(--primary) 18%, transparent)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--primary)',
+          }}
+        >
+          <Globe size={18} />
+        </div>
+        <div>
+          <div style={{ fontWeight: 800, letterSpacing: '-0.02em' }}>{t('layout.appTitle')}</div>
+          <div className="muted" style={{ fontSize: '0.72rem' }}>
+            Ecommerce Intelligence
+          </div>
+        </div>
+      </div>
 
-  const isSettingsActive = location.pathname === '/settings';
+      <div style={{ padding: '0 10px' }}>
+        <div className="separator separator-horizontal" />
+      </div>
 
-  const drawer = (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <Toolbar sx={{ my: 1, display: 'flex', alignItems: 'center', gap: 1.5 }}>
-        <PublicIcon color="primary" sx={{ fontSize: 28 }} />
-        <Typography variant="h6" noWrap component="div" sx={{ fontWeight: 700, letterSpacing: '-0.5px' }}>
-          {t('layout.appTitle')}
-        </Typography>
-      </Toolbar>
-      <Divider sx={{ mb: 2, mx: 2, borderStyle: 'dashed' }} />
-      <List sx={{ px: 2 }}>
+      <div style={{ padding: '4px 10px 0', display: 'grid', gap: 6 }}>
         {menuItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (
-            <ListItem key={item.text} disablePadding sx={{ mb: 0.5 }}>
-              <ListItemButton 
-                component={Link} 
-                to={item.path}
-                selected={isActive}
-                sx={{ 
-                  borderRadius: '12px',
-                  color: isActive ? 'secondary.main' : 'text.secondary',
-                  '&:hover': { bgcolor: 'action.hover' },
-                  '&.Mui-selected': {
-                    bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.24 : 0.12),
-                    '&:hover': {
-                      bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.3 : 0.18),
-                    },
-                  }
-                }}
-              >
-                <ListItemIcon sx={{ minWidth: 40, color: isActive ? 'secondary.main' : 'inherit' }}>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.text} primaryTypographyProps={{ fontWeight: isActive ? 600 : 500, fontSize: '0.95rem' }} />
-              </ListItemButton>
-            </ListItem>
+            <Link
+              key={item.path}
+              to={item.path}
+              onClick={() => setMobileOpen(false)}
+              style={{
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                minHeight: 42,
+                padding: '0 12px',
+                borderRadius: 11,
+                border: '1px solid transparent',
+                color: isActive ? 'var(--fg)' : 'var(--fg-muted)',
+                background: isActive ? 'color-mix(in oklab, var(--primary) 14%, transparent)' : 'transparent',
+                borderColor: isActive ? 'color-mix(in oklab, var(--primary) 35%, var(--border))' : 'transparent',
+                fontWeight: 700,
+              }}
+            >
+              {item.icon}
+              <span style={{ fontSize: '0.9rem' }}>{item.text}</span>
+            </Link>
           );
         })}
-      </List>
-      <Box sx={{ flexGrow: 1 }} />
-      <Divider sx={{ mx: 2, borderStyle: 'dashed' }} />
-      <List sx={{ px: 2, py: 1.5 }}>
-        <ListItem disablePadding>
-          <ListItemButton 
-            component={Link} 
-            to="/settings"
-            selected={isSettingsActive}
-            sx={{ 
-              borderRadius: '12px',
-              color: isSettingsActive ? 'secondary.main' : 'text.secondary',
-              '&:hover': { bgcolor: 'action.hover' },
-              '&.Mui-selected': {
-                bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.24 : 0.12),
-                '&:hover': {
-                  bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.3 : 0.18),
-                },
-              }
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: 40, color: isSettingsActive ? 'secondary.main' : 'inherit' }}>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary={t('layout.settings')} primaryTypographyProps={{ fontWeight: isSettingsActive ? 600 : 500, fontSize: '0.95rem' }} />
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </Box>
+      </div>
+
+      <div style={{ marginTop: 'auto', padding: '10px', display: 'grid', gap: 8 }}>
+        <Link
+          to="/settings"
+          onClick={() => setMobileOpen(false)}
+          style={{
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            minHeight: 42,
+            padding: '0 12px',
+            borderRadius: 11,
+            border: '1px solid',
+            borderColor: location.pathname === '/settings' ? 'color-mix(in oklab, var(--primary) 36%, var(--border))' : 'var(--border)',
+            color: location.pathname === '/settings' ? 'var(--fg)' : 'var(--fg-muted)',
+            background: location.pathname === '/settings' ? 'color-mix(in oklab, var(--primary) 14%, transparent)' : 'transparent',
+            fontWeight: 700,
+          }}
+        >
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+            <Settings size={16} />
+            {t('layout.settings')}
+          </span>
+          <Badge variant="secondary">UI</Badge>
+        </Link>
+      </div>
+    </div>
   );
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        minHeight: '100vh',
-        bgcolor: 'background.default',
-        maxWidth: '100vw',
-        overflowX: 'clip',
-        position: 'relative',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          inset: 0,
-          pointerEvents: 'none',
-          background: (theme) =>
-            theme.palette.mode === 'dark'
-              ? `radial-gradient(700px 340px at 85% -5%, ${alpha(theme.palette.secondary.main, 0.12)} 0%, transparent 70%)`
-              : `radial-gradient(700px 340px at 85% -5%, ${alpha(theme.palette.secondary.main, 0.1)} 0%, transparent 70%)`,
-        },
-      }}
-    >
-      <IconButton
-        aria-label="open drawer"
-        onClick={handleDrawerToggle}
-        sx={{
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <button
+        className="icon-btn mobile-nav-toggle"
+        onClick={() => setMobileOpen((v) => !v)}
+        aria-label="Toggle navigation"
+        style={{
           position: 'fixed',
           top: 12,
           left: 12,
-          zIndex: 1300,
-          display: { xs: 'inline-flex', sm: 'none' },
-          color: 'text.primary',
-          bgcolor: 'background.paper',
-          border: '1px solid',
-          borderColor: 'divider',
-          boxShadow: (theme) =>
-            theme.palette.mode === 'dark'
-              ? `0 8px 18px ${alpha('#000', 0.35)}`
-              : `0 8px 18px ${alpha(theme.palette.primary.main, 0.2)}`,
-          '&:hover': {
-            bgcolor: 'action.hover',
-          },
+          zIndex: 65,
         }}
       >
-        <MenuIcon />
-      </IconButton>
-      <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
-        <Drawer variant="temporary" open={mobileOpen} onClose={handleDrawerToggle} ModalProps={{ keepMounted: true }}
-          sx={{ display: { xs: 'block', sm: 'none' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 'min(86vw, 320px)', borderRight: 'none', bgcolor: 'background.paper' } }}>
-          {drawer}
-        </Drawer>
-        <Drawer variant="permanent" open
-          sx={{ display: { xs: 'none', sm: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, borderRight: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' } }}>
-          {drawer}
-        </Drawer>
-      </Box>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          minWidth: 0,
-          maxWidth: '100vw',
-          overflowX: 'hidden',
-          p: { xs: 1.5, sm: 2.5, md: 3.5 },
-          pt: { xs: 8, sm: 2.5, md: 3.5 },
-          pb: { xs: 10, sm: 3, md: 4 },
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-        }}
-      >
-        {children}
-      </Box>
+        {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+      </button>
 
-      <SpeedDial
-        ariaLabel={t('layout.dataActions')}
-        open={speedDialOpen}
-        onOpen={() => setSpeedDialOpen(true)}
-        onClose={closeSpeedDial}
-        sx={{ 
-          position: 'fixed', 
-          bottom: { xs: 16, sm: 24, md: 32 }, 
-          right: { xs: 16, sm: 24, md: 32 }, 
-          zIndex: 1200,
-          '& .MuiFab-primary': {
-            boxShadow: (theme) =>
-              theme.palette.mode === 'dark'
-                ? `0 10px 24px ${alpha('#000', 0.45)}`
-                : `0 10px 24px ${alpha(theme.palette.primary.main, 0.28)}`,
-          },
-          '& .MuiSpeedDialAction-fab': {
-            bgcolor: 'background.paper',
-            color: 'text.primary',
-            border: '1px solid',
-            borderColor: 'divider',
-            boxShadow: (theme) =>
-              theme.palette.mode === 'dark'
-                ? `0 8px 18px ${alpha('#000', 0.42)}`
-                : `0 8px 18px ${alpha(theme.palette.primary.main, 0.15)}`,
-          },
-          '& .MuiSpeedDialAction-fab:hover': {
-            bgcolor: 'action.hover',
-          },
-        }}
-        icon={<SpeedDialIcon />}
-      >
-        <SpeedDialAction
-          icon={<PlaylistAddIcon />}
-          tooltipTitle={t('layout.bulkAddTrackers')}
-          tooltipOpen={!isMobile}
-          onClick={() => {
-            closeSpeedDial();
-            setBulkModalOpen(true);
-          }}
-          sx={{
-            '& .MuiSpeedDialAction-staticTooltipLabel': {
-              whiteSpace: 'nowrap',
-              bgcolor: 'background.paper',
-              color: 'text.primary',
-              border: '1px solid',
-              borderColor: 'divider',
-              boxShadow: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? `0 8px 18px ${alpha('#000', 0.4)}`
-                  : `0 8px 18px ${alpha(theme.palette.primary.main, 0.14)}`,
-            },
-          }}
-        />
-        <SpeedDialAction
-          icon={<SearchIcon />}
-          tooltipTitle={t('layout.singleUrlScan')}
-          tooltipOpen={!isMobile}
-          onClick={() => {
-            closeSpeedDial();
-            setScrapModalOpen(true);
-          }}
-          sx={{
-            '& .MuiSpeedDialAction-staticTooltipLabel': {
-              whiteSpace: 'nowrap',
-              bgcolor: 'background.paper',
-              color: 'text.primary',
-              border: '1px solid',
-              borderColor: 'divider',
-              boxShadow: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? `0 8px 18px ${alpha('#000', 0.4)}`
-                  : `0 8px 18px ${alpha(theme.palette.primary.main, 0.14)}`,
-            },
-          }}
-        />
-      </SpeedDial>
-      
-      <ScrapWidgetModal 
-        open={scrapModalOpen} 
-        onClose={() => {
-          setScrapModalOpen(false);
-          closeSpeedDial();
-        }} 
-      />
+      {mobileOpen ? (
+        <>
+          <div onClick={() => setMobileOpen(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(3, 8, 18, 0.45)', zIndex: 40 }} />
+          <aside
+            style={{
+              position: 'fixed',
+              inset: '0 auto 0 0',
+              width: 'min(84vw, 312px)',
+              background: 'var(--bg-elevated)',
+              borderRight: '1px solid var(--border)',
+              zIndex: 50,
+              boxShadow: 'var(--shadow-md)',
+              paddingTop: 52,
+            }}
+          >
+            {nav}
+          </aside>
+        </>
+      ) : null}
 
-      <BulkTrackWidgetModal 
-        open={bulkModalOpen} 
-        onClose={() => {
-          setBulkModalOpen(false);
-          closeSpeedDial();
-        }} 
-      />
-    </Box>
+      <aside
+        className="desktop-sidebar"
+        style={{
+          width: drawerWidth,
+          borderRight: '1px solid var(--border)',
+          background: 'color-mix(in oklab, var(--bg-elevated) 88%, var(--bg-soft) 12%)',
+          position: 'sticky',
+          top: 0,
+          alignSelf: 'flex-start',
+          height: '100vh',
+        }}
+      >
+        {nav}
+      </aside>
+
+      <main className="dashboard-main" style={{ flex: 1, minWidth: 0, padding: '64px 4vw 88px' }}>
+        <div style={{ width: '100%', maxWidth: 2000, margin: '0 auto' }}>{children}</div>
+      </main>
+
+      <div 
+        className="fab-container"
+        style={{ position: 'fixed', right: 18, bottom: 18, zIndex: 70 }}
+        onMouseEnter={() => setActionsOpen(true)}
+        onMouseLeave={() => setActionsOpen(false)}
+      >
+        <div 
+          style={{ 
+            display: 'grid', 
+            gap: 10, 
+            paddingBottom: 16, 
+            justifyItems: 'end',
+            opacity: actionsOpen ? 1 : 0,
+            transform: actionsOpen ? 'translateY(0)' : 'translateY(10px)',
+            pointerEvents: actionsOpen ? 'auto' : 'none',
+            transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+            position: 'absolute',
+            bottom: '100%',
+            right: 0,
+            minWidth: 160,
+          }}
+        >
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => {
+              setActionsOpen(false);
+              setBulkModalOpen(true);
+            }}
+            style={{ 
+              boxShadow: '0 6px 16px rgba(0,0,0,0.12)', 
+              borderRadius: 8, 
+              height: 38, 
+              padding: '0 18px', 
+              fontWeight: 600
+            }}
+          >
+            <Plus size={15} /> {t('layout.bulkAddTrackers')}
+          </Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => {
+              setActionsOpen(false);
+              setScrapModalOpen(true);
+            }}
+            style={{ 
+              boxShadow: '0 6px 16px rgba(0,0,0,0.12)', 
+              borderRadius: 8, 
+              height: 38, 
+              padding: '0 18px', 
+              fontWeight: 600
+            }}
+          >
+            <Search size={15} /> {t('layout.singleUrlScan')}
+          </Button>
+        </div>
+
+        <div 
+          style={{
+            height: 48,
+            width: 48,
+            borderRadius: 24,
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            transition: 'all 0.2s ease',
+            transform: actionsOpen ? 'rotate(45deg)' : 'rotate(0deg)',
+            background: 'var(--primary)',
+            color: 'var(--bg)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer'
+          }}
+        >
+          <Plus size={22} />
+        </div>
+      </div>
+
+      <ScrapWidgetModal open={scrapModalOpen} onClose={() => setScrapModalOpen(false)} />
+      <BulkTrackWidgetModal open={bulkModalOpen} onClose={() => setBulkModalOpen(false)} />
+    </div>
   );
 }

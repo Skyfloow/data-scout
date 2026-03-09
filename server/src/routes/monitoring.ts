@@ -84,6 +84,7 @@ async function scheduledScrape(entity: MonitoredEntity): Promise<void> {
       if (result.product) {
       const history = await getPriceHistory(entity.value, result.product.metrics.asin);
       const stabilized = stabilizeProductPriceWithHistory(result.product, history);
+      await storageService.saveProduct(stabilized.scrapedBy, stabilized);
       await appendPriceSnapshot(entity.value, stabilized);
       logger.info(`Completed for Product ${entity.value} - price: ${stabilized.metrics.price}`);
     }

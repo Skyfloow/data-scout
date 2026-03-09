@@ -1,26 +1,25 @@
 import React from 'react';
-
 import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material';
-import { store } from './store';
-import theme from './theme/theme';
-import DashboardPage from './pages/DashboardPage';
+import { ThemeModeProvider, useThemeMode } from './context/ThemeContext';
 
-describe('DashboardPage Component', () => {
-  it('renders the core dashboard elements without crashing', () => {
+function ThemeProbe() {
+  const { mode, toggleTheme } = useThemeMode();
+  return (
+    <div>
+      <span data-testid="mode">{mode}</span>
+      <button onClick={toggleTheme}>toggle</button>
+    </div>
+  );
+}
+
+describe('ThemeModeProvider', () => {
+  it('renders and toggles theme mode without crashing', () => {
     render(
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <BrowserRouter>
-            <DashboardPage />
-          </BrowserRouter>
-        </ThemeProvider>
-      </Provider>
+      <ThemeModeProvider>
+        <ThemeProbe />
+      </ThemeModeProvider>
     );
 
-    // Smoke test: if we reach here, the components mounted without crashing.
-    expect(true).toBe(true);
+    expect(screen.getByTestId('mode')).toBeInTheDocument();
   });
 });

@@ -2,6 +2,7 @@ export type ScraperType = 'crawler' | 'firecrawl';
 export type JobStatus = 'pending' | 'completed' | 'failed';
 
 export interface DashboardMetrics {
+  version?: string;
   averagePrice: number;
   medianPrice?: number;
   distributionBySource: Record<string, number>;
@@ -15,6 +16,34 @@ export interface DashboardMetrics {
   discountedProductsPercent?: number;
   primeProductsPercent?: number;
   avgSellerCount?: number;
+  segmentMetrics?: {
+    amazon: {
+      count: number;
+      avgPrice: number;
+      avgValueScore: number;
+      avgMargin: number;
+      avgTrust: number;
+      avgDiscount: number;
+      specialSharePercent: number;
+      bestOpportunityTitle: string;
+    };
+    etsy: {
+      count: number;
+      avgPrice: number;
+      avgValueScore: number;
+      avgMargin: number;
+      avgTrust: number;
+      avgDiscount: number;
+      specialSharePercent: number;
+      bestOpportunityTitle: string;
+    };
+  };
+}
+
+export interface DashboardMetricsDefinitionsResponse {
+  version: string;
+  updatedAt: string;
+  definitions: Record<string, unknown>;
 }
 
 // ─── Offer from a single seller ───

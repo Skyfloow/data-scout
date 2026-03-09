@@ -16,7 +16,7 @@ export default defineConfig({
           if (id.includes('echarts')) return 'vendor-echarts';
           if (id.includes('@reduxjs') || id.includes('react-redux')) return 'vendor-redux';
           if (id.includes('i18next')) return 'vendor-i18n';
-          if (id.includes('@mui') || id.includes('@emotion')) return 'vendor-mui';
+          if (id.includes('@radix-ui') || id.includes('lucide-react') || id.includes('class-variance-authority')) return 'vendor-ui';
           if (id.includes('react-router')) return 'vendor-router';
         },
       },
