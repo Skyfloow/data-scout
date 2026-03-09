@@ -3,8 +3,8 @@ version: '3.8'
 services:
   server:
     build:
-      context: ./server
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./server/Dockerfile
     container_name: data-scout-server
     restart: unless-stopped
     ports:
@@ -18,16 +18,16 @@ services:
       # Data directory path inside container:
       - DATA_DIR=./data
     env_file:
-      - ./server/.env
+      - .env
     volumes:
       # Persist SQLite databases and scraping outputs
-      - ./server/data:/app/data
-      - ./server/storage:/app/storage
+      - ./server/data:/app/server/data
+      - ./server/storage:/app/server/storage
 
   scrapper-ui:
     build:
-      context: ./scrapper-ui
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./scrapper-ui/Dockerfile
       args:
         # Build Vite with relative base URL. Nginx will proxy /api to the backend.
         - VITE_API_URL=/api/

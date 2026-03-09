@@ -1,7 +1,15 @@
 import * as dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 
-dotenv.config();
+let envPath = path.resolve(process.cwd(), '.env');
+if (!fs.existsSync(envPath)) {
+  const rootEnvPath = path.resolve(process.cwd(), '../.env');
+  if (fs.existsSync(rootEnvPath)) {
+    envPath = rootEnvPath;
+  }
+}
+dotenv.config({ path: envPath });
 
 const parseBoolean = (value: string | undefined, fallback: boolean): boolean => {
   if (value === undefined || value === '') return fallback;

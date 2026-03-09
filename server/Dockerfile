@@ -9,18 +9,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-# Copy package files and install exact dependencies first
-COPY package*.json ./
+# Copy root configurations and workspaces package files
+COPY package.json package-lock.json turbo.json ./
+COPY server/package.json ./server/
+COPY scrapper-ui/package.json ./scrapper-ui/
+
+# Install exact dependencies
 RUN npm ci
 
-# Install Playwright browser and its system dependencies using the locked version
-RUN npx playwright install --with-deps chromium
+# Install Playwright browser
+RUN cd server && npx playwright install --with-deps chromium
 
 # Copy application source
 COPY . .
 
 # Build TypeScript to dist/
-RUN npm run build
+RUN npm run build --workspace=server
+
+WORKDIR /app/server
 
 # Expose port (default 3000)
 EXPOSE 3000
