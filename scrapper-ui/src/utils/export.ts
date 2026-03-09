@@ -345,3 +345,29 @@ export async function exportElementToPdf(
 
   pdf.save(filename);
 }
+
+import { Product } from '../types';
+import { resolveMetricPrice } from './metrics';
+
+export function exportProductsToCsv(products: Product[]): void {
+  const rows: Array<Array<string | number>> = [];
+  rows.push(['id', 'title', 'marketplace', 'price', 'currency', 'rating', 'reviews', 'discount', 'bsrRank', 'scrapedAt', 'scrapedBy', 'url']);
+  for (const row of products) {
+    const price = resolveMetricPrice(row.metrics);
+    rows.push([
+      row.id,
+      row.title,
+      row.marketplace,
+      price,
+      row.metrics.currency || 'USD',
+      row.metrics.averageRating || '',
+      row.metrics.reviewsCount || '',
+      row.metrics.discountPercentage || '',
+      row.metrics.bsrCategories?.[0]?.rank || '',
+      row.scrapedAt,
+      row.scrapedBy,
+      row.url,
+    ]);
+  }
+  downloadCsv(`products-table-${new Date().toISOString().slice(0, 10)}.csv`, rows);
+}

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Rocket, Send } from 'lucide-react';
-import { useDispatch } from 'react-redux';
-import { API_BASE_URL, apiSlice, useGetJobStatusQuery, useTriggerScrapeMutation } from '../store/apiSlice';
+import { API_BASE_URL } from '../store/apiSlice';
 import { ScraperType } from '../types';
 import { logger } from '../utils/logger';
 import { Alert } from './ui/alert';
@@ -9,6 +8,8 @@ import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from './ui/dialog';
 import { Input } from './ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { useScrapeJob } from '../hooks/useScrapeJob';
+import { isValidUrl } from '../utils/validators';
 
 interface ScrapWidgetModalProps {
   open: boolean;
@@ -21,29 +22,21 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState('');
   const [toastSeverity, setToastSeverity] = useState<'success' | 'error'>('success');
-  const [currentJobId, setCurrentJobId] = useState<string | null>(null);
 
-  const [triggerScrape, { isLoading: isStarting }] = useTriggerScrapeMutation();
-  const dispatch = useDispatch();
+  const onJobCompleted = useCallback(() => {
+    setToastSeverity('success');
+    setToastMessage('Сбор успешно завершен! Данные обновлены.');
+  }, []);
 
-  const { data: jobStatus } = useGetJobStatusQuery(currentJobId as string, {
-    skip: !currentJobId,
-    pollingInterval: 2000,
+  const onJobError = useCallback((error: string) => {
+    setToastSeverity('error');
+    setToastMessage(`Ошибка сбора: ${error}`);
+  }, []);
+
+  const { startJob, isStarting } = useScrapeJob({
+    onCompleted: onJobCompleted,
+    onError: onJobError,
   });
-
-  useEffect(() => {
-    if (!jobStatus) return;
-    if (jobStatus.status === 'completed') {
-      setCurrentJobId(null);
-      dispatch(apiSlice.util.invalidateTags(['Products', 'Metrics']));
-      setToastSeverity('success');
-      setToastMessage('Сбор успешно завершен! Данные обновлены.');
-    } else if (jobStatus.status === 'failed') {
-      setCurrentJobId(null);
-      setToastSeverity('error');
-      setToastMessage(`Ошибка сбора: ${jobStatus.error || 'Неизвестная ошибка'}`);
-    }
-  }, [jobStatus, dispatch]);
 
   useEffect(() => {
     if (!open) return;
@@ -74,16 +67,13 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
     e.preventDefault();
     setErrorMsg(null);
 
-    try {
-      new URL(url);
-    } catch {
+    if (!isValidUrl(url)) {
       setErrorMsg('Пожалуйста, введите корректный URL.');
       return;
     }
 
     try {
-      const response = await triggerScrape({ url, scraper }).unwrap();
-      setCurrentJobId(response.jobId);
+      await startJob(url, scraper);
       setToastSeverity('success');
       setToastMessage('Задача запущена в фоне. Пожалуйста, подождите...');
       handleModalClose();
