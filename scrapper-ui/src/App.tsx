@@ -3,12 +3,15 @@ import { createBrowserRouter, Outlet, RouterProvider, ScrollRestoration } from '
 import { Provider } from 'react-redux';
 import DashboardLayout from './components/layout/DashboardLayout';
 import { ThemeModeProvider } from './context/ThemeContext';
+import { CompareProvider } from './context/CompareContext';
+import CompareWidget from './components/CompareWidget';
 import { store } from './store';
 
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const MonitoringPage = lazy(() => import('./pages/MonitoringPage'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage'));
 const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
+const ComparePage = lazy(() => import('./pages/ComparePage'));
 
 function RouteFallback() {
   return (
@@ -27,6 +30,7 @@ function RootLayout() {
     <DashboardLayout>
       <ScrollRestoration />
       <Outlet />
+      <CompareWidget />
     </DashboardLayout>
   );
 }
@@ -68,6 +72,14 @@ const router = createBrowserRouter([
           </LazyRoute>
         ),
       },
+      {
+        path: 'compare',
+        element: (
+          <LazyRoute>
+            <ComparePage />
+          </LazyRoute>
+        ),
+      },
     ],
   },
 ]);
@@ -76,7 +88,9 @@ export default function App() {
   return (
     <Provider store={store}>
       <ThemeModeProvider>
-        <RouterProvider router={router} />
+        <CompareProvider>
+          <RouterProvider router={router} />
+        </CompareProvider>
       </ThemeModeProvider>
     </Provider>
   );

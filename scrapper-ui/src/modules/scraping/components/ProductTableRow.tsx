@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Scale } from 'lucide-react';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +8,7 @@ import { resolveMetricPrice } from '../../../utils/metrics';
 import { Badge } from '../../../components/ui/badge';
 import { Checkbox } from '../../../components/ui/checkbox';
 import { TR, TD } from '../../../components/ui/table';
+import { useCompare } from '../../../context/CompareContext';
 
 interface ProductTableRowProps {
   row: Product;
@@ -18,6 +19,10 @@ interface ProductTableRowProps {
 export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTableRowProps) {
   const { t } = useTranslation();
   const price = resolveMetricPrice(row.metrics);
+  const { products: compareProducts, addProduct, removeProduct } = useCompare();
+
+  const isCompared = compareProducts.some(p => p.id === row.id);
+  const compareDisabled = !isCompared && compareProducts.length >= 5;
 
   return (
     <TR>
@@ -89,9 +94,26 @@ export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTabl
       </TD>
       <TD>{row.scrapedAt ? format(new Date(row.scrapedAt), 'MMM dd, HH:mm') : '—'}</TD>
       <TD className="text-right" data-pdf-exclude>
-        <a className="icon-btn" href={row.url} target="_blank" rel="noopener noreferrer" title={t('table.openMarketplace')}>
-          <ExternalLink size={14} />
-        </a>
+        <div style={{ display: 'flex', gap: 6, justifyContent: 'flex-end' }}>
+          <button 
+            type="button"
+            className="icon-btn" 
+            onClick={() => isCompared ? removeProduct(row.id) : addProduct(row)}
+            disabled={compareDisabled}
+            title={isCompared ? t('compare.removeFromCompare', 'Remove from Compare') : t('compare.addToCompare', 'Add to Compare')}
+            style={{ 
+              color: isCompared ? 'var(--primary)' : undefined, 
+              borderColor: isCompared ? 'var(--primary)' : undefined,
+              opacity: compareDisabled ? 0.5 : 1,
+              cursor: compareDisabled ? 'not-allowed' : 'pointer'
+            }}
+          >
+            <Scale size={14} />
+          </button>
+          <a className="icon-btn" href={row.url} target="_blank" rel="noopener noreferrer" title={t('table.openMarketplace')}>
+            <ExternalLink size={14} />
+          </a>
+        </div>
       </TD>
     </TR>
   );
