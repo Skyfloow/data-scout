@@ -78,7 +78,7 @@ interface AppSettings {
 const envApiUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL;
 const normalizedApiUrl = envApiUrl
   ? envApiUrl.endsWith('/') ? envApiUrl : `${envApiUrl}/`
-  : 'http://localhost:3001/api/';
+  : '/api/';
 
 export const API_BASE_URL = normalizedApiUrl;
 
