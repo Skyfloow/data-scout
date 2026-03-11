@@ -686,26 +686,51 @@
     "scrapedBy": "crawler"
   },
   "https://www.amazon.com/apple-iphone-version-desert-titanium/dp/b0dpdknpt9/ref=sr_1_24": {
-    "id": "199297cd-f1b7-41a0-9fd1-d5941e4b5baf",
+    "id": "c7d0ffb5-e5d5-4316-ac09-15b8b50238b1",
     "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked",
     "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DPDKNPT9/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
     "marketplace": "amazon",
     "metrics": {
-      "description": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium) About this item This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers. There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length. This product will have a battery which exceeds 80% capacity relative to new. Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box. This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied. › See more product details",
-      "imageUrl": "https://m.media-amazon.com/images/I/61OolG0W6iL._AC_SX522_.jpg",
       "currency": "USD",
+      "description": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium) About this item This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers. There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length. This product will have a battery which exceeds 80% capacity relative to new. Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box. This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied. › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/61Z4eGyb1mL._AC_SX466_.jpg",
       "brand": "Amazon Renewed",
+      "availability": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
+      "features": [
+        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
+        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
+        "This product will have a battery which exceeds 80% capacity relative to new.",
+        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
+        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/41IcaBDYwxL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41ZquN57YTL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31qU9wU9oaL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/61Z4eGyb1mL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "ELECTRONIC DEALSELECTRONIC DEALS",
+          "price": 839,
+          "currency": "USD",
+          "stockStatus": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
+          "stockCount": 1,
+          "condition": "New",
+          "isFBA": false
+        }
+      ],
       "asin": "B0DPDKNPT9",
-      "price": 842.3,
-      "itemPrice": 842.3,
+      "price": 839,
+      "itemPrice": 839,
       "originalPrice": 999,
       "discountPercentage": 16,
       "averageRating": 4.3,
-      "reviewsCount": 2514,
-      "availability": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
+      "reviewsCount": 2521,
+      "stockCount": 1,
       "isAmazonChoice": false,
       "isBestSeller": false,
-      "deliveryInfo": "FREE delivery March 12 - 16. Details Or Prime members get FREE delivery Tomorrow, March 10. Order within 2 hrs 11 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); }));",
+      "deliveryInfo": "FREE delivery Tomorrow, March 12. Order within 8 hrs 26 mins. Details",
       "modelNumber": "A3084",
       "manufacturer": "Apple",
       "dateFirstAvailable": "October 20, 2024",
@@ -714,6 +739,30 @@
       "isClimateFriendly": true,
       "videoCount": 6,
       "customersAlsoViewed": [
+        {
+          "asin": "B0FWD1MS82",
+          "title": "Apple iPad Pro 13-inch (M5): Ultra Retina XDR Display, 256GB, Landscape 12MP Front Camera/12MP Back Camera, LiDAR Scanner, Wi"
+        },
+        {
+          "asin": "B0FTMY4YZ2",
+          "title": "PlayStation 5 Pro Console - 2TB"
+        },
+        {
+          "asin": "B0F183N7C4",
+          "title": "UNBREAKcable 2-Pack Screen Protector for iPhone 16 Pro Max, Double Shatterproof Tempered Glass [Easy Installation Frame] [9H"
+        },
+        {
+          "asin": "B0CQ6QP27D",
+          "title": "Jo Milano Game of Spades Diamond Parfum Spray | 3.4 oz (100ml) | Vanilla, Fruity, Amber, Sweet, Musky Scent | Long Lasting Fr"
+        },
+        {
+          "asin": "B0F5Q5YV21",
+          "title": "SMARTDEVIL 2 Pack for iPhone 16 Pro Max Privacy Screen Protector, Military Grade Shatterproof, 9H Hardness, Anti-Spy Tempered"
+        },
+        {
+          "asin": "B0D4XCLY9X",
+          "title": "Apple iPad Pro 2024 (13-inch, Wi-Fi, 256GB) - Space Black (Renewed)"
+        },
         {
           "asin": "B0CRJSBN5M",
           "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
@@ -729,7 +778,7 @@
       ],
       "bsrCategories": [
         {
-          "rank": 706,
+          "rank": 779,
           "category": "Cell Phones &amp; Accessories"
         },
         {
@@ -741,60 +790,38 @@
           "category": "Cell Phones"
         }
       ],
-      "bestSellerRank": "#706 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+      "bestSellerRank": "#779 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
       "buyBox": {
-        "sellerName": "tigerphonestigerphones",
-        "price": 842.3,
+        "sellerName": "ELECTRONIC DEALSELECTRONIC DEALS",
+        "price": 839,
         "isFBA": false,
         "isAmazon": false,
-        "observedAt": "2026-03-09T15:48:45.553Z"
+        "observedAt": "2026-03-11T08:34:04.056Z"
       },
       "selectedOffer": {
         "source": "buybox",
-        "sellerName": "tigerphonestigerphones",
-        "price": 842.3,
+        "sellerName": "ELECTRONIC DEALSELECTRONIC DEALS",
+        "price": 839,
         "currency": "USD",
         "condition": "New",
         "isFBA": false,
         "isAmazon": false
       },
-      "offers": [
-        {
-          "sellerName": "tigerphonestigerphones",
-          "price": 842.3,
-          "currency": "USD",
-          "stockStatus": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
-          "stockCount": 1,
-          "condition": "New",
-          "isFBA": false
-        }
-      ],
       "sellerCount": 1,
-      "averageOfferPrice": 842.3,
-      "lowestOfferPrice": 842.3,
-      "imageUrls": [
-        "https://m.media-amazon.com/images/I/41uYfnaGVPL._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/61OolG0W6iL.jpg"
-      ],
+      "averageOfferPrice": 839,
+      "lowestOfferPrice": 839,
       "category": "Cell Phones & Accessories > Cell Phones",
-      "features": [
-        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
-        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
-        "This product will have a battery which exceeds 80% capacity relative to new.",
-        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
-        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
-      ],
       "amazonMetrics": {
         "asin": "B0DPDKNPT9",
         "buyBox": {
-          "sellerName": "tigerphonestigerphones",
-          "price": 842.3,
+          "sellerName": "ELECTRONIC DEALSELECTRONIC DEALS",
+          "price": 839,
           "isFBA": false,
           "isAmazon": false
         },
         "bsrCategories": [
           {
-            "rank": 706,
+            "rank": 779,
             "category": "Cell Phones &amp; Accessories"
           },
           {
@@ -806,7 +833,7 @@
             "category": "Cell Phones"
           }
         ],
-        "bestSellerRank": "#706 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+        "bestSellerRank": "#779 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
         "isPrime": false,
         "isAmazonChoice": false,
         "isBestSeller": false,
@@ -814,8 +841,8 @@
         "sellerCount": 1,
         "offers": [
           {
-            "sellerName": "tigerphonestigerphones",
-            "price": 842.3,
+            "sellerName": "ELECTRONIC DEALSELECTRONIC DEALS",
+            "price": 839,
             "currency": "USD",
             "stockStatus": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
             "stockCount": 1,
@@ -824,138 +851,88 @@
           }
         ]
       },
-      "priceObservedAt": "2026-03-09T15:48:45.553Z",
-      "itemPriceObservedAt": "2026-03-09T15:48:45.553Z",
-      "priceUSD": 842.3,
-      "itemPriceUSD": 842.3,
+      "priceObservedAt": "2026-03-11T08:34:04.056Z",
+      "itemPriceObservedAt": "2026-03-11T08:34:04.056Z",
+      "priceUSD": 839,
+      "itemPriceUSD": 839,
       "dataQualityScore": 100
     },
-    "scrapedAt": "2026-03-09T15:48:45.553Z",
+    "scrapedAt": "2026-03-11T08:34:04.056Z",
     "scrapedBy": "crawler"
   },
   "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting": {
-    "id": "f62285d1-ad35-4bdb-a7d8-a33306b658c6",
+    "id": "de6ea15b-ba71-499b-b8d5-46af8bf1a604",
     "title": "Candle file EASTER BUNNY floral greeting, spring, flowers, bunnies, Easter, waterslide film, candle sticker, candle tattoo, PDF, JPG, watercolor",
     "url": "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting",
     "marketplace": "etsy",
     "metrics": {
-      "description": "CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM The Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.PLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.After downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.The finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.The candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.************************************************Would you prefer a finished print on water slide film? Then buy the candle film in our partner shop!===> https://druckbeiden7zwergen.etsy.com <===************************************************LEGAL INFORMATIONBefore using my candle files, please read the following terms of use carefully:- By purchasing the file you receive a personal license for private use of the candle file. Passing on the file to third parties is not permitted.- For commercial use, a commercial license is also required, which is available separately in the shop: https://www.etsy.com/de/listing/1564372853/1-jahres-lizenz-zur-kommerziellen- The resale of the files, both in digital and physical form (e.g. as a print on waterslide film), is prohibited.Thank you for your understanding and compliance with these legal terms. If you have any questions about the terms of use or the commercial license, please do not hesitate to contact me. CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM The Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.PLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.After downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.The finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.The candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.************************************************Would you prefer a finished print on water slide film? Then buy the candle film in our partner shop!===> https://druckbeiden7zwergen.etsy.com <===************************************************LEGAL INFORMATIONBefore using my candle files, please read the following terms of use carefully:- By purchasing the file you receive a personal license for private use of the candle file. Passing on the file to third parties is not permitted.- For commercial use, a commercial license is also required, which is available separately in the shop: https://www.etsy.com/de/listing/1564372853/1-jahres-lizenz-zur-kommerziellen- The resale of the files, both in digital and physical form (e.g. as a print on waterslide film), is prohibited.Thank you for your understanding and compliance with these legal terms. If you have any questions about the terms of use or the commercial",
-      "imageUrl": "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
+      "price": 3.56,
       "currency": "USD",
+      "averageRating": 5,
+      "reviewsCount": 23,
       "brand": "BEIDEN7ZWERGEN",
-      "price": 3.55,
-      "itemPrice": 3.55,
-      "priceObservedAt": "2026-03-09T16:01:25.733Z",
-      "itemPriceObservedAt": "2026-03-09T16:01:25.733Z",
-      "buyBox": {
-        "sellerName": "BEIDEN7ZWERGEN",
-        "price": 3.55,
-        "isFBA": false,
-        "isAmazon": false,
-        "observedAt": "2026-03-09T16:01:25.733Z"
-      },
-      "sellerCount": 1,
-      "features": [
-        "CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM The Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.PLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.After downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.The finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.The candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.************************************************Would you prefer a finished print on water slide film? Then buy the candle film in our partner shop!===> https://druckbeiden7zwergen.etsy.com <===************************************************LEGAL INFORMATIONBefore using my candle files, please read the following terms of use carefully:- By purchasing the file you receive a personal license for private use of the candle file. Passing on the file to third parties is not permitted.- For commercial use, a commercial license is also required, which is available separately in the shop: https://www.etsy.com/de/listing/1564372853/1-jahres-lizenz-zur-kommerziellen- The resale of the files, both in digital and physical form (e.g. as a print on waterslide film), is prohibited.Thank you for your understanding and compliance with these legal terms. If you have any questions about the terms of use or the commercial license, please do not "
-      ],
-      "couponText": "You can only make an offer when buying a single item",
-      "returnPolicy": "Instant download items don’t accept returns, exchanges or cancellations. Please contact the seller about any problems with your order.",
-      "imageUrls": [
-        "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
-        "https://i.etsystatic.com/45041061/r/il/522b9f/5640824384/il_fullxfull.5640824384_t8ot.jpg",
-        "https://i.etsystatic.com/45041061/r/il/c79157/5642743080/il_fullxfull.5642743080_knk6.jpg",
-        "https://i.etsystatic.com/45041061/r/il/489507/5688929211/il_fullxfull.5688929211_p3e2.jpg",
-        "https://i.etsystatic.com/45041061/r/il/905356/5566297976/il_fullxfull.5566297976_il0e.jpg"
-      ],
-      "isDigitalDownload": true,
-      "isStarSeller": true,
+      "description": "CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM\nThe Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.\nPLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.\nAfter downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.\nThe finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.\nThe candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.",
+      "imageUrl": "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_794xN.5688947173_57ej.jpg",
       "etsyMetrics": {
-        "isDigitalDownload": true,
-        "isStarSeller": true
+        "dispatchTime": "Instant Download",
+        "madeToOrder": false,
+        "isStarSeller": true,
+        "shopAgeText": "2.5 years on Etsy"
       },
-      "priceUSD": 3.55,
-      "itemPriceUSD": 3.55,
+      "dynamicFeatures": {
+        "productType": "Digital download",
+        "fileTypes": "1 ZIP (PDF, JPG)",
+        "usageLicense": "Personal license for private use (commercial license available separately)",
+        "printFormat": "DIN A4 page",
+        "applicationMethod": "Print on waterslide film, cut out, soak in water, apply to candles"
+      },
       "dataQualityScore": 90
     },
-    "scrapedAt": "2026-03-09T16:01:25.733Z",
+    "scrapedAt": "2026-03-10T20:11:47.434Z",
     "scrapedBy": "firecrawl"
   },
   "https://www.etsy.com/listing/958534635/hand-decorated-easter-bunny-led-candle": {
-    "id": "701088d2-1d61-4c5d-98a1-919835d19424",
+    "id": "8c85e684-b5e2-4a16-8aeb-7015ea484ce9",
     "title": "Hand Decorated Easter Bunny LED Candle – Decoupage Rabbit Family",
     "url": "https://www.etsy.com/listing/958534635/hand-decorated-easter-bunny-led-candle",
     "marketplace": "etsy",
     "metrics": {
-      "description": "Easter themed candle with hand painted details that will bring festive mood to your home!The candle is decorated by hand using thermal decoupage technique.Can be made as traditional candle or as a LED one.Size and Style:- LED Medium - height 12cm(4 3/4\"), diameter 8cm(3\")- LED Large - height 15cm(6\"), diameter 7.5cm(3\")- traditional candle - height 14cm(5 1/2\"), diameter 6.8cm(2 3/4\"), 45h burn timeAbout LED-Candles:- the candle's light simulates the sparkling glow and movement of a real flame, which makes it to look like a traditional candle.- it is made from paraffin wax and uses 3 batteries AAA.- batteries are not included in the delivery.⏱️ TIMER for LED candles: you can add a TIMER to your LED candle from this listing:https://www.etsy.com/listing/980957982🎛 REMOTE CONTROL for LED candles: you can add a REMOTE to your LED candle from this listing:https://www.etsy.com/listing/1036219001*As the products are hand decorated, there may be minor differences in the details from the example shown.............................................................SHIPPING method:all items are shipped as first class priority mail with tracking number that shows when the package has left the origin country and when it is accepted by its destination postal service.SHIPPING courier:European Union and USA – Post One (private postal service)Rest of the world – Bulgarian Post / Post OneEXPRESS shipping: delivery in 2-4 days after dispatch - FedEx/DHL or similar............................................................All of the candles can be made both as LED candles and as traditional ones depending on your preferences.Captions, names and wishes can also be added.Please contact me if the type of candle that you want to order is not available in the option bar.Thank you! Easter themed candle with hand painted details that will bring festive mood to your home!The candle is decorated by hand using thermal decoupage technique.Can be made as traditional candle or as a LED one.Size and Style:- LED Medium - height 12cm(4 3/4\"), diameter 8cm(3\")- LED Large - height 15cm(6\"), diameter 7.5cm(3\")- traditional candle - height 14cm(5 1/2\"), diameter 6.8cm(2 3/4\"), 45h burn timeAbout LED-Candles:- the candle's light simulates the sparkling glow and movement of a real flame, which makes it to look like a traditional candle.- it is made from paraffin wax and uses 3 batteries AAA.- batteries are not included in the delivery.⏱️ TIMER for LED candles: you can add a TIMER to your LED candle from this listing:https://www.etsy.com/listing/980957982🎛 REMOTE CONTROL for LED candles: you can add a REMOTE to your LED candle from this listing:https://www.etsy.com/listing/1036219001*As the products are hand decorated, there may be minor differences in the details from the example shown.............................................................SHIPPING method:all items are shipped as first class priority mail with tracking number that shows when the package has left the origin country and when it is accepted by its destination postal service.SHIPPING courier:European Union and USA – Post One (private postal service)Rest of the world – Bulgarian Post / Post OneEXPRESS shipping: delivery in 2-4 days after dispatch - FedEx/DHL or similar............................................................All of the candles can be made both as LED candles and as traditional ones depending on your preferences.Captions, names and wishes can also be added.Please contact me if the type of candle that you want to order is not available in the option bar.Thank you! Easter themed candle with hand painted details that will bring festive mood to your home!The candle is decorated by hand using thermal decoupage technique.Can be made as traditional candle or as a LED one.Size and Style:- LED Medium - height 12cm(4 3/4\"), diameter 8cm(3\")- LED Large - height 15cm(6\"), diameter 7.5cm(3\")- traditional candle - height 14cm(5 1/2\"), diameter 6.8cm(2 3/4\"), 45h burn timeAbout LED-Candles:- the ca",
-      "imageUrl": "https://i.etsystatic.com/25756740/r/il/871693/2939325482/il_fullxfull.2939325482_phup.jpg",
       "currency": "USD",
+      "description": "Easter themed candle with hand painted details that will bring festive mood to your home! The candle is decorated by hand using thermal decoupage technique. Can be made as traditional candle or as a LED one. As the products are hand decorated, there may be minor differences in the details from the example shown. All of the candles can be made both as LED candles and as traditional ones depending on your preferences. Captions, names and wishes can also be added. Please contact me if the type of candle that you want to order is not available in the option bar. Thank you!",
+      "imageUrl": "https://i.etsystatic.com/25756740/r/il/871693/2939325482/il_794xN.2939325482_phup.jpg",
       "brand": "DecoshopByMihaela",
-      "price": 45.98,
-      "itemPrice": 45.98,
-      "priceObservedAt": "2026-03-09T15:50:02.457Z",
-      "itemPriceObservedAt": "2026-03-09T15:50:02.457Z",
-      "buyBox": {
-        "sellerName": "DecoshopByMihaela",
-        "price": 45.98,
-        "isFBA": false,
-        "isAmazon": false,
-        "observedAt": "2026-03-09T15:50:02.457Z"
-      },
-      "sellerCount": 1,
-      "features": [
-        "Easter themed candle with hand painted details that will bring festive mood to your home!The candle is decorated by hand using thermal decoupage technique.Can be made as traditional candle or as a LED one.Size and Style:- LED Medium - height 12cm(4 3/4\"), diameter 8cm(3\")- LED Large - height 15cm(6\"), diameter 7.5cm(3\")- traditional candle - height 14cm(5 1/2\"), diameter 6.8cm(2 3/4\"), 45h burn timeAbout LED-Candles:- the candle's light simulates the sparkling glow and movement of a real flame, which makes it to look like a traditional candle.- it is made from paraffin wax and uses 3 batteries AAA.- batteries are not included in the delivery.⏱️ TIMER for LED candles: you can add a TIMER to your LED candle from this listing:https://www.etsy.com/listing/980957982🎛 REMOTE CONTROL for LED candles: you can add a REMOTE to your LED candle from this listing:https://www.etsy.com/listing/1036219001*As the products are hand decorated, there may be minor differences in the details from the example shown.............................................................SHIPPING method:all items are shipped as first class priority mail with tracking number that shows when the package has left the origin country and when it is accepted by its destination postal service.SHIPPING courier:European Union and USA – Post One (private postal service)Rest of the world – Bulgarian Post / Post OneEXPRESS shipping: delivery in 2-4 days after dispatch - FedEx/DHL or similar............................................................All of the candles can be made both as LED candles and as traditional ones depending on your preferences.Captions, names and wishes can also be added.Please contact me if the type of candle that you want to order is not available in the option bar.Thank you! Easter themed candle with hand painted details that will bring festive mood to your home!The candle is decorated by hand using thermal decoupage technique.Can be made as traditional candle or as a LED one.Size and "
-      ],
-      "couponText": "You can only make an offer when buying a single item",
-      "returnPolicy": "Shipping and return policies Loading Order today to get by Mar 21-30 Your order should arrive by this date if you buy today. To calculate an estimated delivery date you can count on, we look at things like the carrier's latest transit times, the seller's processing time and shipping history, and where the order is shipping to and from. Returns accepted Buyers are responsible for return shipping costs. If the item is not returned in its original condition, the buyer is responsible for any loss in",
-      "imageUrls": [
-        "https://i.etsystatic.com/25756740/r/il/871693/2939325482/il_fullxfull.2939325482_phup.jpg",
-        "https://i.etsystatic.com/25756740/r/il/a2fe5e/4690809836/il_fullxfull.4690809836_h77c.jpg",
-        "https://i.etsystatic.com/25756740/r/il/6460f8/3802489605/il_fullxfull.3802489605_3ohs.jpg",
-        "https://i.etsystatic.com/25756740/r/il/502ddb/4739007569/il_fullxfull.4739007569_lqu1.jpg",
-        "https://i.etsystatic.com/25756740/r/il/91dffd/4739003287/il_fullxfull.4739003287_jbto.jpg",
-        "https://i.etsystatic.com/25756740/r/il/ff80bc/3721859681/il_fullxfull.3721859681_f3s2.jpg",
-        "https://i.etsystatic.com/25756740/r/il/3dcc85/3721863819/il_fullxfull.3721863819_exsn.jpg",
-        "https://i.etsystatic.com/25756740/r/il/2739a4/4120222483/il_fullxfull.4120222483_losm.jpg",
-        "https://i.etsystatic.com/25756740/r/il/a797a9/2902845157/il_fullxfull.2902845157_q6bl.jpg",
-        "https://i.etsystatic.com/25756740/r/il/be62e2/4739006395/il_fullxfull.4739006395_89v0.jpg"
-      ],
-      "materials": [
-        "Paraffin wax"
-      ],
-      "isDigitalDownload": false,
-      "isStarSeller": true,
+      "availability": "Unknown",
+      "features": [],
+      "imageUrls": [],
+      "offers": [],
+      "price": 46.18,
+      "averageRating": 5,
+      "reviewsCount": 21,
       "etsyMetrics": {
-        "materials": [
-          "Paraffin wax"
-        ],
-        "isDigitalDownload": false,
-        "isStarSeller": true
+        "dispatchTime": null,
+        "madeToOrder": true,
+        "isStarSeller": true,
+        "shopAgeText": "Since 2020"
       },
-      "variations": [
-        {
-          "asin": "",
-          "attribute": "Variation",
-          "value": "LED Medium ($45.98)",
-          "available": true
+      "dynamicFeatures": {
+        "materials": "Paraffin wax",
+        "dimensions": {
+          "LED Medium": "height 12cm(4 3/4\"), diameter 8cm(3\")",
+          "LED Large": "height 15cm(6\"), diameter 7.5cm(3\")",
+          "traditional candle": "height 14cm(5 1/2\"), diameter 6.8cm(2 3/4\"), 45h burn time"
         },
-        {
-          "asin": "",
-          "attribute": "Variation",
-          "value": "LED Large ($48.40)",
-          "available": true
-        },
-        {
-          "asin": "",
-          "attribute": "Variation",
-          "value": "traditional candle ($45.98)",
-          "available": true
-        }
-      ],
-      "priceUSD": 45.98,
-      "itemPriceUSD": 45.98,
+        "customization": "Personalization available, including captions, names, and wishes.",
+        "candleTypeOptions": [
+          "LED Medium",
+          "LED Large",
+          "traditional candle"
+        ],
+        "ledCandleDetails": "Simulates real flame, made from paraffin wax, uses 3 AAA batteries (not included). Timer and remote control can be added via separate listings.",
+        "shippingOrigin": "Bulgaria"
+      },
       "dataQualityScore": 90
     },
-    "scrapedAt": "2026-03-09T15:50:02.457Z",
+    "scrapedAt": "2026-03-11T08:35:59.221Z",
     "scrapedBy": "firecrawl"
   },
   "https://www.etsy.com/listing/4331252453/duck-phone-case-candlelight-dinner": {
@@ -1364,6 +1341,31 @@
       "dataQualityScore": 90
     },
     "scrapedAt": "2026-03-09T15:28:31.792Z",
+    "scrapedBy": "firecrawl"
+  },
+  "https://www.amazon.com/dp/b08f7n8pbn": {
+    "id": "1765d959-78f6-4857-bc9b-d5809cf221ff",
+    "title": "Unknown Product",
+    "url": "https://www.amazon.com/dp/B08F7N8PBN",
+    "marketplace": "amazon",
+    "metrics": {
+      "price": null,
+      "currency": null,
+      "averageRating": null,
+      "reviewsCount": null,
+      "brand": null,
+      "description": null,
+      "imageUrl": null,
+      "availability": null,
+      "amazonMetrics": {
+        "bestSellerRank": null,
+        "isPrime": null,
+        "isAmazonChoice": null
+      },
+      "dynamicFeatures": {},
+      "dataQualityScore": 15
+    },
+    "scrapedAt": "2026-03-10T19:58:20.004Z",
     "scrapedBy": "firecrawl"
   }
 }

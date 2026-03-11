@@ -20,7 +20,7 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'warning'>('success');
 
   useEffect(() => {
     fetch(`${API_BASE_URL}settings/`)
@@ -225,7 +225,7 @@ export default function SettingsPage() {
       </Card>
 
       {snackbarMessage ? (
-        <div className={`toast ${snackbarSeverity === 'success' ? 'toast-success' : 'toast-error'}`}>
+        <div className={`toast ${snackbarSeverity === 'success' ? 'toast-success' : snackbarSeverity === 'error' ? 'toast-error' : 'toast-warning'}`}>
           {snackbarMessage}
         </div>
       ) : null}

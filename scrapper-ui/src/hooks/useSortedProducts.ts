@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { Product } from '../types';
 import { resolveMetricPrice } from '../utils/metrics';
 
@@ -9,41 +9,41 @@ export function useSortedProducts(products: Product[]) {
   const [sortKey, setSortKey] = useState<SortKey>('date');
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
 
-  const handleSort = (key: SortKey) => {
-    const isAsc = sortKey === key && sortOrder === 'asc';
-    setSortOrder(isAsc ? 'desc' : 'asc');
-    setSortKey(key);
-  };
+  const handleSort = useCallback((key: SortKey) => {
+    setSortKey((prevKey) => {
+      setSortOrder((prevOrder) => {
+        const isAsc = prevKey === key && prevOrder === 'asc';
+        return isAsc ? 'desc' : 'asc';
+      });
+      return key;
+    });
+  }, []);
 
   const sortedProducts = useMemo(() => {
-    return [...products].sort((a, b) => {
-      let aVal: string | number = 0;
-      let bVal: string | number = 0;
-      
-      if (sortKey === 'date') {
-        aVal = new Date(a.scrapedAt).getTime();
-        bVal = new Date(b.scrapedAt).getTime();
-      } else if (sortKey === 'price') {
-        aVal = resolveMetricPrice(a.metrics);
-        bVal = resolveMetricPrice(b.metrics);
-      } else if (sortKey === 'bsr') {
-        aVal = a.metrics.bsrCategories?.[0]?.rank || 9999999;
-        bVal = b.metrics.bsrCategories?.[0]?.rank || 9999999;
-      } else if (sortKey === 'title') {
-        aVal = a.title.toLowerCase();
-        bVal = b.title.toLowerCase();
-      }
+    const mapped = products.map(product => ({
+      product,
+      date: new Date(product.scrapedAt).getTime(),
+      price: resolveMetricPrice(product.metrics),
+      bsr: product.metrics.bsrCategories?.[0]?.rank || 9999999,
+      title: product.title.toLowerCase()
+    }));
+
+    mapped.sort((a, b) => {
+      let aVal: string | number = a[sortKey];
+      let bVal: string | number = b[sortKey];
       
       if (aVal < bVal) return sortOrder === 'asc' ? -1 : 1;
       if (aVal > bVal) return sortOrder === 'asc' ? 1 : -1;
       return 0;
     });
+    
+    return mapped.map(item => item.product);
   }, [products, sortKey, sortOrder]);
 
-  return {
+  return useMemo(() => ({
     sortedProducts,
     sortKey,
     sortOrder,
     handleSort,
-  };
+  }), [sortedProducts, sortKey, sortOrder, handleSort]);
 }

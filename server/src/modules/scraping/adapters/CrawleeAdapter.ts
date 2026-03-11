@@ -15,13 +15,18 @@ import stealthPlugin from 'puppeteer-extra-plugin-stealth';
 import * as cheerio from 'cheerio';
 import { PlatformExtractor } from '../extractors/PlatformExtractor';
 import { metadataExtractor } from '../extractors/MetadataExtractor';
-import { aiFallbackExtractor } from '../extractors/AIFallbackExtractor';
+import { llmSelectorCache } from '../extractors/LLMSelectorCache';
+
+import { fetcher, FetchResult } from '../network/Fetcher';
+import { playwrightFetcher } from '../network/PlaywrightFetcher';
+import { extractAmazonSerp } from '../extractors/amazonSerp';
+import { extractEtsySerp } from '../extractors/etsySerp';
+import { SerpResult } from '../../../types';
+import { config } from '../../../config';
 
 chromium.use(stealthPlugin());
 
 const logger = baseLogger.child({ module: 'CrawleeAdapter' });
-
-// We want to suppress Crawlee's default verbose logging
 log.setLevel(log.LEVELS.WARNING);
 
 export class CrawleeAdapter implements IScraper {
@@ -48,6 +53,22 @@ export class CrawleeAdapter implements IScraper {
                       url.includes('amazon.co.uk') ? 'E1 6AN' : null;
       
       if (!zipCode) return false;
+
+      // Handle any pre-existing modals (like cookies or location warning) before clicking the zip code popover
+      try {
+          await page.evaluate(`
+              var preModalBtns = Array.from(document.querySelectorAll('input[type="submit"], button, .a-button-input, span.a-button-inner input'));
+              var continueBtn = preModalBtns.find(el => {
+                  var text = (el.value || el.innerText || '').toLowerCase();
+                  return text.includes('continue') || text.includes('accept') || text.includes('agree');
+              });
+              if (continueBtn) continueBtn.click();
+              
+              var dismissBtn = document.querySelector('[data-action="a-popover-close"]');
+              if (dismissBtn) dismissBtn.click();
+          `);
+          await page.waitForTimeout(1000);
+      } catch(e) {}
 
       let popoverOpened = false;
       for (let attempt = 0; attempt < 3; attempt++) {
@@ -85,19 +106,18 @@ export class CrawleeAdapter implements IScraper {
           await page.waitForTimeout(3000);
           return true;
       } else {
-          logger.warn(`[Crawlee] Location bypass popover failed to open after retries.`);
+          logger.warn(`[Crawlee] Location bypass popover failed to open.`);
           return false;
       }
   }
 
   async scrapeProduct(url: string): Promise<ProductScrapeResult> {
     try {
-      const settings = await storageService.getSettings();
-      const strategy = settings.scrapingStrategy || 'hybrid';
-      
       let productResult: Product | undefined;
       let failureReason = '';
       let isBlocked = false;
+      let rawHtml = '';
+      let screenshotBase64 = '';
 
       let region = 'us';
       if (url.includes('amazon.de')) region = 'de';
@@ -111,10 +131,7 @@ export class CrawleeAdapter implements IScraper {
         ? new ProxyConfiguration({ proxyUrls: [proxyString] }) 
         : undefined;
 
-      // Ensure stable session across retries
-      const config = new Configuration({
-        persistStorage: false,
-      });
+      const config = new Configuration({ persistStorage: false });
 
       const crawler = new PlaywrightCrawler({
         maxRequestsPerCrawl: 1,
@@ -151,7 +168,7 @@ export class CrawleeAdapter implements IScraper {
           logger.info(`[Crawlee] Navigating to: ${request.url}`);
           await page.waitForLoadState('domcontentloaded');
           
-          // Simulate human behavior to trigger lazy-loaded elements (like prices on Amazon)
+          // Simulation for lazy loading
           try {
               await page.mouse.move(Math.random() * 500, Math.random() * 500);
               await page.waitForTimeout(500);
@@ -159,14 +176,13 @@ export class CrawleeAdapter implements IScraper {
               
               const priceSelectors = '#corePrice_feature_div .a-price, #corePriceDisplay_desktop_feature_div .a-price, #priceblock_ourprice, #price_inside_buybox';
               
-              // Try to wait for price
               let priceFound = false;
               try {
                   await page.waitForSelector(priceSelectors, { state: 'attached', timeout: 3000 });
                   priceFound = true;
               } catch (e) {}
 
-              // If price is missing, Amazon might be blocking it due to location. Let's try changing ZIP.
+              // Attempt location bypass if no price found right away
               if (!priceFound && request.url.includes('amazon.')) {
                   await this.attemptLocationBypass(page, request.url);
               }
@@ -175,32 +191,34 @@ export class CrawleeAdapter implements IScraper {
               await page.waitForTimeout(800);
               await page.mouse.wheel(0, -1000);
           } catch (e: any) {
-              logger.warn(`[Crawlee] Mouse/Wait automation failed, proceeding anyway. ${e.message}`);
+              logger.warn(`[Crawlee] Mouse automation failed. ${e.message}`);
           }
 
-          const html = await page.content();
+          rawHtml = await page.content();
           let marketplace = 'unknown';
           if (request.url.includes('amazon')) marketplace = 'amazon';
           else if (request.url.includes('etsy')) marketplace = 'etsy';
 
-          if (marketplace === 'amazon' && this.isAmazonBlocked(html)) {
-            const snapshotDir = path.join(process.cwd(), 'data', 'snapshots');
-            try { 
-              await page.screenshot({ path: path.join(snapshotDir, `blocked-${uuidv4()}.jpg`), type: 'jpeg', quality: 80, fullPage: true }); 
-            } catch (e) {
-              logger.warn('[Crawlee] Failed to take blocked snapshot');
-            }
-            session?.markBad();
-            isBlocked = true;
-            throw new Error('Blocked by CAPTCHA/Anti-bot');
+          if (this.isBotBlocked(true, rawHtml, request.url)) {
+             session?.markBad();
+             isBlocked = true;
+             throw new Error('Blocked by CAPTCHA/Anti-bot');
+          }
+
+          // Always grab a screenshot in case we need it for Phase 3 Multimodal fallback
+          try {
+             const screenshotBuffer = await page.screenshot({ type: 'jpeg', quality: 80, fullPage: true });
+             screenshotBase64 = screenshotBuffer.toString('base64');
+          } catch (e: any) {
+             logger.warn(`[Crawlee] Failed to capture fullPage screenshot: ${e.message}`);
           }
 
           let metrics: Partial<ProductMetrics> = {};
           const scrapedAt = new Date().toISOString();
 
-          // Unify extraction for all platforms via PlatformExtractor
-          const $ = cheerio.load(html);
-          const context = { url: request.url, html, $ };
+          // Standard extraction over Cheerio
+          const $ = cheerio.load(rawHtml);
+          const context = { url: request.url, html: rawHtml, $ };
           const extractor = new PlatformExtractor();
           
           const [metaResult, platformResult] = await Promise.all([
@@ -210,19 +228,23 @@ export class CrawleeAdapter implements IScraper {
 
           let finalTitle = platformResult.title || metaResult.title || 'Unknown Product';
           metrics = { ...metaResult.metrics, ...platformResult.metrics };
-
-          const isCriticalMissing = !finalTitle || finalTitle === 'Unknown Product' || !metrics.price;
-          if (isCriticalMissing) {
-              logger.warn(`[Crawlee ${marketplace}] Normal extraction missing critical data. Invoking AI Fallback...`);
-              const fallbackResult = await aiFallbackExtractor.extract({ ...context, marketplace });
-              if (fallbackResult.success) {
-                  finalTitle = fallbackResult.title || finalTitle;
-                  metrics = { ...metrics, ...fallbackResult.metrics };
-              } else {
-                  logger.warn(`[Crawlee ${marketplace}] AI Fallback failed: ${fallbackResult.error}`);
-              }
-          }
           
+          // Check cached selectors (Self-Healing Phase 2 prep) - if standard extraction missed price but we have
+          // a healed selector in cache, use it immediately!
+          if (!metrics.price) {
+             const healedPriceSelector = llmSelectorCache.getSelector(request.url, 'price');
+             if (healedPriceSelector) {
+                 const newPriceText = $(healedPriceSelector).text();
+                 if (newPriceText) {
+                     const parsed = parseFloat(newPriceText.replace(/[^0-9.,]/g, '').replace(',', '.'));
+                     if (!isNaN(parsed) && parsed > 0) {
+                         metrics.price = parsed;
+                         logger.info(`[Crawlee] Successfully used cached HEALED selector for price!`);
+                     }
+                 }
+             }
+          }
+
           const domainCurrency = detectCurrencyFromDomain(request.url) || 'USD';
           metrics.currency = metrics.currency || domainCurrency;
           metrics = syncMetricsPriceFromBuyBox(metrics, scrapedAt);
@@ -235,30 +257,31 @@ export class CrawleeAdapter implements IScraper {
                   metrics.discountPercentage = Math.round(((metrics.originalPrice - metrics.price) / metrics.originalPrice) * 100);
               }
           }
-
-          // Generate Snapshot for debugging missing prices
-          if (metrics.price === undefined) {
-             const snapshotId = uuidv4();
-             const snapshotDir = path.join(process.cwd(), 'data', 'snapshots');
-             logger.warn(`[Crawlee ${marketplace}] Price extraction failed completely. Dumping debug data to noprice-${snapshotId}.jpg and html`);
-             try {
-                 await page.screenshot({ path: path.join(snapshotDir, `noprice-${snapshotId}.jpg`), type: 'jpeg', quality: 80, fullPage: true });
-                 const fs = require('fs');
-                 fs.writeFileSync(path.join(snapshotDir, `noprice-${snapshotId}.html`), html);
-             } catch (err) {}
-          }
+          
+          // Make sure required defaults are filled
+          const finalMetrics: ProductMetrics = {
+             currency: metrics.currency || domainCurrency,
+             description: metrics.description || '',
+             imageUrl: metrics.imageUrl || '',
+             brand: metrics.brand || '',
+             availability: metrics.availability || 'Unknown',
+             features: metrics.features || [],
+             imageUrls: metrics.imageUrls || [],
+             offers: metrics.offers || [],
+             ...metrics
+          };
           
           productResult = {
             id: uuidv4(),
             title: finalTitle || 'Unknown Product',
             url: request.url,
             marketplace,
-            metrics: metrics as Product['metrics'],
+            metrics: finalMetrics,
             scrapedAt,
-            scrapedBy: 'crawler' // Keeping the original type mapping, though engine is crawlee
+            scrapedBy: 'crawler'
           };
           
-          logger.info(`[Crawlee] Successfully extracted ${productResult.title} - Price: ${metrics.price || 'N/A'}`);
+          logger.info(`[Crawlee] Pass 1 Extraction for ${productResult.title} - Price: ${metrics.price || 'MISSING'}`);
         },
         failedRequestHandler: async ({ request }: PlaywrightCrawlingContext, error: Error) => {
           logger.error(`[Crawlee] Request failed for ${request.url}: ${error.message}`);
@@ -272,17 +295,17 @@ export class CrawleeAdapter implements IScraper {
       await crawler.run([url]);
 
       if (isBlocked) {
-          return { error: 'Amazon blocked the request (CAPTCHA/Robot Check).' };
+          return { error: 'Platform blocked the request (CAPTCHA/Robot Check). Proceeding to fallback.' };
       }
 
-      if (!productResult) {
-        return { error: `Failed to fetch URL. Reason: ${failureReason || 'No product data extracted'}` };
-      }
-
-      // Cleanup snapshots to avoid accumulating unnecessary images on success
       await this.cleanupSnapshots();
 
-      return { product: productResult };
+      return { 
+          product: productResult, 
+          html: rawHtml, 
+          screenshotBase64,
+          error: failureReason ? failureReason : undefined
+      };
 
     } catch (err: any) {
       return { error: `Crawlee engine failed: ${err.message}` };
@@ -294,5 +317,113 @@ export class CrawleeAdapter implements IScraper {
     return html.includes('action="/errors/validateCaptcha"') ||
            html.includes('api-services-support@amazon.com') ||
            (html.includes('To discuss automated access to Amazon data') && html.includes('contact'));
+  }
+
+  private isBotBlocked(success: boolean, html: string, url: string = ''): boolean {
+    if (!success || !html) return true;
+    if (url.includes('etsy.com')) {
+        if (html.includes('Pardon Our Interruption') || 
+            html.includes('distil_ident_challenge') || 
+            html.includes('px-captcha') ||
+            html.includes('cloudflare') ||
+            html.includes('cf-turnstile') ||
+            html.includes('challenges.cloudflare.com')) {
+            return true;
+        }
+        return false;
+    }
+    return this.isAmazonBlocked(html);
+  }
+
+  async scrapeSearch(keyword: string, marketplace: string): Promise<{ result?: SerpResult, error?: string }> {
+    try {
+      let url = '';
+      if (marketplace.includes('amazon')) {
+          const tld = marketplace.toLowerCase().replace('amazon.', '') || 'com';
+          url = `https://www.amazon.${tld}/s?k=${encodeURIComponent(keyword)}`;
+      } else if (marketplace.includes('etsy')) {
+          url = `https://www.etsy.com/search?q=${encodeURIComponent(keyword)}`;
+          
+          if (config.firecrawlApiKey && config.etsyForceFirecrawl) {
+              logger.info('[CrawleeAdapter] ETSY_FORCE_FIRECRAWL=true, using Firecrawl for Etsy SERP.');
+              const FireCrawlApp = require('@mendable/firecrawl-js').default;
+              const fc = new FireCrawlApp({ apiKey: config.firecrawlApiKey });
+              const res = await fc.scrapeUrl(url, { formats: ['html'], timeout: 60000 });
+              if (res.success && res.html) {
+                  return { result: extractEtsySerp(res.html, keyword, marketplace) };
+              } else {
+                  return { error: `Failed to fetch Etsy SERP via Firecrawl. Error: ${res.error}` };
+              }
+          }
+      } else {
+          return { error: 'Unsupported marketplace for search' };
+      }
+
+      const settings = await storageService.getSettings();
+      const strategy = settings.scrapingStrategy || 'hybrid';
+      
+      let fetchResult: FetchResult | undefined;
+      const maxRetries = 3;
+      let lastError = '';
+
+      for (let attempt = 0; attempt < maxRetries; attempt++) {
+        const proxyUrl = await proxyManager.getProxyString();
+        
+        if (strategy === 'stealth') {
+          logger.info(`SERP Mode: stealth. Try ${attempt + 1} for: ${keyword}`);
+          fetchResult = await playwrightFetcher.fetchHtml(url, proxyUrl);
+        } else {
+          logger.info(`SERP Mode: HTTP. Try ${attempt + 1} for: ${keyword}`);
+          fetchResult = await fetcher.fetchHtml(url, proxyUrl);
+
+          if (strategy === 'hybrid') {
+            const contentStr = fetchResult.html || '';
+            if (this.isBotBlocked(fetchResult.success, contentStr, url)) {
+              logger.warn(`SERP block detected. Try ${attempt + 1}. Falling back to Playwright...`);
+              fetchResult = await playwrightFetcher.fetchHtml(url, proxyUrl);
+            }
+          }
+        }
+
+        const contentStr = fetchResult.html || '';
+        if (fetchResult.success && fetchResult.html && !this.isBotBlocked(fetchResult.success, contentStr, url)) {
+          break; // Success
+        } else {
+          lastError = fetchResult.error || (this.isBotBlocked(fetchResult.success, contentStr, url) ? 'Blocked by CAPTCHA/Anti-bot' : 'Unknown Error');
+          logger.warn(`SERP attempt ${attempt + 1} failed: ${lastError}`);
+          if (proxyUrl) {
+            proxyManager.markAsDead(proxyUrl);
+          }
+        }
+      }
+
+      if (!fetchResult || !fetchResult.success || !fetchResult.html) {
+          if (config.firecrawlApiKey && lastError.toLowerCase().includes('blocked')) {
+              logger.warn(`SERP block detected locally. Falling back to Firecrawl for SERP...`);
+              const FireCrawlApp = require('@mendable/firecrawl-js').default;
+              const fc = new FireCrawlApp({ apiKey: config.firecrawlApiKey });
+              const res = await fc.scrapeUrl(url, { formats: ['html'], timeout: 60000 });
+              if (res.success && res.html) {
+                  fetchResult = { success: true, html: res.html };
+              } else {
+                  return { error: `Failed to fetch SERP via Firecrawl. Error: ${res.error}` };
+              }
+          } else {
+              return { error: `Failed to fetch SERP after ${maxRetries} attempts. Last Error: ${lastError}` };
+          }
+      }
+
+      let serpResult;
+      if (marketplace.includes('amazon')) {
+          serpResult = extractAmazonSerp(fetchResult.html, keyword, marketplace);
+      } else if (marketplace.includes('etsy')) {
+          serpResult = extractEtsySerp(fetchResult.html, keyword, marketplace);
+      }
+      
+      return { result: serpResult };
+
+    } catch (err: any) {
+      return { error: `SERP Scrape failed: ${err.message}` };
+    }
   }
 }

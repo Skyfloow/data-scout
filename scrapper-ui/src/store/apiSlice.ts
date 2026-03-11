@@ -70,6 +70,11 @@ interface PriceHistoryResponse {
   history: PriceHistoryPoint[];
 }
 
+interface AppSettings {
+  defaultScraper?: ScraperType;
+  [key: string]: any;
+}
+
 const envApiUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL;
 const normalizedApiUrl = envApiUrl
   ? envApiUrl.endsWith('/') ? envApiUrl : `${envApiUrl}/`
@@ -115,6 +120,11 @@ export const apiSlice = createApi({
 
     getMetricsDefinitions: builder.query<DashboardMetricsDefinitionsResponse, void>({
       query: () => 'metrics/definitions',
+      keepUnusedDataFor: 300,
+    }),
+
+    getSettings: builder.query<AppSettings, void>({
+      query: () => 'settings/',
       keepUnusedDataFor: 300,
     }),
 
@@ -307,4 +317,5 @@ export const {
   useGetProductByIdQuery,
   useDeleteProductsMutation,
   useAddBulkTrackersMutation,
+  useGetSettingsQuery,
 } = apiSlice;

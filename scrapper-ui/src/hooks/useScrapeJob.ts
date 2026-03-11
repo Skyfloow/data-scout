@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTriggerScrapeMutation, useGetJobStatusQuery, apiSlice } from '../store/apiSlice';
 import { ScraperType } from '../types';
@@ -13,6 +13,13 @@ export function useScrapeJob({ onCompleted, onError }: UseScrapeJobProps) {
   const [triggerScrape, { isLoading: isStarting }] = useTriggerScrapeMutation();
   const dispatch = useDispatch();
 
+  const onCompletedRef = useRef(onCompleted);
+  const onErrorRef = useRef(onError);
+  
+  // Update refs to latest callbacks to avoid stale closures
+  onCompletedRef.current = onCompleted;
+  onErrorRef.current = onError;
+
   const { data: jobStatus } = useGetJobStatusQuery(currentJobId as string, {
     skip: !currentJobId,
     pollingInterval: 2000,
@@ -23,12 +30,12 @@ export function useScrapeJob({ onCompleted, onError }: UseScrapeJobProps) {
     if (jobStatus.status === 'completed') {
       setCurrentJobId(null);
       dispatch(apiSlice.util.invalidateTags(['Products', 'Metrics']));
-      onCompleted();
+      onCompletedRef.current();
     } else if (jobStatus.status === 'failed') {
       setCurrentJobId(null);
-      onError(jobStatus.error || 'Unknown error');
+      onErrorRef.current(jobStatus.error || 'Unknown error');
     }
-  }, [jobStatus, dispatch, onCompleted, onError]);
+  }, [jobStatus, dispatch]);
 
   const startJob = async (url: string, scraper: ScraperType) => {
     const response = await triggerScrape({ url, scraper }).unwrap();

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Rocket, Send } from 'lucide-react';
-import { API_BASE_URL } from '../store/apiSlice';
+import { useGetSettingsQuery } from '../store/apiSlice';
 import { ScraperType } from '../types';
 import { logger } from '../utils/logger';
 import { Alert } from './ui/alert';
@@ -21,7 +21,7 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
   const [scraper, setScraper] = useState<ScraperType>('crawler');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState('');
-  const [toastSeverity, setToastSeverity] = useState<'success' | 'error'>('success');
+  const [toastSeverity, setToastSeverity] = useState<'success' | 'error' | 'warning'>('success');
 
   const onJobCompleted = useCallback(() => {
     setToastSeverity('success');
@@ -38,16 +38,18 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
     onError: onJobError,
   });
 
+  const { data: settingsData } = useGetSettingsQuery();
+
+  useEffect(() => {
+    if (settingsData?.defaultScraper) {
+      setScraper(settingsData.defaultScraper);
+    }
+  }, [settingsData]);
+
   useEffect(() => {
     if (!open) return;
     setUrl('');
     setErrorMsg(null);
-    fetch(`${API_BASE_URL}settings/`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.defaultScraper) setScraper(data.defaultScraper);
-      })
-      .catch((err) => logger.error('Failed to load scraper default', err));
   }, [open]);
 
   useEffect(() => {
@@ -88,19 +90,19 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
     <>
       <Dialog open={open} onOpenChange={(nextOpen) => (!nextOpen ? handleModalClose() : null)}>
         <DialogContent>
-          <DialogHeader style={{ paddingBottom: 16 }}>
-            <DialogTitle style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--fg)', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <DialogHeader className="pb-4">
+            <DialogTitle className="text-lg font-semibold tracking-tight text-[var(--fg)] flex items-center gap-2">
               <Rocket size={18} strokeWidth={2.5} /> Новая задача сбора
             </DialogTitle>
-            <DialogDescription style={{ fontSize: 14, marginTop: 4, lineHeight: 1.5 }}>
+            <DialogDescription className="text-sm mt-1 leading-relaxed">
               Запустите быстрый скан товара (Amazon или Etsy) и обновите метрики сразу в дашборде.
             </DialogDescription>
           </DialogHeader>
 
-          <div className="stack-col" style={{ gap: 16 }}>
+          <div className="stack-col gap-4">
             {errorMsg ? <Alert variant="destructive">{errorMsg}</Alert> : null}
 
-            <form id="scrap-form" onSubmit={handleSubmit} className="stack-col" style={{ gap: 12 }}>
+            <form id="scrap-form" onSubmit={handleSubmit} className="stack-col gap-3">
               <div className="field">
                 <label className="field-label">URL товара (Amazon, Etsy)</label>
                 <Input
@@ -129,19 +131,19 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
             </form>
           </div>
 
-          <DialogFooter style={{ marginTop: 24 }}>
-            <Button variant="ghost" onClick={handleModalClose} disabled={isStarting} style={{ borderRadius: 6, height: 36, padding: '0 16px' }}>
+          <DialogFooter className="mt-6">
+            <Button variant="ghost" onClick={handleModalClose} disabled={isStarting} className="rounded-md h-9 px-4">
               Отмена
             </Button>
-            <Button htmlType="submit" form="scrap-form" disabled={isStarting || !url} style={{ borderRadius: 6, height: 36, padding: '0 16px', fontWeight: 500 }} {...({} as any)}>
-              <Send size={14} style={{ marginRight: 6 }} />
+            <Button htmlType="submit" form="scrap-form" disabled={isStarting || !url} className="rounded-md h-9 px-4 font-medium">
+              <Send size={14} className="mr-1.5" />
               {isStarting ? 'Сбор...' : 'Запустить'}
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      {toastMessage ? <div className={`toast ${toastSeverity === 'success' ? 'toast-success' : 'toast-error'}`}>{toastMessage}</div> : null}
+      {toastMessage ? <div className={`toast ${toastSeverity === 'success' ? 'toast-success' : toastSeverity === 'error' ? 'toast-error' : 'toast-warning'}`}>{toastMessage}</div> : null}
     </>
   );
 }

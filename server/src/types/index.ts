@@ -135,6 +135,16 @@ export interface EtsyMarketplaceMetrics {
 
 // ─── Main product metrics ───
 export interface ProductMetrics {
+  // Required base properties
+  currency: string;
+  description: string;
+  imageUrl: string;
+  brand: string;
+  availability: string;
+  features: string[];
+  imageUrls: string[];
+  offers: Offer[];
+
   price?: number;
   priceUSD?: number;
   itemPrice?: number;
@@ -157,19 +167,11 @@ export interface ProductMetrics {
   averageRating?: number;
   reviewsCount?: number;
   viewsCount?: number;
-  description?: string;
-  imageUrl?: string;
-  imageUrls?: string[];
-  brand?: string;
   category?: string;
-  features?: string[];
   originalPrice?: number;
   discountPercentage?: number;
-  availability?: string;
   stockCount?: number;
   deliveryInfo?: string;
-  currency?: string;
-  offers?: Offer[];
   averageOfferPrice?: number;
   averageOfferPriceUSD?: number;
   lowestOfferPrice?: number;
@@ -232,6 +234,7 @@ export interface ProductMetrics {
   // Marketplace-specific structured blocks
   amazonMetrics?: AmazonMarketplaceMetrics;
   etsyMetrics?: EtsyMarketplaceMetrics;
+  dynamicFeatures?: Record<string, any>;
 }
 
 export interface Product {
@@ -248,6 +251,9 @@ export interface Product {
 export interface ProductScrapeResult {
   product?: Product;
   error?: string;
+  html?: string;
+  markdown?: string;
+  screenshotBase64?: string;
 }
 
 export type TrackingType = 'product' | 'keyword' | 'category';

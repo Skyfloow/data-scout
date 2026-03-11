@@ -22,7 +22,7 @@ export default function BulkTrackWidgetModal({ open, onClose }: BulkTrackWidgetM
   const [intervalHours, setIntervalHours] = useState<number>(24);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const [toastMessage, setToastMessage] = useState('');
-  const [toastSeverity, setToastSeverity] = useState<'success' | 'error'>('success');
+  const [toastSeverity, setToastSeverity] = useState<'success' | 'error' | 'warning'>('success');
 
   const [addBulkTrackers, { isLoading: isSubmitting }] = useAddBulkTrackersMutation();
 
@@ -163,7 +163,7 @@ export default function BulkTrackWidgetModal({ open, onClose }: BulkTrackWidgetM
         </DialogContent>
       </Dialog>
 
-      {toastMessage ? <div className={`toast ${toastSeverity === 'success' ? 'toast-success' : 'toast-error'}`}>{toastMessage}</div> : null}
+      {toastMessage ? <div className={`toast ${toastSeverity === 'success' ? 'toast-success' : toastSeverity === 'error' ? 'toast-error' : 'toast-warning'}`}>{toastMessage}</div> : null}
     </>
   );
 }

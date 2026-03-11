@@ -38,6 +38,8 @@ function SortButton({ active, order, onClick, children }: { active: boolean; ord
   );
 }
 
+const EMPTY_PRODUCTS: Product[] = [];
+
 function ProductTable() {
   const { t } = useTranslation();
   const [filterSource, setFilterSource] = useState<string>('all');
@@ -50,7 +52,7 @@ function ProductTable() {
 
   const { data, isLoading, error } = useGetProductsQuery(params);
   const [deleteProducts, { isLoading: isDeleting }] = useDeleteProductsMutation();
-  const products: Product[] = data?.data || [];
+  const products: Product[] = data?.data || EMPTY_PRODUCTS;
 
   const { sortedProducts, sortKey, sortOrder, handleSort } = useSortedProducts(products);
   

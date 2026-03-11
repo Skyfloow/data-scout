@@ -114,8 +114,11 @@ export class PlaywrightFetcher {
       },
     });
 
-    await crawler.run([url]);
-    await requestQueue.drop();
+    try {
+      await crawler.run([url]);
+    } finally {
+      await requestQueue.drop();
+    }
 
     if (!html) {
       throw new Error(failureReason || 'Crawlee Playwright returned empty HTML');

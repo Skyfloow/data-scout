@@ -247,16 +247,29 @@ a {
   max-width: min(420px, calc(100vw - 32px));
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 10px 12px;
+  padding: 12px 16px;
   background: var(--bg-elevated);
+  color: var(--fg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-weight: 500;
 }
 
 .toast-success {
-  border-color: color-mix(in oklab, var(--success) 35%, var(--border));
+  background: var(--success);
+  border-color: var(--success);
+  color: white;
 }
 
 .toast-error {
-  border-color: color-mix(in oklab, var(--danger) 35%, var(--border));
+  background: var(--danger);
+  border-color: var(--danger);
+  color: white;
+}
+
+.toast-warning {
+  background: var(--warning);
+  border-color: var(--warning);
+  color: white;
 }
 
 .text-center {

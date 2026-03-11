@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify';
 import { getMonitoredEntities, scheduleNew, unschedule, setMonitoringStatus } from '../services/SchedulerService';
 import { getPriceHistory, getPriceHistoryBatch } from '../services/PriceHistoryService';
-import { CrawlerAdapter } from '../modules/scraping/adapters/CrawlerAdapter';
+import { CrawleeAdapter } from '../modules/scraping/adapters/CrawleeAdapter';
 import { appendPriceSnapshot } from '../services/PriceHistoryService';
 import { storageService } from '../modules/storage/services/StorageService';
 import { MonitoredEntity, TrackingType, Product } from '../types';
@@ -11,7 +11,7 @@ import { createApiErrorPayload, paginate } from '../utils/http';
 
 const logger = baseLogger.child({ module: 'MonitoringRoutes' });
 
-const crawlerAdapter = new CrawlerAdapter();
+const crawlerAdapter = new CrawleeAdapter();
 const LATEST_INDEX_REFRESH_MS = 15_000;
 
 type LatestKeywordData = { scrapedAt: string; topAsin?: string; topTitle?: string };
