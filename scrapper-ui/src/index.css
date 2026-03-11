@@ -346,3 +346,77 @@ body.ant-scrolling-effect .fab-container {
     padding: 0 4px 10px !important;
   }
 }
+
+/* Ultra-Modern Tabs Styling */
+.ant-tabs-nav {
+  margin-bottom: 24px !important;
+}
+.ant-tabs-nav::before {
+  display: none !important;
+}
+.ant-tabs-nav-list {
+  background: var(--bg-soft);
+  padding: 4px !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--border) !important;
+}
+.ant-tabs-tab {
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: none !important;
+}
+.ant-tabs-tab-active {
+  background: var(--bg-elevated) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--primary) !important;
+}
+.ant-tabs-tab:hover:not(.ant-tabs-tab-active) {
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+:root.dark .ant-tabs-tab:hover:not(.ant-tabs-tab-active) {
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+.ant-tabs-ink-bar {
+  display: none !important;
+}
+
+/* Premium Analytics UI Elements */
+.sentiment-bar {
+  height: 6px;
+  width: 100%;
+  background: var(--bg-soft);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.sentiment-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.listing-health-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.data-quality-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 20px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+}

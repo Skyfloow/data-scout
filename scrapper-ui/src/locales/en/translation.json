@@ -54,6 +54,8 @@
     "latestMetric": "Latest Metric",
     "marketplace": "Marketplace",
     "updatedAt": "Updated At",
+    "marketSentiment": "Market Sentiment",
+    "health": "Listing Health",
     "history": "History",
     "top1": "Top 1",
     "waitingData": "Waiting for data...",
@@ -147,10 +149,16 @@
     "rating": "Rating",
     "offers": "Offers",
     "tags": "Tags",
+    "dispatchTime": "Dispatch Time",
+    "materials": "Materials",
+    "shopStatus": "Shop Status",
     "scrapedAt": "Scraped At",
     "openMarketplace": "Open on marketplace",
     "sellers": "Sellers",
     "new": "New",
-    "prime": "Prime"
+    "prime": "Prime",
+    "dataQuality": "Data Quality",
+    "availability": "Availability",
+    "views": "Views"
   }
 }

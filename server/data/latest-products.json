@@ -686,14 +686,14 @@
     "scrapedBy": "crawler"
   },
   "https://www.amazon.com/apple-iphone-version-desert-titanium/dp/b0dpdknpt9/ref=sr_1_24": {
-    "id": "c7d0ffb5-e5d5-4316-ac09-15b8b50238b1",
+    "id": "2d6ac44e-7e76-44ff-a4ab-102cecd83e89",
     "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked",
     "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DPDKNPT9/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
     "marketplace": "amazon",
     "metrics": {
       "currency": "USD",
       "description": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium) About this item This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers. There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length. This product will have a battery which exceeds 80% capacity relative to new. Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box. This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied. › See more product details",
-      "imageUrl": "https://m.media-amazon.com/images/I/61Z4eGyb1mL._AC_SX466_.jpg",
+      "imageUrl": "https://m.media-amazon.com/images/I/61Z4eGyb1mL._AC_SX522_.jpg",
       "brand": "Amazon Renewed",
       "availability": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
       "features": [
@@ -730,7 +730,7 @@
       "stockCount": 1,
       "isAmazonChoice": false,
       "isBestSeller": false,
-      "deliveryInfo": "FREE delivery Tomorrow, March 12. Order within 8 hrs 26 mins. Details",
+      "deliveryInfo": "FREE delivery Tomorrow, March 12. Order within 6 hrs 16 mins. Details",
       "modelNumber": "A3084",
       "manufacturer": "Apple",
       "dateFirstAvailable": "October 20, 2024",
@@ -739,30 +739,6 @@
       "isClimateFriendly": true,
       "videoCount": 6,
       "customersAlsoViewed": [
-        {
-          "asin": "B0FWD1MS82",
-          "title": "Apple iPad Pro 13-inch (M5): Ultra Retina XDR Display, 256GB, Landscape 12MP Front Camera/12MP Back Camera, LiDAR Scanner, Wi"
-        },
-        {
-          "asin": "B0FTMY4YZ2",
-          "title": "PlayStation 5 Pro Console - 2TB"
-        },
-        {
-          "asin": "B0F183N7C4",
-          "title": "UNBREAKcable 2-Pack Screen Protector for iPhone 16 Pro Max, Double Shatterproof Tempered Glass [Easy Installation Frame] [9H"
-        },
-        {
-          "asin": "B0CQ6QP27D",
-          "title": "Jo Milano Game of Spades Diamond Parfum Spray | 3.4 oz (100ml) | Vanilla, Fruity, Amber, Sweet, Musky Scent | Long Lasting Fr"
-        },
-        {
-          "asin": "B0F5Q5YV21",
-          "title": "SMARTDEVIL 2 Pack for iPhone 16 Pro Max Privacy Screen Protector, Military Grade Shatterproof, 9H Hardness, Anti-Spy Tempered"
-        },
-        {
-          "asin": "B0D4XCLY9X",
-          "title": "Apple iPad Pro 2024 (13-inch, Wi-Fi, 256GB) - Space Black (Renewed)"
-        },
         {
           "asin": "B0CRJSBN5M",
           "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
@@ -778,25 +754,25 @@
       ],
       "bsrCategories": [
         {
-          "rank": 779,
+          "rank": 772,
           "category": "Cell Phones &amp; Accessories"
         },
         {
-          "rank": 9,
+          "rank": 10,
           "category": "Renewed Smartphones"
         },
         {
-          "rank": 12,
+          "rank": 13,
           "category": "Cell Phones"
         }
       ],
-      "bestSellerRank": "#779 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+      "bestSellerRank": "#772 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #10 in Renewed Smartphones #13 in Cell Phones",
       "buyBox": {
         "sellerName": "ELECTRONIC DEALSELECTRONIC DEALS",
         "price": 839,
         "isFBA": false,
         "isAmazon": false,
-        "observedAt": "2026-03-11T08:34:04.056Z"
+        "observedAt": "2026-03-11T10:43:53.438Z"
       },
       "selectedOffer": {
         "source": "buybox",
@@ -821,19 +797,19 @@
         },
         "bsrCategories": [
           {
-            "rank": 779,
+            "rank": 772,
             "category": "Cell Phones &amp; Accessories"
           },
           {
-            "rank": 9,
+            "rank": 10,
             "category": "Renewed Smartphones"
           },
           {
-            "rank": 12,
+            "rank": 13,
             "category": "Cell Phones"
           }
         ],
-        "bestSellerRank": "#779 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #9 in Renewed Smartphones #12 in Cell Phones",
+        "bestSellerRank": "#772 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #10 in Renewed Smartphones #13 in Cell Phones",
         "isPrime": false,
         "isAmazonChoice": false,
         "isBestSeller": false,
@@ -851,13 +827,13 @@
           }
         ]
       },
-      "priceObservedAt": "2026-03-11T08:34:04.056Z",
-      "itemPriceObservedAt": "2026-03-11T08:34:04.056Z",
+      "priceObservedAt": "2026-03-11T10:43:53.438Z",
+      "itemPriceObservedAt": "2026-03-11T10:43:53.438Z",
       "priceUSD": 839,
       "itemPriceUSD": 839,
       "dataQualityScore": 100
     },
-    "scrapedAt": "2026-03-11T08:34:04.056Z",
+    "scrapedAt": "2026-03-11T10:43:53.438Z",
     "scrapedBy": "crawler"
   },
   "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting": {

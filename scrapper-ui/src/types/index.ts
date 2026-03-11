@@ -250,6 +250,7 @@ export interface ProductMetrics {
   shopAgeText?: string;
   shopAgeYears?: number;
   isStarSeller?: boolean;
+  bestsellerBadge?: boolean;
   shopResponseRate?: number;
 
   // Marketplace-specific structured blocks

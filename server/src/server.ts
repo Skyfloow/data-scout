@@ -99,6 +99,9 @@ async function start() {
     await server.register(settingsRoutes, { prefix: '/api/settings' });
     await server.register(opsRoutes, { prefix: '/api/ops' });
 
+    server.get('/', async () => {
+      return { status: 'ok' };
+    });
 
     server.get('/health', { config: { rateLimit: false } }, async () => {
       return { status: 'ok', timestamp: new Date().toISOString() };

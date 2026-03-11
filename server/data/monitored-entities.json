@@ -6,8 +6,10 @@
     "marketplace": "amazon.com",
     "intervalHours": 0.16666666666666666,
     "addedAt": "2026-02-27T23:14:38.640Z",
-    "status": "paused",
-    "lastScrapedAt": "2026-02-28T16:02:07.315Z"
+    "status": "active",
+    "lastScrapedAt": "2026-03-11T12:31:24.135Z",
+    "nextRunAt": "2026-03-11T12:51:21.436Z",
+    "lastRunAt": "2026-03-11T12:31:24.135Z"
   },
   {
     "id": "7898ea4f-e11a-4696-aa0c-fe3a65835402",

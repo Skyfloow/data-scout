@@ -374,37 +374,6 @@
     "scrapedBy": "firecrawl"
   },
   {
-    "id": "83ed22ec-5335-49e6-8477-f1a652f2f454",
-    "title": "- [Homepage](",
-    "url": "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting?ls=r&ref=landingpage_similar_listing_bot-3&sts=1&dd=1&content_source=3b3bc38a685353e649883684d589ac26%253ALT219d349c36ed90144d97e46c9239ac36a77defeb&dd_referrer=https%3A%2F%2Fwww.etsy.com%2Flisting%2F1377821468%2Fcandle-tattoos-various-motifs-water%3Fexternal%3D1%26ref%3Dhp_consolidated_gifting_listings-3%26logging_key%3D9debd94b34357f19c21404e8d922e72f5c0e3373%253A1377821468&logging_key=3b3bc38a685353e649883684d589ac26%3ALT219d349c36ed90144d97e46c9239ac36a77defeb&listing_id=1635757202&listing_slug=candle-file-easter-bunny-floral-greeting",
-    "marketplace": "etsy",
-    "metrics": {
-      "description": "",
-      "imageUrl": "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
-      "currency": "USD",
-      "brand": "BEIDEN7ZWERGEN",
-      "buyBox": {
-        "sellerName": "BEIDEN7ZWERGEN",
-        "price": 0,
-        "isFBA": false,
-        "isAmazon": false
-      },
-      "features": [
-        "CANDLE FILE FLOWER GREETING FROM THE EASTER BUNNY FOR A4 PRINT ON WATER SLIDE FILM The Easter candle file \"FLOWER GREETINGS FROM THE EASTER BUNNY\" contains various coordinated motifs in watercolor, graphics and lettering, which can all be combined well with each other and leave plenty of room for your own creativity. Depending on the combination, the graphic lettering, the elegant watercolor flowers and the cute Easter bunnies can be used to create simple, elegant or cute, playful candle motifs.PLEASE NOTE: This is NOT a finished product, but a digital print template with multiple uses on one A4 page.After downloading, the PDF (or JPG) only needs to be printed 1:1 on waterslide film. Printing and processing is carried out according to the instructions of the manufacturer of the respective film.The finished printed motifs are cut out with as little border as possible, briefly soaked in water and applied to the candles according to personal taste.The candle file is available for download as a DIN A4 page in PDF format and as a high-resolution JPG.************************************************Would you prefer a finished print on water slide film? Then buy the candle film in our partner shop!===> https://druckbeiden7zwergen.etsy.com <===************************************************LEGAL INFORMATIONBefore using my candle files, please read the following terms of use carefully:- By purchasing the file you receive a personal license for private use of the candle file. Passing on the file to third parties is not permitted.- For commercial use, a commercial license is also required, which is available separately in the shop: https://www.etsy.com/de/listing/1564372853/1-jahres-lizenz-zur-kommerziellen- The resale of the files, both in digital and physical form (e.g. as a print on waterslide film), is prohibited.Thank you for your understanding and compliance with these legal terms. If you have any questions about the terms of use or the commercial license, please do not "
-      ],
-      "imageUrls": [
-        "https://i.etsystatic.com/45041061/r/il/2aff2c/5688947173/il_fullxfull.5688947173_57ej.jpg",
-        "https://i.etsystatic.com/45041061/r/il/522b9f/5640824384/il_fullxfull.5640824384_t8ot.jpg",
-        "https://i.etsystatic.com/45041061/r/il/c79157/5642743080/il_fullxfull.5642743080_knk6.jpg",
-        "https://i.etsystatic.com/45041061/r/il/489507/5688929211/il_fullxfull.5688929211_p3e2.jpg",
-        "https://i.etsystatic.com/45041061/r/il/905356/5566297976/il_fullxfull.5566297976_il0e.jpg"
-      ],
-      "dataQualityScore": 60
-    },
-    "scrapedAt": "2026-03-04T22:38:46.261Z",
-    "scrapedBy": "firecrawl"
-  },
-  {
     "id": "7373288b-56a5-494d-bf1c-ba01c45ce7fa",
     "title": "Candle file EASTER BUNNY floral greeting, spring, flowers, bunnies, Easter, waterslide film, candle sticker, candle tattoo, PDF, JPG, watercolor",
     "url": "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting?ls=r&ref=landingpage_similar_listing_bot-3&sts=1&dd=1&content_source=3b3bc38a685353e649883684d589ac26%253ALT219d349c36ed90144d97e46c9239ac36a77defeb&dd_referrer=https%3A%2F%2Fwww.etsy.com%2Flisting%2F1377821468%2Fcandle-tattoos-various-motifs-water%3Fexternal%3D1%26ref%3Dhp_consolidated_gifting_listings-3%26logging_key%3D9debd94b34357f19c21404e8d922e72f5c0e3373%253A1377821468&logging_key=3b3bc38a685353e649883684d589ac26%3ALT219d349c36ed90144d97e46c9239ac36a77defeb&listing_id=1635757202&listing_slug=candle-file-easter-bunny-floral-greeting",
@@ -1423,31 +1392,6 @@
       "dataQualityScore": 90
     },
     "scrapedAt": "2026-03-10T19:56:54.661Z",
-    "scrapedBy": "firecrawl"
-  },
-  {
-    "id": "1765d959-78f6-4857-bc9b-d5809cf221ff",
-    "title": "Unknown Product",
-    "url": "https://www.amazon.com/dp/B08F7N8PBN",
-    "marketplace": "amazon",
-    "metrics": {
-      "price": null,
-      "currency": null,
-      "averageRating": null,
-      "reviewsCount": null,
-      "brand": null,
-      "description": null,
-      "imageUrl": null,
-      "availability": null,
-      "amazonMetrics": {
-        "bestSellerRank": null,
-        "isPrime": null,
-        "isAmazonChoice": null
-      },
-      "dynamicFeatures": {},
-      "dataQualityScore": 15
-    },
-    "scrapedAt": "2026-03-10T19:58:20.004Z",
     "scrapedBy": "firecrawl"
   },
   {

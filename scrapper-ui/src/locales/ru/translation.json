@@ -54,6 +54,8 @@
     "latestMetric": "Последний показатель",
     "marketplace": "Рынок",
     "updatedAt": "Время обновления",
+    "marketSentiment": "Настроение рынка",
+    "health": "Здоровье листинга",
     "history": "История",
     "top1": "Топ 1",
     "waitingData": "Ожидает сбора...",
@@ -147,10 +149,16 @@
     "rating": "Оценка",
     "offers": "Предложения",
     "tags": "Теги",
+    "dispatchTime": "Срок доставки",
+    "materials": "Материалы",
+    "shopStatus": "Статус магазина",
     "scrapedAt": "Время сбора",
     "openMarketplace": "Открыть на площадке",
     "sellers": "Продавцов",
     "new": "Новых",
-    "prime": "Prime"
+    "prime": "Prime",
+    "dataQuality": "Качество данных",
+    "availability": "Наличие",
+    "views": "Просмотры"
   }
 }

@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Table, TableWrap, TBody, TH, THead, TR } from '../../../components/ui/table';
 import { useSelection } from '../../../hooks/useSelection';
 import { useSortedProducts, SortOrder } from '../../../hooks/useSortedProducts';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../components/ui/tabs';
 import ProductTableRow from './ProductTableRow';
 
 function SortButton({ active, order, onClick, children }: { active: boolean; order: SortOrder; onClick: () => void; children: React.ReactNode }) {
@@ -42,11 +43,11 @@ const EMPTY_PRODUCTS: Product[] = [];
 
 function ProductTable() {
   const { t } = useTranslation();
-  const [filterSource, setFilterSource] = useState<string>('all');
+  const [activeTab, setActiveTab] = useState<string>('all');
   const [filterScraper, setFilterScraper] = useState<string>('all');
 
   const params = {
-    source: filterSource !== 'all' ? filterSource : undefined,
+    source: activeTab !== 'all' ? activeTab : undefined,
     scraper: filterScraper !== 'all' ? (filterScraper as ScraperType) : undefined,
   };
 
@@ -71,6 +72,54 @@ function ProductTable() {
     exportProductsToCsv(sortedProducts);
   };
 
+  const renderTable = (platform: 'all' | 'amazon' | 'etsy') => (
+    <TableWrap data-pdf-expand-scroll data-pdf-table style={{ maxHeight: 600 }}>
+      <Table style={{ minWidth: 1100 }}>
+        <THead>
+          <TR>
+            <TH style={{ width: 42 }} data-pdf-exclude>
+              <Checkbox
+                checked={allSelected || (someSelected ? 'indeterminate' : false)}
+                onCheckedChange={(checked) => handleSelectAll(Boolean(checked))}
+                aria-label="Select all"
+              />
+            </TH>
+            <TH style={{ minWidth: 220 }}>
+              <SortButton active={sortKey === 'title'} order={sortOrder} onClick={() => handleSort('title')}>
+                {t('table.product')}
+              </SortButton>
+            </TH>
+            {platform === 'all' && <TH style={{ width: 100 }}>{t('table.source')}</TH>}
+            <TH style={{ width: 140 }}>
+              <SortButton active={sortKey === 'price'} order={sortOrder} onClick={() => handleSort('price')}>
+                {t('table.price')}
+              </SortButton>
+            </TH>
+            <TH style={{ width: 180 }}>{t('monitoring.marketSentiment') || 'Market Sentiment'}</TH>
+            <TH style={{ width: 120 }}>{t('monitoring.health') || 'Listing Health'}</TH>
+            <TH style={{ width: 140 }}>
+              <SortButton active={sortKey === 'date'} order={sortOrder} onClick={() => handleSort('date')}>
+                {t('table.scrapedAt')}
+              </SortButton>
+            </TH>
+            <TH style={{ width: 56 }} data-pdf-exclude />
+          </TR>
+        </THead>
+        <TBody>
+          {sortedProducts.map((row) => (
+            <ProductTableRow 
+              key={row.id} 
+              row={row} 
+              isSelected={selected.has(row.id)} 
+              onSelectChange={handleSelectOne}
+              platform={platform} 
+            />
+          ))}
+        </TBody>
+      </Table>
+    </TableWrap>
+  );
+
   return (
     <Card>
       <CardContent>
@@ -89,17 +138,6 @@ function ProductTable() {
               <Button variant="outline" size="sm" onClick={handleExportCsv} disabled={isLoading || sortedProducts.length === 0}>
                 <FileSpreadsheet size={14} /> Export CSV
               </Button>
-
-              <Select value={filterSource} onValueChange={setFilterSource}>
-                <SelectTrigger style={{ width: 140 }}>
-                  <SelectValue placeholder={t('table.source')} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">{t('table.allSources')}</SelectItem>
-                  <SelectItem value="amazon">Amazon</SelectItem>
-                  <SelectItem value="etsy">Etsy</SelectItem>
-                </SelectContent>
-              </Select>
 
               <Select value={filterScraper} onValueChange={setFilterScraper}>
                 <SelectTrigger style={{ width: 140 }}>
@@ -120,60 +158,38 @@ function ProductTable() {
             </div>
           ) : error ? (
             <Alert variant="destructive">{t('table.failedLoad')}</Alert>
-          ) : products.length === 0 ? (
-            <div className="text-center muted" style={{ padding: '2rem 0' }}>
-              {t('table.noProducts')}
-            </div>
           ) : (
-            <TableWrap data-pdf-expand-scroll data-pdf-table style={{ maxHeight: 600 }}>
-              <Table style={{ minWidth: 1100 }}>
-                <THead>
-                  <TR>
-                    <TH style={{ width: 42 }} data-pdf-exclude>
-                      <Checkbox
-                        checked={allSelected || (someSelected ? 'indeterminate' : false)}
-                        onCheckedChange={(checked) => handleSelectAll(Boolean(checked))}
-                        aria-label="Select all"
-                      />
-                    </TH>
-                    <TH style={{ minWidth: 220 }}>
-                      <SortButton active={sortKey === 'title'} order={sortOrder} onClick={() => handleSort('title')}>
-                        {t('table.product')}
-                      </SortButton>
-                    </TH>
-                    <TH>
-                      <SortButton active={sortKey === 'price'} order={sortOrder} onClick={() => handleSort('price')}>
-                        {t('table.price')}
-                      </SortButton>
-                    </TH>
-                    <TH>
-                      <SortButton active={sortKey === 'bsr'} order={sortOrder} onClick={() => handleSort('bsr')}>
-                        {t('table.bsr')}
-                      </SortButton>
-                    </TH>
-                    <TH>{t('table.rating')}</TH>
-                    <TH>{t('table.offers')}</TH>
-                    <TH>{t('table.tags')}</TH>
-                    <TH>
-                      <SortButton active={sortKey === 'date'} order={sortOrder} onClick={() => handleSort('date')}>
-                        {t('table.scrapedAt')}
-                      </SortButton>
-                    </TH>
-                    <TH style={{ width: 56 }} data-pdf-exclude />
-                  </TR>
-                </THead>
-                <TBody>
-                  {sortedProducts.map((row) => (
-                    <ProductTableRow 
-                      key={row.id} 
-                      row={row} 
-                      isSelected={selected.has(row.id)} 
-                      onSelectChange={handleSelectOne} 
-                    />
-                  ))}
-                </TBody>
-              </Table>
-            </TableWrap>
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
+              <TabsList>
+                <TabsTrigger value="all">{t('table.allSources')}</TabsTrigger>
+                <TabsTrigger value="amazon">Amazon</TabsTrigger>
+                <TabsTrigger value="etsy">Etsy</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="all" className="mt-4">
+                {products.length === 0 ? (
+                  <div className="text-center muted" style={{ padding: '2rem 0' }}>{t('table.noProducts')}</div>
+                ) : (
+                  renderTable('all')
+                )}
+              </TabsContent>
+              
+              <TabsContent value="amazon" className="mt-4">
+                 {products.length === 0 ? (
+                  <div className="text-center muted" style={{ padding: '2rem 0' }}>{t('table.noProducts')}</div>
+                ) : (
+                  renderTable('amazon')
+                )}
+              </TabsContent>
+
+              <TabsContent value="etsy" className="mt-4">
+                 {products.length === 0 ? (
+                  <div className="text-center muted" style={{ padding: '2rem 0' }}>{t('table.noProducts')}</div>
+                ) : (
+                  renderTable('etsy')
+                )}
+              </TabsContent>
+            </Tabs>
           )}
         </div>
       </CardContent>

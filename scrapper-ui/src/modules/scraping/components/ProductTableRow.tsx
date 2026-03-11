@@ -14,9 +14,10 @@ interface ProductTableRowProps {
   row: Product;
   isSelected: boolean;
   onSelectChange: (id: string, checked: boolean) => void;
+  platform: 'all' | 'amazon' | 'etsy';
 }
 
-export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTableRowProps) {
+export function ProductTableRow({ row, isSelected, onSelectChange, platform }: ProductTableRowProps) {
   const { t } = useTranslation();
   const price = resolveMetricPrice(row.metrics);
   const { products: compareProducts, addProduct, removeProduct } = useCompare();
@@ -24,72 +25,151 @@ export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTabl
   const isCompared = compareProducts.some(p => p.id === row.id);
   const compareDisabled = !isCompared && compareProducts.length >= 5;
 
+  const qualityScore = row.metrics.dataQualityScore || 0;
+  const asin = row.metrics.asin || row.id; 
+
   return (
     <TR>
       <TD data-pdf-exclude>
         <Checkbox checked={isSelected} onCheckedChange={(checked) => onSelectChange(row.id, Boolean(checked))} />
       </TD>
-      <TD style={{ maxWidth: 300 }}>
-        <Link
-          to={`/product/${row.id}`}
-          className="link"
-          style={{
-            fontWeight: 700,
-            display: 'block',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-          }}
-          title={row.title}
-        >
-          {row.title}
-        </Link>
-        <div style={{ display: 'flex', gap: 6, marginTop: 6, flexWrap: 'wrap' }}>
-          <Badge variant="outline">{row.marketplace}</Badge>
-          <Badge variant={row.scrapedBy === 'firecrawl' ? 'warning' : 'secondary'}>{row.scrapedBy}</Badge>
+      <TD style={{ minWidth: 280, maxWidth: 400 }}>
+        <div data-pdf-exclude-text style={{ 
+          fontSize: '0.9rem', 
+          fontWeight: 600, 
+          lineHeight: 1.4,
+          marginBottom: 6,
+          display: '-webkit-box',
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden'
+        }}>
+          <Link
+            to={`/product/${row.id}`}
+            className="link"
+            style={{
+              fontWeight: 700,
+              display: 'block',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+            title={row.title}
+          >
+            {row.title}
+          </Link>
+        </div>
+        <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+          <Badge variant="outline" style={{ fontSize: '0.65rem' }}>{row.marketplace.toUpperCase()}</Badge>
+          <span style={{ fontSize: '0.65rem', color: 'var(--fg-muted)', fontWeight: 500 }}>ID: {asin || 'Unknown'}</span>
+          {qualityScore > 0 && (
+            <div className="data-quality-pill" style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: 4, 
+              fontSize: '0.7rem', 
+              fontWeight: 600,
+              padding: '2px 6px',
+              borderRadius: 4,
+              background: 'var(--bg-soft)',
+              border: '1px solid var(--border)'
+            }}>
+              <div style={{ 
+                width: 5, height: 5, borderRadius: '50%',
+                background: qualityScore > 85 ? 'var(--success)' : 'var(--warning)'
+              }} />
+              DQ {qualityScore}%
+            </div>
+          )}
         </div>
       </TD>
-      <TD style={{ minWidth: 120 }}>
-        <div style={{ fontWeight: 800 }}>${price.toFixed(2)}</div>
-        {row.metrics.discountPercentage ? <div style={{ color: 'var(--success)', fontSize: '0.76rem' }}>-{row.metrics.discountPercentage}%</div> : null}
-      </TD>
+      {platform === 'all' && (
+        <TD>
+          <Badge variant={row.scrapedBy === 'firecrawl' ? 'warning' : 'secondary'} style={{ fontSize: '0.65rem' }}>
+            {row.scrapedBy}
+          </Badge>
+        </TD>
+      )}
       <TD>
-        {row.metrics.bsrCategories?.[0] ? (
-          <>
-            <div style={{ fontWeight: 700 }}>#{row.metrics.bsrCategories[0].rank.toLocaleString()}</div>
-            <div className="muted" style={{ fontSize: '0.74rem' }} title={row.metrics.bsrCategories[0].category}>
-              {row.metrics.bsrCategories[0].category}
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--fg)' }}>
+            ${price.toFixed(2)}
+          </div>
+          {row.metrics.discountPercentage ? (
+            <div style={{ 
+              color: 'var(--success)', 
+              fontSize: '0.7rem', 
+              fontWeight: 700,
+              background: 'color-mix(in oklab, var(--success) 12%, transparent)',
+              padding: '0 4px',
+              borderRadius: 4,
+              width: 'fit-content'
+            }}>
+              -{row.metrics.discountPercentage}% OFF
             </div>
-          </>
-        ) : (
-          <span className="muted">N/A</span>
-        )}
+          ) : (
+            <div style={{ fontSize: '0.7rem', color: 'var(--fg-muted)' }}>MSRP Price</div>
+          )}
+        </div>
       </TD>
       <TD>
         {row.metrics.averageRating ? (
-          <>
-            <div>
-              <span style={{ color: 'var(--warning)' }}>★</span> {row.metrics.averageRating.toFixed(1)}
+          <div style={{ width: '100%', maxWidth: 140 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+                <span style={{ color: 'var(--warning)', fontSize: '0.9rem' }}>★</span>
+                <span style={{ fontWeight: 700, fontSize: '0.85rem' }}>{row.metrics.averageRating.toFixed(1)}</span>
+              </div>
+              <span className="muted" style={{ fontSize: '0.65rem' }}>{row.metrics.reviewsCount?.toLocaleString()} revs</span>
             </div>
-            <div className="muted" style={{ fontSize: '0.74rem' }}>
-              ({row.metrics.reviewsCount?.toLocaleString()})
+            <div className="sentiment-bar" style={{ 
+              height: 6, 
+              background: 'var(--bg-soft)', 
+              borderRadius: 3, 
+              overflow: 'hidden' 
+            }}>
+              <div 
+                className="sentiment-fill" 
+                style={{ 
+                  height: '100%',
+                  width: `${(row.metrics.averageRating / 5) * 100}%`,
+                  background: row.metrics.averageRating >= 4.5 ? 'var(--primary)' : 
+                              row.metrics.averageRating >= 4 ? 'var(--success)' : 'var(--warning)'
+                }} 
+              />
             </div>
-          </>
+          </div>
         ) : (
-          <span className="muted">—</span>
+          <div className="muted" style={{ fontSize: '0.75rem', fontStyle: 'italic' }}>No sentiment data</div>
         )}
       </TD>
       <TD>
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-          {row.metrics.sellerCount ? <Badge variant="outline">{row.metrics.sellerCount} {t('table.sellers')}</Badge> : null}
-          {row.metrics.newOffersCount ? <Badge variant="success">{row.metrics.newOffersCount} {t('table.new')}</Badge> : null}
-        </div>
-      </TD>
-      <TD>
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-          {row.metrics.isPrime ? <Badge variant="secondary">{t('table.prime')}</Badge> : null}
-          {row.metrics.buyBox?.isFBA ? <Badge variant="default">FBA</Badge> : null}
-          {row.metrics.isAmazonChoice ? <Badge variant="warning">Choice</Badge> : null}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+          {row.metrics.isPrime && (
+            <div style={{ display: 'flex', alignItems: 'center', fontSize: '0.65rem', color: '#00A8E1', fontWeight: 700 }}>
+              <span style={{ marginRight: 4 }}>✓</span> PRIME
+            </div>
+          )}
+          {row.metrics.isBestSeller && (
+            <Badge variant="success" style={{ fontSize: '0.6rem', padding: '0 4px' }}>BESTSELLER</Badge>
+          )}
+          {(!row.metrics.isPrime && !row.metrics.isBestSeller) && (
+            <div style={{ display: 'flex', alignItems: 'center', fontSize: '0.65rem', color: 'var(--fg-muted)' }}>
+              <span className="listing-health-dot" style={{ 
+                display: 'inline-block', 
+                width: 6, 
+                height: 6, 
+                borderRadius: '50%', 
+                background: '#ccc', 
+                marginRight: 4 
+              }} /> Standard
+            </div>
+          )}
+          {row.metrics.viewsCount ? (
+            <div style={{ fontSize: '0.65rem', color: 'var(--fg-muted)', fontWeight: 500 }}>
+              👀 {row.metrics.viewsCount.toLocaleString()} views
+            </div>
+          ) : null}
         </div>
       </TD>
       <TD>{row.scrapedAt ? format(new Date(row.scrapedAt), 'MMM dd, HH:mm') : '—'}</TD>
