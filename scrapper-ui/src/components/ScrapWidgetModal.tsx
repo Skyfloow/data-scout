@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Rocket, Send } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useGetSettingsQuery } from '../store/apiSlice';
 import { ScraperType } from '../types';
 import { logger } from '../utils/logger';
@@ -17,6 +18,7 @@ interface ScrapWidgetModalProps {
 }
 
 export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProps) {
+  const { t } = useTranslation();
   const [url, setUrl] = useState('');
   const [scraper, setScraper] = useState<ScraperType>('crawler');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -25,13 +27,13 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
 
   const onJobCompleted = useCallback(() => {
     setToastSeverity('success');
-    setToastMessage('Сбор успешно завершен! Данные обновлены.');
-  }, []);
+    setToastMessage(t('scrape.jobCompleted'));
+  }, [t]);
 
   const onJobError = useCallback((error: string) => {
     setToastSeverity('error');
-    setToastMessage(`Ошибка сбора: ${error}`);
-  }, []);
+    setToastMessage(`${t('scrape.jobErrorPrefix')}: ${error}`);
+  }, [t]);
 
   const { startJob, isStarting } = useScrapeJob({
     onCompleted: onJobCompleted,
@@ -69,20 +71,20 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
     e.preventDefault();
     setErrorMsg(null);
 
-    if (!isValidUrl(url)) {
-      setErrorMsg('Пожалуйста, введите корректный URL.');
+    if (!isValidUrl(url) || !url.includes('amazon.')) {
+      setErrorMsg(t('scrape.invalidAmazonUrl'));
       return;
     }
 
     try {
       await startJob(url, scraper);
       setToastSeverity('success');
-      setToastMessage('Задача запущена в фоне. Пожалуйста, подождите...');
+      setToastMessage(t('scrape.jobStarted'));
       handleModalClose();
     } catch {
-      setErrorMsg('Не удалось запустить сбор. Проверьте, работает ли сервер.');
+      setErrorMsg(t('scrape.startFailed'));
       setToastSeverity('error');
-      setToastMessage('Не удалось запустить сбор. Проверьте, работает ли сервер.');
+      setToastMessage(t('scrape.startFailed'));
     }
   };
 
@@ -92,10 +94,10 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
         <DialogContent>
           <DialogHeader className="pb-4">
             <DialogTitle className="text-lg font-semibold tracking-tight text-[var(--fg)] flex items-center gap-2">
-              <Rocket size={18} strokeWidth={2.5} /> Новая задача сбора
+              <Rocket size={18} strokeWidth={2.5} /> {t('scrape.title')}
             </DialogTitle>
             <DialogDescription className="text-sm mt-1 leading-relaxed">
-              Запустите быстрый скан товара (Amazon или Etsy) и обновите метрики сразу в дашборде.
+              {t('scrape.description')}
             </DialogDescription>
           </DialogHeader>
 
@@ -104,26 +106,26 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
 
             <form id="scrap-form" onSubmit={handleSubmit} className="stack-col gap-3">
               <div className="field">
-                <label className="field-label">URL товара (Amazon, Etsy)</label>
+                <label className="field-label">{t('scrape.productUrlLabel')}</label>
                 <Input
-                  placeholder="https://amazon.com/dp/... или https://etsy.com/listing/..."
+                  placeholder={t('scrape.urlPlaceholder')}
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                   disabled={isStarting}
                   required
                   autoFocus
                 />
-                <div className="field-help">Поддерживаются прямые product URL (Amazon, Etsy).</div>
+                <div className="field-help">{t('scrape.urlHelp')}</div>
               </div>
 
               <div className="field">
-                <label className="field-label">Движок скрапинга</label>
+                <label className="field-label">{t('scrape.engineLabel')}</label>
                 <Select value={scraper} onValueChange={(value) => setScraper(value as ScraperType)}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Выберите движок" />
+                    <SelectValue placeholder={t('scrape.enginePlaceholder')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="crawler">Встроенный Crawler</SelectItem>
+                    <SelectItem value="crawler">{t('scrape.engineCrawler')}</SelectItem>
                     <SelectItem value="firecrawl">Firecrawl (LLM)</SelectItem>
                   </SelectContent>
                 </Select>
@@ -133,11 +135,11 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
 
           <DialogFooter className="mt-6">
             <Button variant="ghost" onClick={handleModalClose} disabled={isStarting} className="rounded-md h-9 px-4">
-              Отмена
+              {t('scrape.cancel')}
             </Button>
             <Button htmlType="submit" form="scrap-form" disabled={isStarting || !url} className="rounded-md h-9 px-4 font-medium">
               <Send size={14} className="mr-1.5" />
-              {isStarting ? 'Сбор...' : 'Запустить'}
+              {isStarting ? t('scrape.running') : t('scrape.start')}
             </Button>
           </DialogFooter>
         </DialogContent>

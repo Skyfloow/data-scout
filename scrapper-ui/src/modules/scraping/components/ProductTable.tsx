@@ -12,7 +12,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Table, TableWrap, TBody, TH, THead, TR } from '../../../components/ui/table';
 import { useSelection } from '../../../hooks/useSelection';
 import { useSortedProducts, SortOrder } from '../../../hooks/useSortedProducts';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../components/ui/tabs';
 import ProductTableRow from './ProductTableRow';
 
 function SortButton({ active, order, onClick, children }: { active: boolean; order: SortOrder; onClick: () => void; children: React.ReactNode }) {
@@ -43,17 +42,16 @@ const EMPTY_PRODUCTS: Product[] = [];
 
 function ProductTable() {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<string>('all');
   const [filterScraper, setFilterScraper] = useState<string>('all');
 
   const params = {
-    source: activeTab !== 'all' ? activeTab : undefined,
+    source: 'amazon',
     scraper: filterScraper !== 'all' ? (filterScraper as ScraperType) : undefined,
   };
 
   const { data, isLoading, error } = useGetProductsQuery(params);
   const [deleteProducts, { isLoading: isDeleting }] = useDeleteProductsMutation();
-  const products: Product[] = data?.data || EMPTY_PRODUCTS;
+  const products: Product[] = (data?.data || EMPTY_PRODUCTS).filter((p) => p.marketplace.toLowerCase().includes('amazon'));
 
   const { sortedProducts, sortKey, sortOrder, handleSort } = useSortedProducts(products);
   
@@ -72,7 +70,7 @@ function ProductTable() {
     exportProductsToCsv(sortedProducts);
   };
 
-  const renderTable = (platform: 'all' | 'amazon' | 'etsy') => (
+  const renderTable = () => (
     <TableWrap data-pdf-expand-scroll data-pdf-table style={{ maxHeight: 600 }}>
       <Table style={{ minWidth: 1100 }}>
         <THead>
@@ -89,7 +87,7 @@ function ProductTable() {
                 {t('table.product')}
               </SortButton>
             </TH>
-            {platform === 'all' && <TH style={{ width: 100 }}>{t('table.source')}</TH>}
+            <TH style={{ width: 100 }}>{t('table.source')}</TH>
             <TH style={{ width: 140 }}>
               <SortButton active={sortKey === 'price'} order={sortOrder} onClick={() => handleSort('price')}>
                 {t('table.price')}
@@ -112,7 +110,6 @@ function ProductTable() {
               row={row} 
               isSelected={selected.has(row.id)} 
               onSelectChange={handleSelectOne}
-              platform={platform} 
             />
           ))}
         </TBody>
@@ -136,7 +133,7 @@ function ProductTable() {
               ) : null}
 
               <Button variant="outline" size="sm" onClick={handleExportCsv} disabled={isLoading || sortedProducts.length === 0}>
-                <FileSpreadsheet size={14} /> Export CSV
+                <FileSpreadsheet size={14} /> {t('table.exportCsv')}
               </Button>
 
               <Select value={filterScraper} onValueChange={setFilterScraper}>
@@ -158,38 +155,10 @@ function ProductTable() {
             </div>
           ) : error ? (
             <Alert variant="destructive">{t('table.failedLoad')}</Alert>
+          ) : products.length === 0 ? (
+            <div className="text-center muted" style={{ padding: '2rem 0' }}>{t('table.noProducts')}</div>
           ) : (
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsList>
-                <TabsTrigger value="all">{t('table.allSources')}</TabsTrigger>
-                <TabsTrigger value="amazon">Amazon</TabsTrigger>
-                <TabsTrigger value="etsy">Etsy</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="all" className="mt-4">
-                {products.length === 0 ? (
-                  <div className="text-center muted" style={{ padding: '2rem 0' }}>{t('table.noProducts')}</div>
-                ) : (
-                  renderTable('all')
-                )}
-              </TabsContent>
-              
-              <TabsContent value="amazon" className="mt-4">
-                 {products.length === 0 ? (
-                  <div className="text-center muted" style={{ padding: '2rem 0' }}>{t('table.noProducts')}</div>
-                ) : (
-                  renderTable('amazon')
-                )}
-              </TabsContent>
-
-              <TabsContent value="etsy" className="mt-4">
-                 {products.length === 0 ? (
-                  <div className="text-center muted" style={{ padding: '2rem 0' }}>{t('table.noProducts')}</div>
-                ) : (
-                  renderTable('etsy')
-                )}
-              </TabsContent>
-            </Tabs>
+            renderTable()
           )}
         </div>
       </CardContent>

@@ -2,48 +2,21 @@ export type ScraperType = 'crawler' | 'firecrawl';
 export type JobStatus = 'pending' | 'completed' | 'failed';
 
 export interface DashboardMetrics {
-  version?: string;
   averagePrice: number;
   medianPrice?: number;
   distributionBySource: Record<string, number>;
   ratingsHistogram: Record<string, number>;
   totalProducts: number;
-  uniqueProducts?: number;
-  anomaliesCount?: number;
-  dataCoveragePercent?: number;
-  stableProductsPercent?: number;
-  buyBoxCoveragePercent?: number;
-  discountedProductsPercent?: number;
-  primeProductsPercent?: number;
-  avgSellerCount?: number;
-  segmentMetrics?: {
-    amazon: {
-      count: number;
-      avgPrice: number;
-      avgValueScore: number;
-      avgMargin: number;
-      avgTrust: number;
-      avgDiscount: number;
-      specialSharePercent: number;
-      bestOpportunityTitle: string;
-    };
-    etsy: {
-      count: number;
-      avgPrice: number;
-      avgValueScore: number;
-      avgMargin: number;
-      avgTrust: number;
-      avgDiscount: number;
-      specialSharePercent: number;
-      bestOpportunityTitle: string;
-    };
+  uniqueProducts: number;
+  productsWithPrice: number;
+  productsWithRating: number;
+  ratingCoveragePercent: number;
+  amazonProducts: number;
+  etsyProducts: number;
+  marketplaceShare: {
+    amazon: number;
+    etsy: number;
   };
-}
-
-export interface DashboardMetricsDefinitionsResponse {
-  version: string;
-  updatedAt: string;
-  definitions: Record<string, unknown>;
 }
 
 // ─── Offer from a single seller ───

@@ -1,13 +1,10 @@
-import React, { Suspense, lazy, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { FileDown } from 'lucide-react';
 import ProductTable from '../modules/scraping/components/ProductTable';
 import MetricsCards from '../modules/dashboard/components/MetricsCards';
 import { useGetMetricsQuery, useGetProductsQuery } from '../store/apiSlice';
 import { exportElementToPdf } from '../utils/export';
 import { Button } from '../components/ui/button';
-
-const DashboardCharts = lazy(() => import('../modules/dashboard/components/DashboardCharts'));
-
 export default function DashboardPage() {
   const { isLoading: productsLoading } = useGetProductsQuery({});
   const { isLoading: metricsLoading } = useGetMetricsQuery();
@@ -37,16 +34,6 @@ export default function DashboardPage() {
         <div data-pdf-block>
           <MetricsCards />
         </div>
-
-        <Suspense
-          fallback={
-            <div style={{ display: 'flex', justifyContent: 'center', padding: '2.5rem 0' }}>
-              <span className="loader loader-dark" />
-            </div>
-          }
-        >
-          <DashboardCharts />
-        </Suspense>
 
         <ProductTable />
       </div>

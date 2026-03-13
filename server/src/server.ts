@@ -11,9 +11,6 @@ import settingsRoutes from './routes/settings';
 import opsRoutes from './routes/ops';
 import { storageService } from './modules/storage/services/StorageService';
 import { initCurrencyService, stopCurrencyService } from './services/CurrencyService';
-import { initScheduler, stopScheduler } from './services/SchedulerService';
-import monitoringRoutes, { scheduledScrape } from './routes/monitoring';
-import { migrateLegacyMonitors } from './services/MigrationService';
 import { proxyManager } from './modules/proxy/services/ProxyManager';
 import { createApiErrorPayload } from './utils/http';
 import { metricsService } from './services/MetricsService';
@@ -86,16 +83,9 @@ async function start() {
     // Initialize ECB currency exchange rates (fetches and caches daily)
     await initCurrencyService();
 
-    // Migrate old settings
-    await migrateLegacyMonitors();
-
-    // Initialize the scheduler for monitored URLs/Entities
-    await initScheduler(scheduledScrape);
-
     // Register Routes
     await server.register(scrapingRoutes, { prefix: '/api' });
     await server.register(dashboardRoutes, { prefix: '/api' });
-    await server.register(monitoringRoutes, { prefix: '/api' });
     await server.register(settingsRoutes, { prefix: '/api/settings' });
     await server.register(opsRoutes, { prefix: '/api/ops' });
 
@@ -108,7 +98,6 @@ async function start() {
     });
 
     server.addHook('onClose', async () => {
-      stopScheduler();
       stopCurrencyService();
       await proxyManager.shutdown();
     });

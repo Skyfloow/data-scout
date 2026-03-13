@@ -1,10 +1,8 @@
 import React, { useMemo, useState } from 'react';
-import { Globe, LayoutDashboard, Menu, Plus, Radar, Search, Settings, X } from 'lucide-react';
+import { Globe, LayoutDashboard, Menu, Search, Settings, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
-import BulkTrackWidgetModal from '../BulkTrackWidgetModal';
 import ScrapWidgetModal from '../ScrapWidgetModal';
 
 const drawerWidth = 264;
@@ -12,16 +10,11 @@ const drawerWidth = 264;
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrapModalOpen, setScrapModalOpen] = useState(false);
-  const [bulkModalOpen, setBulkModalOpen] = useState(false);
-  const [actionsOpen, setActionsOpen] = useState(false);
   const location = useLocation();
   const { t } = useTranslation();
 
   const menuItems = useMemo(
-    () => [
-      { text: t('layout.marketIntelligence'), icon: <LayoutDashboard size={18} />, path: '/' },
-      { text: t('layout.continuousMonitoring'), icon: <Radar size={18} />, path: '/monitoring' },
-    ],
+    () => [{ text: t('layout.marketIntelligence'), icon: <LayoutDashboard size={18} />, path: '/' }],
     [t]
   );
 
@@ -169,86 +162,31 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div style={{ width: '100%', maxWidth: 2000, margin: '0 auto' }}>{children}</div>
       </main>
 
-      <div 
+      <button
         className="fab-container"
-        style={{ position: 'fixed', right: 18, bottom: 18, zIndex: 70 }}
-        onMouseEnter={() => setActionsOpen(true)}
-        onMouseLeave={() => setActionsOpen(false)}
+        style={{ position: 'fixed', right: 18, bottom: 18, zIndex: 70, border: 'none', background: 'transparent', padding: 0 }}
+        onClick={() => setScrapModalOpen(true)}
+        aria-label={t('layout.singleUrlScan')}
       >
-        <div 
-          style={{ 
-            display: 'grid', 
-            gap: 10, 
-            paddingBottom: 16, 
-            justifyItems: 'end',
-            opacity: actionsOpen ? 1 : 0,
-            transform: actionsOpen ? 'translateY(0)' : 'translateY(10px)',
-            pointerEvents: actionsOpen ? 'auto' : 'none',
-            transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-            position: 'absolute',
-            bottom: '100%',
-            right: 0,
-            minWidth: 160,
-          }}
-        >
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={() => {
-              setActionsOpen(false);
-              setBulkModalOpen(true);
-            }}
-            style={{ 
-              boxShadow: '0 6px 16px rgba(0,0,0,0.12)', 
-              borderRadius: 8, 
-              height: 38, 
-              padding: '0 18px', 
-              fontWeight: 600
-            }}
-          >
-            <Plus size={15} /> {t('layout.bulkAddTrackers')}
-          </Button>
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={() => {
-              setActionsOpen(false);
-              setScrapModalOpen(true);
-            }}
-            style={{ 
-              boxShadow: '0 6px 16px rgba(0,0,0,0.12)', 
-              borderRadius: 8, 
-              height: 38, 
-              padding: '0 18px', 
-              fontWeight: 600
-            }}
-          >
-            <Search size={15} /> {t('layout.singleUrlScan')}
-          </Button>
-        </div>
-
-        <div 
+        <div
           style={{
             height: 48,
             width: 48,
             borderRadius: 24,
             boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-            transition: 'all 0.2s ease',
-            transform: actionsOpen ? 'rotate(45deg)' : 'rotate(0deg)',
             background: 'var(--primary)',
             color: 'var(--bg)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            cursor: 'pointer'
+            cursor: 'pointer',
           }}
         >
-          <Plus size={22} />
+          <Search size={22} />
         </div>
-      </div>
+      </button>
 
       <ScrapWidgetModal open={scrapModalOpen} onClose={() => setScrapModalOpen(false)} />
-      <BulkTrackWidgetModal open={bulkModalOpen} onClose={() => setBulkModalOpen(false)} />
     </div>
   );
 }

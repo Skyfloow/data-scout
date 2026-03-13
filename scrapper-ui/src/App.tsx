@@ -8,7 +8,6 @@ import CompareWidget from './components/CompareWidget';
 import { store } from './store';
 
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
-const MonitoringPage = lazy(() => import('./pages/MonitoringPage'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage'));
 const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
 const ComparePage = lazy(() => import('./pages/ComparePage'));
@@ -45,14 +44,6 @@ const router = createBrowserRouter([
         element: (
           <LazyRoute>
             <DashboardPage />
-          </LazyRoute>
-        ),
-      },
-      {
-        path: 'monitoring',
-        element: (
-          <LazyRoute>
-            <MonitoringPage />
           </LazyRoute>
         ),
       },

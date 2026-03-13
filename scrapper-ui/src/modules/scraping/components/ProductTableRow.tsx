@@ -14,10 +14,9 @@ interface ProductTableRowProps {
   row: Product;
   isSelected: boolean;
   onSelectChange: (id: string, checked: boolean) => void;
-  platform: 'all' | 'amazon' | 'etsy';
 }
 
-export function ProductTableRow({ row, isSelected, onSelectChange, platform }: ProductTableRowProps) {
+export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTableRowProps) {
   const { t } = useTranslation();
   const price = resolveMetricPrice(row.metrics);
   const { products: compareProducts, addProduct, removeProduct } = useCompare();
@@ -61,7 +60,9 @@ export function ProductTableRow({ row, isSelected, onSelectChange, platform }: P
         </div>
         <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge variant="outline" style={{ fontSize: '0.65rem' }}>{row.marketplace.toUpperCase()}</Badge>
-          <span style={{ fontSize: '0.65rem', color: 'var(--fg-muted)', fontWeight: 500 }}>ID: {asin || 'Unknown'}</span>
+          <span style={{ fontSize: '0.65rem', color: 'var(--fg-muted)', fontWeight: 500 }}>
+            {t('table.id')}: {asin || t('product.unknown')}
+          </span>
           {qualityScore > 0 && (
             <div className="data-quality-pill" style={{ 
               display: 'flex', 
@@ -83,13 +84,11 @@ export function ProductTableRow({ row, isSelected, onSelectChange, platform }: P
           )}
         </div>
       </TD>
-      {platform === 'all' && (
-        <TD>
-          <Badge variant={row.scrapedBy === 'firecrawl' ? 'warning' : 'secondary'} style={{ fontSize: '0.65rem' }}>
-            {row.scrapedBy}
-          </Badge>
-        </TD>
-      )}
+      <TD>
+        <Badge variant={row.scrapedBy === 'firecrawl' ? 'warning' : 'secondary'} style={{ fontSize: '0.65rem' }}>
+          {row.scrapedBy}
+        </Badge>
+      </TD>
       <TD>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--fg)' }}>
@@ -108,7 +107,7 @@ export function ProductTableRow({ row, isSelected, onSelectChange, platform }: P
               -{row.metrics.discountPercentage}% OFF
             </div>
           ) : (
-            <div style={{ fontSize: '0.7rem', color: 'var(--fg-muted)' }}>MSRP Price</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--fg-muted)' }}>{t('table.regularPrice')}</div>
           )}
         </div>
       </TD>
@@ -120,7 +119,9 @@ export function ProductTableRow({ row, isSelected, onSelectChange, platform }: P
                 <span style={{ color: 'var(--warning)', fontSize: '0.9rem' }}>★</span>
                 <span style={{ fontWeight: 700, fontSize: '0.85rem' }}>{row.metrics.averageRating.toFixed(1)}</span>
               </div>
-              <span className="muted" style={{ fontSize: '0.65rem' }}>{row.metrics.reviewsCount?.toLocaleString()} revs</span>
+              <span className="muted" style={{ fontSize: '0.65rem' }}>
+                {(row.metrics.reviewsCount || 0).toLocaleString()} {t('table.reviewsShort')}
+              </span>
             </div>
             <div className="sentiment-bar" style={{ 
               height: 6, 
@@ -140,18 +141,18 @@ export function ProductTableRow({ row, isSelected, onSelectChange, platform }: P
             </div>
           </div>
         ) : (
-          <div className="muted" style={{ fontSize: '0.75rem', fontStyle: 'italic' }}>No sentiment data</div>
+          <div className="muted" style={{ fontSize: '0.75rem', fontStyle: 'italic' }}>{t('table.noSentimentData')}</div>
         )}
       </TD>
       <TD>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           {row.metrics.isPrime && (
             <div style={{ display: 'flex', alignItems: 'center', fontSize: '0.65rem', color: '#00A8E1', fontWeight: 700 }}>
-              <span style={{ marginRight: 4 }}>✓</span> PRIME
+              <span style={{ marginRight: 4 }}>✓</span> {t('table.prime')}
             </div>
           )}
           {row.metrics.isBestSeller && (
-            <Badge variant="success" style={{ fontSize: '0.6rem', padding: '0 4px' }}>BESTSELLER</Badge>
+            <Badge variant="success" style={{ fontSize: '0.6rem', padding: '0 4px' }}>{t('table.bestSeller')}</Badge>
           )}
           {(!row.metrics.isPrime && !row.metrics.isBestSeller) && (
             <div style={{ display: 'flex', alignItems: 'center', fontSize: '0.65rem', color: 'var(--fg-muted)' }}>
@@ -162,12 +163,12 @@ export function ProductTableRow({ row, isSelected, onSelectChange, platform }: P
                 borderRadius: '50%', 
                 background: '#ccc', 
                 marginRight: 4 
-              }} /> Standard
+              }} /> {t('table.standard')}
             </div>
           )}
           {row.metrics.viewsCount ? (
             <div style={{ fontSize: '0.65rem', color: 'var(--fg-muted)', fontWeight: 500 }}>
-              👀 {row.metrics.viewsCount.toLocaleString()} views
+              👀 {row.metrics.viewsCount.toLocaleString()} {t('table.views')}
             </div>
           ) : null}
         </div>

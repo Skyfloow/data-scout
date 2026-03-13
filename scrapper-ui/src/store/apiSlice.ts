@@ -4,7 +4,6 @@ import {
   ScraperType,
   JobStatus,
   DashboardMetrics,
-  DashboardMetricsDefinitionsResponse,
   MonitoredEntity,
   TrackerResult,
   PriceHistoryPoint,
@@ -116,11 +115,6 @@ export const apiSlice = createApi({
       query: () => 'metrics',
       providesTags: ['Metrics'],
       keepUnusedDataFor: 120,
-    }),
-
-    getMetricsDefinitions: builder.query<DashboardMetricsDefinitionsResponse, void>({
-      query: () => 'metrics/definitions',
-      keepUnusedDataFor: 300,
     }),
 
     getSettings: builder.query<AppSettings, void>({
@@ -306,7 +300,6 @@ export const {
   useGetJobStatusQuery,
   useGetProductsQuery,
   useGetMetricsQuery,
-  useGetMetricsDefinitionsQuery,
   useGetTrackersQuery,
   useGetTrackersLatestResultsQuery,
   useGetTrackersResultsQuery,
