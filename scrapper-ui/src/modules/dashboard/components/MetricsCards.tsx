@@ -61,7 +61,7 @@ function MetricCard({ title, value, subtitle, icon, tooltip, loading, accent }: 
 
 function MetricsCards() {
   const { t } = useTranslation();
-  const { data, isLoading } = useGetMetricsQuery();
+  const { data, isLoading } = useGetMetricsQuery({ source: 'amazon' });
 
   return (
     <TooltipProvider>

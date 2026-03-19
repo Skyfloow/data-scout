@@ -16,6 +16,8 @@ export interface ScrapeJob {
 
 // ─── Offer from a single seller ───
 export interface Offer {
+  offerId?: string;
+  offerUrl?: string;
   sellerName: string;
   price: number;
   currency: string;

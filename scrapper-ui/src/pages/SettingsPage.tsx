@@ -90,7 +90,7 @@ export default function SettingsPage() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="en">{t('settings.english')}</SelectItem>
-                <SelectItem value="ru">{t('settings.russian')}</SelectItem>
+                <SelectItem value="uk">{t('settings.ukrainian')}</SelectItem>
               </SelectContent>
             </Select>
           </div>

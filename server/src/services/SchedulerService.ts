@@ -47,7 +47,7 @@ export async function removeMonitoredEntity(id: string): Promise<boolean> {
 const activeTimers = new Map<string, NodeJS.Timeout>();
 const inFlightRuns = new Set<string>();
 
-type ScrapeFn = (entity: MonitoredEntity) => Promise<void>;
+type ScrapeFn = (entity: MonitoredEntity) => Promise<boolean>;
 
 function computeNextRunAt(intervalHours: number): string {
   const intervalMs = intervalHours * 60 * 60 * 1000;
@@ -71,14 +71,23 @@ async function runScheduledScrape(entry: MonitoredEntity, scrapeFn: ScrapeFn): P
   inFlightRuns.add(entry.id);
   logger.info(`Running scheduled scrape for [${entry.type}] ${entry.value}`);
   try {
-    await scrapeFn(entry);
+    const scrapeSucceeded = await scrapeFn(entry);
     // Persist run cadence so restarts can restore schedule context.
     const now = new Date().toISOString();
-    await storageService.updateEntityRunState(entry.id, {
-      lastRunAt: now,
-      lastScrapedAt: now,
-      nextRunAt: computeNextRunAt(entry.intervalHours),
-    });
+    const nextRunAt = computeNextRunAt(entry.intervalHours);
+    await storageService.updateEntityRunState(
+      entry.id,
+      scrapeSucceeded
+        ? {
+            lastRunAt: now,
+            lastScrapedAt: now,
+            nextRunAt,
+          }
+        : {
+            lastRunAt: now,
+            nextRunAt,
+          }
+    );
   } catch (err: any) {
     logger.error(`Failed scheduled scrape for [${entry.type}] ${entry.value}: ${err.message}`);
   } finally {

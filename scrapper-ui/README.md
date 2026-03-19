@@ -6,7 +6,7 @@ Frontend application for scraping analytics, tracker management, and ranking his
 
 - ⚡ **React 19 + Vite** for fast local development
 - 🎨 **MUI-based UI** with responsive dashboard layouts
-- 🌍 **i18n support** (`en` / `ru`) via `i18next`
+- 🌍 **i18n support** (`en` / `uk`) via `i18next`
 - 🔄 **RTK Query** integration with optimistic updates for tracker actions
 
 ## 🧩 Tech Stack

@@ -24,15 +24,40 @@ export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTabl
   const isCompared = compareProducts.some(p => p.id === row.id);
   const compareDisabled = !isCompared && compareProducts.length >= 5;
 
-  const qualityScore = row.metrics.dataQualityScore || 0;
   const asin = row.metrics.asin || row.id; 
+  const buyBox = row.metrics.amazonMetrics?.buyBox || row.metrics.buyBox;
+  const selectedOffer = row.metrics.selectedOffer;
+  const buyBoxSellerName = String(buyBox?.sellerName || '').toLowerCase();
+  const isAmazonByName = buyBoxSellerName.includes('amazon');
+  const offers = row.metrics.amazonMetrics?.offers || row.metrics.offers || [];
+  const hasAnyOffer = offers.length > 0 || Number(row.metrics.sellerCount || 0) > 0;
+  const hasFbaOffer = offers.some((offer) => Boolean(offer.isFBA));
+  const sellerType = buyBox?.isAmazon || selectedOffer?.isAmazon || isAmazonByName
+    ? 'Amazon'
+    : buyBox?.isFBA || selectedOffer?.isFBA
+      ? 'FBA'
+      : buyBox || selectedOffer
+        ? 'FBM'
+        : hasAnyOffer
+          ? hasFbaOffer
+            ? 'FBA'
+            : 'FBM'
+          : t('product.unknown');
+  const resolvedStockCount = (() => {
+    if (typeof row.metrics.stockCount === 'number' && row.metrics.stockCount > 0) return row.metrics.stockCount;
+    const fromOffers = (row.metrics.amazonMetrics?.offers || row.metrics.offers || [])
+      .map((offer) => (typeof offer.stockCount === 'number' && offer.stockCount > 0 ? offer.stockCount : 0))
+      .filter((value) => value > 0);
+    if (fromOffers.length > 0) return Math.max(...fromOffers);
+    return null;
+  })();
 
   return (
     <TR>
       <TD data-pdf-exclude>
         <Checkbox checked={isSelected} onCheckedChange={(checked) => onSelectChange(row.id, Boolean(checked))} />
       </TD>
-      <TD style={{ minWidth: 280, maxWidth: 400 }}>
+      <TD style={{ minWidth: 240, maxWidth: 360 }}>
         <div data-pdf-exclude-text style={{ 
           fontSize: '0.9rem', 
           fontWeight: 600, 
@@ -63,25 +88,6 @@ export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTabl
           <span style={{ fontSize: '0.65rem', color: 'var(--fg-muted)', fontWeight: 500 }}>
             {t('table.id')}: {asin || t('product.unknown')}
           </span>
-          {qualityScore > 0 && (
-            <div className="data-quality-pill" style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: 4, 
-              fontSize: '0.7rem', 
-              fontWeight: 600,
-              padding: '2px 6px',
-              borderRadius: 4,
-              background: 'var(--bg-soft)',
-              border: '1px solid var(--border)'
-            }}>
-              <div style={{ 
-                width: 5, height: 5, borderRadius: '50%',
-                background: qualityScore > 85 ? 'var(--success)' : 'var(--warning)'
-              }} />
-              DQ {qualityScore}%
-            </div>
-          )}
         </div>
       </TD>
       <TD>
@@ -145,34 +151,14 @@ export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTabl
         )}
       </TD>
       <TD>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-          {row.metrics.isPrime && (
-            <div style={{ display: 'flex', alignItems: 'center', fontSize: '0.65rem', color: '#00A8E1', fontWeight: 700 }}>
-              <span style={{ marginRight: 4 }}>✓</span> {t('table.prime')}
-            </div>
-          )}
-          {row.metrics.isBestSeller && (
-            <Badge variant="success" style={{ fontSize: '0.6rem', padding: '0 4px' }}>{t('table.bestSeller')}</Badge>
-          )}
-          {(!row.metrics.isPrime && !row.metrics.isBestSeller) && (
-            <div style={{ display: 'flex', alignItems: 'center', fontSize: '0.65rem', color: 'var(--fg-muted)' }}>
-              <span className="listing-health-dot" style={{ 
-                display: 'inline-block', 
-                width: 6, 
-                height: 6, 
-                borderRadius: '50%', 
-                background: '#ccc', 
-                marginRight: 4 
-              }} /> {t('table.standard')}
-            </div>
-          )}
-          {row.metrics.viewsCount ? (
-            <div style={{ fontSize: '0.65rem', color: 'var(--fg-muted)', fontWeight: 500 }}>
-              👀 {row.metrics.viewsCount.toLocaleString()} {t('table.views')}
-            </div>
-          ) : null}
-        </div>
+        <Badge
+          variant={sellerType === 'Amazon' ? 'success' : sellerType === 'FBA' ? 'secondary' : sellerType === 'FBM' ? 'warning' : 'outline'}
+          style={{ fontSize: '0.68rem' }}
+        >
+          {sellerType}
+        </Badge>
       </TD>
+      <TD>{resolvedStockCount ?? '—'}</TD>
       <TD>{row.scrapedAt ? format(new Date(row.scrapedAt), 'MMM dd, HH:mm') : '—'}</TD>
       <TD className="text-right" data-pdf-exclude>
         <div style={{ display: 'flex', gap: 6, justifyContent: 'flex-end' }}>

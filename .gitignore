@@ -29,3 +29,9 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Runtime artifacts (server)
+server/data/
+server/storage/
+server/tmp-*.html
+server/*.ndjson

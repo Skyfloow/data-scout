@@ -686,16 +686,16 @@
     "scrapedBy": "crawler"
   },
   "https://www.amazon.com/apple-iphone-version-desert-titanium/dp/b0dpdknpt9/ref=sr_1_24": {
-    "id": "2d6ac44e-7e76-44ff-a4ab-102cecd83e89",
+    "id": "b56a8c7e-1335-409f-8445-27cd206e3739",
     "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked",
     "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DPDKNPT9/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
     "marketplace": "amazon",
     "metrics": {
       "currency": "USD",
       "description": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium) About this item This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers. There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length. This product will have a battery which exceeds 80% capacity relative to new. Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box. This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied. › See more product details",
-      "imageUrl": "https://m.media-amazon.com/images/I/61Z4eGyb1mL._AC_SX522_.jpg",
+      "imageUrl": "https://m.media-amazon.com/images/I/61Z4eGyb1mL._AC_SX679_.jpg",
       "brand": "Amazon Renewed",
-      "availability": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
+      "availability": "In Stock",
       "features": [
         "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
         "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
@@ -711,26 +711,26 @@
       ],
       "offers": [
         {
-          "sellerName": "ELECTRONIC DEALSELECTRONIC DEALS",
-          "price": 839,
+          "sellerName": "Unknown Seller",
+          "price": 859,
           "currency": "USD",
-          "stockStatus": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
-          "stockCount": 1,
+          "stockStatus": "In Stock",
+          "stockCount": 2,
           "condition": "New",
           "isFBA": false
         }
       ],
       "asin": "B0DPDKNPT9",
-      "price": 839,
-      "itemPrice": 839,
+      "price": 859,
+      "itemPrice": 859,
       "originalPrice": 999,
-      "discountPercentage": 16,
+      "discountPercentage": 14,
       "averageRating": 4.3,
-      "reviewsCount": 2521,
-      "stockCount": 1,
+      "reviewsCount": 2562,
+      "stockCount": 2,
       "isAmazonChoice": false,
       "isBestSeller": false,
-      "deliveryInfo": "FREE delivery Tomorrow, March 12. Order within 6 hrs 16 mins. Details",
+      "deliveryInfo": "FREE delivery Friday, March 20 Or Prime members get FREE delivery Today 6 PM - 11 PM. Order within 2 hrs 44 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); }));",
       "modelNumber": "A3084",
       "manufacturer": "Apple",
       "dateFirstAvailable": "October 20, 2024",
@@ -744,72 +744,141 @@
           "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
         },
         {
+          "asin": "B0CRJSBN5M",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
+        },
+        {
           "asin": "B0DNTC3HXX",
           "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
         },
         {
+          "asin": "B0DNTC3HXX",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
+        },
+        {
+          "asin": "B0CRJJBBPY",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Black Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJJBBPY",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Black Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRHZZLYR",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Blue Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRHZZLYR",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Blue Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJTPR6T",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, White Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJTPR6T",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, White Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJK7V6D",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 512GB, Natural Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJK7V6D",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 512GB, Natural Titanium - Unlocked"
+        },
+        {
           "asin": "B0CMZDBVWT",
           "title": "Apple iPhone 15 Pro Max, 256GB, Blue Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0CMZDBVWT",
+          "title": "Apple iPhone 15 Pro Max, 256GB, Blue Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DHHXR6ZH",
+          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DHJ896RY",
+          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Black Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DHJ9SCJ4",
+          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DHHXQJQZ",
+          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, White Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DNTC3HXX",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
+        },
+        {
+          "asin": "B0DNTDQTYC",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium)"
         }
       ],
       "bsrCategories": [
         {
-          "rank": 772,
+          "rank": 667,
           "category": "Cell Phones &amp; Accessories"
         },
         {
-          "rank": 10,
+          "rank": 6,
           "category": "Renewed Smartphones"
         },
         {
-          "rank": 13,
+          "rank": 11,
           "category": "Cell Phones"
         }
       ],
-      "bestSellerRank": "#772 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #10 in Renewed Smartphones #13 in Cell Phones",
+      "bestSellerRank": "#667 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #6 in Renewed Smartphones #11 in Cell Phones",
       "buyBox": {
-        "sellerName": "ELECTRONIC DEALSELECTRONIC DEALS",
-        "price": 839,
+        "sellerName": "Unknown Seller",
+        "price": 859,
         "isFBA": false,
         "isAmazon": false,
-        "observedAt": "2026-03-11T10:43:53.438Z"
+        "observedAt": "2026-03-15T09:50:58.433Z"
       },
       "selectedOffer": {
         "source": "buybox",
-        "sellerName": "ELECTRONIC DEALSELECTRONIC DEALS",
-        "price": 839,
+        "sellerName": "Unknown Seller",
+        "price": 859,
         "currency": "USD",
         "condition": "New",
         "isFBA": false,
         "isAmazon": false
       },
       "sellerCount": 1,
-      "averageOfferPrice": 839,
-      "lowestOfferPrice": 839,
+      "averageOfferPrice": 859,
+      "lowestOfferPrice": 859,
       "category": "Cell Phones & Accessories > Cell Phones",
       "amazonMetrics": {
         "asin": "B0DPDKNPT9",
         "buyBox": {
-          "sellerName": "ELECTRONIC DEALSELECTRONIC DEALS",
-          "price": 839,
+          "sellerName": "Unknown Seller",
+          "price": 859,
           "isFBA": false,
-          "isAmazon": false
+          "isAmazon": false,
+          "observedAt": "2026-03-15T09:50:58.433Z"
         },
         "bsrCategories": [
           {
-            "rank": 772,
+            "rank": 667,
             "category": "Cell Phones &amp; Accessories"
           },
           {
-            "rank": 10,
+            "rank": 6,
             "category": "Renewed Smartphones"
           },
           {
-            "rank": 13,
+            "rank": 11,
             "category": "Cell Phones"
           }
         ],
-        "bestSellerRank": "#772 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #10 in Renewed Smartphones #13 in Cell Phones",
+        "bestSellerRank": "#667 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #6 in Renewed Smartphones #11 in Cell Phones",
         "isPrime": false,
         "isAmazonChoice": false,
         "isBestSeller": false,
@@ -817,23 +886,23 @@
         "sellerCount": 1,
         "offers": [
           {
-            "sellerName": "ELECTRONIC DEALSELECTRONIC DEALS",
-            "price": 839,
+            "sellerName": "Unknown Seller",
+            "price": 859,
             "currency": "USD",
-            "stockStatus": "Only 1 left in stock - order soon. Only 1 left in stock - order soon.",
-            "stockCount": 1,
+            "stockStatus": "In Stock",
+            "stockCount": 2,
             "condition": "New",
             "isFBA": false
           }
         ]
       },
-      "priceObservedAt": "2026-03-11T10:43:53.438Z",
-      "itemPriceObservedAt": "2026-03-11T10:43:53.438Z",
-      "priceUSD": 839,
-      "itemPriceUSD": 839,
+      "priceObservedAt": "2026-03-15T09:50:58.433Z",
+      "itemPriceObservedAt": "2026-03-15T09:50:58.433Z",
+      "priceUSD": 859,
+      "itemPriceUSD": 859,
       "dataQualityScore": 100
     },
-    "scrapedAt": "2026-03-11T10:43:53.438Z",
+    "scrapedAt": "2026-03-15T09:50:58.433Z",
     "scrapedBy": "crawler"
   },
   "https://www.etsy.com/listing/1635757202/candle-file-easter-bunny-floral-greeting": {
@@ -1342,6 +1411,2346 @@
       "dataQualityScore": 15
     },
     "scrapedAt": "2026-03-10T19:58:20.004Z",
+    "scrapedBy": "firecrawl"
+  },
+  "https://www.amazon.com/dp/b0dpdknpt9": {
+    "id": "2ca04875-4037-40c3-9ec7-5d9420bdc7b2",
+    "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked",
+    "url": "https://www.amazon.com/dp/B0DPDKNPT9?th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "USD",
+      "description": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium) About this item This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers. There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length. This product will have a battery which exceeds 80% capacity relative to new. Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box. This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied. › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/61Z4eGyb1mL._AC_SX522_.jpg",
+      "brand": "Amazon Renewed",
+      "availability": "Only 12 left in stock - order soon.",
+      "features": [
+        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
+        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
+        "This product will have a battery which exceeds 80% capacity relative to new.",
+        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
+        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/41IcaBDYwxL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41ZquN57YTL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31qU9wU9oaL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/61Z4eGyb1mL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Networkstore",
+          "price": 846.97,
+          "currency": "USD",
+          "stockStatus": "Only 12 left in stock - order soon.",
+          "stockCount": 12,
+          "condition": "New",
+          "isFBA": false
+        },
+        {
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AR1FTLUUZC24W&sshmPath=shipping-rates",
+          "sellerName": "Networkstore",
+          "price": 846.97,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 11 hrs 3 mins. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A35LLZTIT5S01N&sshmPath=shipping-rates",
+          "sellerName": "Techdeals4Less",
+          "price": 838.5,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Thursday, March 26. Details ... More",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A230ZFNKXE1WUD&sshmPath=shipping-rates",
+          "sellerName": "ELECTRONIC DEALS",
+          "price": 849,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 9 hrs 3 mins. Details",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "sellerName": "Amazon.com",
+          "price": 859,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tuesday, March 24 Or Prime members get FREE delivery Overnight 4 AM - 8 AM. Order within 12 hrs 8 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+          "isFBA": true
+        }
+      ],
+      "asin": "B0DPDKNPT9",
+      "price": 846.97,
+      "itemPrice": 846.97,
+      "originalPrice": 999,
+      "discountPercentage": 15,
+      "averageRating": 4.3,
+      "reviewsCount": 2605,
+      "stockCount": 12,
+      "isAmazonChoice": false,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 11 hrs 3 mins. Details",
+      "modelNumber": "A3084",
+      "manufacturer": "Apple",
+      "dateFirstAvailable": "October 20, 2024",
+      "isPrime": false,
+      "salesVolume": "50+ bought in past month",
+      "isClimateFriendly": true,
+      "videoCount": 6,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0CRJSBN5M",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
+        },
+        {
+          "asin": "B0DNTC3HXX",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
+        },
+        {
+          "asin": "B0CRJJBBPY",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Black Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRHZZLYR",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Blue Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJTPR6T",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, White Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJK7V6D",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 512GB, Natural Titanium - Unlocked"
+        },
+        {
+          "asin": "B0DHHXR6ZH",
+          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DHJ896RY",
+          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Black Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DHJ9SCJ4",
+          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DHHXQJQZ",
+          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, White Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DNTC3HXX",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
+        },
+        {
+          "asin": "B0DNTDQTYC",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium)"
+        },
+        {
+          "asin": "B09CSSP9C1",
+          "title": "Ailun Screen Protector for iPhone 17e / iPhone 16e / iPhone 14 / iPhone 13 / iPhone 13 Pro [6.1 Inch] Display 3 Pack Tempered"
+        },
+        {
+          "asin": "B0FDQH511S",
+          "title": "Ailun 3 Pack Screen Protector for iPhone 17 Pro Max [6.9 inch] + 3 Pack Camera Lens Protector with Installation Frame,Dynamic"
+        },
+        {
+          "asin": "B0FH655984",
+          "title": "SUPFINE Magnetic for iPhone 17 Pro Max Case (Compatible with MagSafe)(Military Grade Drop Protection) Translucent Matte Shock"
+        },
+        {
+          "asin": "B0F8VZ7QVX",
+          "title": "NEW'C 3 Pack Designed for iPhone 17/17 Pro, iPhone 16 Pro Screen Protector (6.3 inches), Enhanced Tempered Glass Protection w"
+        },
+        {
+          "asin": "B0FDQ3PWCX",
+          "title": "FNTCASE for iPhone 17 Pro-Max Case: Clear Magnetic Phone Cases with Screen Protector Compatible with Magsafe Slim Anti Yellow"
+        },
+        {
+          "asin": "B09KR8P3L5",
+          "title": "iPhone 17 16 15 Charger Fast Charging Type C Chargers USB C Charger Block iPhone 17 16 15 Air Pro Max Chargers with 6FT Cable"
+        },
+        {
+          "asin": "B0CRJSBN5M",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
+        },
+        {
+          "asin": "B0DNTC3HXX",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
+        }
+      ],
+      "bsrCategories": [
+        {
+          "rank": 714,
+          "category": "Cell Phones &amp; Accessories"
+        },
+        {
+          "rank": 7,
+          "category": "Renewed Smartphones"
+        },
+        {
+          "rank": 11,
+          "category": "Cell Phones"
+        }
+      ],
+      "bestSellerRank": "#714 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #11 in Cell Phones",
+      "buyBox": {
+        "sellerName": "Networkstore",
+        "price": 846.97,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-19T07:56:28.919Z"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Networkstore",
+        "price": 846.97,
+        "currency": "USD",
+        "condition": "New",
+        "isFBA": false,
+        "isAmazon": false
+      },
+      "sellerCount": 4,
+      "averageOfferPrice": 848.09,
+      "lowestOfferPrice": 838.5,
+      "category": "Cell Phones & Accessories > Cell Phones",
+      "amazonMetrics": {
+        "asin": "B0DPDKNPT9",
+        "buyBox": {
+          "sellerName": "Networkstore",
+          "price": 846.97,
+          "isFBA": false,
+          "isAmazon": false,
+          "observedAt": "2026-03-19T07:56:28.919Z"
+        },
+        "bsrCategories": [
+          {
+            "rank": 714,
+            "category": "Cell Phones &amp; Accessories"
+          },
+          {
+            "rank": 7,
+            "category": "Renewed Smartphones"
+          },
+          {
+            "rank": 11,
+            "category": "Cell Phones"
+          }
+        ],
+        "bestSellerRank": "#714 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #11 in Cell Phones",
+        "isPrime": false,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 4,
+        "offers": [
+          {
+            "sellerName": "Networkstore",
+            "price": 846.97,
+            "currency": "USD",
+            "stockStatus": "Only 12 left in stock - order soon.",
+            "stockCount": 12,
+            "condition": "New",
+            "isFBA": false
+          },
+          {
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AR1FTLUUZC24W&sshmPath=shipping-rates",
+            "sellerName": "Networkstore",
+            "price": 846.97,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 11 hrs 3 mins. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A35LLZTIT5S01N&sshmPath=shipping-rates",
+            "sellerName": "Techdeals4Less",
+            "price": 838.5,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Thursday, March 26. Details ... More",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A230ZFNKXE1WUD&sshmPath=shipping-rates",
+            "sellerName": "ELECTRONIC DEALS",
+            "price": 849,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 9 hrs 3 mins. Details",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "sellerName": "Amazon.com",
+            "price": 859,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tuesday, March 24 Or Prime members get FREE delivery Overnight 4 AM - 8 AM. Order within 12 hrs 8 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+            "isFBA": true
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-19T07:56:28.919Z",
+      "itemPriceObservedAt": "2026-03-19T07:56:28.919Z",
+      "priceUSD": 846.97,
+      "itemPriceUSD": 846.97,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-19T07:56:28.919Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.com/dp/b0fncv56xy": {
+    "id": "ea4a5116-3c57-4abe-820e-c8a103360415",
+    "title": "SURITCH for iPhone 17 Pro Max Case with Camera Control Cover, Camera Cover and Adjustable Kickstand, Compatible with MagSafe, Shockproof Bumper Protective Cases 6.9 Inch, Black",
+    "url": "https://www.amazon.com/dp/B0FNCV56XY?th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "USD",
+      "description": "About this item 【Compatibility】: Specially designed for Apple iPhone 17 Pro Max, this bumper case fits snugly with precise cutouts for easy access to the ports, buttons, speakers, and other features. Please check your phone model before making the purchase 【Secure magnetic attachment】: The case features powerful magnetism (13.28N) for seamless MagSafe compatibility; Whether you're dropping it on a charger or snapping it onto your car mount, the connection is instant and secure 【Tactile camera control cover】：Designed with exclusive technology, the protector not only shields the buttons from scratches, dust, and spills but also delivers responsive, tactile feedback for every click, slide, and press 【Lock-tight camera cove】: The foldable camera cover shields your lens from whatever life throws your way—sand at the beach, keys in your bag, or dust on the trail; Feel that satisfying click as the cover snaps shut. That’s the feeling of peace of mind 【Reinforced metal stand】:The built-in aluminum-alloy kickstand is tough, steady, and adjustable up to 75°. This feature is perfect for hands-free viewing of videos, reading, or video calls in both landscape and portrait orientations › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/61isXUPqsaL._AC_SX679_.jpg",
+      "brand": "SURITCH",
+      "availability": "In Stock",
+      "features": [
+        "【Compatibility】: Specially designed for Apple iPhone 17 Pro Max, this bumper case fits snugly with precise cutouts for easy access to the ports, buttons, speakers, and other features. Please check your phone model before making the purchase",
+        "【Secure magnetic attachment】: The case features powerful magnetism (13.28N) for seamless MagSafe compatibility; Whether you're dropping it on a charger or snapping it onto your car mount, the connection is instant and secure",
+        "【Tactile camera control cover】：Designed with exclusive technology, the protector not only shields the buttons from scratches, dust, and spills but also delivers responsive, tactile feedback for every click, slide, and press",
+        "【Lock-tight camera cove】: The foldable camera cover shields your lens from whatever life throws your way—sand at the beach, keys in your bag, or dust on the trail; Feel that satisfying click as the cover snaps shut. That’s the feeling of peace of mind",
+        "【Reinforced metal stand】:The built-in aluminum-alloy kickstand is tough, steady, and adjustable up to 75°. This feature is perfect for hands-free viewing of videos, reading, or video calls in both landscape and portrait orientations"
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/31o1HPbVNWL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31sFvcQVZvL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41s-y9d0sSL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31azQ53t+BL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41V+ZqkBGOL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/419B4hBFLjL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41lzXIs6gUL.SX38_SY50_CR,0,0,38,50_BG85,85,85_BR-120_PKdp-play-icon-overlay__.jpg",
+        "https://m.media-amazon.com/images/I/61isXUPqsaL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Digfc",
+          "price": 36.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": 30,
+          "condition": "New",
+          "isFBA": false
+        }
+      ],
+      "asin": "B0FNCV56XY",
+      "price": 36.99,
+      "itemPrice": 36.99,
+      "averageRating": 4.3,
+      "reviewsCount": 4797,
+      "stockCount": 30,
+      "isAmazonChoice": true,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery Friday, March 20 Or Prime members get FREE delivery Today 6 PM - 11 PM. Order within 1 hr 52 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); }));",
+      "modelNumber": "iPhone 17 Pro Max",
+      "manufacturer": "SURITCH",
+      "dateFirstAvailable": "August 22, 2025",
+      "isPrime": true,
+      "salesVolume": "500+ bought in past month",
+      "isClimateFriendly": true,
+      "videoCount": 8,
+      "bsrCategories": [
+        {
+          "rank": 171,
+          "category": "Cell Phones &amp; Accessories"
+        },
+        {
+          "rank": 39,
+          "category": "Cell Phone Basic Cases"
+        }
+      ],
+      "bestSellerRank": "#171 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #39 in Cell Phone Basic Cases",
+      "buyBox": {
+        "sellerName": "Digfc",
+        "price": 36.99,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-15T10:52:23.085Z"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Digfc",
+        "price": 36.99,
+        "currency": "USD",
+        "condition": "New",
+        "isFBA": false,
+        "isAmazon": false
+      },
+      "sellerCount": 1,
+      "averageOfferPrice": 36.99,
+      "lowestOfferPrice": 36.99,
+      "category": "Cell Phones & Accessories > Cases, Holsters & Sleeves > Basic Cases",
+      "amazonMetrics": {
+        "asin": "B0FNCV56XY",
+        "buyBox": {
+          "sellerName": "Digfc",
+          "price": 36.99,
+          "isFBA": false,
+          "isAmazon": false,
+          "observedAt": "2026-03-15T10:52:23.085Z"
+        },
+        "bsrCategories": [
+          {
+            "rank": 171,
+            "category": "Cell Phones &amp; Accessories"
+          },
+          {
+            "rank": 39,
+            "category": "Cell Phone Basic Cases"
+          }
+        ],
+        "bestSellerRank": "#171 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #39 in Cell Phone Basic Cases",
+        "isPrime": true,
+        "isAmazonChoice": true,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 1,
+        "offers": [
+          {
+            "sellerName": "Digfc",
+            "price": 36.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": 30,
+            "condition": "New",
+            "isFBA": false
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-15T10:52:23.085Z",
+      "itemPriceObservedAt": "2026-03-15T10:52:23.085Z",
+      "priceUSD": 36.99,
+      "itemPriceUSD": 36.99,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-15T10:52:23.085Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.com/dp/b0fp6h8brz": {
+    "id": "5b0fc9e2-dd94-44dd-b9f1-026b80bf34d3",
+    "title": "PlayStation®5 Console – Ghost of Yōtei Gold Limited Edition Bundle (slim)",
+    "url": "https://www.amazon.com/dp/B0FP6H8BRZ",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "USD",
+      "description": "Explore every inch of the breathtaking lands surrounding Mount Yōtei with the PlayStation5 Console – Ghost of Yōtei Gold Limited Edition Bundle. Experience Atsu’s epic tale as it unfolds across a stunning Japanese landscape on hardware inspired by Atsu’s iconic mask. About this item PlayStation 5 Console Ghost of Yotei Gold Limited Edition Bundle Includes: Limited Edition PlayStation 5 console, Limited Edition DualSense wireless controller Ghost of Yotei full game vouchers (includes pre-order digital content) 1TB SSD, Disc Drive (attached to console) 2 Horizontal Stand Feet HDMI Cable, AC Power Cord, USB Cable, printed materials, ASTRO's Playroom (pre-installed game) › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/61NwSVXwhdL._SX522_.jpg",
+      "brand": "PlayStation",
+      "availability": "In Stock",
+      "features": [
+        "PlayStation 5 Console Ghost of Yotei Gold Limited Edition Bundle Includes: Limited Edition PlayStation 5 console, Limited Edition DualSense wireless controller",
+        "Ghost of Yotei full game vouchers (includes pre-order digital content)",
+        "1TB SSD, Disc Drive (attached to console)",
+        "2 Horizontal Stand Feet",
+        "HDMI Cable, AC Power Cord, USB Cable, printed materials, ASTRO's Playroom (pre-installed game)"
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/21evFNCS0XL._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/21idVKrjv7L._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/21a+DxnZXML._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/21vj8X9SEOL._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/11JqHqaeqEL._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41XWBAS484L._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41BH0fvrrvL._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/61NwSVXwhdL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Nationwide-Distributors",
+          "price": 599,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": 30,
+          "condition": "New",
+          "isFBA": true
+        },
+        {
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3C2UZZKYRDEBM&sshmPath=shipping-rates",
+          "sellerName": "Nationwide-Distributors",
+          "price": 599,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Monday, March 23. Details Or fastest delivery March 18 - 20. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+          "sellerName": "Amazon Resale",
+          "price": 566.98,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Friday, March 20 ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A2048YWNRT8CMB&sshmPath=shipping-rates",
+          "sellerName": "DollarTreeDollar(Serial Number Recorded)",
+          "price": 575.7,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "$34.28 delivery Friday, March 20. Details ... More",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A33XXF4BHEMZCL&sshmPath=shipping-rates",
+          "sellerName": "Holiday Shopping (NEXT day shipping available )",
+          "price": 612,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery March 20 - 26. Details Or fastest delivery Wednesday, March 18. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AZM0JK8B2V3H&sshmPath=shipping-rates",
+          "sellerName": "Matrix Electronics (SN recorded)",
+          "price": 613.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Saturday, March 21. Details Or fastest delivery Tuesday, March 17. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AOVGK6UD66281&sshmPath=shipping-rates",
+          "sellerName": "Holiday Prime Gift Store",
+          "price": 614.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Thursday, March 19. Details Or fastest delivery Tuesday, March 17. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A39035O0D9W53U&sshmPath=shipping-rates",
+          "sellerName": "HIMALAYAS.LLC (SN recorded)",
+          "price": 622,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery March 20 - 26. Details Or fastest delivery Tuesday, March 17. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A12T6JO0IDSUSH&sshmPath=shipping-rates",
+          "sellerName": "Dealbuddy",
+          "price": 629.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Monday, March 23. Details Or fastest delivery Tuesday, March 17. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A2PQBA7L2BFM79&sshmPath=shipping-rates",
+          "sellerName": "Pro-Distributing",
+          "price": 599,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Monday, March 23. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A2E7NH3SLWCOH4&sshmPath=shipping-rates",
+          "sellerName": "Tech for Less",
+          "price": 639.49,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Friday, March 20. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3JEKQLX9Y2C9L&sshmPath=shipping-rates",
+          "sellerName": "SaveCentral",
+          "price": 642.69,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Monday, March 23. Details ... More",
+          "isFBA": true
+        }
+      ],
+      "asin": "B0FP6H8BRZ",
+      "price": 599,
+      "itemPrice": 599,
+      "averageRating": 4.6,
+      "reviewsCount": 250,
+      "stockCount": 30,
+      "isAmazonChoice": false,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery Monday, March 23. Details Or fastest delivery March 18 - 20. Details FREE delivery Friday, March 20 Or Prime members get FREE delivery Wednesday, March 18. Order within 9 hrs 4 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); }));",
+      "modelNumber": "CFI-2000",
+      "manufacturer": "Sony Interactive Entertainment",
+      "dateFirstAvailable": "September 4, 2025",
+      "isPrime": false,
+      "salesVolume": "200+ bought in past month",
+      "isClimateFriendly": false,
+      "aPlusContent": "<img alt=\"GHOST OF YOTEI LIMITED EDITION PS5 CONSOLE BUNDLE\" src=\"https://m.media-amazon.com/images/S/aplus-media-library-service-media/b3abcd65-deb7-42d8-aea3-09d8de4da5e5.__CR0,0,970,300_PT0_SX970_V1___.jpg\"/> <img alt=\"Experience next-level gaming with PS5: Ray Tracing, 4K, 3D Audio &amp;amp; ultra-fast SSD performance.\" src=\"https://m.media-amazon.com/images/S/aplus-media-library-service-media/2855df5f-e408-4c7f-9f8c-f4c1c461b6dd.__CR0,0,970,300_PT0_SX970_V1___.jpg\"/> <img alt=\"Next-level PS5 game design with fast SSD, vibrant 4K HDR visuals, and stunning color detail.\" src=\"https://m.media-amazon.com/images/S/aplus-media-library-service-media/3e1655ec-c20f-4738-b14f-01d99483ee79.__CR0,0,970,300_PT0_SX970_V1___.jpg\"/> <img alt=\"Feel immersive control with PS5: haptics, adaptive triggers, mic &amp;amp; comfort across devices.\" src=\"https://m.media-amazon.com/images/S/aplus-media-library-service-media/1dc89721-91bd-46ed-8397-f363e93d590b.__CR0,0,970,300_PT0_SX970_V1___.jpg\"/> <img alt=\"Enjoy intuitive PS5 control: comfy design, motion sensors, touch pad &amp;amp; USB-C charging.\" src=\"https://m.media-amazon.com/images/S/aplus-media-library-service-media/26511986-29ae-43cc-9ddb-992aa75b0708.__CR0,0,970,300_PT0_SX970_V1___.jpg\"/>",
+      "videoCount": 6,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0DJB25PF7",
+          "title": "msi Thin 15 15.6” 144Hz FHD Gaming Laptop: Intel Core i7-13620H, NVIDIA Geforce RTX 4050, 16GB DDR4, 512GB NVMe SSD, WiFi 6E,"
+        },
+        {
+          "asin": "B0DJB25PF7",
+          "title": "msi Thin 15 15.6” 144Hz FHD Gaming Laptop: Intel Core i7-13620H, NVIDIA Geforce RTX 4050, 16GB DDR4, 512GB NVMe SSD, WiFi 6E,"
+        },
+        {
+          "asin": "B09S3HNMHF",
+          "title": "Samsung 14\" Galaxy Chromebook Go Laptop PC Computer, Intel Celeron N4500 Processor, 4GB RAM, 64GB Storage, ChromeOS, XE340XDA"
+        },
+        {
+          "asin": "B09S3HNMHF",
+          "title": "Samsung 14\" Galaxy Chromebook Go Laptop PC Computer, Intel Celeron N4500 Processor, 4GB RAM, 64GB Storage, ChromeOS, XE340XDA"
+        },
+        {
+          "asin": "B0C4KVG7R6",
+          "title": "TEAMGROUP MP44S SSD 1TB SLC Cache Gen 4x4 M.2 2230 PCIe 4.0 NVMe Steam Deck ASUS ROG Ally Mini PCs R/W Speed up to 5000/3500"
+        },
+        {
+          "asin": "B0C4KVG7R6",
+          "title": "TEAMGROUP MP44S SSD 1TB SLC Cache Gen 4x4 M.2 2230 PCIe 4.0 NVMe Steam Deck ASUS ROG Ally Mini PCs R/W Speed up to 5000/3500"
+        },
+        {
+          "asin": "B0BYGB3WV4",
+          "title": "NVIDIA Jetson AGX Orin 64GB Developer Kit with Ethernet, USB, Display Port"
+        },
+        {
+          "asin": "B0BYGB3WV4",
+          "title": "NVIDIA Jetson AGX Orin 64GB Developer Kit with Ethernet, USB, Display Port"
+        },
+        {
+          "asin": "B0CQKLS4RP",
+          "title": "PlayStation DualSense® Wireless Controller - White"
+        },
+        {
+          "asin": "B0CQKLS4RP",
+          "title": "PlayStation DualSense® Wireless Controller - White"
+        },
+        {
+          "asin": "B0DZZWMB2L",
+          "title": "ASUS ROG Strix G16 (2025) Gaming Laptop, 16” FHD+ 16:10 165Hz/3ms Display, NVIDIA® GeForce RTX™ 5060 Laptop GPU, Intel® Core™"
+        },
+        {
+          "asin": "B0DZZWMB2L",
+          "title": "ASUS ROG Strix G16 (2025) Gaming Laptop, 16” FHD+ 16:10 165Hz/3ms Display, NVIDIA® GeForce RTX™ 5060 Laptop GPU, Intel® Core™"
+        },
+        {
+          "asin": "B0DWGLDS2V",
+          "title": "PlayStation®5 Console – ASTRO BOT Bundle"
+        },
+        {
+          "asin": "B0B16656Z2",
+          "title": "PS5 Console- Horizon Forbidden West Bundle"
+        },
+        {
+          "asin": "B0FTMY4YZ2",
+          "title": "PlayStation 5 Pro Console - 2TB"
+        },
+        {
+          "asin": "B0FRGMYJMG",
+          "title": "PlayStation®5 Digital Edition – 825GB"
+        },
+        {
+          "asin": "B0BL6DTJXT",
+          "title": "Playstation 5 Disc Version PS5 Console - 4K-TV Gaming, 120Hz 8K Output, 16GB GDDR6, 825GB SSD, WiFi 6, Bluetooth ~5.1 (Renewe"
+        },
+        {
+          "asin": "B0966NLTZS",
+          "title": "PS5 - Sony PlayStation 5 Digital Edition Gaming Console + Wireless Controller - 16GB GDDR6 RAM, 825GB SSD, 120Hz 8K Output, W"
+        },
+        {
+          "asin": "B09TK9KF84",
+          "title": "Plays-tation 5 Digital Edition PS-5_ Gaming (Disc Free) Console - M.K.D. (Renewed)"
+        },
+        {
+          "asin": "B07RZ74VLR",
+          "title": "Roblox Digital Gift Card - 1,000 Robux [Includes Exclusive Virtual Item] [Digital Code]"
+        }
+      ],
+      "bsrCategories": [
+        {
+          "rank": 1954,
+          "category": "Video Games"
+        },
+        {
+          "rank": 6,
+          "category": "PlayStation 5 Consoles"
+        }
+      ],
+      "bestSellerRank": "#1,954 in Video Games (See Top 100 in Video Games) #6 in PlayStation 5 Consoles",
+      "buyBox": {
+        "sellerName": "Nationwide-Distributors",
+        "price": 599,
+        "isFBA": true,
+        "isAmazon": false,
+        "observedAt": "2026-03-15T18:55:43.767Z",
+        "shipsFrom": "Amazon"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Nationwide-Distributors",
+        "price": 599,
+        "currency": "USD",
+        "condition": "New",
+        "isFBA": true,
+        "isAmazon": false
+      },
+      "sellerCount": 27,
+      "averageOfferPrice": 609.57,
+      "lowestOfferPrice": 566.98,
+      "category": "Video Games > PlayStation 5 > Consoles",
+      "amazonMetrics": {
+        "asin": "B0FP6H8BRZ",
+        "buyBox": {
+          "sellerName": "Nationwide-Distributors",
+          "price": 599,
+          "isFBA": true,
+          "isAmazon": false,
+          "observedAt": "2026-03-15T18:55:43.767Z",
+          "shipsFrom": "Amazon"
+        },
+        "bsrCategories": [
+          {
+            "rank": 1954,
+            "category": "Video Games"
+          },
+          {
+            "rank": 6,
+            "category": "PlayStation 5 Consoles"
+          }
+        ],
+        "bestSellerRank": "#1,954 in Video Games (See Top 100 in Video Games) #6 in PlayStation 5 Consoles",
+        "isPrime": false,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": false,
+        "sellerCount": 27,
+        "offers": [
+          {
+            "sellerName": "Nationwide-Distributors",
+            "price": 599,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": 30,
+            "condition": "New",
+            "isFBA": true
+          },
+          {
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3C2UZZKYRDEBM&sshmPath=shipping-rates",
+            "sellerName": "Nationwide-Distributors",
+            "price": 599,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Monday, March 23. Details Or fastest delivery March 18 - 20. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+            "sellerName": "Amazon Resale",
+            "price": 566.98,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Friday, March 20 ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A2048YWNRT8CMB&sshmPath=shipping-rates",
+            "sellerName": "DollarTreeDollar(Serial Number Recorded)",
+            "price": 575.7,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "$34.28 delivery Friday, March 20. Details ... More",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A33XXF4BHEMZCL&sshmPath=shipping-rates",
+            "sellerName": "Holiday Shopping (NEXT day shipping available )",
+            "price": 612,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery March 20 - 26. Details Or fastest delivery Wednesday, March 18. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AZM0JK8B2V3H&sshmPath=shipping-rates",
+            "sellerName": "Matrix Electronics (SN recorded)",
+            "price": 613.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Saturday, March 21. Details Or fastest delivery Tuesday, March 17. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AOVGK6UD66281&sshmPath=shipping-rates",
+            "sellerName": "Holiday Prime Gift Store",
+            "price": 614.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Thursday, March 19. Details Or fastest delivery Tuesday, March 17. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A39035O0D9W53U&sshmPath=shipping-rates",
+            "sellerName": "HIMALAYAS.LLC (SN recorded)",
+            "price": 622,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery March 20 - 26. Details Or fastest delivery Tuesday, March 17. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A12T6JO0IDSUSH&sshmPath=shipping-rates",
+            "sellerName": "Dealbuddy",
+            "price": 629.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Monday, March 23. Details Or fastest delivery Tuesday, March 17. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A2PQBA7L2BFM79&sshmPath=shipping-rates",
+            "sellerName": "Pro-Distributing",
+            "price": 599,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Monday, March 23. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A2E7NH3SLWCOH4&sshmPath=shipping-rates",
+            "sellerName": "Tech for Less",
+            "price": 639.49,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Friday, March 20. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3JEKQLX9Y2C9L&sshmPath=shipping-rates",
+            "sellerName": "SaveCentral",
+            "price": 642.69,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Monday, March 23. Details ... More",
+            "isFBA": true
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-15T18:55:43.767Z",
+      "itemPriceObservedAt": "2026-03-15T18:55:43.767Z",
+      "priceUSD": 599,
+      "itemPriceUSD": 599,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-15T18:55:43.767Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.com/dp/b0fqg17ftn": {
+    "id": "8ac88b39-1011-42c6-828b-7dd705853562",
+    "title": "Apple Watch Ultra 3 [GPS + Cellular 49mm] Running & Multisport Smartwatch w/Rugged Titanium Case w/Black Titanium Milanese Loop - L. Satellite Communications, Advanced Health & Fitness Tracking",
+    "url": "https://www.amazon.com/dp/B0FQG17FTN?th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "USD",
+      "description": "About this item RUGGED AND READY TO GO — The ultimate sports and adventure watch is built to last with an extremely tough titanium case and a strong sapphire crystal display. Water resistant 100m — great for swimming, diving, and high-speed water sports.* BRIGHT, BEAUTIFUL DISPLAY — A large and advanced display that emits more light at wider angles — making it even brighter and easier to read.* You can also use the display as a flashlight. MULTIDAY BATTERY LIFE — Up to 42 hours of normal use and up to 72 hours in Low Power Mode.* Track a workout with full GPS and heart rate monitoring for up to 20 hours in Low Power Mode.* ULTIMATE RUNNING & WORKOUT COMPANION — Precision dual-frequency GPS, Pacer, Heart Rate Zones, Custom Workouts, running power, Workout Buddy powered by Apple Intelligence from your nearby iPhone,* and training load give runners, swimmers, cyclists, and athletes everything they need. SAFETY FEATURES — Ultra 3 can detect a hard fall or severe car crash.* If you don’t have cell service or Wi-Fi, built-in satellite communications let you text emergency services via satellite to get help.* CUSTOMIZABLE ACTION BUTTON — One quick press gives you precise, physical control over a variety of customizable functions — like starting a workout or turning on the flashlight. INVALUABLE HEALTH INSIGHTS — Get notified of possible hypertension,* an irregular rhythm,* sleep apnea,* or an unusually high or low heart rate. Track your sleep score and your daily health status with the Vitals app* and take readings of your blood oxygen.* THE FREEDOM OF CELLULAR — Take and make calls, stream music and podcasts, and listen on your AirPods or the built-in watch speaker — all without your iPhone.* And now with speedy 5G, you can get fast performance on the go.* TRAILBLAZING BANDS — Ultra 3 has four elegant, endlessly versatile band styles that meet all the demands of your daily activities, from workouts to nights out. * LEGAL DISCLAIMERS — This is a summary of the main product",
+      "imageUrl": "https://m.media-amazon.com/images/I/814fsV8qwRL._AC_SX522_.jpg",
+      "brand": "Apple",
+      "availability": "In Stock",
+      "features": [
+        "RUGGED AND READY TO GO — The ultimate sports and adventure watch is built to last with an extremely tough titanium case and a strong sapphire crystal display. Water resistant 100m — great for swimming, diving, and high-speed water sports.*",
+        "BRIGHT, BEAUTIFUL DISPLAY — A large and advanced display that emits more light at wider angles — making it even brighter and easier to read.* You can also use the display as a flashlight.",
+        "MULTIDAY BATTERY LIFE — Up to 42 hours of normal use and up to 72 hours in Low Power Mode.* Track a workout with full GPS and heart rate monitoring for up to 20 hours in Low Power Mode.*",
+        "ULTIMATE RUNNING & WORKOUT COMPANION — Precision dual-frequency GPS, Pacer, Heart Rate Zones, Custom Workouts, running power, Workout Buddy powered by Apple Intelligence from your nearby iPhone,* and training load give runners, swimmers, cyclists, and athletes everything they need.",
+        "SAFETY FEATURES — Ultra 3 can detect a hard fall or severe car crash.* If you don’t have cell service or Wi-Fi, built-in satellite communications let you text emergency services via satellite to get help.*",
+        "CUSTOMIZABLE ACTION BUTTON — One quick press gives you precise, physical control over a variety of customizable functions — like starting a workout or turning on the flashlight.",
+        "INVALUABLE HEALTH INSIGHTS — Get notified of possible hypertension,* an irregular rhythm,* sleep apnea,* or an unusually high or low heart rate. Track your sleep score and your daily health status with the Vitals app* and take readings of your blood oxygen.*",
+        "THE FREEDOM OF CELLULAR — Take and make calls, stream music and podcasts, and listen on your AirPods or the built-in watch speaker — all without your iPhone.* And now with speedy 5G, you can get fast performance on the go.*",
+        "TRAILBLAZING BANDS — Ultra 3 has four elegant, endlessly versatile band styles that meet all the demands of your daily activities, from workouts to nights out.",
+        "* LEGAL DISCLAIMERS — This is a summary of the main product features. See below to learn more."
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/51x8F3QDUWL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41X4Yeyc+TL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/4187dIL1-FL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41Wwk4FXBCL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/513V+kyUE1L._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41V8nub+IlL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/814fsV8qwRL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Amazon Resale",
+          "price": 862,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": 87,
+          "condition": "New",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+          "sellerName": "Amazon Resale",
+          "price": 736.16,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Saturday, March 21 ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AN8LN2YPKS7DF&sshmPath=shipping-rates",
+          "sellerName": "DataVision Computer Video",
+          "price": 914,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tomorrow, March 17. Order within 11 hrs 25 mins. Details",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A17MC6HOH9AVE6&sshmPath=shipping-rates",
+          "sellerName": "Adorama",
+          "price": 999,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Friday, March 27. Details ... More",
+          "isFBA": true
+        }
+      ],
+      "asin": "B0FQG17FTN",
+      "price": 862,
+      "itemPrice": 862,
+      "averageRating": 4.7,
+      "reviewsCount": 653,
+      "stockCount": 87,
+      "isAmazonChoice": true,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery Saturday, March 21 Or Prime members get FREE delivery Wednesday, March 18. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); FREE delivery Saturday, March 21 Or Prime members get FREE delivery Tomorrow, March 17. Order within 7 hrs 30 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); }));",
+      "manufacturer": "‎Apple",
+      "modelNumber": "‎MF1T4LW/A",
+      "dateFirstAvailable": "‎September 8, 2025",
+      "isPrime": true,
+      "salesVolume": "200+ bought in past month",
+      "isClimateFriendly": true,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0DFVB13XF",
+          "title": "Misxi 2 Pack Tempered Glass Case Compatible for Apple Watch Series 11 (2025) Series 10 46mm, Screen Protector Cover for iWatc"
+        },
+        {
+          "asin": "B0FQF9ZX7P",
+          "title": "Apple Watch Series 11 [GPS 42mm] Smartwatch with Rose Gold Aluminum Case with Light Blush Sport Band - S/M. Sleep Score, Fitn"
+        },
+        {
+          "asin": "B0B2R7G9ML",
+          "title": "𝟐𝟎𝟐𝟔 𝐔𝐩𝐠𝐫𝐚𝐝𝐞𝐝 for Apple Watch Charger Magnetic Fast Charging Cable [Portable] Magnetic Wireless Charging Compatib"
+        },
+        {
+          "asin": "B0F3J1GXTD",
+          "title": "Braided Stretchy Band Compatible with Apple Watch Bands 38mm 40mm 41mm 42mm 44mm 45mm 46mm 49mm Women Men, Soft Nylon Solo Lo"
+        },
+        {
+          "asin": "B0B14VQ5GQ",
+          "title": "2 Pack Case with Tempered Glass Screen Protector for Apple Watch SE3(2025) SE2 Series 6/5/4/SE 40mm,JZK Slim Guard Bumper Ful"
+        },
+        {
+          "asin": "B0D9WVSZ56",
+          "title": "Oura Ring 4 - Silver - Size 8 - Size Before You Buy"
+        },
+        {
+          "asin": "B09THCBHQ4",
+          "title": "amBand M1 Sport Case Band for Apple Watch Ultra 3/2/1 & SE 3/2/1 & Series 11 10 9 8 7 6 5 4 3 49mm 46mm 45mm 44mm 42mm 41mm 4"
+        },
+        {
+          "asin": "B0CTH4VRZF",
+          "title": "10 Pack Stretchy Bands Compatible with Apple Watch Band 40mm 38mm 41mm 42mm 44mm 45mm 46mm 49mm Women Men, Water-Resistant So"
+        },
+        {
+          "asin": "B0DFG31G1P",
+          "title": "LK 6 Pack for Apple Watch Series 11/ Series 10 Screen Protector 42mm - Anti-Scratch, Self-Healing Soft TPU Screen Protector f"
+        },
+        {
+          "asin": "B0B5F9SZW7",
+          "title": "Fitbit Inspire 3 Health &-Fitness-Tracker with Stress Management, Workout Intensity, Sleep Tracking, 24/7 Heart Rate and more"
+        },
+        {
+          "asin": "B0DGFZ3VWP",
+          "title": "RingConn Sizing Kit - Size First Before You Buy - Choose from 9 Sizes - Sizes 6 to 14 - Find The Perfect Ring Size Smart Ring"
+        },
+        {
+          "asin": "B0BGH2V2Q9",
+          "title": "Smiling 2 Pack Case Compatible with Apple Watch SE 3 (2025)/ SE 2/ SE/Series 6/5/4 44mm with Tempered Glass Screen Protector,"
+        },
+        {
+          "asin": "B0CL9QM731",
+          "title": "Sport Silicone Band Compatible with Apple Watch Bands 40mm 38mm 41mm 44mm 45mm 42mm 49mm Women Men,Soft Wristband Waterproof"
+        },
+        {
+          "asin": "B0DLQZJCHD",
+          "title": "Apple Watch Ultra 2 (GPS + Cellular, 49MM) - Black Titanium Case with Black Ocean Band (Renewed)"
+        },
+        {
+          "asin": "B0FSGMJ861",
+          "title": "Apple Watch Ultra 3 [GPS + Cellular, 49mm] Black Titanium Case with Black Ocean Band (Renewed)"
+        },
+        {
+          "asin": "B0CSTGJVKF",
+          "title": "Apple Watch Ultra 2 [GPS + Cellular 49mm] Smartwatch with Rugged Titanium Case & Blue/Black Trail Loop S/M. Fitness Tracker,"
+        },
+        {
+          "asin": "B0BX4XG53Z",
+          "title": "Apple Watch Ultra [GPS + Cellular 49mm] Titanium Case with Midnight Ocean Band, One Size (Renewed)"
+        },
+        {
+          "asin": "B0DTXJVJBQ",
+          "title": "Apple Watch Ultra 2 (GPS + Cellular, 49MM) - Black Titanium Case with Black Ocean Band (Renewed Premium)"
+        },
+        {
+          "asin": "B0CTD71KKG",
+          "title": "Apple Watch Ultra 2 [GPS + Cellular, 49mm] - Titanium Case with Blue Ocean Band, One Size (Renewed)"
+        },
+        {
+          "asin": "B0D14KWMTL",
+          "title": "ESR for Apple Watch Ultra 3 /Ultra 2 /Ultra Case with Screen Protector 49mm (2025) Military Grade Protection, Aluminum Alloy"
+        }
+      ],
+      "buyBox": {
+        "sellerName": "Amazon Resale",
+        "price": 862,
+        "isFBA": true,
+        "isAmazon": false,
+        "observedAt": "2026-03-16T08:34:58.453Z",
+        "shipsFrom": "Amazon"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Amazon Resale",
+        "price": 862,
+        "currency": "USD",
+        "condition": "New",
+        "isFBA": true,
+        "isAmazon": false
+      },
+      "sellerCount": 4,
+      "averageOfferPrice": 877.79,
+      "lowestOfferPrice": 736.16,
+      "category": "",
+      "amazonMetrics": {
+        "asin": "B0FQG17FTN",
+        "buyBox": {
+          "sellerName": "Amazon Resale",
+          "price": 862,
+          "isFBA": true,
+          "isAmazon": false,
+          "observedAt": "2026-03-16T08:34:58.453Z",
+          "shipsFrom": "Amazon"
+        },
+        "isPrime": true,
+        "isAmazonChoice": true,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 4,
+        "offers": [
+          {
+            "sellerName": "Amazon Resale",
+            "price": 862,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": 87,
+            "condition": "New",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+            "sellerName": "Amazon Resale",
+            "price": 736.16,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Saturday, March 21 ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AN8LN2YPKS7DF&sshmPath=shipping-rates",
+            "sellerName": "DataVision Computer Video",
+            "price": 914,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tomorrow, March 17. Order within 11 hrs 25 mins. Details",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A17MC6HOH9AVE6&sshmPath=shipping-rates",
+            "sellerName": "Adorama",
+            "price": 999,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Friday, March 27. Details ... More",
+            "isFBA": true
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-16T08:34:58.453Z",
+      "itemPriceObservedAt": "2026-03-16T08:34:58.453Z",
+      "priceUSD": 862,
+      "itemPriceUSD": 862,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-16T08:34:58.453Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.com/dp/b0dzdb8h69": {
+    "id": "1864dd3a-b11d-485a-8da7-b70c0ae30a4f",
+    "title": "Apple 2025 MacBook Air 15-inch Laptop with M4 chip: Built for Apple Intelligence, 15.3-inch Liquid Retina Display, 16GB Unified Memory, 256GB SSD Storage, 12MP Center Stage Camera, Touch ID; Silver",
+    "url": "https://www.amazon.com/dp/B0DZDB8H69?th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "USD",
+      "description": "About this item SPEED OF LIGHTNESS — MacBook Air with the M4 chip lets you blaze through work and play. With Apple Intelligence,* up to 18 hours of battery life,* and an incredibly portable design, you can take on anything, anywhere. SUPERCHARGED BY M4 — The Apple M4 chip brings even more speed and fluidity to everything you do, like working between multiple apps, editing videos, or playing graphically demanding games. BUILT FOR APPLE INTELLIGENCE — Apple Intelligence is the personal intelligence system that helps you write, express yourself, and get things done effortlessly. With groundbreaking privacy protections, it gives you peace of mind that no one else can access your data — not even Apple.* UP TO 18 HOURS OF BATTERY LIFE — MacBook Air delivers the same incredible performance whether it’s running on battery or plugged in.* A BRILLIANT DISPLAY — The 15.3-inch Liquid Retina display supports 1 billion colors.* Photos and videos pop with rich contrast and sharp detail, and text appears supercrisp. LOOK AND SOUND YOUR BEST — Everything looks and sounds amazing with a 12MP Center Stage camera, three mics, and six speakers with Spatial Audio. CONNECT IT ALL — MacBook Air features two Thunderbolt 4 ports, a MagSafe charging port, a headphone jack, Wi-Fi 6E,* and Bluetooth 5.3. And it supports up to two external displays. APPS FLY IN MACOS — All your favorites run lightning fast in macOS, including Microsoft 365 Copilot, Adobe Creative Cloud, and Google Workspace.* IF YOU LOVE IPHONE, YOU’LL LOVE MAC — Mac works like magic with your other Apple devices. View and control what’s on your iPhone from your Mac with iPhone Mirroring.* Copy something on iPhone and paste it on Mac. Send texts with Messages from your Mac, or use your Mac to answer FaceTime calls.* * LEGAL DISCLAIMERS — This is a summary of the main product features. See below to learn more. Show less › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/71q-i5v2p5L._AC_SX679_.jpg",
+      "brand": "Apple",
+      "availability": "In Stock",
+      "features": [
+        "SPEED OF LIGHTNESS — MacBook Air with the M4 chip lets you blaze through work and play. With Apple Intelligence,* up to 18 hours of battery life,* and an incredibly portable design, you can take on anything, anywhere.",
+        "SUPERCHARGED BY M4 — The Apple M4 chip brings even more speed and fluidity to everything you do, like working between multiple apps, editing videos, or playing graphically demanding games.",
+        "BUILT FOR APPLE INTELLIGENCE — Apple Intelligence is the personal intelligence system that helps you write, express yourself, and get things done effortlessly. With groundbreaking privacy protections, it gives you peace of mind that no one else can access your data — not even Apple.*",
+        "UP TO 18 HOURS OF BATTERY LIFE — MacBook Air delivers the same incredible performance whether it’s running on battery or plugged in.*",
+        "A BRILLIANT DISPLAY — The 15.3-inch Liquid Retina display supports 1 billion colors.* Photos and videos pop with rich contrast and sharp detail, and text appears supercrisp.",
+        "LOOK AND SOUND YOUR BEST — Everything looks and sounds amazing with a 12MP Center Stage camera, three mics, and six speakers with Spatial Audio.",
+        "CONNECT IT ALL — MacBook Air features two Thunderbolt 4 ports, a MagSafe charging port, a headphone jack, Wi-Fi 6E,* and Bluetooth 5.3. And it supports up to two external displays.",
+        "APPS FLY IN MACOS — All your favorites run lightning fast in macOS, including Microsoft 365 Copilot, Adobe Creative Cloud, and Google Workspace.*",
+        "IF YOU LOVE IPHONE, YOU’LL LOVE MAC — Mac works like magic with your other Apple devices. View and control what’s on your iPhone from your Mac with iPhone Mirroring.* Copy something on iPhone and paste it on Mac. Send texts with Messages from your Mac, or use your Mac to answer FaceTime calls.*",
+        "* LEGAL DISCLAIMERS — This is a summary of the main product features. See below to learn more."
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/41c2mLcLLTL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/515iLLbpgNL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31tJprJrI2L._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41c+iu83SnL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/514xx2Hg68L._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31SijxUnFLL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51Yzl4VYSEL._SX35_SY46._CR0,0,35,46_BG85,85,85_BR-120_PKdp-play-icon-overlay__.jpg",
+        "https://m.media-amazon.com/images/I/71q-i5v2p5L.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Amazon Resale",
+          "price": 999,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": 3,
+          "condition": "New",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+          "sellerName": "Amazon Resale",
+          "price": 887.37,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Friday, March 20 ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+          "sellerName": "Amazon Resale",
+          "price": 906.66,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Friday, March 20 ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+          "sellerName": "Amazon Resale",
+          "price": 916.3,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Friday, March 20 Or Prime members get FREE delivery Tomorrow, March 16. Order within 7 hrs 55 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A17MC6HOH9AVE6&sshmPath=shipping-rates",
+          "sellerName": "Adorama",
+          "price": 1175,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tuesday, March 17. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AN8LN2YPKS7DF&sshmPath=shipping-rates",
+          "sellerName": "DataVision Computer Video",
+          "price": 1199,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tuesday, March 17. Details ... More",
+          "isFBA": true
+        }
+      ],
+      "asin": "B0DZDB8H69",
+      "price": 999,
+      "itemPrice": 999,
+      "originalPrice": 1199,
+      "discountPercentage": 17,
+      "averageRating": 4.8,
+      "reviewsCount": 2457,
+      "stockCount": 3,
+      "isAmazonChoice": true,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery Friday, March 20 Or Prime members get FREE delivery Wednesday, March 18. Order within 8 hrs 40 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); FREE delivery Friday, March 20 Or Prime members get FREE delivery Wednesday, March 18. Order within 8 hrs 40 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); }));",
+      "manufacturer": "‎Apple",
+      "modelNumber": "‎MW1G3LL/A",
+      "dateFirstAvailable": "‎March 5, 2025",
+      "isPrime": true,
+      "salesVolume": "1K+ bought in past month",
+      "isClimateFriendly": true,
+      "videoCount": 3,
+      "customersAlsoViewed": [
+        {
+          "asin": "B01FV0F8H8",
+          "title": "Amazon Basics Multipurpose Copy Printer Paper, 8.5 x 11 Inches, 20 lb, 92 Bright, White, 1 Ream (500 Sheets), Jam-Free"
+        },
+        {
+          "asin": "B00LH3DMUO",
+          "title": "Amazon Basics AAA Long-Lasting Alkaline Batteries, 36-Count, 1.5 Volt, Reliable Performance, 10-Year Shelf Life, Emergency St"
+        },
+        {
+          "asin": "B00MNV8E0C",
+          "title": "Amazon Basics 48-Pack AA Alkaline High-Performance Batteries, 1.5 Volt, 10-Year Shelf Life, Long-lasting, No Leakage"
+        },
+        {
+          "asin": "B0DGHMNQ5Z",
+          "title": "Apple AirPods 4 Wireless Earbuds, Bluetooth Headphones, Personalized Spatial Audio, Sweat and Water Resistant, USB-C Charging"
+        },
+        {
+          "asin": "B0B283QP2N",
+          "title": "iPhone Charger Fast Charging 2 Pack Type C Wall Charger Block with 2 Pack [6FT&10FT] Long USB C to Lightning Cable for iPhone"
+        },
+        {
+          "asin": "B0GJTFXNRX",
+          "title": "Apple AirTag (2nd Generation): Tracker for Keychain, Wallet, and More; Locator with Sound; Simple One-Tap Setup with iPhone o"
+        },
+        {
+          "asin": "B0DZDB8H69",
+          "title": "Apple 2025 MacBook Air 15-inch Laptop with M4 chip: Built for Apple Intelligence, 15.3-inch Liquid Retina Display, 16GB Unifi"
+        },
+        {
+          "asin": "B0CX24BNQC",
+          "title": "Apple 2024 MacBook Air 13-inch Laptop with M3 chip: Built for Apple Intelligence, 13.6-inch Liquid Retina Display, 16GB Unifi"
+        },
+        {
+          "asin": "B0FWD6SKL6",
+          "title": "Apple 2025 MacBook Pro Laptop with M5 chip with 10‑core CPU and 10‑core GPU: Built for Apple Intelligence, 14.2-inch Liquid R"
+        },
+        {
+          "asin": "B0DZZWMB2L",
+          "title": "ASUS ROG Strix G16 (2025) Gaming Laptop, 16” FHD+ 16:10 165Hz/3ms Display, NVIDIA® GeForce RTX™ 5060 Laptop GPU, Intel® Core™"
+        },
+        {
+          "asin": "B0GR1JTFP8",
+          "title": "Apple 2026 MacBook Air 13-inch Laptop with M5 chip: Built for AI, 13.6-inch Liquid Retina Display, 16GB Unified Memory, 512GB"
+        },
+        {
+          "asin": "B0GMYNWS2C",
+          "title": "Apple MacBook Air 13-Inch Laptop Space Gray | M1 Chip 8GB Memory 256GB SSD | Retina Display, Backlit Keyboard, Touch ID, Long"
+        }
+      ],
+      "buyBox": {
+        "sellerName": "Amazon Resale",
+        "price": 999,
+        "isFBA": true,
+        "isAmazon": false,
+        "observedAt": "2026-03-15T19:20:02.007Z",
+        "shipsFrom": "Amazon"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Amazon Resale",
+        "price": 999,
+        "currency": "USD",
+        "condition": "New",
+        "isFBA": true,
+        "isAmazon": false
+      },
+      "sellerCount": 7,
+      "averageOfferPrice": 1013.89,
+      "lowestOfferPrice": 887.37,
+      "category": "",
+      "amazonMetrics": {
+        "asin": "B0DZDB8H69",
+        "buyBox": {
+          "sellerName": "Amazon Resale",
+          "price": 999,
+          "isFBA": true,
+          "isAmazon": false,
+          "observedAt": "2026-03-15T19:20:02.007Z",
+          "shipsFrom": "Amazon"
+        },
+        "isPrime": true,
+        "isAmazonChoice": true,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 7,
+        "offers": [
+          {
+            "sellerName": "Amazon Resale",
+            "price": 999,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": 3,
+            "condition": "New",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+            "sellerName": "Amazon Resale",
+            "price": 887.37,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Friday, March 20 ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+            "sellerName": "Amazon Resale",
+            "price": 906.66,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Friday, March 20 ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+            "sellerName": "Amazon Resale",
+            "price": 916.3,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Friday, March 20 Or Prime members get FREE delivery Tomorrow, March 16. Order within 7 hrs 55 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A17MC6HOH9AVE6&sshmPath=shipping-rates",
+            "sellerName": "Adorama",
+            "price": 1175,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tuesday, March 17. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AN8LN2YPKS7DF&sshmPath=shipping-rates",
+            "sellerName": "DataVision Computer Video",
+            "price": 1199,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tuesday, March 17. Details ... More",
+            "isFBA": true
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-15T19:20:02.007Z",
+      "itemPriceObservedAt": "2026-03-15T19:20:02.007Z",
+      "priceUSD": 999,
+      "itemPriceUSD": 999,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-15T19:20:02.007Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.com/dp/b098g34gbt": {
+    "id": "f28e1d19-e1d1-4fd6-8e87-4fb7cee9d764",
+    "title": "Ghost of Tsushima Director's Cut",
+    "url": "https://www.amazon.com/dp/B098G34GBT?th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "USD",
+      "description": "In the late 13th century, the Mongol empire has laid waste to entire nations along their campaign to conquer the East. Tsushima Island is all that stands between mainland Japan and a massive Mongol invasion fleet led by the ruthless and cunning general, Khotun Khan. As the island burns in the wake of the first wave of the Mongol assault, courageous samurai warrior Jin Sakai stands resolute. As one of the last surviving members of his clan, Jin is resolved to do whatever it takes, at any cost, to protect his people and reclaim his home. He must set aside the traditions that have shaped him as a warrior to forge a new path, the path of the Ghost, and wage an unconventional war for the freedom of Tsushima. Ghost of Tsushima DIRECTOR'S CUT includes: - Full game. - Iki Island expansion: New story, mini-games, enemy types and more. - Legends online co-op mode. - Digital mini art book by Dark Horse. - Director's commentary: The creative team sits down with a renowned Japanese historian to look at the world of Ghost of Tsushima and how it compares to the real-life events that inspired it. - One Technique Point. - Charm of Hachiman's Favour. - Hero of Tsushima Skin Set: Golden Mask, Sword Kit, Horse, Saddle. About this item Beyond war, ancient beauty endures: Roam vast countryside and expansive terrain to encounter rich characters, discover ancient landmarks and uncover the hidden beauty of Tsushima. The rise of the Ghost: Seek support from old friends and new unlikely allies to reclaim Tsushima. Mud, Blood and steel: challenge opponents with your katana for an immersive Samurai combat experience. Become legends together: play with friends or via online matchmaking in a series of two-player story missions or four-player wave-based survival missions in the legends online co-op A whole new island to explore: Travel to Iki Island to investigate rumors of a Mongol presence in a brand-new story with deeply personal stakes. › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/815tnE6uJ4L._SX385_.jpg",
+      "brand": "PlayStation",
+      "availability": "In Stock",
+      "features": [
+        "Beyond war, ancient beauty endures: Roam vast countryside and expansive terrain to encounter rich characters, discover ancient landmarks and uncover the hidden beauty of Tsushima.",
+        "The rise of the Ghost: Seek support from old friends and new unlikely allies to reclaim Tsushima.",
+        "Mud, Blood and steel: challenge opponents with your katana for an immersive Samurai combat experience.",
+        "Become legends together: play with friends or via online matchmaking in a series of two-player story missions or four-player wave-based survival missions in the legends online co-op",
+        "A whole new island to explore: Travel to Iki Island to investigate rumors of a Mongol presence in a brand-new story with deeply personal stakes."
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/51ImQXtSLKL._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51qvRq6vwfS._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/414h-ldHMsS._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41s+ZW3EeHS._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31MvORJ6-GS._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41DAYbdBHkS._SX38_SY50_CR,0,0,38,50_.jpg",
+        "https://m.media-amazon.com/images/I/817ww+u0ZJL.SX38_SY50_CR,0,0,38,50_BG85,85,85_BR-120_PKdp-play-icon-overlay__.jpg",
+        "https://m.media-amazon.com/images/I/815tnE6uJ4L.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "antonlineantonlineGAMES R US (Serial # Recorded to Prevent Fraud)GAMES R US (Serial # Recorded to Prevent Fraud)",
+          "price": 43.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": 30,
+          "condition": "New",
+          "isFBA": false
+        },
+        {
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A2YLYLTN75J8LR&sshmPath=shipping-rates",
+          "sellerName": "antonline",
+          "price": 43.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery March 18 - 19. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AND2NDFZDXJ0G&sshmPath=shipping-rates",
+          "sellerName": "goodwill_industries_of_san_diego",
+          "price": 35.19,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery March 20 - 26. Details ... More",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3LP6WFLG3L883&sshmPath=shipping-rates",
+          "sellerName": "HPB-Ruby",
+          "price": 34.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "$4.99 delivery March 24 - 27. Details ... More",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A2WSPQVFF10DOJ&sshmPath=shipping-rates",
+          "sellerName": "Half Price Books Inc",
+          "price": 34.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "$4.99 delivery Monday, March 23. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A1VLGDQNZYQHXL&sshmPath=shipping-rates",
+          "sellerName": "FA Enterprise LLC",
+          "price": 43,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery March 19 - 23. Details Or fastest delivery Wednesday, March 18. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A7AQOTQ1O45YY&sshmPath=shipping-rates",
+          "sellerName": "OutrightShopping",
+          "price": 43.72,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery March 19 - 23. Details Or fastest delivery Wednesday, March 18. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A151FB8X73UXPJ&sshmPath=shipping-rates",
+          "sellerName": "Gamer Girlz Online",
+          "price": 43.96,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Friday, March 27. Details Or fastest delivery March 23 - 25. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/main?ie=UTF8&seller=A2KU0TAZOWUUMN&isAmazonFulfilled=1&asin=B098G34GBT&ref_=olp_merch_name_7",
+          "sellerName": "AMT Games",
+          "price": 44.98,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Friday, March 20 Or Prime members get FREE delivery Wednesday, March 18. Order within 8 hrs 47 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A39CDB2QUN51XO&sshmPath=shipping-rates",
+          "sellerName": "I Love Movies and Games",
+          "price": 44.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery March 20 - 26. Details Or fastest delivery Friday, March 20. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/main?ie=UTF8&seller=A19MO7RU63SWGR&isAmazonFulfilled=1&asin=B098G34GBT&ref_=olp_merch_name_9",
+          "sellerName": "DealTavern USA (Serial Numbers Recorded)",
+          "price": 46.8,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Friday, March 20 Or Prime members get FREE delivery Tomorrow, March 16. Order within 8 hrs 2 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/main?ie=UTF8&seller=A1QT4E30ZNS20Y&isAmazonFulfilled=1&asin=B098G34GBT&ref_=olp_merch_name_10",
+          "sellerName": "GAMES R US (Serial # Recorded to Prevent Fraud)",
+          "price": 46.8,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Friday, March 20 Or Prime members get FREE delivery Tomorrow, March 16. Order within 8 hrs 2 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+          "isFBA": true
+        }
+      ],
+      "asin": "B098G34GBT",
+      "price": 43.99,
+      "itemPrice": 43.99,
+      "originalPrice": 69.99,
+      "discountPercentage": 37,
+      "averageRating": 4.8,
+      "reviewsCount": 3318,
+      "stockCount": 30,
+      "isAmazonChoice": false,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery March 18 - 19. Details FREE delivery Friday, March 20 Or Prime members get FREE delivery Tomorrow, March 16. Order within 8 hrs 2 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); FREE delivery March 20 - 26. Details Or fastest delivery Monday, March 23. Details",
+      "modelNumber": "3006485",
+      "manufacturer": "Playstation",
+      "dateFirstAvailable": "July 1, 2021",
+      "isPrime": false,
+      "salesVolume": "300+ bought in past month",
+      "isClimateFriendly": false,
+      "videoCount": 8,
+      "customersAlsoViewed": [
+        {
+          "asin": "B098WZZNWN",
+          "title": "SONY PS5 GHOST OF TSUSHIMA DIRECTOR'S CUT- PS5, Black, 10GHOCU2"
+        },
+        {
+          "asin": "B098WZZNWN",
+          "title": "SONY PS5 GHOST OF TSUSHIMA DIRECTOR'S CUT- PS5, Black, 10GHOCU2"
+        },
+        {
+          "asin": "B098FGSXS1",
+          "title": "Ghost of Tsushima Director's Cut [PlayStation 5]"
+        },
+        {
+          "asin": "B098FGSXS1",
+          "title": "Ghost of Tsushima Director's Cut [PlayStation 5]"
+        },
+        {
+          "asin": "B0F6F41T4H",
+          "title": "Ghost of Yōtei PS5"
+        },
+        {
+          "asin": "B0F6F41T4H",
+          "title": "Ghost of Yōtei PS5"
+        },
+        {
+          "asin": "B09DCSMM4N",
+          "title": "Ghost Of Tsushima: Directors Cut for PlayStation 5 [PS5] (PS5)"
+        },
+        {
+          "asin": "B09DCSMM4N",
+          "title": "Ghost Of Tsushima: Directors Cut for PlayStation 5 [PS5] (PS5)"
+        },
+        {
+          "asin": "B098TV5XPX",
+          "title": "PlayStation, Ghost Of Tsushima Director's Cut (PS5)"
+        },
+        {
+          "asin": "B098TV5XPX",
+          "title": "PlayStation, Ghost Of Tsushima Director's Cut (PS5)"
+        },
+        {
+          "asin": "B08BSKT43L",
+          "title": "Ghost of Tsushima - PlayStation 4"
+        },
+        {
+          "asin": "B08BSKT43L",
+          "title": "Ghost of Tsushima - PlayStation 4"
+        },
+        {
+          "asin": "B0F6F41T4H",
+          "title": "Ghost of Yōtei PS5"
+        },
+        {
+          "asin": "B09NB7XNVB",
+          "title": "UNCHARTED: Legacy of Thieves Collection - PlayStation 5"
+        },
+        {
+          "asin": "B09743F8P6",
+          "title": "Elden Ring - PlayStation 5"
+        },
+        {
+          "asin": "B0992ZKC5Q",
+          "title": "Death Stranding Director's Cut - Playstation 5"
+        },
+        {
+          "asin": "B0C7WQRCPB",
+          "title": "MARVEL’S SPIDER-MAN 2 – PS5 Standard Edition"
+        },
+        {
+          "asin": "B0CPYSPHR1",
+          "title": "Rise of the Ronin - PlayStation 5"
+        },
+        {
+          "asin": "B07RZ74VLR",
+          "title": "Roblox Digital Gift Card - 1,000 Robux [Includes Exclusive Virtual Item] [Digital Code]"
+        },
+        {
+          "asin": "B085TRCCT6",
+          "title": "Luna Premium"
+        }
+      ],
+      "bsrCategories": [
+        {
+          "rank": 836,
+          "category": "Video Games"
+        },
+        {
+          "rank": 81,
+          "category": "PlayStation 5 Games"
+        }
+      ],
+      "bestSellerRank": "#836 in Video Games (See Top 100 in Video Games) #81 in PlayStation 5 Games",
+      "buyBox": {
+        "sellerName": "antonlineantonlineGAMES R US (Serial # Recorded to Prevent Fraud)GAMES R US (Serial # Recorded to Prevent Fraud)",
+        "price": 43.99,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-15T19:12:45.705Z",
+        "shipsFrom": "and"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "antonlineantonlineGAMES R US (Serial # Recorded to Prevent Fraud)GAMES R US (Serial # Recorded to Prevent Fraud)",
+        "price": 43.99,
+        "currency": "USD",
+        "condition": "New",
+        "isFBA": false,
+        "isAmazon": false
+      },
+      "sellerCount": 41,
+      "averageOfferPrice": 42.28,
+      "lowestOfferPrice": 34.99,
+      "category": "Video Games > PlayStation 5 > Games",
+      "amazonMetrics": {
+        "asin": "B098G34GBT",
+        "buyBox": {
+          "sellerName": "antonlineantonlineGAMES R US (Serial # Recorded to Prevent Fraud)GAMES R US (Serial # Recorded to Prevent Fraud)",
+          "price": 43.99,
+          "isFBA": false,
+          "isAmazon": false,
+          "observedAt": "2026-03-15T19:12:45.705Z",
+          "shipsFrom": "and"
+        },
+        "bsrCategories": [
+          {
+            "rank": 836,
+            "category": "Video Games"
+          },
+          {
+            "rank": 81,
+            "category": "PlayStation 5 Games"
+          }
+        ],
+        "bestSellerRank": "#836 in Video Games (See Top 100 in Video Games) #81 in PlayStation 5 Games",
+        "isPrime": false,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": false,
+        "sellerCount": 41,
+        "offers": [
+          {
+            "sellerName": "antonlineantonlineGAMES R US (Serial # Recorded to Prevent Fraud)GAMES R US (Serial # Recorded to Prevent Fraud)",
+            "price": 43.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": 30,
+            "condition": "New",
+            "isFBA": false
+          },
+          {
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A2YLYLTN75J8LR&sshmPath=shipping-rates",
+            "sellerName": "antonline",
+            "price": 43.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery March 18 - 19. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AND2NDFZDXJ0G&sshmPath=shipping-rates",
+            "sellerName": "goodwill_industries_of_san_diego",
+            "price": 35.19,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery March 20 - 26. Details ... More",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3LP6WFLG3L883&sshmPath=shipping-rates",
+            "sellerName": "HPB-Ruby",
+            "price": 34.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "$4.99 delivery March 24 - 27. Details ... More",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A2WSPQVFF10DOJ&sshmPath=shipping-rates",
+            "sellerName": "Half Price Books Inc",
+            "price": 34.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "$4.99 delivery Monday, March 23. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A1VLGDQNZYQHXL&sshmPath=shipping-rates",
+            "sellerName": "FA Enterprise LLC",
+            "price": 43,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery March 19 - 23. Details Or fastest delivery Wednesday, March 18. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A7AQOTQ1O45YY&sshmPath=shipping-rates",
+            "sellerName": "OutrightShopping",
+            "price": 43.72,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery March 19 - 23. Details Or fastest delivery Wednesday, March 18. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A151FB8X73UXPJ&sshmPath=shipping-rates",
+            "sellerName": "Gamer Girlz Online",
+            "price": 43.96,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Friday, March 27. Details Or fastest delivery March 23 - 25. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/main?ie=UTF8&seller=A2KU0TAZOWUUMN&isAmazonFulfilled=1&asin=B098G34GBT&ref_=olp_merch_name_7",
+            "sellerName": "AMT Games",
+            "price": 44.98,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Friday, March 20 Or Prime members get FREE delivery Wednesday, March 18. Order within 8 hrs 47 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A39CDB2QUN51XO&sshmPath=shipping-rates",
+            "sellerName": "I Love Movies and Games",
+            "price": 44.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery March 20 - 26. Details Or fastest delivery Friday, March 20. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/main?ie=UTF8&seller=A19MO7RU63SWGR&isAmazonFulfilled=1&asin=B098G34GBT&ref_=olp_merch_name_9",
+            "sellerName": "DealTavern USA (Serial Numbers Recorded)",
+            "price": 46.8,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Friday, March 20 Or Prime members get FREE delivery Tomorrow, March 16. Order within 8 hrs 2 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/main?ie=UTF8&seller=A1QT4E30ZNS20Y&isAmazonFulfilled=1&asin=B098G34GBT&ref_=olp_merch_name_10",
+            "sellerName": "GAMES R US (Serial # Recorded to Prevent Fraud)",
+            "price": 46.8,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Friday, March 20 Or Prime members get FREE delivery Tomorrow, March 16. Order within 8 hrs 2 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+            "isFBA": true
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-15T19:12:45.705Z",
+      "itemPriceObservedAt": "2026-03-15T19:12:45.705Z",
+      "priceUSD": 43.99,
+      "itemPriceUSD": 43.99,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-15T19:12:45.705Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.com/dp/b0gqvmgwhq": {
+    "id": "b01b5b52-12bd-4446-a37e-555fbb7b4d5e",
+    "title": "Apple iPad Air 13-inch (M4): Liquid Retina Display, 512GB, 12MP Front/Back Camera, Wi-Fi 7 with Apple N1, Touch ID, All-Day Battery Life — Purple",
+    "url": "https://www.amazon.com/dp/B0GQVMGWHQ?th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "USD",
+      "description": "About this item WHY IPAD AIR — iPad Air with the Apple M4 chip packs even more performance into a beautiful design, and it comes in two portable sizes. It features Apple Intelligence* along with a stunning Liquid Retina display, Touch ID, advanced cameras, and Wi-Fi 7.* PERFORMANCE AND STORAGE — The M4 chip delivers advanced graphics and incredible performance for smooth multitasking and complex AI tasks. And with all-day battery life, you can keep working and playing wherever you go.* Choose up to 1TB of storage for apps, music, movies, and more.* IPADOS + APPS — Run apps and get more done with the game-changing capabilities and intuitive design of iPadOS. The flexible windowing system lets you control, organize, and manage your workflows like never before. APPLE INTELLIGENCE — Apple Intelligence is the personal intelligence system that helps you create, communicate, and get things done effortlessly with groundbreaking privacy protections at every step.* 13-INCH LIQUID RETINA DISPLAY — The gorgeous Liquid Retina display features advanced technologies like P3 wide color, True Tone, and ultralow reflectivity, which make everything look stunning.* CONNECTIVITY — Wi-Fi 7 with Apple N1 gives you fast wireless connections.* Work from almost anywhere with quick transfers of photos, documents, and large video files. APPLE PENCIL AND MAGIC KEYBOARD FOR IPAD AIR — Apple Pencil Pro and Apple Pencil (USB-C) enable intuitive and precise control for drawing, note-taking, and creativity. Magic Keyboard provides an amazing typing experience and a trackpad with haptic feedback.* ADVANCED CAMERAS — iPad Air features a 12MP Center Stage front camera that’s perfect for video calls and selfies and a 12MP Wide back camera for document scanning and capturing photos and 4K videos. UNLOCK AND PAY WITH TOUCH ID — Touch ID lets you use your fingerprint to unlock your iPad Air, sign in to apps, and make payments securely with Apple Pay.* * LEGAL DISCLAIMERS — This is a summary of the main pro",
+      "imageUrl": "https://m.media-amazon.com/images/I/71DU8xyt5mL._AC_SX522_.jpg",
+      "brand": "Apple",
+      "availability": "In Stock",
+      "features": [
+        "WHY IPAD AIR — iPad Air with the Apple M4 chip packs even more performance into a beautiful design, and it comes in two portable sizes. It features Apple Intelligence* along with a stunning Liquid Retina display, Touch ID, advanced cameras, and Wi-Fi 7.*",
+        "PERFORMANCE AND STORAGE — The M4 chip delivers advanced graphics and incredible performance for smooth multitasking and complex AI tasks. And with all-day battery life, you can keep working and playing wherever you go.* Choose up to 1TB of storage for apps, music, movies, and more.*",
+        "IPADOS + APPS — Run apps and get more done with the game-changing capabilities and intuitive design of iPadOS. The flexible windowing system lets you control, organize, and manage your workflows like never before.",
+        "APPLE INTELLIGENCE — Apple Intelligence is the personal intelligence system that helps you create, communicate, and get things done effortlessly with groundbreaking privacy protections at every step.*",
+        "13-INCH LIQUID RETINA DISPLAY — The gorgeous Liquid Retina display features advanced technologies like P3 wide color, True Tone, and ultralow reflectivity, which make everything look stunning.*",
+        "CONNECTIVITY — Wi-Fi 7 with Apple N1 gives you fast wireless connections.* Work from almost anywhere with quick transfers of photos, documents, and large video files.",
+        "APPLE PENCIL AND MAGIC KEYBOARD FOR IPAD AIR — Apple Pencil Pro and Apple Pencil (USB-C) enable intuitive and precise control for drawing, note-taking, and creativity. Magic Keyboard provides an amazing typing experience and a trackpad with haptic feedback.*",
+        "ADVANCED CAMERAS — iPad Air features a 12MP Center Stage front camera that’s perfect for video calls and selfies and a 12MP Wide back camera for document scanning and capturing photos and 4K videos.",
+        "UNLOCK AND PAY WITH TOUCH ID — Touch ID lets you use your fingerprint to unlock your iPad Air, sign in to apps, and make payments securely with Apple Pay.*",
+        "* LEGAL DISCLAIMERS — This is a summary of the main product features. See below to learn more."
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/41D97ClVERL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51wF1uT3p3L._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31ld6R4Y2mL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41MIU65v4JL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41TLZNGV4JL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41a5y0gIfjL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/71IZFXK5JGL._SX35_SY46._CR0,0,35,46_BG85,85,85_BR-120_PKdp-play-icon-overlay__.jpg",
+        "https://m.media-amazon.com/images/I/71DU8xyt5mL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Unknown Seller",
+          "price": 1045,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": 3,
+          "condition": "New",
+          "isFBA": false
+        },
+        {
+          "sellerName": "Amazon.com",
+          "price": 1045,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Sunday, March 22 Or Prime members get FREE delivery Thursday, March 19. Order within 11 hrs. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AN8LN2YPKS7DF&sshmPath=shipping-rates",
+          "sellerName": "DataVision Computer Video",
+          "price": 1099,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tomorrow, March 18. Order within 6 hrs. Details",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A17MC6HOH9AVE6&sshmPath=shipping-rates",
+          "sellerName": "Adorama",
+          "price": 1099,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "$11.01 delivery Tuesday, March 24. Details ... More",
+          "isFBA": false
+        }
+      ],
+      "asin": "B0GQVMGWHQ",
+      "price": 1045,
+      "itemPrice": 1045,
+      "originalPrice": 1099,
+      "discountPercentage": 5,
+      "averageRating": 5,
+      "reviewsCount": 2,
+      "stockCount": 3,
+      "isAmazonChoice": false,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery Sunday, March 22 Or Prime members get FREE delivery Thursday, March 19. Order within 14 hrs. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); }));",
+      "manufacturer": "‎Apple",
+      "modelNumber": "‎MH624LL/A",
+      "dateFirstAvailable": "‎March 4, 2026",
+      "isPrime": true,
+      "isClimateFriendly": false,
+      "videoCount": 2,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0DGHMNQ5Z",
+          "title": "Apple AirPods 4 Wireless Earbuds, Bluetooth Headphones, Personalized Spatial Audio, Sweat and Water Resistant, USB-C Charging"
+        },
+        {
+          "asin": "B0GJTFXNRX",
+          "title": "Apple AirTag (2nd Generation): Tracker for Keychain, Wallet, and More; Locator with Sound; Simple One-Tap Setup with iPhone o"
+        },
+        {
+          "asin": "B0FQFB8FMG",
+          "title": "Apple AirPods Pro 3 Wireless Earbuds, Active Noise Cancellation, Live Translation, Heart Rate Sensing, Hearing Aid Feature, B"
+        },
+        {
+          "asin": "B0DGJ7HYG1",
+          "title": "Apple AirPods 4 Wireless Earbuds, Bluetooth Headphones, with Active Noise Cancellation, Adaptive, Transparency Mode, Personal"
+        },
+        {
+          "asin": "B0DCH8VDXF",
+          "title": "Apple EarPods Headphones with USB-C Plug, Wired Ear Buds with Built-in Remote to Control Music, Phone Calls, and Volume"
+        },
+        {
+          "asin": "B0D54JZTHY",
+          "title": "Apple AirTag (1st Generation) - 4 Pack. Keep Track of and find Your Keys, Wallet, Luggage, Backpack, and More. Simple one-tap"
+        },
+        {
+          "asin": "B0GQVPX1PJ",
+          "title": "Apple iPad Air 11-inch (M4): Liquid Retina Display, 128GB, 12MP Front/Back Camera, Wi-Fi 7 with Apple N1, Touch ID, All-Day B"
+        },
+        {
+          "asin": "B0GR1JTFP8",
+          "title": "Apple 2026 MacBook Air 13-inch Laptop with M5 chip: Built for AI, 13.6-inch Liquid Retina Display, 16GB Unified Memory, 512GB"
+        },
+        {
+          "asin": "B0GR114BV7",
+          "title": "Apple 2026 MacBook Air 15-inch Laptop with M5 chip: Built for AI, 15.3-inch Liquid Retina Display, 16GB Unified Memory, 512GB"
+        },
+        {
+          "asin": "B0FWD1MS82",
+          "title": "Apple iPad Pro 13-inch (M5): Ultra Retina XDR Display, 256GB, Landscape 12MP Front Camera/12MP Back Camera, LiDAR Scanner, Wi"
+        },
+        {
+          "asin": "B0FJ2WQ52K",
+          "title": "2025 Apple iPad Air (13-inch, Wi-Fi, 512GB) - Space Gray (Renewed Premium)"
+        },
+        {
+          "asin": "B0DX2BZFFB",
+          "title": "HP OMEN 45L Gaming Desktop, Intel Core Ultra 7 265K, 32 GB RAM, 1 TB SSD, NVIDIA GeForce RTX 5070 Ti, Windows 11 Pro, Microso"
+        }
+      ],
+      "buyBox": {
+        "sellerName": "Amazon.com",
+        "price": 1045,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-17T13:59:57.101Z"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Amazon.com",
+        "price": 1045,
+        "currency": "USD",
+        "condition": "New",
+        "isFBA": false,
+        "isAmazon": false
+      },
+      "sellerCount": 3,
+      "averageOfferPrice": 1072,
+      "lowestOfferPrice": 1045,
+      "category": "",
+      "amazonMetrics": {
+        "asin": "B0GQVMGWHQ",
+        "buyBox": {
+          "sellerName": "Amazon.com",
+          "price": 1045,
+          "isFBA": false,
+          "isAmazon": false,
+          "observedAt": "2026-03-17T13:59:57.101Z"
+        },
+        "isPrime": true,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": false,
+        "sellerCount": 3,
+        "offers": [
+          {
+            "sellerName": "Unknown Seller",
+            "price": 1045,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": 3,
+            "condition": "New",
+            "isFBA": false
+          },
+          {
+            "sellerName": "Amazon.com",
+            "price": 1045,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Sunday, March 22 Or Prime members get FREE delivery Thursday, March 19. Order within 11 hrs. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AN8LN2YPKS7DF&sshmPath=shipping-rates",
+            "sellerName": "DataVision Computer Video",
+            "price": 1099,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tomorrow, March 18. Order within 6 hrs. Details",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A17MC6HOH9AVE6&sshmPath=shipping-rates",
+            "sellerName": "Adorama",
+            "price": 1099,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "$11.01 delivery Tuesday, March 24. Details ... More",
+            "isFBA": false
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-17T13:59:57.101Z",
+      "itemPriceObservedAt": "2026-03-17T13:59:57.101Z",
+      "priceUSD": 1045,
+      "itemPriceUSD": 1045,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-17T13:59:57.101Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.com/apple-ipad-air-13-inch-m4/dp/b0gqvmgwhq": {
+    "id": "906de027-cd83-48e9-ab8d-6ff077ffca25",
+    "title": "Apple iPad Air 13-inch (M4): Liquid Retina Display, 512GB, 12MP Front/Back Camera, Wi-Fi 7 with Apple N1, Touch ID, All-Day Battery Life — Purple",
+    "url": "https://www.amazon.com/Apple-iPad-Air-13-inch-M4/dp/B0GQVMGWHQ?ref_=ast_sto_dp&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "USD",
+      "description": "WHY IPAD AIR — iPad Air with the Apple M4 chip packs even more performance into a beautiful design, and it comes in two portable sizes. It features Apple Intelligence* along with a stunning Liquid Retina display, Touch ID, advanced cameras, and Wi-Fi 7.*",
+      "imageUrl": "https://m.media-amazon.com/images/I/71DU8xyt5mL._AC_SX342_.jpg",
+      "brand": "Apple",
+      "availability": "In Stock",
+      "features": [],
+      "imageUrls": [],
+      "offers": [
+        {
+          "sellerName": "Amazon.com",
+          "price": 1045,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "isFBA": false
+        }
+      ],
+      "price": 1045,
+      "averageRating": 5,
+      "reviewsCount": 2,
+      "buyBox": {
+        "sellerName": "Amazon.com",
+        "price": 1045,
+        "isFBA": false,
+        "isAmazon": true
+      },
+      "amazonMetrics": {
+        "buyBox": {
+          "sellerName": "Amazon.com",
+          "price": 1045,
+          "isFBA": false,
+          "isAmazon": true
+        },
+        "offers": [
+          {
+            "sellerName": "Amazon.com",
+            "price": 1045,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "isFBA": false
+          }
+        ],
+        "bestSellerRank": null,
+        "isPrime": true,
+        "isAmazonChoice": false,
+        "sellerCount": 3
+      },
+      "dynamicFeatures": {
+        "selectedOptions": {
+          "Style": "Wi-Fi",
+          "Size": "512GB",
+          "Color": "Purple",
+          "Configuration": "Without AppleCare+"
+        },
+        "availableOptions": {
+          "Style": [
+            {
+              "name": "Wi-Fi",
+              "price": 1045
+            },
+            {
+              "name": "Wi-Fi + Cellular",
+              "price": 1249,
+              "stockStatus": "Only 7 left in stock (more on the way)."
+            }
+          ],
+          "Size": [
+            "1TB",
+            "128GB",
+            "256GB",
+            "512GB"
+          ],
+          "Color": [
+            {
+              "name": "Purple",
+              "imageUrl": "https://m.media-amazon.com/images/I/01zKohRj-bL._SS64_.jpg"
+            },
+            {
+              "name": "Blue",
+              "imageUrl": "https://m.media-amazon.com/images/I/11abnrnvX6L._SS64_.jpg"
+            },
+            {
+              "name": "Space Gray",
+              "imageUrl": "https://m.media-amazon.com/images/I/11S1sJsWMNL._SS64_.jpg"
+            },
+            {
+              "name": "Starlight",
+              "imageUrl": "https://m.media-amazon.com/images/I/01Fl3gXQaWL._SS64_.jpg"
+            }
+          ],
+          "Configuration": [
+            "Without AppleCare+",
+            "With AppleCare+ (2 years)"
+          ]
+        },
+        "technicalDetails": {
+          "Brand": "Apple",
+          "Model Name": "iPad Air",
+          "Memory Storage Capacity": "512 GB",
+          "Screen Size": "13 Inches",
+          "Display Resolution Maximum": "2732-by-2048-pixel resolution at 264 ppi",
+          "Product Dimensions": "11.05 x 8.46 x 0.24 inches",
+          "Item Weight": "1.36 pounds",
+          "Manufacturer": "Apple",
+          "ASIN": "B0GQVMGWHQ",
+          "Item model number": "MH624LL/A",
+          "Batteries": "1 D batteries required. (included)",
+          "Date First Available": "March 4, 2026",
+          "Display": "Liquid Retina display LED backlit Multi‑Touch display with IPS technology 2732-by-2048-pixel resolution at 264 ppi Wide color (P3) True Tone Fingerprint-resistant oleophobic coating Fully laminated Antireflective coating 600 nits brightness Supports Apple Pencil Pro Supports Apple Pencil (USB‑C) Apple Pencil hover",
+          "Chip": "Apple M3 chip 8-core CPU with 3 performance cores and 5 efficiency cores 9-core GPU Hardware-accelerated ray tracing 16-core Neural Engine 120GB/s memory bandwidth 12GB unified memory Media Engine Hardware-accelerated 8K HEVC, 4K H.264, ProRes, and ProRes RAW Video decode engine Video encode engine ProRes encode and decode engine AV1 decode",
+          "Apple Intelligence": "Built into your iPad, Apple Intelligence is the personal intelligence system that helps you write, express yourself, and get things done effortlessly. With groundbreaking privacy protections, it gives you peace of mind that no one else can access your data — not even Apple.",
+          "Camera": "12MP Wide camera, ƒ/1.8 aperture Digital zoom up to 5x Five-element lens Panorama (up to 63MP) Sapphire crystal lens cover Autofocus with Focus Pixels Smart HDR 4 Wide color capture for photos and Live Photos Photo geotagging Auto image stabilization Burst mode Image formats captured: HEIF and JPEG",
+          "Video Recording": "4K video recording at 24 fps, 25 fps, 30 fps, or 60 fps 1080p HD video recording at 25 fps, 30 fps, or 60 fps 720p HD video recording at 30 fps Slo‑mo video support for 1080p at 120 fps or 240 fps Time‑lapse video with stabilization Extended dynamic range for video up to 30 fps Cinematic video stabilization (4K, 1080p, and 720p) Continuous autofocus video Playback zoom Video formats captured: HEVC and H.264",
+          "Front Camera": "Landscape 12MP Center Stage camera ƒ/2.0 aperture Smart HDR 4 1080p HD video recording at 25 fps, 30 fps, or 60 fps Time‑lapse video with stabilization Extended dynamic range for video up to 30 fps Cinematic video stabilization (1080p and 720p) Wide color capture for photos and Live Photos Lens correction Retina Flash with True Tone Auto image stabilization Burst mode",
+          "Video Calling": "FaceTime video Center Stage iPad to any FaceTime‑enabled device over Wi-Fi or cellular Share experiences like movies, TV, music, and other apps in a FaceTime call with SharePlay Screen sharing Portrait mode in FaceTime video Spatial Audio Voice Isolation and Wide Spectrum microphone modes",
+          "Audio Calling": "FaceTime audio Relay cellular calls from your nearby iPhone with the Phone app",
+          "Speakers": "Landscape stereo speakers",
+          "Microphones": "Dual microphones for calls, video recording, and audio recording",
+          "Cellular and Wireless": "All models Apple N1 wireless networking chip Wi-Fi 7 (802.11be) with 2x2 MIMO Simultaneous dual band Bluetooth 6 Thread networking technology Wi-Fi + Cellular models Apple C1X cellular modem 5G (sub‑6 GHz) with 4x4 MIMO Gigabit LTE with 4x4 MIMO",
+          "Sensors": "Touch ID Three‐axis gyro Accelerometer Barometer Ambient light sensor",
+          "Touch ID": "Unlock iPad Secure personal data within apps Make purchases from the iTunes Store, App Store, and Apple Books",
+          "Charging and Expansion": "USB-C port with support for: Charging DisplayPort USB 3 (up to 10Gb/s)",
+          "Display Support": "Supports full native resolution on the built-in display at millions of colors Supports one external display with up to 6K resolution at 60Hz Digital video output Native DisplayPort output over USB‑C VGA, HDMI, and DVI output supported using adapters (sold separately) Video mirroring Up to 4K AirPlay for mirroring, photos, and video out to Apple TV (2nd generation or later) or AirPlay‑enabled smart TV Video mirroring and video out support through USB-C Digital AV Multiport Adapter and USB-C VGA Multiport Adapter (adapters sold separately)"
+        },
+        "whatsInTheBox": [
+          "iPad Air",
+          "USB-C Charge Cable",
+          "20W USB-C Power Adapter"
+        ]
+      },
+      "sellerCount": 3,
+      "dataQualityScore": 90
+    },
+    "scrapedAt": "2026-03-17T13:57:55.099Z",
     "scrapedBy": "firecrawl"
   }
 }

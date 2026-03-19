@@ -30,6 +30,31 @@ export default function ComparePage() {
 
   const validRatings = products.map(p => p.metrics.averageRating).filter((r): r is number => typeof r === 'number');
   const maxRating = validRatings.length > 0 ? Math.max(...validRatings) : -Infinity;
+  const normalizeSeller = (name?: string) => {
+    if (!name) return '';
+    const cleaned = name.replace(/^sold by\s+/i, '').trim();
+    return /amazon(\.[a-z.]+)?/i.test(cleaned) ? 'Amazon' : cleaned;
+  };
+  const getBuyBox = (product: (typeof products)[number]) => product.metrics.amazonMetrics?.buyBox || product.metrics.buyBox;
+  const getBuyBoxType = (product: (typeof products)[number]) => {
+    const buyBox = getBuyBox(product);
+    if (!buyBox) return t('product.unknown', 'Unknown');
+    if (buyBox.isAmazon) return t('product.buyBoxAmazon', 'Amazon');
+    if (buyBox.isFBA) return t('product.buyBoxFba', 'FBA');
+    return t('product.buyBoxFbm', 'FBM');
+  };
+  const getStockCount = (product: (typeof products)[number]) => {
+    if (typeof product.metrics.stockCount === 'number' && product.metrics.stockCount > 0) return product.metrics.stockCount;
+    const offers = product.metrics.amazonMetrics?.offers || product.metrics.offers || [];
+    const offerStocks = offers
+      .map((offer) => (typeof offer.stockCount === 'number' && offer.stockCount > 0 ? offer.stockCount : 0))
+      .filter((value) => value > 0);
+    return offerStocks.length > 0 ? Math.max(...offerStocks) : null;
+  };
+  const getOfferCount = (product: (typeof products)[number]) => {
+    const offers = product.metrics.amazonMetrics?.offers || product.metrics.offers || [];
+    return product.metrics.sellerCount || offers.length || null;
+  };
 
   return (
     <div className="stack-col" style={{ padding: '24px 20px', gap: 24, maxWidth: 1400, margin: '0 auto' }}>
@@ -179,6 +204,119 @@ export default function ComparePage() {
                   ))}
                 </tr>
 
+                <tr className="table-row">
+                  <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
+                    ASIN
+                  </td>
+                  {products.map(p => (
+                    <td key={`asin-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
+                      {p.metrics.asin || <span className="muted">—</span>}
+                    </td>
+                  ))}
+                </tr>
+
+                <tr className="table-row">
+                  <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
+                    {t('product.buyBoxType', 'Buy Box Type')}
+                  </td>
+                  {products.map(p => (
+                    <td key={`buybox-type-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
+                      {getBuyBoxType(p)}
+                    </td>
+                  ))}
+                </tr>
+
+                <tr className="table-row">
+                  <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
+                    {t('product.buyBoxSeller', 'Buy Box Seller')}
+                  </td>
+                  {products.map(p => {
+                    const seller = normalizeSeller(getBuyBox(p)?.sellerName);
+                    return (
+                      <td key={`buybox-seller-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
+                        {seller || <span className="muted">—</span>}
+                      </td>
+                    );
+                  })}
+                </tr>
+
+                <tr className="table-row">
+                  <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
+                    {t('table.stock', 'Stock')}
+                  </td>
+                  {products.map(p => (
+                    <td key={`stock-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
+                      {getStockCount(p) ?? <span className="muted">—</span>}
+                    </td>
+                  ))}
+                </tr>
+
+                <tr className="table-row">
+                  <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
+                    {t('product.offersCount', 'Offers / Sellers')}
+                  </td>
+                  {products.map(p => (
+                    <td key={`offers-count-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
+                      {getOfferCount(p) ?? <span className="muted">—</span>}
+                    </td>
+                  ))}
+                </tr>
+
+                <tr className="table-row">
+                  <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
+                    Prime
+                  </td>
+                  {products.map(p => (
+                    <td key={`prime-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
+                      {p.metrics.isPrime ? 'Yes' : '—'}
+                    </td>
+                  ))}
+                </tr>
+
+                <tr className="table-row">
+                  <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
+                    Amazon Choice
+                  </td>
+                  {products.map(p => (
+                    <td key={`amazon-choice-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
+                      {p.metrics.isAmazonChoice ? 'Yes' : '—'}
+                    </td>
+                  ))}
+                </tr>
+
+                <tr className="table-row">
+                  <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
+                    Best Seller
+                  </td>
+                  {products.map(p => (
+                    <td key={`best-seller-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
+                      {p.metrics.isBestSeller ? 'Yes' : '—'}
+                    </td>
+                  ))}
+                </tr>
+
+                <tr className="table-row">
+                  <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
+                    {t('table.availability', 'Availability')}
+                  </td>
+                  {products.map(p => (
+                    <td key={`availability-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
+                      {p.metrics.availability || <span className="muted">—</span>}
+                    </td>
+                  ))}
+                </tr>
+
+                <tr className="table-row">
+                  <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
+                    BSR
+                  </td>
+                  {products.map(p => (
+                    <td key={`bsr-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
+                      {p.metrics.bestSellerRank || (p.metrics.bsrCategories?.[0] ? `#${p.metrics.bsrCategories[0].rank}` : <span className="muted">—</span>)}
+                    </td>
+                  ))}
+                </tr>
+
                 {/* Seller / Brand Row (Last Row) */}
                 <tr className="table-row">
                   <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)', borderBottom: 'none' }}>
@@ -190,7 +328,7 @@ export default function ComparePage() {
                         {p.metrics.brand || p.metrics.buyBox?.sellerName ? (
                           <div className="stack-col" style={{ gap: 4, alignItems: 'center' }}>
                             {p.metrics.brand && <span><strong>Brand:</strong> {p.metrics.brand}</span>}
-                            {p.metrics.buyBox?.sellerName && <span><strong>Seller:</strong> {p.metrics.buyBox.sellerName}</span>}
+                            {p.metrics.buyBox?.sellerName && <span><strong>Seller:</strong> {normalizeSeller(p.metrics.buyBox.sellerName)}</span>}
                           </div>
                         ) : (
                           <span className="muted">—</span>

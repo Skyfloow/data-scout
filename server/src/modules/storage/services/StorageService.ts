@@ -31,6 +31,14 @@ export class StorageService {
     return path.join(this.dataDir, 'latest-products.json');
   }
 
+  private getScansDirPath(): string {
+    return path.join(this.dataDir, 'scans');
+  }
+
+  private getScanFilePath(scanId: string): string {
+    return path.join(this.getScansDirPath(), `${scanId}.json`);
+  }
+
   private getLatestSerpIndexPath(): string {
     return path.join(this.dataDir, 'latest-serp.json');
   }
@@ -87,7 +95,14 @@ export class StorageService {
       }
 
       data.push(product);
+
       await this.atomicWrite(filePath, data);
+    });
+
+    const scanFilePath = this.getScanFilePath(product.id);
+    await this.executeLocked(scanFilePath, async () => {
+      await fs.mkdir(this.getScansDirPath(), { recursive: true });
+      await this.atomicWrite(scanFilePath, product);
     });
 
     const latestProductsPath = this.getLatestProductsIndexPath();

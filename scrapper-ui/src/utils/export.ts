@@ -1,6 +1,3 @@
-import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
-
 export type CsvCell = string | number | boolean | null | undefined;
 export type CsvRow = CsvCell[];
 
@@ -139,8 +136,14 @@ export function openPrintReport(options: PrintReportOptions): void {
 
 export async function exportElementToPdf(
   element: HTMLElement,
-  filename: string
+  filename: string,
+  options?: { preserveLayout?: boolean }
 ): Promise<void> {
+  const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
+    import('html2canvas'),
+    import('jspdf'),
+  ]);
+  const preserveLayout = Boolean(options?.preserveLayout);
   const pdf = new jsPDF('p', 'mm', 'a4');
   const pageWidth = pdf.internal.pageSize.getWidth();
   const pageHeight = pdf.internal.pageSize.getHeight();
@@ -193,82 +196,85 @@ export async function exportElementToPdf(
   };
 
   try {
-    clone.querySelectorAll<HTMLElement>('[data-pdf-exclude]').forEach((n) => n.remove());
     clone.querySelectorAll<HTMLElement>('[data-pdf-expand-scroll]').forEach((n) => {
       n.style.maxHeight = 'none';
       n.style.height = 'auto';
       n.style.overflow = 'visible';
     });
-    clone.querySelectorAll<HTMLElement>('.table-head .table-th').forEach((n) => {
-      n.style.position = 'static';
-      n.style.top = 'auto';
-    });
-    clone.querySelectorAll<HTMLElement>('[data-pdf-table-controls]').forEach((n) => {
-      n.remove();
-    });
-    clone.querySelectorAll<HTMLElement>('[data-pdf-table]').forEach((container) => {
-      const table = container.querySelector('table');
-      if (!table) return;
+    clone.querySelectorAll<HTMLElement>('[data-pdf-exclude]').forEach((n) => n.remove());
 
-      const thead = table.querySelector('thead');
-      const tbody = table.querySelector('tbody');
-      if (!tbody) return;
+    if (!preserveLayout) {
+      clone.querySelectorAll<HTMLElement>('.table-head .table-th').forEach((n) => {
+        n.style.position = 'static';
+        n.style.top = 'auto';
+      });
+      clone.querySelectorAll<HTMLElement>('[data-pdf-table-controls]').forEach((n) => {
+        n.remove();
+      });
+      clone.querySelectorAll<HTMLElement>('[data-pdf-table]').forEach((container) => {
+        const table = container.querySelector('table');
+        if (!table) return;
 
-      const rows = Array.from(tbody.querySelectorAll('tr'));
-      const rowsPerPage = 12;
-      const chunks: HTMLElement[][] = [];
-      for (let i = 0; i < rows.length; i += rowsPerPage) {
-        chunks.push(rows.slice(i, i + rowsPerPage));
-      }
+        const thead = table.querySelector('thead');
+        const tbody = table.querySelector('tbody');
+        if (!tbody) return;
 
-      const replacement = document.createElement('div');
-      replacement.style.display = 'block';
-      replacement.style.width = '100%';
-
-      chunks.forEach((chunkRows, chunkIdx) => {
-        const block = document.createElement('div');
-        block.dataset.pdfBlock = 'true';
-        block.dataset.pdfFit = 'width';
-        if (chunkIdx > 0) block.dataset.pdfNewPage = 'true';
-        block.style.width = '100%';
-        block.className = 'table-wrap';
-        block.style.marginBottom = '20px';
-        block.style.overflow = 'visible'; // allow html2canvas to capture full width inside
-
-        if (chunks.length > 1) {
-          const title = document.createElement('div');
-          title.textContent = `Table Page (${chunkIdx + 1}/${chunks.length})`;
-          title.style.fontSize = '13px';
-          title.style.fontWeight = '600';
-          title.style.marginBottom = '8px';
-          title.style.padding = '8px 12px 0';
-          title.style.color = 'var(--fg-muted)';
-          block.appendChild(title);
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const rowsPerPage = 12;
+        const chunks: HTMLElement[][] = [];
+        for (let i = 0; i < rows.length; i += rowsPerPage) {
+          chunks.push(rows.slice(i, i + rowsPerPage));
         }
 
-        const newTable = document.createElement('table');
-        newTable.className = table.className;
-        newTable.setAttribute('style', table.getAttribute('style') || '');
-        newTable.style.width = '100%';
-        newTable.style.minWidth = '0px';
+        const replacement = document.createElement('div');
+        replacement.style.display = 'block';
+        replacement.style.width = '100%';
 
-        if (thead) {
-          const theadClone = thead.cloneNode(true) as HTMLElement;
-          newTable.appendChild(theadClone);
-        }
+        chunks.forEach((chunkRows, chunkIdx) => {
+          const block = document.createElement('div');
+          block.dataset.pdfBlock = 'true';
+          block.dataset.pdfFit = 'width';
+          if (chunkIdx > 0) block.dataset.pdfNewPage = 'true';
+          block.style.width = '100%';
+          block.className = 'table-wrap';
+          block.style.marginBottom = '20px';
+          block.style.overflow = 'visible';
 
-        const newTbody = document.createElement('tbody');
-        chunkRows.forEach((tr) => {
-          newTbody.appendChild(tr.cloneNode(true));
+          if (chunks.length > 1) {
+            const title = document.createElement('div');
+            title.textContent = `Table Page (${chunkIdx + 1}/${chunks.length})`;
+            title.style.fontSize = '13px';
+            title.style.fontWeight = '600';
+            title.style.marginBottom = '8px';
+            title.style.padding = '8px 12px 0';
+            title.style.color = 'var(--fg-muted)';
+            block.appendChild(title);
+          }
+
+          const newTable = document.createElement('table');
+          newTable.className = table.className;
+          newTable.setAttribute('style', table.getAttribute('style') || '');
+          newTable.style.width = '100%';
+          newTable.style.minWidth = '0px';
+
+          if (thead) {
+            const theadClone = thead.cloneNode(true) as HTMLElement;
+            newTable.appendChild(theadClone);
+          }
+
+          const newTbody = document.createElement('tbody');
+          chunkRows.forEach((tr) => {
+            newTbody.appendChild(tr.cloneNode(true));
+          });
+
+          newTable.appendChild(newTbody);
+          block.appendChild(newTable);
+          replacement.appendChild(block);
         });
 
-        newTable.appendChild(newTbody);
-        block.appendChild(newTable);
-        replacement.appendChild(block);
+        container.replaceWith(replacement);
       });
-
-      container.replaceWith(replacement);
-    });
+    }
 
     const blocks = Array.from(clone.querySelectorAll<HTMLElement>('[data-pdf-block]'));
     const topLevelBlocks = blocks.filter((block) => !block.parentElement?.closest('[data-pdf-block]'));
@@ -284,12 +290,23 @@ export async function exportElementToPdf(
         windowWidth: clone.scrollWidth,
       });
 
+    const makeCanvasSlice = (source: HTMLCanvasElement, startPx: number, heightPx: number): HTMLCanvasElement => {
+      const slice = document.createElement('canvas');
+      slice.width = source.width;
+      slice.height = Math.max(1, Math.floor(heightPx));
+      const ctx = slice.getContext('2d');
+      if (!ctx) return source;
+      ctx.drawImage(source, 0, startPx, source.width, heightPx, 0, 0, source.width, heightPx);
+      return slice;
+    };
+
     let cursorY = margin;
     let isFirstBlock = true;
 
     for (const block of blockElements) {
       const fitMode = block.dataset.pdfFit === 'page' ? 'page' : 'width';
       const forceNewPage = block.dataset.pdfNewPage === 'true';
+      const keepTogether = block.dataset.pdfKeepTogether === 'true';
 
       if (!isFirstBlock && forceNewPage) {
         pdf.addPage();
@@ -319,22 +336,41 @@ export async function exportElementToPdf(
         cursorY += renderHeight + gap;
       } else {
         const fullHeightByWidth = (canvas.height * contentWidth) / canvas.width;
-        let renderWidth = contentWidth;
-        let renderHeight = fullHeightByWidth;
-
-        if (renderHeight > contentHeight) {
-          renderHeight = contentHeight;
-          renderWidth = (canvas.width * renderHeight) / canvas.height;
-        }
-
-        if (cursorY + renderHeight > pageHeight - margin) {
+        const remainingHeight = pageHeight - margin - cursorY;
+        // Start key sections from a fresh page if they don't fit in the remaining space.
+        if (!isFirstBlock && keepTogether && fullHeightByWidth > remainingHeight) {
           pdf.addPage();
           cursorY = margin;
         }
 
-        const x = margin + (contentWidth - renderWidth) / 2;
-        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', x, cursorY, renderWidth, renderHeight, undefined, 'FAST');
-        cursorY += renderHeight + gap;
+        const renderWidth = contentWidth;
+        const pxPerMm = canvas.width / renderWidth;
+        let sourceOffsetPx = 0;
+
+        while (sourceOffsetPx < canvas.height) {
+          const availableHeightMm = pageHeight - margin - cursorY;
+          if (availableHeightMm <= 2) {
+            pdf.addPage();
+            cursorY = margin;
+            continue;
+          }
+
+          const maxSliceHeightPx = Math.floor(availableHeightMm * pxPerMm);
+          const remainingPx = canvas.height - sourceOffsetPx;
+          const sliceHeightPx = Math.max(1, Math.min(remainingPx, maxSliceHeightPx));
+
+          const sliceCanvas = makeCanvasSlice(canvas, sourceOffsetPx, sliceHeightPx);
+          const renderHeight = sliceHeightPx / pxPerMm;
+
+          pdf.addImage(sliceCanvas.toDataURL('image/png'), 'PNG', margin, cursorY, renderWidth, renderHeight, undefined, 'FAST');
+          sourceOffsetPx += sliceHeightPx;
+          cursorY += renderHeight + gap;
+
+          if (sourceOffsetPx < canvas.height) {
+            pdf.addPage();
+            cursorY = margin;
+          }
+        }
       }
 
       isFirstBlock = false;

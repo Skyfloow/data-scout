@@ -41,10 +41,45 @@ export class MultimodalFallbackExtractor {
     "description": "Short product description",
     "imageUrl": "Main product image URL",
     "availability": "In Stock",
+    "buyBox": {
+      "sellerName": "Seller name in buy box",
+      "price": 12.99,
+      "isFBA": false,
+      "isAmazon": false
+    },
+    "offers": [
+      {
+        "sellerName": "Seller name",
+        "price": 12.99,
+        "currency": "USD",
+        "stockStatus": "In Stock",
+        "stockCount": 5,
+        "condition": "New",
+        "isFBA": false
+      }
+    ],
     "amazonMetrics": {
+       "buyBox": {
+         "sellerName": "Seller name in buy box",
+         "price": 12.99,
+         "isFBA": false,
+         "isAmazon": false
+       },
+       "offers": [
+         {
+           "sellerName": "Seller name",
+           "price": 12.99,
+           "currency": "USD",
+           "stockStatus": "In Stock",
+           "stockCount": 5,
+           "condition": "New",
+           "isFBA": false
+         }
+       ],
        "bestSellerRank": "String rank",
        "isPrime": true,
-       "isAmazonChoice": false
+       "isAmazonChoice": false,
+       "sellerCount": 3
     },
     "dynamicFeatures": {
        // Extract anything else noteworthy

@@ -21,6 +21,8 @@ export interface DashboardMetrics {
 
 // ─── Offer from a single seller ───
 export interface Offer {
+  offerId?: string;
+  offerUrl?: string;
   sellerName: string;
   price: number;
   currency: string;
@@ -166,6 +168,7 @@ export interface ProductMetrics {
   features?: string[];
   originalPrice?: number;
   discountPercentage?: number;
+  stockCount?: number;
   availability?: string;
   deliveryInfo?: string;
   currency?: string;

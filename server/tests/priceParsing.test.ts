@@ -225,4 +225,150 @@ describe('amazonExtractor price resolution', () => {
     expect(result.metrics.isClimateFriendly).toBe(true);
     expect(result.metrics.lowestOfferPrice).toBeCloseTo(403, 2);
   });
+
+  it('uses max quantity option for buybox offer stockCount instead of generic in-stock sentinel', async () => {
+    const html = `
+      <html>
+        <head></head>
+        <body>
+          <span id="productTitle">Quantity Product</span>
+          <div id="corePrice_feature_div">
+            <span class="priceToPay"><span class="a-offscreen">$99.00</span></span>
+          </div>
+          <div id="availability"><span>In Stock.</span></div>
+          <div id="quantity">
+            <select name="quantity">
+              <option value="1">1</option>
+              <option value="3">3</option>
+              <option value="7">7</option>
+            </select>
+          </div>
+        </body>
+      </html>
+    `;
+    const $ = cheerio.load(html);
+    const result = await amazonExtractor({ $, html, url: 'https://www.amazon.com/dp/B000000009' });
+    expect(result.metrics.offers?.[0]?.stockCount).toBe(7);
+  });
+
+  it('parses sellers from injected remote AOD payload and keeps seller names in offers', async () => {
+    const html = `
+      <html>
+        <head></head>
+        <body>
+          <span id="productTitle">Remote AOD Product</span>
+          <div id="corePrice_feature_div">
+            <span class="priceToPay"><span class="a-offscreen">$99.00</span></span>
+          </div>
+          <div id="availability"><span>In Stock.</span></div>
+          <div id="__remote_aod_payload">
+            <div id="aod-offer-1">
+              <div id="aod-offer-price"><span class="a-price"><span class="a-offscreen">$101.00</span></span></div>
+              <div id="aod-offer-soldBy"><a>Seller One</a></div>
+              <div id="aod-offer-availability">Only 4 left in stock.</div>
+            </div>
+            <div id="aod-offer-2">
+              <div id="aod-offer-price"><span class="a-price"><span class="a-offscreen">$103.00</span></span></div>
+              <div id="aod-offer-soldBy"><a>Seller Two</a></div>
+              <div id="aod-offer-availability">In Stock.</div>
+              <div class="aod-quantity">
+                <select>
+                  <option value="1">1</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </body>
+      </html>
+    `;
+    const $ = cheerio.load(html);
+    const result = await amazonExtractor({ $, html, url: 'https://www.amazon.com/dp/B000000010' });
+    const sellers = (result.metrics.offers || []).map((offer) => offer.sellerName);
+    expect(sellers).toContain('Seller One');
+    expect(sellers).toContain('Seller Two');
+    const sellerTwo = (result.metrics.offers || []).find((offer) => offer.sellerName === 'Seller Two');
+    expect(sellerTwo?.stockCount).toBe(5);
+  });
+
+  it('deduplicates remote AOD offers by seller id and ignores non-offer AOD container nodes', async () => {
+    const html = `
+      <html>
+        <head></head>
+        <body>
+          <span id="productTitle">AOD Dedup Product</span>
+          <div id="corePrice_feature_div">
+            <span class="priceToPay"><span class="a-offscreen">$99.00</span></span>
+          </div>
+          <div id="availability"><span>In Stock.</span></div>
+          <div id="__remote_aod_payload">
+            <div id="aod-offer-list">
+              <div id="aod-offer">
+                <div id="aod-offer-price"><span class="a-price"><span class="a-offscreen">$101.00</span></span></div>
+                <div id="aod-offer-soldBy">
+                  <a href="/gp/aag/main?seller=A1SELLER123456&sshmPath=shipping-rates">Seller One</a>
+                </div>
+                <div id="aod-offer-availability">In Stock.</div>
+              </div>
+              <div id="aod-offer-price"><span class="a-price"><span class="a-offscreen">$101.00</span></span></div>
+              <div id="aod-offer">
+                <div id="aod-offer-price"><span class="a-price"><span class="a-offscreen">$101.00</span></span></div>
+                <div id="aod-offer-soldBy">
+                  <a href="/gp/aag/main?seller=A1SELLER123456&sshmPath=shipping-rates"></a>
+                </div>
+                <div id="aod-offer-availability">In Stock.</div>
+              </div>
+            </div>
+          </div>
+        </body>
+      </html>
+    `;
+    const $ = cheerio.load(html);
+    const result = await amazonExtractor({ $, html, url: 'https://www.amazon.com/dp/B000000011' });
+    const samePriceOffers = (result.metrics.offers || []).filter((offer) => Number(offer.price || 0) === 101);
+    expect(samePriceOffers.length).toBe(1);
+    expect(samePriceOffers[0]?.sellerName).toBe('Seller One');
+  });
+
+  it('keeps full AOD offers list even when AMAZON_TOP_OFFERS_LIMIT is configured', async () => {
+    const previousLimit = process.env.AMAZON_TOP_OFFERS_LIMIT;
+    process.env.AMAZON_TOP_OFFERS_LIMIT = '10';
+
+    const offersHtml = Array.from({ length: 12 }, (_, idx) => {
+      const n = idx + 1;
+      return `
+        <div id="aod-offer-${n}">
+          <div id="aod-offer-price"><span class="a-price"><span class="a-offscreen">$${100 + n}.00</span></span></div>
+          <div id="aod-offer-soldBy"><a href="/gp/aag/details/?seller=A1SELLER${n}&sshmPath=shipping-rates">Seller ${n}</a></div>
+          <div id="aod-offer-availability">In Stock.</div>
+        </div>
+      `;
+    }).join('');
+
+    const html = `
+      <html>
+        <body>
+          <span id="productTitle">AOD List Product</span>
+          <div id="corePrice_feature_div">
+            <span class="priceToPay"><span class="a-offscreen">$99.00</span></span>
+          </div>
+          <div id="availability"><span>In Stock.</span></div>
+          <div id="__remote_aod_payload">${offersHtml}</div>
+        </body>
+      </html>
+    `;
+
+    try {
+      const $ = cheerio.load(html);
+      const result = await amazonExtractor({ $, html, url: 'https://www.amazon.com/dp/B000000012' });
+      const parsedOffers = (result.metrics.offers || []).filter((offer) => offer.sellerName.startsWith('Seller '));
+      expect(parsedOffers.length).toBe(12);
+    } finally {
+      if (previousLimit === undefined) {
+        delete process.env.AMAZON_TOP_OFFERS_LIMIT;
+      } else {
+        process.env.AMAZON_TOP_OFFERS_LIMIT = previousLimit;
+      }
+    }
+  });
 });

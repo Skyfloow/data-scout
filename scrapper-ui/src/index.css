@@ -254,6 +254,22 @@ a {
   font-weight: 500;
 }
 
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toast-loader {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid color-mix(in oklab, currentColor 35%, transparent);
+  border-top-color: currentColor;
+  animation: spin 0.8s linear infinite;
+  flex: 0 0 auto;
+}
+
 .toast-success {
   background: var(--success);
   border-color: var(--success);

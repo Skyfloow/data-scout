@@ -46,5 +46,6 @@ export function useScrapeJob({ onCompleted, onError }: UseScrapeJobProps) {
   return {
     startJob,
     isStarting,
+    isJobActive: Boolean(currentJobId),
   };
 }

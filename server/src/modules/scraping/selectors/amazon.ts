@@ -10,10 +10,42 @@ import {
   AmazonMarketplaceMetrics,
 } from '../../../types';
 import { parsePrice, parseCurrency, parseStockCount, detectCurrencyFromDomain } from '../../../utils/parsers';
-import { extractAsin } from './amazon-offers';
+import { extractAsin, fetchAmazonOffers } from './amazon-offers';
 import * as cheerio from 'cheerio';
 
 const normalizeText = (input: string): string => input.replace(/\s+/g, ' ').trim();
+const GENERIC_SELLER_PATTERN = /^(unknown(?:\s+seller)?|third-?party seller)$/i;
+const isStableOfferId = (value?: string): boolean => {
+  const normalized = normalizeText(value || '').toLowerCase();
+  if (!normalized) return false;
+  if (normalized.startsWith('aod-')) return false;
+  if (normalized === 'aod-offer' || normalized === 'aod-offer-price' || normalized === 'aod-offer-list') return false;
+  return normalized.length >= 12;
+};
+const extractSellerIdFromOfferUrl = (offerUrl?: string): string => {
+  const raw = normalizeText(offerUrl || '');
+  if (!raw) return '';
+  try {
+    const parsed = new URL(raw, 'https://www.amazon.com');
+    const sellerId = normalizeText(parsed.searchParams.get('smid') || parsed.searchParams.get('seller') || '');
+    if (sellerId) return sellerId.toLowerCase();
+  } catch {
+    // Fall through to regex extraction.
+  }
+  const match = raw.match(/[?&](?:smid|seller)=([^&#]+)/i);
+  return normalizeText(match?.[1] || '').toLowerCase();
+};
+const isLikelyAodOfferNode = (root: cheerio.Cheerio<any>): boolean => {
+  const id = normalizeText(root.attr('id') || '').toLowerCase();
+  if (!id) return true;
+  if (id === 'aod-offer-list') return false;
+  if (id === 'aod-offer-price') return false;
+  if (id === 'aod-offer-heading') return false;
+  if (id === 'aod-offer-availability') return false;
+  if (id === 'aod-offer-soldby') return false;
+  if (id.startsWith('aod-offer-') && /(price|list|heading|availability|soldby|quantity)/i.test(id)) return false;
+  return true;
+};
 
 const cleanAmazonTitle = (raw: string): string => {
   return normalizeText(
@@ -225,6 +257,372 @@ const isNonPrimaryPriceContext = (text: string): boolean => {
   const normalized = normalizeText(text).toLowerCase();
   if (!normalized) return false;
   return /(?:list price|typical price|was:|you save|save\s+\d+%|coupon|without trade-in|trade-in value|delivery|shipping|import charges|estimated tax|subscribe & save)/i.test(normalized);
+};
+
+const extractMaxQuantityFromOptions = ($: cheerio.CheerioAPI, root?: cheerio.Cheerio<any>): number | null => {
+  const scope = root ?? $.root();
+  const options = scope
+    .find('select[name*="quantity"] option, #quantity option, .aod-quantity select option')
+    .toArray()
+    .map((opt) => parseInt(($(opt).attr('value') || $(opt).text() || '').trim(), 10))
+    .filter((qty) => Number.isFinite(qty) && qty > 0);
+
+  if (options.length === 0) return null;
+  return Math.max(...options);
+};
+
+const extractMaxQuantityFromDropdownItems = ($: cheerio.CheerioAPI, root: cheerio.Cheerio<any>): number | null => {
+  const items = root
+    .find(
+      '.aod-quantity .a-dropdown-item, [id*="quantity"] .a-dropdown-item, [class*="quantity"] .a-dropdown-item, [data-action*="quantity"] .a-dropdown-item'
+    )
+    .toArray()
+    .map((node) => parseInt(normalizeText($(node).text()).replace(/[^\d]/g, ''), 10))
+    .filter((qty) => Number.isFinite(qty) && qty > 0);
+  return items.length ? Math.max(...items) : null;
+};
+
+const extractQuantityFromText = (text: string): number | null => {
+  const normalized = normalizeText(text);
+  const quantityMatch = normalized.match(/quantity\s*[:\-]?\s*(\d+)/i);
+  if (quantityMatch?.[1]) return parseInt(quantityMatch[1], 10);
+  const leftMatch = normalized.match(/(?:only\s+)?(\d+)\s+left in stock/i);
+  if (leftMatch?.[1]) return parseInt(leftMatch[1], 10);
+  return null;
+};
+
+const parseCountToken = (raw: string): number | undefined => {
+  const digits = String(raw || '').replace(/[^\d]/g, '');
+  if (!digits) return undefined;
+  const value = Number.parseInt(digits, 10);
+  if (!Number.isFinite(value) || value <= 0 || value > 10000) return undefined;
+  return value;
+};
+
+const extractAodSellerCount = ($: cheerio.CheerioAPI): number | undefined => {
+  const scoredCandidates: Array<{ score: number; count: number }> = [];
+  const pushCandidate = (raw: string | undefined, score: number): void => {
+    const parsed = parseCountToken(raw || '');
+    if (!parsed) return;
+    scoredCandidates.push({ score, count: parsed });
+  };
+
+  const parseCountSignals = (text: string): void => {
+    const normalized = normalizeText(text);
+    if (!normalized) return;
+
+    if (/^\d[\d,]*$/.test(normalized)) pushCandidate(normalized, 6);
+
+    for (const match of normalized.matchAll(/new\s*&\s*used\s*\(([\d,]+)\)/gi)) {
+      pushCandidate(match[1], 6);
+    }
+    for (const match of normalized.matchAll(/other sellers?(?:\s+on\s+amazon)?[^()]{0,120}\(([\d,]+)\)/gi)) {
+      pushCandidate(match[1], 6);
+    }
+    for (const match of normalized.matchAll(/\(([\d,]+)\)\s*from\b/gi)) {
+      pushCandidate(match[1], 5);
+    }
+    for (const match of normalized.matchAll(/([\d,]+)\s*(?:offers?|sellers?)\b/gi)) {
+      pushCandidate(match[1], 4);
+    }
+    for (const match of normalized.matchAll(/([\d,]+)\s+(?:new|used|collectible)\b/gi)) {
+      pushCandidate(match[1], 3);
+    }
+  };
+
+  const signalSelectors = [
+    '#aod-total-offer-count',
+    '#aod-asin-count',
+    '#dynamic-aod-ingress-box',
+    '#dynamic-aod-ingress-box_feature_div',
+    '#olp-upd-new-used',
+    '#olp-upd-new',
+    '#olp-upd-used',
+    '#olp_feature_div',
+    '#all-offers-display',
+  ];
+
+  for (const selector of signalSelectors) {
+    const node = $(selector).first();
+    if (node.length === 0) continue;
+    parseCountSignals(node.text());
+    parseCountSignals(node.attr('aria-label') || '');
+    parseCountSignals(node.attr('data-aod-total-offer-count') || '');
+  }
+
+  const bodyText = normalizeText($('body').text());
+  for (const match of bodyText.matchAll(/(?:other sellers?(?:\s+on\s+amazon)?|new\s*&\s*used)[^()]{0,120}\(([\d,]+)\)/gi)) {
+    pushCandidate(match[1], 5);
+  }
+
+  if (scoredCandidates.length === 0) return undefined;
+  scoredCandidates.sort((left, right) => {
+    if (right.score !== left.score) return right.score - left.score;
+    return right.count - left.count;
+  });
+  return scoredCandidates[0].count;
+};
+
+/**
+ * Detects and fixes duplicated seller names.
+ * Amazon sometimes renders the name in both visible text and hidden/aria spans,
+ * causing `.text()` to produce "ELECTRONIC DEALSELECTRONIC DEALS".
+ * Also handles concatenated multi-seller strings when the selector grabs
+ * content from adjacent DOM cells (e.g., "FooFooBarBar" from multiple rows).
+ */
+const deduplicateSellerName = (raw: string): string => {
+  const name = normalizeText(raw);
+  if (!name || name.length < 2) return name;
+
+  // 1. Exact duplication without space: "FooFoo" → "Foo"
+  const len = name.length;
+  if (len % 2 === 0) {
+    const half = name.substring(0, len / 2);
+    if (name === half + half) return half;
+  }
+
+  // 2. Word-level duplication: "Foo Bar Foo Bar" → "Foo Bar"
+  const words = name.split(/\s+/);
+  if (words.length >= 2 && words.length % 2 === 0) {
+    const halfWords = words.slice(0, words.length / 2).join(' ');
+    const secondHalf = words.slice(words.length / 2).join(' ');
+    if (halfWords === secondHalf) return halfWords;
+  }
+
+  // 3. Try to detect tripled or quadrupled patterns: "FooFooFoo" → "Foo"
+  for (const divisor of [3, 4]) {
+    if (len % divisor === 0) {
+      const chunk = name.substring(0, len / divisor);
+      if (chunk.repeat(divisor) === name) return chunk;
+    }
+  }
+
+  // 4. Known label contamination: strip common layout labels accidentally concatenated
+  const labelPrefixes = /^(ships from|sold by|fulfilled by|returns|payment|shipper \/ seller)\s*/i;
+  const cleaned = name.replace(labelPrefixes, '').trim();
+  if (cleaned && cleaned !== name) return deduplicateSellerName(cleaned);
+
+  return name;
+};
+
+const normalizeSellerName = (raw: string): string => {
+  const normalized = deduplicateSellerName(raw).replace(/^sold by\s+/i, '').replace(/^ships from\s+/i, '');
+  return normalizeText(normalized);
+};
+
+const isGenericSellerName = (name: string): boolean => GENERIC_SELLER_PATTERN.test(normalizeText(name));
+const isAmazonOwnedSellerName = (name: string): boolean => {
+  const normalized = normalizeText(name).toLowerCase();
+  return /^amazon(?:\.com)?$/.test(normalized)
+    || normalized === 'sold by amazon.com'
+    || normalized.includes('amazon resale')
+    || normalized.includes('warehouse deals');
+};
+
+const extractTabularAttributeValue = ($: cheerio.CheerioAPI, attributeName: string): string => {
+  const escapedName = attributeName.replace(/"/g, '\\"');
+  const attrNodes = $(`[tabular-attribute-name="${escapedName}"]`).toArray();
+
+  for (const node of attrNodes) {
+    const labelEl = $(node);
+    const directValue = labelEl.next('[tabular-attribute-value], .tabular-buybox-text').first();
+    const directLink = directValue.find('a').first().text().trim();
+    const directText = normalizeText(directLink || directValue.text());
+    if (directText && !directText.toLowerCase().includes(attributeName.toLowerCase())) return directText;
+
+    const row = labelEl.closest('[role="row"], tr, .a-row, .tabular-buybox-row, li, div');
+    const rowValue = row.find('[tabular-attribute-value], .tabular-buybox-text').not(labelEl).first();
+    const rowLink = rowValue.find('a').first().text().trim();
+    const rowText = normalizeText(rowLink || rowValue.text());
+    if (rowText && !rowText.toLowerCase().includes(attributeName.toLowerCase())) return rowText;
+  }
+
+  return '';
+};
+
+const extractSellerFromTabularText = (text: string): string => {
+  const normalized = normalizeText(text);
+  if (!normalized) return '';
+
+  const shipperSellerMatch = normalized.match(
+    /shipper\s*\/\s*seller\s+(.+?)(?:\s+(?:returns|payment|condition|delivery|price|quantity|new|used)\b|$)/i
+  );
+  if (shipperSellerMatch?.[1]) return normalizeSellerName(shipperSellerMatch[1]);
+
+  const soldByMatch = normalized.match(
+    /sold by\s+(.+?)(?:\s+(?:ships from|and fulfilled by|returns|payment|condition|delivery|price|quantity|new|used)\b|$)/i
+  );
+  if (soldByMatch?.[1]) return normalizeSellerName(soldByMatch[1]);
+
+  return '';
+};
+
+const extractInjectedDomAodOffers = ($: cheerio.CheerioAPI, currency: string): Offer[] => {
+  const raw = $('#__aod_offers_dom').first().text().trim();
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .map((row: any) => {
+        const price = Number(row?.price || 0);
+        const sellerName = normalizeSellerName(String(row?.sellerName || ''));
+        if (!(price > 0) || !sellerName) return null;
+        return {
+          offerId: row?.offerId ? normalizeText(String(row.offerId)) : undefined,
+          offerUrl: row?.offerUrl ? normalizeText(String(row.offerUrl)) : undefined,
+          sellerName,
+          price,
+          currency,
+          stockStatus: normalizeText(String(row?.stockStatus || 'In Stock')),
+          stockCount: typeof row?.stockCount === 'number' && row.stockCount > 0 ? row.stockCount : null,
+          condition: normalizeText(String(row?.condition || 'New')),
+          deliveryInfo: row?.deliveryInfo ? normalizeText(String(row.deliveryInfo)) : undefined,
+          isFBA: Boolean(row?.isFBA),
+        } as Offer;
+      })
+      .filter((offer: Offer | null): offer is Offer => offer !== null);
+  } catch {
+    return [];
+  }
+};
+
+const extractRemoteAodPayloadOffers = ($: cheerio.CheerioAPI, currency: string, pageUrl: string): Offer[] => {
+  const payloadNode = $('#__remote_aod_payload').first();
+  if (payloadNode.length === 0) return [];
+  const origin = (() => {
+    try {
+      return new URL(pageUrl).origin;
+    } catch {
+      return 'https://www.amazon.com';
+    }
+  })();
+
+  const parseAodFragment = (fragment: string): Offer[] => {
+    const normalized = fragment.trim();
+    if (!normalized) return [];
+    const $$ = cheerio.load(normalized);
+    const offers: Offer[] = [];
+
+    $$('#aod-pinned-offer, #aod-offer-list > .aod-information-block, #aod-retail-other-offers-content > .aod-information-block, #aod-offer-list > #aod-offer, #aod-retail-other-offers-content > #aod-offer, #aod-offer, .aod-offer, .aod-offer-row, .aod-information-block, [id^="aod-offer-"]').each((_, el) => {
+      const root = $$(el);
+      if (!isLikelyAodOfferNode(root)) return;
+      const hasPrice = root.find('#aod-offer-price, .aod-offer-price, .a-price .a-offscreen, .a-price, [id^="aod-price-"]').length > 0;
+      if (!hasPrice) return;
+      const offerId = root.attr('id')?.trim()
+        || root.attr('data-csa-c-item-id')?.trim()
+        || root.attr('data-aod-atc-action')?.trim()
+        || root.find('input[name*="offeringID"]').first().attr('value')?.trim()
+        || root.find('input[name*="offerListingID"]').first().attr('value')?.trim();
+      const offerHref = root.find('#aod-offer-soldBy a[href], .aod-offer-soldBy a[href], a[href*="seller="], a[href*="smid="]').first().attr('href')?.trim() || '';
+      const offerUrl = offerHref
+        ? offerHref.startsWith('http')
+          ? offerHref
+          : `${origin}${offerHref.startsWith('/') ? '' : '/'}${offerHref}`
+        : undefined;
+
+      let priceText = 
+        root.find('.a-price .a-offscreen').first().text().trim() ||
+        root.find('.aod-offer-price .a-offscreen').first().text().trim() ||
+        root.find('[id^="aod-price-"] .a-offscreen').first().text().trim();
+      if (!priceText) {
+        const fromText = normalizeText(root.text()).match(/(?:[$€£]|USD|EUR|GBP)\s?\d[\d,.]*/i)?.[0];
+        if (fromText) priceText = fromText;
+      }
+      const price = parsePrice(priceText);
+      if (price <= 0) return;
+
+      const seller = extractAodSellerName(root);
+      const condition = root.find('#aod-offer-heading h5').text().trim()
+        || root.find('.aod-offer-heading').text().trim()
+        || 'New';
+      const availabilityText = normalizeText(
+        root.find('#aod-offer-availability').text()
+        || root.find('.aod-offer-availability').text()
+        || 'In Stock'
+      );
+
+      const qtyFromAvailability = parseStockCount(availabilityText);
+      const qtyFromOptions = extractMaxQuantityFromOptions($$, root);
+      const qtyFromDropdownItems = extractMaxQuantityFromDropdownItems($$, root);
+      const qtyFromText = extractQuantityFromText(root.text());
+      const stockCount = coalesceStockCount(qtyFromAvailability, qtyFromOptions, qtyFromDropdownItems, qtyFromText);
+      const isFBA = /fulfilled by amazon|amazon\.com/i.test(root.text());
+
+      offers.push({
+        offerId,
+        offerUrl,
+        sellerName: seller,
+        price,
+        currency,
+        stockStatus: availabilityText || 'In Stock',
+        stockCount,
+        condition,
+        isFBA,
+      });
+    });
+
+    return offers;
+  };
+
+  const htmlPayload = payloadNode.html() || '';
+  if (htmlPayload.trim()) {
+    const parsed = parseAodFragment(htmlPayload);
+    if (parsed.length > 0) return parsed;
+  }
+
+  const rawTextPayload = payloadNode.text().trim();
+  if (!rawTextPayload) return [];
+  const parsedTextHtml = parseAodFragment(rawTextPayload);
+  if (parsedTextHtml.length > 0) return parsedTextHtml;
+
+  try {
+    const parsedJson = JSON.parse(rawTextPayload);
+    const candidate = [parsedJson?.content, parsedJson?.html, parsedJson?.payload]
+      .map((value) => (typeof value === 'string' ? value : ''))
+      .find(Boolean);
+    if (!candidate) return [];
+    return parseAodFragment(candidate);
+  } catch {
+    return [];
+  }
+};
+
+const coalesceStockCount = (
+  parsedStockCount: number | null,
+  ...quantityCandidates: Array<number | null>
+): number | null => {
+  const concreteQty = quantityCandidates.filter((v): v is number => Number.isFinite(v as number) && (v as number) > 0);
+  const qtyMax = concreteQty.length ? Math.max(...concreteQty) : null;
+
+  // parseStockCount returns 999 for generic "In Stock". Prefer explicit quantity when available.
+  if (parsedStockCount === 999) {
+    return qtyMax;
+  }
+  if (parsedStockCount !== null && qtyMax !== null) {
+    return Math.max(parsedStockCount, qtyMax);
+  }
+  return parsedStockCount ?? qtyMax;
+};
+
+const extractAodSellerName = (root: cheerio.Cheerio<any>): string => {
+  // Primary: dedicated seller link
+  const seller = root.find('#aod-offer-soldBy a[aria-label]').first().text().trim()
+    || root.find('.aod-offer-soldBy a[aria-label]').first().text().trim()
+    || root.find('#aod-offer-soldBy a').first().text().trim()
+    || root.find('.aod-offer-soldBy a').first().text().trim()
+    || root.find('#aod-offer-seller a').first().text().trim()
+    || root.find('[id*="seller"] a').first().text().trim()
+    || normalizeText(root.find('#aod-offer-soldBy, .aod-offer-soldBy').text());
+  if (seller) return normalizeSellerName(seller);
+  // Try "Ships from" / "Sold by" pattern text extraction
+  const fullText = normalizeText(root.text());
+  const fromText = fullText.match(/sold by\s+(.+?)(?:\s+and\s+fulfilled by|\s+ships from|\s+delivery|\s+\$|$)/i)?.[1];
+  if (fromText) return normalizeSellerName(fromText);
+  const fromAtcAria = fullText.match(/from seller\s+(.+?)\s+and\s+price/i)?.[1];
+  if (fromAtcAria) return normalizeSellerName(fromAtcAria);
+  const shipperSeller = fullText.match(/shipper\s*\/\s*seller\s+(.+?)(?:\s+condition|\s+quantity|\s+delivery|\s+\$|$)/i)?.[1];
+  return shipperSeller ? normalizeSellerName(shipperSeller) : 'Third-party Seller';
 };
 
 const extractPrimaryAmazonPrice = ($: cheerio.CheerioAPI): { value: number; source: string } | null => {
@@ -495,16 +893,24 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
   }
 
   // ─── 7. Stock / Availability ───
-  const availabilityHtml = $('#availability span').html() || '';
-  // Sanitization: Remove inner script/style tags if any bled through
-  const availabilityClean = cheerio.load(availabilityHtml)('*').text()
-    .replace(/\{.*\}/g, '') // remove inline objects
-    .replace(/function\s*\(.*}/g, '') // remove functions
-    .replace(/\s+/g, ' ').trim();
+  const availabilityClean = normalizeText(
+    $('#availability span').first().text()
+    || $('#availability').first().text()
+    || ''
+  );
   metrics.availability = availabilityClean;
   const stockCount = parseStockCount(availabilityClean);
-  if (stockCount !== null) {
-      metrics.stockCount = stockCount;
+  const quantityFromOptions = extractMaxQuantityFromOptions($);
+  const quantityFromDropdownItems = extractMaxQuantityFromDropdownItems($, $.root());
+  const quantityFromText = extractQuantityFromText(
+    `${availabilityClean} ${normalizeText($('#quantity_feature_div, #quantity, #selectQuantity, #aod-qty-dropdown, #aod-offer-availability').text())}`
+  );
+  // Playwright may have injected the max quantity from the custom dropdown widget
+  const playwrightQtyStr = $('meta[name="playwright-max-qty"]').attr('content') || '';
+  const playwrightQty = playwrightQtyStr ? parseInt(playwrightQtyStr, 10) : null;
+  const resolvedStockCount = coalesceStockCount(stockCount, quantityFromOptions, quantityFromDropdownItems, quantityFromText, Number.isFinite(playwrightQty) ? playwrightQty : null);
+  if (resolvedStockCount !== null) {
+      metrics.stockCount = resolvedStockCount;
   }
 
   // ─── 8. Badges ───
@@ -768,14 +1174,84 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
   }
 
   // ─── 22. Buy Box Info ───
-  let buyBoxSeller = $('#sellerProfileTriggerId').text().trim();
+  let buyBoxSeller = '';
+
+  // 22a. Tabular buybox "Shipper / Seller" (Buy Now section) — highest priority on modern layouts
+  if (!buyBoxSeller) {
+    buyBoxSeller = extractTabularAttributeValue($, 'Shipper / Seller');
+  }
+  if (!buyBoxSeller) {
+    buyBoxSeller = extractSellerFromTabularText(
+      $('#tabular-buybox, #tabular-buybox-container, #exports_desktop_qualifiedBuybox_feature_div').text()
+    );
+  }
+
+  // 22b. Tabular buybox "Sold by"
+  if (!buyBoxSeller) {
+    buyBoxSeller = extractTabularAttributeValue($, 'Sold by');
+  }
+
+  // 22c. #sellerProfileTriggerId — prefer inner <a> to avoid hidden/aria span duplication
+  if (!buyBoxSeller) {
+    const sellerTrigger = $('#sellerProfileTriggerId');
+    if (sellerTrigger.length) {
+      const innerLink = sellerTrigger.find('a').first().text().trim();
+      buyBoxSeller = innerLink || sellerTrigger.text().trim();
+    }
+  }
+
+  // 22d. #merchant-info — explicit link or "sold by" text
   if (!buyBoxSeller) buyBoxSeller = $('#merchant-info a').first().text().trim();
+  if (!buyBoxSeller) {
+    const merchantText = normalizeText($('#merchant-info').text());
+    const soldByMatch = merchantText.match(/sold by\s+(.+?)(?:\s+and\s+fulfilled by|\s+and\s+ships from|$)/i);
+    if (soldByMatch?.[1]) buyBoxSeller = normalizeText(soldByMatch[1]);
+  }
+
+  // 22d. Tabular buybox fallback — <a> tags containing seller/merchant in href
+  if (!buyBoxSeller) {
+    const tbSellerLink = $('#tabular-buybox .tabular-buybox-text a[href*="seller"], #tabular-buybox .tabular-buybox-text a[href*="merchant"], #tabular-buybox-container a[href*="seller"], #tabular-buybox-container a[href*="merchant"]').first().text().trim();
+    if (tbSellerLink) buyBoxSeller = normalizeText(tbSellerLink);
+  }
+
+  // 22e. Tabular buybox — find pairs of label + value cells
+  if (!buyBoxSeller) {
+    const cells = $('#tabular-buybox .tabular-buybox-text, #tabular-buybox-container .tabular-buybox-text').toArray();
+    for (let i = 0; i < cells.length - 1; i++) {
+      const cellText = $(cells[i]).text().trim().toLowerCase();
+      if (cellText.includes('sold by') || cellText.includes('shipper') || cellText.includes('seller')) {
+        const valueEl = $(cells[i + 1]);
+        const linkText = valueEl.find('a').first().text().trim();
+        buyBoxSeller = linkText || normalizeText(valueEl.text());
+        if (buyBoxSeller) break;
+      }
+    }
+  }
+
+  // 22f. Desktop offer display feature (some Amazon layouts)
+  if (!buyBoxSeller) {
+    const offerText = normalizeText($('#desktop_buybox .offer-display-feature-text-message').text());
+    const offerMatch = offerText.match(/sold by\s+(.+?)(?:\s+and\s+|$)/i);
+    if (offerMatch?.[1]) buyBoxSeller = normalizeText(offerMatch[1]);
+  }
+
+  // 22g. Right column seller links
+  if (!buyBoxSeller) {
+    buyBoxSeller = $('#rightCol a[href*="seller="]').first().text().trim()
+      || $('#buyBoxAccordion a[href*="seller="]').first().text().trim();
+  }
+
+  buyBoxSeller = normalizeSellerName(buyBoxSeller);
   
   const merchantInfo = $('#merchant-info').text().trim().toLowerCase();
-  const isAmazon = merchantInfo.includes('amazon.com') || merchantInfo.includes('ships from and sold by amazon');
-  const isFBA = isAmazon || merchantInfo.includes('fulfilled by amazon') || merchantInfo.includes('fulfillment by amazon');
+  // Check tabular buybox text for Amazon markers when #merchant-info is empty
+  const tabularText = normalizeText($('#tabular-buybox, #tabular-buybox-container').text()).toLowerCase();
+  const isAmazonTabular = tabularText.includes('amazon.com') || tabularText.includes('ships from and sold by amazon');
+  const isFBATabular = isAmazonTabular || tabularText.includes('fulfilled by amazon');
+  const isAmazon = merchantInfo.includes('amazon.com') || merchantInfo.includes('ships from and sold by amazon') || isAmazonTabular;
+  const isFBA = isAmazon || merchantInfo.includes('fulfilled by amazon') || merchantInfo.includes('fulfillment by amazon') || isFBATabular;
 
-  if (!buyBoxSeller && isAmazon) buyBoxSeller = 'Amazon.com';
+  if (!buyBoxSeller && (isAmazon || isAmazonTabular)) buyBoxSeller = 'Amazon.com';
   if (!buyBoxSeller) buyBoxSeller = 'Unknown Seller';
 
   // Seller rating
@@ -792,15 +1268,22 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
   let shipsFrom: string | undefined;
   
   // Attempt to parse tabular buybox for accurate ships from
-  const tabularBuyboxDiv = $('#tabular-buybox .tabular-buybox-text').toArray();
-  for (let i = 0; i < tabularBuyboxDiv.length; i++) {
-     const text = $(tabularBuyboxDiv[i]).text().trim().toLowerCase();
-     if (text.includes('ships from')) {
-        const nextSpan = $(tabularBuyboxDiv[i]).next('span, div').text() || $(tabularBuyboxDiv[i]).parent().next().text();
-        if (nextSpan) {
-           shipsFrom = normalizeText(nextSpan);
-        }
-     }
+  // Primary: attribute-based selector
+  const shipsFromTabular = extractTabularAttributeValue($, 'Ships from');
+  if (shipsFromTabular) shipsFrom = deduplicateSellerName(shipsFromTabular);
+  
+  // Fallback: cell iteration
+  if (!shipsFrom) {
+    const tabularBuyboxDiv = $('#tabular-buybox .tabular-buybox-text, #tabular-buybox-container .tabular-buybox-text').toArray();
+    for (let i = 0; i < tabularBuyboxDiv.length - 1; i++) {
+       const text = $(tabularBuyboxDiv[i]).text().trim().toLowerCase();
+       if (text.includes('ships from')) {
+          const nextEl = $(tabularBuyboxDiv[i + 1]);
+          const linkText = nextEl.find('a').first().text().trim();
+          shipsFrom = deduplicateSellerName(linkText || normalizeText(nextEl.text()));
+          break;
+       }
+    }
   }
 
   if (!shipsFrom) {
@@ -873,15 +1356,48 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
 
   // ─── 25. Build offers list ───
   metrics.offers = [];
+  const seenOfferKeys = new Set<string>();
+  const makeOfferDedupKey = (offer: Offer): string => {
+    const sellerName = normalizeSellerName(offer.sellerName || '');
+    const priceKey = Number(offer.price || 0).toFixed(2);
+    const offerId = normalizeText(offer.offerId || '').toLowerCase();
+    const stableOfferId = isStableOfferId(offerId) ? offerId : '';
+    const sellerId = extractSellerIdFromOfferUrl(offer.offerUrl);
+    const offerUrl = normalizeText(offer.offerUrl || '').toLowerCase();
+    if (sellerId) {
+      return ['seller-id', sellerId, priceKey, normalizeText(offer.condition || '').toLowerCase()].join('|');
+    }
+    if (isGenericSellerName(sellerName)) {
+      if (stableOfferId) {
+        return ['generic-id', stableOfferId, priceKey].join('|');
+      }
+      const condition = normalizeText(offer.condition || '');
+      const delivery = normalizeText(offer.deliveryInfo || '');
+      const stock = normalizeText(offer.stockStatus || '');
+      const stockCount = typeof offer.stockCount === 'number' ? String(offer.stockCount) : 'null';
+      return ['generic', priceKey, condition, delivery, stock, stockCount, offerUrl, offer.isFBA ? 'fba' : 'mfn'].join('|');
+    }
+    return ['named', sellerName.toLowerCase(), priceKey, stableOfferId, offerUrl].join('|');
+  };
+  const pushUniqueOffer = (candidate: Offer): void => {
+    const normalizedCandidate: Offer = {
+      ...candidate,
+      sellerName: normalizeSellerName(candidate.sellerName || '') || 'Third-party Seller',
+    };
+    const dedupKey = makeOfferDedupKey(normalizedCandidate);
+    if (seenOfferKeys.has(dedupKey)) return;
+    seenOfferKeys.add(dedupKey);
+    metrics.offers!.push(normalizedCandidate);
+  };
 
   // Buy Box seller
   if (metrics.price! > 0) {
-    metrics.offers.push({
+    pushUniqueOffer({
       sellerName: buyBoxSeller,
       price: metrics.price!,
       currency: metrics.currency!,
       stockStatus: availabilityClean || 'In Stock',
-      stockCount: parseStockCount(availabilityClean),
+      stockCount: resolvedStockCount,
       condition: 'New',
       isFBA,
     });
@@ -906,10 +1422,7 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
         deliveryInfo: offerDelivery,
         isFBA: offerFba,
       };
-      const isDuplicate = metrics.offers!.some(
-        e => e.sellerName.toLowerCase() === offer.sellerName.toLowerCase() && Math.abs(e.price - offer.price) < 0.01
-      );
-      if (!isDuplicate) metrics.offers!.push(offer);
+      pushUniqueOffer(offer);
     }
   });
 
@@ -921,29 +1434,150 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
     const olpFba = $(el).text().toLowerCase().includes('fulfilled by amazon');
 
     if (price > 0) {
-      const isDuplicate = metrics.offers!.some(
-        e => e.sellerName.toLowerCase() === seller.toLowerCase() && Math.abs(e.price - price) < 0.01
-      );
-      if (!isDuplicate) {
-        metrics.offers!.push({ sellerName: seller, price, currency: metrics.currency!, stockStatus: 'In Stock', stockCount: null, condition, isFBA: olpFba });
-      }
+      pushUniqueOffer({ sellerName: seller, price, currency: metrics.currency!, stockStatus: 'In Stock', stockCount: null, condition, isFBA: olpFba });
     }
   });
 
+  // Injected DOM AOD offers (captured from live Playwright page after opening panel/dropdowns)
+  const injectedAodOffers = extractInjectedDomAodOffers($, metrics.currency!);
+  for (const injectedOffer of injectedAodOffers) {
+    pushUniqueOffer(injectedOffer);
+  }
+
+  // AOD / "Other sellers on Amazon" panel offers (when panel is rendered in current HTML)
+  $('#aod-pinned-offer, #aod-offer-list > .aod-information-block, #aod-retail-other-offers-content > .aod-information-block, #aod-offer-list > #aod-offer, #aod-retail-other-offers-content > #aod-offer, #aod-offer, .aod-offer, .aod-offer-row, .aod-information-block, [id^="aod-offer-"], #all-offers-display .aod-offer').each((_, el) => {
+    const offerRoot = $(el);
+    if (!isLikelyAodOfferNode(offerRoot)) return;
+    const hasPriceEl =
+      offerRoot.find('#aod-offer-price, .aod-offer-price, .a-price .a-offscreen, .a-price, [id^="aod-price-"]').length > 0;
+    if (!hasPriceEl) return;
+
+    let priceText =
+      offerRoot.find('.a-price .a-offscreen').first().text().trim() ||
+      offerRoot.find('.aod-offer-price .a-offscreen').first().text().trim() ||
+      offerRoot.find('[id^="aod-price-"] .a-offscreen').first().text().trim();
+    if (!priceText) {
+      const fromText = normalizeText(offerRoot.text()).match(/(?:[$€£]|USD|EUR|GBP)\s?\d[\d,.]*/i)?.[0];
+      if (fromText) priceText = fromText;
+    }
+    const price = parsePrice(priceText);
+    if (price <= 0) return;
+
+    const seller = normalizeSellerName(extractAodSellerName(offerRoot));
+    const offerId = offerRoot.attr('id')?.trim()
+      || offerRoot.attr('data-csa-c-item-id')?.trim()
+      || offerRoot.attr('data-aod-atc-action')?.trim()
+      || offerRoot.find('input[name*="offeringID"]').first().attr('value')?.trim()
+      || offerRoot.find('input[name*="offerListingID"]').first().attr('value')?.trim();
+    const offerHref = offerRoot.find('#aod-offer-soldBy a[href], .aod-offer-soldBy a[href], a[href*="seller="], a[href*="smid="]').first().attr('href')?.trim() || '';
+    const offerUrl = offerHref
+      ? offerHref.startsWith('http')
+        ? offerHref
+        : `${new URL(url).origin}${offerHref.startsWith('/') ? '' : '/'}${offerHref}`
+      : undefined;
+    const condition = offerRoot.find('#aod-offer-heading h5').text().trim()
+      || offerRoot.find('.aod-offer-heading').text().trim()
+      || 'New';
+    const availabilityText = normalizeText(
+      offerRoot.find('#aod-offer-availability').text()
+      || offerRoot.find('.aod-offer-availability').text()
+      || 'In Stock'
+    );
+    const qtyFromAvailability = parseStockCount(availabilityText);
+    const qtyFromOptions = extractMaxQuantityFromOptions($, offerRoot);
+    const qtyFromDropdownItems = extractMaxQuantityFromDropdownItems($, offerRoot);
+    const qtyFromText = extractQuantityFromText(offerRoot.text());
+    const stockCount = coalesceStockCount(qtyFromAvailability, qtyFromOptions, qtyFromDropdownItems, qtyFromText);
+    const isFBA = /fulfilled by amazon|amazon\.com/i.test(offerRoot.text());
+
+    pushUniqueOffer({
+      offerId,
+      offerUrl,
+      sellerName: seller,
+      price,
+      currency: metrics.currency!,
+      stockStatus: availabilityText || 'In Stock',
+      stockCount,
+      condition,
+      isFBA,
+    });
+  });
+
+  const remotePayloadOffers = extractRemoteAodPayloadOffers($, metrics.currency!, url);
+  for (const payloadOffer of remotePayloadOffers) {
+    pushUniqueOffer(payloadOffer);
+  }
+
+  // Other sellers on Amazon (AOD / offer listing endpoint)
+  const hasOtherSellersSignal =
+    $('#dynamic-aod-ingress-box, #dynamic-aod-ingress-box_feature_div, #aod-asin-count, #olp_feature_div, #olp-upd-new-used').length > 0 ||
+    /other sellers on amazon|other buying options/i.test($('body').text());
+
+  const shouldTryRemoteAod = process.env.NODE_ENV !== 'test' && /amazon\./i.test(url);
+  if (metrics.asin && (hasOtherSellersSignal || shouldTryRemoteAod)) {
+    try {
+      const remoteOffers = await fetchAmazonOffers(metrics.asin, metrics.currency!, url);
+      for (const remoteOffer of remoteOffers) {
+        pushUniqueOffer(remoteOffer);
+      }
+    } catch {
+      // Ignore remote offers fetch failures and keep primary-page offers.
+    }
+  }
+
   metrics.sellerCount = metrics.offers!.length;
 
-  // Seller count from page text (may be higher than visible offers)
-  const sellerCountText = $('#olp-upd-new-used, #aod-asin-count, #olp_feature_div').text().trim();
-  if (sellerCountText) {
-    const countMatch = sellerCountText.match(/(\d+)\s*(?:new|used|offer)/i);
-    if (countMatch) {
-      const totalCount = parseInt(countMatch[1], 10);
-      if (totalCount > metrics.sellerCount) metrics.sellerCount = totalCount;
-    }
+  // Prefer AOD-provided count ("New & Used (N) from ...") over inferred visible rows.
+  const declaredSellerCount = extractAodSellerCount($);
+  if (Number.isFinite(declaredSellerCount) && declaredSellerCount! > 0) {
+    metrics.sellerCount = declaredSellerCount;
   }
 
   // Average Offer Price
   if (metrics.offers!.length > 0) {
+    const namedPriceKeys = new Set(
+      metrics.offers!
+        .filter((offer) => !isGenericSellerName(offer.sellerName))
+        .map((offer) => Number(offer.price || 0).toFixed(2))
+    );
+    const targetOfferCount = Number(metrics.sellerCount || 0);
+    const extractedOfferCount = metrics.offers!.length;
+    // If Amazon reports many more offers than we can extract from DOM/session,
+    // avoid aggressive generic cleanup to preserve partial visibility.
+    const allowAggressiveGenericCleanup =
+      targetOfferCount <= 0 || extractedOfferCount >= Math.max(8, Math.floor(targetOfferCount * 0.8));
+    if (namedPriceKeys.size > 0 && allowAggressiveGenericCleanup) {
+      metrics.offers = metrics.offers!.filter((offer) => {
+        if (!isGenericSellerName(offer.sellerName)) return true;
+        // Keep distinct AOD rows that have a stable offer identifier.
+        if (isStableOfferId(offer.offerId)) return true;
+        const priceKey = Number(offer.price || 0).toFixed(2);
+        return !namedPriceKeys.has(priceKey);
+      });
+    }
+    const seenAmazonOwnedKeys = new Set<string>();
+    metrics.offers = metrics.offers!.filter((offer) => {
+      if (!isAmazonOwnedSellerName(offer.sellerName)) return true;
+      const sellerId = extractSellerIdFromOfferUrl(offer.offerUrl);
+      const key = [
+        sellerId || 'no-seller-id',
+        Number(offer.price || 0).toFixed(2),
+        normalizeText(offer.condition || '').toLowerCase(),
+      ].join('|');
+      if (seenAmazonOwnedKeys.has(key)) return false;
+      seenAmazonOwnedKeys.add(key);
+      return true;
+    });
+
+    if (/^(unknown seller|third-party seller)$/i.test(buyBoxSeller)) {
+      const namedOffer = metrics.offers!.find((offer) => !/^(unknown seller|third-party seller)$/i.test(offer.sellerName));
+      if (namedOffer) {
+        buyBoxSeller = namedOffer.sellerName;
+        if (metrics.buyBox) metrics.buyBox.sellerName = namedOffer.sellerName;
+        if (metrics.selectedOffer?.source === 'buybox') metrics.selectedOffer.sellerName = namedOffer.sellerName;
+      }
+    }
+
     const total = metrics.offers!.reduce((sum, o) => sum + o.price, 0);
     metrics.averageOfferPrice = parseFloat((total / metrics.offers!.length).toFixed(2));
     metrics.lowestOfferPrice = metrics.offers!.reduce((min, offer) => Math.min(min, offer.price), Number.POSITIVE_INFINITY);
@@ -962,6 +1596,7 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
         isAmazon: chosenOffer.sellerName.toLowerCase().includes('amazon'),
       };
     }
+
   }
 
   // ═══════════════════════════════════════════════════════════════

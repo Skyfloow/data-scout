@@ -78,7 +78,7 @@ async function refreshLatestIndexes(force = false): Promise<void> {
   await latestIndexRefreshPromise;
 }
 
-async function scheduledScrape(entity: MonitoredEntity): Promise<void> {
+async function scheduledScrape(entity: MonitoredEntity): Promise<boolean> {
   if (entity.type === 'product') {
       const result = await crawlerAdapter.scrapeProduct(entity.value);
       if (result.product) {
@@ -87,18 +87,25 @@ async function scheduledScrape(entity: MonitoredEntity): Promise<void> {
       await storageService.saveProduct(stabilized.scrapedBy, stabilized);
       await appendPriceSnapshot(entity.value, stabilized);
       logger.info(`Completed for Product ${entity.value} - price: ${stabilized.metrics.price}`);
+      return true;
     }
+    logger.error({ err: result.error }, `Product scrape failed for ${entity.value}`);
+    return false;
   } else if (entity.type === 'keyword') {
     const result = await crawlerAdapter.scrapeSearch(entity.value, entity.marketplace);
     if (result.result) {
        await storageService.saveSerpResult(result.result);
        logger.info(`Completed SERP for Keyword ${entity.value}`);
+       return true;
     } else {
        logger.error({ err: result.error }, `SERP failed for ${entity.value}`);
+       return false;
     }
   } else if (entity.type === 'category') {
     logger.info(`Implement category tracking for node: ${entity.value}`);
+    return false;
   }
+  return false;
 }
 
 export default async function monitoringRoutes(fastify: FastifyInstance) {

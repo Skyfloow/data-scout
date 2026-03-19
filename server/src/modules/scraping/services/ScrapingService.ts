@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ScraperType, ProductScrapeResult, Product, ProductMetrics } from '../../../types';
+import { ScraperType, ProductScrapeResult, Product, ProductMetrics, Offer, BuyBoxInfo } from '../../../types';
 import { IScraper } from '../adapters/IScraper';
 import { CrawleeAdapter } from '../adapters/CrawleeAdapter';
 import { FireCrawlAdapter } from '../adapters/FirecrawlAdapter';
@@ -30,6 +30,144 @@ export class ScrapingService {
       logger.error({ err }, `Unhandled error during background process for job ${jobId}`);
     });
     return jobId;
+  }
+
+  private normalizeOffer(raw: any, fallbackCurrency: string): Offer | null {
+    if (!raw || typeof raw !== 'object') return null;
+    const sellerName = String(raw.sellerName || raw.seller || '').trim();
+    const parsedPrice = Number(raw.price);
+    if (!sellerName || !Number.isFinite(parsedPrice) || parsedPrice <= 0) return null;
+    return {
+      offerId: raw.offerId ? String(raw.offerId).trim() : undefined,
+      offerUrl: raw.offerUrl ? String(raw.offerUrl).trim() : undefined,
+      sellerName,
+      price: parsedPrice,
+      currency: String(raw.currency || fallbackCurrency || 'USD'),
+      stockStatus: String(raw.stockStatus || raw.availability || 'In Stock'),
+      stockCount: typeof raw.stockCount === 'number' ? raw.stockCount : null,
+      condition: raw.condition ? String(raw.condition) : 'New',
+      deliveryInfo: raw.deliveryInfo ? String(raw.deliveryInfo) : undefined,
+      isFBA: Boolean(raw.isFBA),
+    };
+  }
+
+  private isStableOfferId(value?: string): boolean {
+    const normalized = String(value || '').trim().toLowerCase();
+    if (!normalized) return false;
+    if (normalized.startsWith('aod-')) return false;
+    if (normalized === 'aod-offer' || normalized === 'aod-offer-price' || normalized === 'aod-offer-list') return false;
+    return normalized.length >= 12;
+  }
+  private extractSellerIdFromOfferUrl(offerUrl?: string): string {
+    const raw = String(offerUrl || '').trim();
+    if (!raw) return '';
+    try {
+      const parsed = new URL(raw, 'https://www.amazon.com');
+      const sellerId = String(parsed.searchParams.get('smid') || parsed.searchParams.get('seller') || '').trim();
+      if (sellerId) return sellerId.toLowerCase();
+    } catch {
+      // Fall through to regex extraction.
+    }
+    const match = raw.match(/[?&](?:smid|seller)=([^&#]+)/i);
+    return String(match?.[1] || '').trim().toLowerCase();
+  }
+
+  private normalizeAmazonMetrics(metrics: ProductMetrics): ProductMetrics {
+    const next = { ...metrics } as ProductMetrics;
+    const fallbackCurrency = next.currency || 'USD';
+
+    const amazonMetrics = next.amazonMetrics ? { ...next.amazonMetrics } : {};
+    const rawOffers = [
+      ...(Array.isArray(next.offers) ? next.offers : []),
+      ...(Array.isArray(amazonMetrics.offers) ? amazonMetrics.offers : []),
+    ];
+    const normalizedOffers: Offer[] = [];
+    const dedup = new Set<string>();
+    for (const rawOffer of rawOffers) {
+      const normalized = this.normalizeOffer(rawOffer, fallbackCurrency);
+      if (!normalized) continue;
+      const offerId = String(normalized.offerId || '').trim().toLowerCase();
+      const stableOfferId = this.isStableOfferId(offerId) ? offerId : '';
+      const sellerId = this.extractSellerIdFromOfferUrl(normalized.offerUrl);
+      const key = sellerId
+        ? [
+            'seller-id',
+            sellerId,
+            normalized.price.toFixed(2),
+            String(normalized.condition || '').toLowerCase(),
+          ].join('|')
+        : [
+            'no-seller-id',
+            stableOfferId || 'no-stable-id',
+            normalized.sellerName.toLowerCase(),
+            normalized.price.toFixed(2),
+            String(normalized.condition || '').toLowerCase(),
+            String(normalized.deliveryInfo || '').toLowerCase(),
+            String(normalized.stockStatus || '').toLowerCase(),
+            typeof normalized.stockCount === 'number' ? String(normalized.stockCount) : 'null',
+            String(normalized.offerUrl || '').toLowerCase(),
+            normalized.isFBA ? 'fba' : 'mfn',
+          ].join('|');
+      if (dedup.has(key)) continue;
+      dedup.add(key);
+      normalizedOffers.push(normalized);
+    }
+
+    const buyBoxFromAmazon = amazonMetrics.buyBox as BuyBoxInfo | undefined;
+    const buyBoxFromTop = next.buyBox as BuyBoxInfo | undefined;
+    const buyBoxSeller =
+      String(
+        buyBoxFromTop?.sellerName
+          || buyBoxFromAmazon?.sellerName
+          || (next as any).buyBoxSeller
+          || normalizedOffers[0]?.sellerName
+          || ''
+      ).trim();
+
+    if (buyBoxSeller) {
+      const buyBoxPrice = Number(
+        buyBoxFromTop?.price
+          || buyBoxFromAmazon?.price
+          || next.price
+          || normalizedOffers[0]?.price
+      );
+      if (Number.isFinite(buyBoxPrice) && buyBoxPrice > 0) {
+        next.buyBox = {
+          sellerName: buyBoxSeller,
+          price: buyBoxPrice,
+          isFBA: Boolean(buyBoxFromTop?.isFBA || buyBoxFromAmazon?.isFBA),
+          isAmazon: Boolean(buyBoxFromTop?.isAmazon || buyBoxFromAmazon?.isAmazon),
+          observedAt: buyBoxFromTop?.observedAt || buyBoxFromAmazon?.observedAt,
+          sellerRatingPercent: buyBoxFromTop?.sellerRatingPercent || buyBoxFromAmazon?.sellerRatingPercent,
+          sellerRatingsCount: buyBoxFromTop?.sellerRatingsCount || buyBoxFromAmazon?.sellerRatingsCount,
+          shipsFrom: buyBoxFromTop?.shipsFrom || buyBoxFromAmazon?.shipsFrom,
+        };
+      }
+    }
+
+    if (normalizedOffers.length > 0) {
+      next.offers = normalizedOffers;
+    } else if (next.buyBox?.sellerName && next.buyBox?.price && next.buyBox.price > 0) {
+      next.offers = [{
+        sellerName: next.buyBox.sellerName,
+        price: next.buyBox.price,
+        currency: next.currency || 'USD',
+        stockStatus: next.availability || 'In Stock',
+        stockCount: typeof next.stockCount === 'number' ? next.stockCount : null,
+        condition: 'New',
+        isFBA: next.buyBox.isFBA,
+      }];
+    }
+
+    next.amazonMetrics = {
+      ...amazonMetrics,
+      buyBox: next.buyBox || buyBoxFromAmazon,
+      offers: next.offers || amazonMetrics.offers || [],
+      sellerCount: amazonMetrics.sellerCount || next.sellerCount || next.offers?.length || 0,
+    };
+    next.sellerCount = next.amazonMetrics.sellerCount;
+
+    return next;
   }
 
   private async processJob(jobId: string, url: string, scraperType: ScraperType): Promise<void> {
@@ -128,6 +266,10 @@ export class ScrapingService {
 
       if (!finalProduct) {
         throw new Error(`Scraping Waterfall Failed:\n - ${phaseErrors.join('\n - ')}`);
+      }
+
+      if (url.includes('amazon')) {
+        finalProduct.metrics = this.normalizeAmazonMetrics(finalProduct.metrics);
       }
 
       // Final processing: Scoring and History

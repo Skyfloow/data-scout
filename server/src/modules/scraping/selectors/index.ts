@@ -20,6 +20,11 @@ export const getPlatformSelector = (url: string): SelectorFunction | null => {
   try {
     const parsedUrl = new URL(url);
     const hostname = parsedUrl.hostname.toLowerCase();
+
+    // Cover all Amazon regional domains (amazon.de, amazon.co.uk, etc.)
+    if (hostname === 'amazon.com' || hostname.endsWith('.amazon.com') || hostname.includes('amazon.')) {
+      return amazonExtractor;
+    }
     
     if (selectorRegistry[hostname]) {
       return selectorRegistry[hostname];

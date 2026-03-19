@@ -33,6 +33,11 @@ interface GetProductsParams {
   scraper?: ScraperType;
 }
 
+interface GetMetricsParams {
+  source?: string;
+  scraper?: ScraperType;
+}
+
 interface ProductsResponse {
   data: Product[];
 }
@@ -111,8 +116,14 @@ export const apiSlice = createApi({
       keepUnusedDataFor: 120,
     }),
 
-    getMetrics: builder.query<DashboardMetrics, void>({
-      query: () => 'metrics',
+    getMetrics: builder.query<DashboardMetrics, GetMetricsParams | void>({
+      query: (params) => {
+        if (!params) return 'metrics';
+        const queryParams = new URLSearchParams();
+        if (params.source) queryParams.append('source', params.source);
+        if (params.scraper) queryParams.append('scraper', params.scraper);
+        return `metrics?${queryParams.toString()}`;
+      },
       providesTags: ['Metrics'],
       keepUnusedDataFor: 120,
     }),

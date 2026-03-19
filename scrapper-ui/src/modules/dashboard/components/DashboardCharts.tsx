@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
-import ReactECharts from 'echarts-for-react';
 import { AlertCircle } from 'lucide-react';
 import { useGetProductsQuery } from '../../../store/apiSlice';
 import { Product } from '../../../types';
 import { formatCompactNumber } from '../../../utils/formatters';
 import { getEffectivePrice, getLatestUniqueProducts } from '../../../utils/productAnalytics';
 import { Card, CardContent } from '../../../components/ui/card';
+import LazyEChart from '../../../components/charts/LazyEChart';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../components/ui/tooltip';
 
 function colorVar(name: string, fallback: string) {
@@ -361,28 +361,28 @@ export default function DashboardCharts() {
       <div className="stack-col" style={{ gap: 18, width: '100%', minWidth: 0 }}>
         <div data-pdf-block className="grid grid-3" style={{ minWidth: 0 }}>
           <ChartCard title="Выигрыш Buy Box" tooltip="Кто чаще держит Buy Box по последнему срезу уникальных товаров." excludeFromPdf={!hasBuyBox}>
-            {hasBuyBox ? <ReactECharts option={dominanceOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label="Нет данных Buy Box" />}
+            {hasBuyBox ? <LazyEChart option={dominanceOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label="Нет данных Buy Box" />}
           </ChartCard>
           <ChartCard title="Ценовые уровни" tooltip="Распределение уникальных товаров по ценовым диапазонам.">
-            <ReactECharts option={tierOpt} style={{ height: '100%', width: '100%' }} />
+            <LazyEChart option={tierOpt} style={{ height: '100%', width: '100%' }} />
           </ChartCard>
           <ChartCard title="Рейтинг × Отзывы" tooltip="Размер пузыря = цена, оси = рейтинг и отзывы." excludeFromPdf={!hasBubble}>
-            {hasBubble ? <ReactECharts option={bubbleOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label="Недостаточно данных рейтинга" />}
+            {hasBubble ? <LazyEChart option={bubbleOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label="Недостаточно данных рейтинга" />}
           </ChartCard>
         </div>
 
         <div data-pdf-block className="grid grid-2" style={{ minWidth: 0 }}>
           <ChartCard title="Динамика отзывов (Топ-10)" tooltip="Нормализованный score по количеству отзывов." height={340} excludeFromPdf={!hasVelocity}>
-            {hasVelocity ? <ReactECharts option={velocityOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label="Нет данных по отзывам" />}
+            {hasVelocity ? <LazyEChart option={velocityOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label="Нет данных по отзывам" />}
           </ChartCard>
           <ChartCard title="Скидка vs. Рейтинг" tooltip="Товары с высоким рейтингом и большой скидкой." height={340} excludeFromPdf={!hasDiscount}>
-            {hasDiscount ? <ReactECharts option={discountOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label="Нет данных по скидкам" />}
+            {hasDiscount ? <LazyEChart option={discountOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label="Нет данных по скидкам" />}
           </ChartCard>
         </div>
 
         <div data-pdf-block style={{ minWidth: 0 }}>
           <ChartCard title="Тренд цены (последние сканы)" tooltip="Последние наблюдения реальной цены (Buy Box приоритет)." height={320} excludeFromPdf={!hasTrend}>
-            {hasTrend ? <ReactECharts option={trendOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label="Недостаточно точек для тренда" />}
+            {hasTrend ? <LazyEChart option={trendOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label="Недостаточно точек для тренда" />}
           </ChartCard>
         </div>
       </div>

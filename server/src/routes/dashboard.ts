@@ -12,6 +12,11 @@ interface GetProductsQuery {
   offset?: number;
 }
 
+interface GetMetricsQuery {
+  source?: string;
+  scraper?: ScraperType;
+}
+
 interface RankingsQuery {
   keyword: string;
   marketplace: string;
@@ -21,6 +26,7 @@ interface RankingsQuery {
 
 const ProductSchema = {
   type: 'object',
+  additionalProperties: true,
   properties: {
     id: { type: 'string' },
     title: { type: 'string' },
@@ -28,6 +34,7 @@ const ProductSchema = {
     marketplace: { type: 'string' },
     metrics: {
       type: 'object',
+      additionalProperties: true,
       properties: {
         price: { type: 'number' },
         averageRating: { type: 'number' },
@@ -106,12 +113,19 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
     }
   );
 
-  fastify.get(
+  fastify.get<{ Querystring: GetMetricsQuery }>(
     '/metrics',
     {
       schema: {
         description: 'Get basic and auditable dashboard metrics',
         tags: ['Dashboard'],
+        querystring: {
+          type: 'object',
+          properties: {
+            source: { type: 'string' },
+            scraper: { type: 'string', enum: ['crawler', 'firecrawl'] },
+          },
+        },
         response: {
           200: {
             type: 'object',
@@ -145,8 +159,9 @@ const dashboardRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => 
         },
       },
     },
-    async () => {
-      const allProducts = await storageService.getAllProducts();
+    async (request) => {
+      const filters = request.query;
+      const allProducts = await storageService.getAllProducts(filters);
       const products = getLatestUniqueProducts(allProducts);
 
       let totalPrice = 0;

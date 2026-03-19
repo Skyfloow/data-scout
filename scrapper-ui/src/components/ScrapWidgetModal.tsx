@@ -35,7 +35,7 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
     setToastMessage(`${t('scrape.jobErrorPrefix')}: ${error}`);
   }, [t]);
 
-  const { startJob, isStarting } = useScrapeJob({
+  const { startJob, isStarting, isJobActive } = useScrapeJob({
     onCompleted: onJobCompleted,
     onError: onJobError,
   });
@@ -56,9 +56,10 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
 
   useEffect(() => {
     if (!toastMessage) return;
+    if (isJobActive) return;
     const timeout = window.setTimeout(() => setToastMessage(''), 2800);
     return () => window.clearTimeout(timeout);
-  }, [toastMessage]);
+  }, [toastMessage, isJobActive]);
 
   const handleModalClose = () => {
     if (isStarting) return;
@@ -78,7 +79,7 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
 
     try {
       await startJob(url, scraper);
-      setToastSeverity('success');
+      setToastSeverity('warning');
       setToastMessage(t('scrape.jobStarted'));
       handleModalClose();
     } catch {
@@ -145,7 +146,14 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
         </DialogContent>
       </Dialog>
 
-      {toastMessage ? <div className={`toast ${toastSeverity === 'success' ? 'toast-success' : toastSeverity === 'error' ? 'toast-error' : 'toast-warning'}`}>{toastMessage}</div> : null}
+      {toastMessage ? (
+        <div className={`toast ${toastSeverity === 'success' ? 'toast-success' : toastSeverity === 'error' ? 'toast-error' : 'toast-warning'}`}>
+          <div className="toast-content">
+            {isJobActive ? <span className="toast-loader" aria-hidden="true" /> : null}
+            <span>{toastMessage}</span>
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

@@ -82,7 +82,7 @@ function ProductTable() {
                 aria-label="Select all"
               />
             </TH>
-            <TH style={{ minWidth: 220 }}>
+            <TH style={{ minWidth: 200 }}>
               <SortButton active={sortKey === 'title'} order={sortOrder} onClick={() => handleSort('title')}>
                 {t('table.product')}
               </SortButton>
@@ -94,7 +94,8 @@ function ProductTable() {
               </SortButton>
             </TH>
             <TH style={{ width: 180 }}>{t('monitoring.marketSentiment') || 'Market Sentiment'}</TH>
-            <TH style={{ width: 120 }}>{t('monitoring.health') || 'Listing Health'}</TH>
+            <TH style={{ width: 120 }}>{t('table.sellerType')}</TH>
+            <TH style={{ width: 100 }}>{t('table.stock')}</TH>
             <TH style={{ width: 140 }}>
               <SortButton active={sortKey === 'date'} order={sortOrder} onClick={() => handleSort('date')}>
                 {t('table.scrapedAt')}
