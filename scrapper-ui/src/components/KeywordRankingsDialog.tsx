@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useGetKeywordRankingsQuery } from '../store/apiSlice';
 import { SerpResult } from '../types';
+import { getMarketplaceDisplayName } from '../utils/marketplace';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
@@ -17,6 +18,7 @@ interface KeywordRankingsDialogProps {
 
 export function KeywordRankingsDialog({ keyword, marketplace, onClose }: KeywordRankingsDialogProps) {
   const { t } = useTranslation();
+  const marketplaceLabel = getMarketplaceDisplayName(marketplace);
   const { data: rankingData, isFetching } = useGetKeywordRankingsQuery({ keyword, marketplace });
   const [expandedScans, setExpandedScans] = useState<Record<string, boolean>>({});
   const scans: SerpResult[] = rankingData?.data ?? [];
@@ -37,7 +39,7 @@ export function KeywordRankingsDialog({ keyword, marketplace, onClose }: Keyword
           <DialogTitle>{t('monitoring.keywordRankingHistory')}</DialogTitle>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 4 }}>
             <Badge variant="outline">"{keyword}"</Badge>
-            <Badge variant="secondary">{t('monitoring.marketplace')}: {marketplace}</Badge>
+            <Badge variant="secondary">{t('monitoring.marketplace')}: {marketplaceLabel}</Badge>
           </div>
         </DialogHeader>
 

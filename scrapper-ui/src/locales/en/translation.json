@@ -8,6 +8,45 @@
     "bulkAddTrackers": "Bulk Add Trackers",
     "singleUrlScan": "Single URL Scan"
   },
+  "bulkTrack": {
+    "description": "Bulk add products, keywords, or categories for background tracking and regular updates.",
+    "tabs": {
+      "product": "Products",
+      "keyword": "Keywords",
+      "category": "Categories"
+    },
+    "help": {
+      "product": "Paste a list of URLs or ASINs (one per line)",
+      "keyword": "Paste a list of search queries to track rankings (one per line)",
+      "category": "Paste Node IDs or category URLs (one per line)"
+    },
+    "marketplaceLabel": "Marketplace",
+    "marketplacePlaceholder": "Marketplace",
+    "marketplaceOptions": {
+      "amazonCom": "Amazon US (.com)",
+      "amazonCoUk": "Amazon UK (.co.uk)",
+      "amazonDe": "Amazon DE (.de)",
+      "etsyCom": "Etsy (.com)"
+    },
+    "frequencyLabel": "Frequency",
+    "frequencyPlaceholder": "Frequency",
+    "intervalOptions": {
+      "every10min": "Every 10 minutes",
+      "every30min": "Every 30 minutes",
+      "every1h": "Every 1 hour",
+      "every3h": "Every 3 hours",
+      "every6h": "Every 6 hours",
+      "every12h": "Every 12 hours",
+      "every24h": "Every 24 hours",
+      "every48h": "Every 48 hours"
+    },
+    "cancel": "Cancel",
+    "track": "Track",
+    "saving": "Saving...",
+    "emptyValuesError": "Please enter at least one value.",
+    "successAdded": "Successfully added {{count}} items to monitoring.",
+    "saveErrorFallback": "Save failed"
+  },
   "settings": {
     "title": "Settings",
     "subtitle": "Customize your DataScout Pro experience.",
@@ -143,7 +182,56 @@
     "parsingQuality": "Data Extract Quality",
     "priceStability": "Price Stability",
     "priceStabilityTooltip": "Percentage of products without abnormal price jumps (>30%).",
-    "anomaliesDetected": "Anomalies detected"
+    "anomaliesDetected": "Anomalies detected",
+    "charts": {
+      "productsLabel": "Products",
+      "rangeLabel": "Range",
+      "timeLabel": "Time",
+      "priceLabel": "Price",
+      "reviewsLabel": "Reviews",
+      "scoreLabel": "Score",
+      "avgRatingAxis": "Avg Rating",
+      "reviewsAxis": "Reviews",
+      "ratingAxis": "Rating",
+      "discountAxis": "Discount %",
+      "buyBox": {
+        "title": "Buy Box Dominance",
+        "tooltip": "Who holds the Buy Box more often across the latest snapshot of unique products.",
+        "empty": "No Buy Box data",
+        "amazonDirect": "Amazon Direct",
+        "fbaThirdParty": "FBA (3rd party)",
+        "fbmMerchant": "FBM (Merchant)"
+      },
+      "tiers": {
+        "title": "Price Tiers",
+        "tooltip": "Distribution of unique products by price ranges.",
+        "under25": "Under $25",
+        "25to50": "$25-50",
+        "50to100": "$50-100",
+        "100to250": "$100-250",
+        "250plus": "$250+"
+      },
+      "ratingReviews": {
+        "title": "Rating × Reviews",
+        "tooltip": "Bubble size = price; axes = rating and reviews.",
+        "empty": "Not enough rating data"
+      },
+      "reviewVelocity": {
+        "title": "Review Velocity (Top 10)",
+        "tooltip": "Normalized score by reviews count.",
+        "empty": "No review data"
+      },
+      "discountVsRating": {
+        "title": "Discount vs. Rating",
+        "tooltip": "High-rating products with big discounts.",
+        "empty": "No discount data"
+      },
+      "priceTrend": {
+        "title": "Price Trend (recent scans)",
+        "tooltip": "Latest observed effective price (Buy Box prioritized).",
+        "empty": "Not enough points for a trend"
+      }
+    }
   },
   "table": {
     "marketIntelligenceData": "Market Intelligence Data",
@@ -174,6 +262,7 @@
     "dataQuality": "Data Quality",
     "availability": "Availability",
     "sellerType": "Buy Box Type",
+    "sellerTypeTooltip": "Amazon: sold by Amazon. FBA: third-party seller, fulfilled by Amazon. FBM: third-party seller fulfills shipping.",
     "stock": "Stock",
     "views": "Views",
     "reviewsShort": "reviews",
@@ -250,11 +339,12 @@
     "offerPriceRangeTooltip": "Minimum and maximum offer prices. If both are equal, one price is shown.",
     "contentCoverageTooltip": "Shows how many features were extracted and whether a description is present.",
     "badgesTooltip": "Marketplace badges for this item. Climate Friendly means Amazon marked the item as more eco-friendly (certifications/program criteria).",
-    "buyBoxTypeTooltip": "Shows who currently holds the Buy Box: Amazon, FBA, or FBM.",
+    "buyBoxTypeTooltip": "Amazon: sold by Amazon. FBA: third-party seller, fulfilled by Amazon. FBM: third-party seller fulfills shipping.",
     "buyBoxAmazon": "Amazon",
     "buyBoxFba": "FBA",
     "buyBoxFbm": "FBM",
     "otherSellerOffers": "Other Seller Offers",
+    "otherSellerOffersLastN": "Other Seller Offers (Last {{n}})",
     "sellerColumn": "Seller",
     "priceColumn": "Price",
     "conditionColumn": "Condition",

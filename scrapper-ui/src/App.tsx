@@ -6,6 +6,7 @@ import { ThemeModeProvider } from './context/ThemeContext';
 import { CompareProvider } from './context/CompareContext';
 import CompareWidget from './components/CompareWidget';
 import { store } from './store';
+import { useBackendKeepalive } from './hooks/useBackendKeepalive';
 
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage'));
@@ -76,6 +77,8 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
+  useBackendKeepalive();
+
   return (
     <Provider store={store}>
       <ThemeModeProvider>

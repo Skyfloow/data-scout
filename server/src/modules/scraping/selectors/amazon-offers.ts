@@ -85,7 +85,7 @@ const resolveOfferStockCount = (parsedStockCount: number | null, parsedQuantity:
  * Parses seller offers from Amazon's All Offers Display (AOD) AJAX response HTML.
  * This is the modern replacement for the deprecated /gp/offer-listing/ pages.
  */
-function parseAodOffers(html: string, currency: string, origin: string): Offer[] {
+export function parseAmazonAodOffersHtml(html: string, currency: string, origin: string): Offer[] {
   const $ = cheerio.load(html);
   const offers: Offer[] = [];
 
@@ -247,7 +247,7 @@ export async function fetchAmazonOffers(asin: string, currency: string, marketpl
     for (const offerId of offerIds) seenOfferIds.add(offerId);
     const newOfferIds = seenOfferIds.size - beforeCount;
 
-    const pageOffers = parseAodOffers(html, currency, origin);
+    const pageOffers = parseAmazonAodOffersHtml(html, currency, origin);
     if (pageOffers.length === 0 && pageNo > 1) break;
 
     for (const offer of pageOffers) {

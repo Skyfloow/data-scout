@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowDownWideNarrow, ArrowUpWideNarrow, FileSpreadsheet, Trash2 } from 'lucide-react';
+import { ArrowDownWideNarrow, ArrowUpWideNarrow, CircleHelp, FileSpreadsheet, Trash2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useDeleteProductsMutation, useGetProductsQuery } from '../../../store/apiSlice';
 import { Product, ScraperType } from '../../../types';
@@ -10,6 +10,7 @@ import { Checkbox } from '../../../components/ui/checkbox';
 import { Alert } from '../../../components/ui/alert';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select';
 import { Table, TableWrap, TBody, TH, THead, TR } from '../../../components/ui/table';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../components/ui/tooltip';
 import { useSelection } from '../../../hooks/useSelection';
 import { useSortedProducts, SortOrder } from '../../../hooks/useSortedProducts';
 import ProductTableRow from './ProductTableRow';
@@ -94,7 +95,26 @@ function ProductTable() {
               </SortButton>
             </TH>
             <TH style={{ width: 180 }}>{t('monitoring.marketSentiment') || 'Market Sentiment'}</TH>
-            <TH style={{ width: 120 }}>{t('table.sellerType')}</TH>
+            <TH style={{ width: 140 }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                {t('table.sellerType')}
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        type="button"
+                        className="icon-btn"
+                        style={{ width: 16, height: 16, borderRadius: 999 }}
+                        aria-label={t('table.sellerTypeTooltip')}
+                      >
+                        <CircleHelp size={12} />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>{t('table.sellerTypeTooltip')}</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </span>
+            </TH>
             <TH style={{ width: 100 }}>{t('table.stock')}</TH>
             <TH style={{ width: 140 }}>
               <SortButton active={sortKey === 'date'} order={sortOrder} onClick={() => handleSort('date')}>

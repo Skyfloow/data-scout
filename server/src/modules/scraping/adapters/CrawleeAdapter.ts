@@ -30,6 +30,17 @@ const logger = baseLogger.child({ module: 'CrawleeAdapter' });
 log.setLevel(log.LEVELS.WARNING);
 
 export class CrawleeAdapter implements IScraper {
+  private resolveMarketplaceFromUrl(url: string): string {
+      try {
+          const hostname = new URL(url).hostname.toLowerCase();
+          return hostname.replace(/^www\./, '');
+      } catch {
+          if (url.includes('amazon')) return 'amazon';
+          if (url.includes('etsy')) return 'etsy';
+          return 'unknown';
+      }
+  }
+
   private extractAsinFromUrl(url: string): string | null {
       const match = url.match(/\/dp\/([A-Z0-9]{10})/i)
           || url.match(/\/product\/([A-Z0-9]{10})/i)
@@ -421,29 +432,222 @@ export class CrawleeAdapter implements IScraper {
     }
   }
 
+  private async dismissAmazonInterruptionModals(page: any, stage: string = 'unknown'): Promise<number> {
+      try {
+          const clicked = await page.evaluate(`
+              (() => {
+                  const norm = (v) => String(v || '').toLowerCase().replace(/\\s+/g, ' ').trim();
+                  const textMatches = [
+                      'continue', 'accept', 'agree', 'ok', 'got it',
+                      'continue shopping',
+                      'fortfahren', 'weiter', 'akzeptieren', 'zustimmen', 'alle akzeptieren',
+                      'weiter shoppen', 'weiter einkaufen',
+                      'continuer', 'accepter', 'tout accepter',
+                      'continuer vos achats',
+                      'continua', 'accetta', 'acconsenti',
+                      'continua a fare acquisti',
+                      'continuar', 'aceptar', 'acepto',
+                      'seguir comprando',
+                  ];
+                  const continueShoppingTokens = [
+                      'continue shopping',
+                      'weiter shoppen',
+                      'weiter einkaufen',
+                      'continuer vos achats',
+                      'continua a fare acquisti',
+                      'seguir comprando',
+                  ];
+                  const interstitialBodyTokens = [
+                      'klicke auf die schaltfläche unten, um mit dem einkauf fortzufahren',
+                      'click the button below to continue shopping',
+                      'cliquez sur le bouton ci-dessous pour continuer vos achats',
+                      'fai clic sul pulsante qui sotto per continuare gli acquisti',
+                      'haz clic en el botón de abajo para seguir comprando',
+                  ];
+                  const shouldClickByText = (text) => {
+                      if (!text) return false;
+                      const t = norm(text);
+                      return textMatches.some((token) => t.includes(token));
+                  };
+                  const isVisible = (el) => {
+                      if (!(el instanceof HTMLElement)) return false;
+                      const style = window.getComputedStyle(el);
+                      if (style.display === 'none' || style.visibility === 'hidden') return false;
+                      const rect = el.getBoundingClientRect();
+                      return rect.width > 0 && rect.height > 0;
+                  };
+                  const isDisabled = (el) => {
+                      if (!(el instanceof HTMLElement)) return true;
+                      const attrDisabled = el.hasAttribute('disabled') || el.getAttribute('aria-disabled') === 'true';
+                      const cls = String(el.className || '').toLowerCase();
+                      return attrDisabled || cls.includes('disabled') || cls.includes('a-disabled');
+                  };
+
+                  const selectors = [
+                      '#sp-cc-accept',
+                      '#sp-cc-accept button',
+                      'button[name="accept"]',
+                      'input[name="accept"]',
+                      '#a-autoid-0-announce',
+                      '#a-autoid-0',
+                      '#GLUXConfirmClose',
+                      '[name="glowDoneButton"]',
+                      '[data-action="a-popover-close"]',
+                      '.a-popover-footer .a-button-input',
+                      '.a-popover-wrapper input.a-button-input',
+                      '.a-popover-wrapper button',
+                      '#nav-main button',
+                      '#nav-main input[type="submit"]',
+                      'button',
+                      'input[type="submit"]',
+                  ];
+
+                  let clicks = 0;
+                  const clickedNodes = new WeakSet();
+                  const bodyText = norm(document.body?.innerText || '');
+                  const isContinueShoppingInterstitial = interstitialBodyTokens.some((token) => bodyText.includes(token));
+
+                  if (isContinueShoppingInterstitial) {
+                      const continueSelectors = [
+                          'a.a-button-text',
+                          '.a-button-inner a',
+                          '.a-button-text',
+                          'button',
+                          'input[type="submit"]',
+                          'a',
+                      ];
+                      for (const selector of continueSelectors) {
+                          const nodes = Array.from(document.querySelectorAll(selector));
+                          for (const node of nodes) {
+                              if (!(node instanceof HTMLElement)) continue;
+                              if (!isVisible(node) || isDisabled(node)) continue;
+                              const label = norm(
+                                  node.getAttribute('aria-label')
+                                  || node.getAttribute('value')
+                                  || node.textContent
+                                  || (node).innerText
+                              );
+                              if (!continueShoppingTokens.some((token) => label.includes(token))) continue;
+                              node.click();
+                              clicks += 1;
+                              return clicks;
+                          }
+                      }
+                  }
+
+                  for (let round = 0; round < 6; round += 1) {
+                      let clickedInRound = false;
+                      for (const selector of selectors) {
+                          const nodes = Array.from(document.querySelectorAll(selector));
+                          for (const node of nodes) {
+                              if (!(node instanceof HTMLElement)) continue;
+                              if (clickedNodes.has(node)) continue;
+                              if (!isVisible(node) || isDisabled(node)) continue;
+
+                              const label = norm(
+                                  node.getAttribute('aria-label')
+                                  || node.getAttribute('value')
+                                  || node.textContent
+                                  || node.innerText
+                              );
+                              const explicitClose = selector === '[data-action="a-popover-close"]' || label === 'close' || label === 'schließen' || label === 'chiudi' || label === 'fermer' || label === 'cerrar';
+                              if (!explicitClose && !shouldClickByText(label)) continue;
+
+                              node.click();
+                              clickedNodes.add(node);
+                              clicks += 1;
+                              clickedInRound = true;
+                              break;
+                          }
+                          if (clickedInRound) break;
+                      }
+                      if (!clickedInRound) break;
+                  }
+                  return clicks;
+              })()
+          `);
+          if (clicked > 0) {
+              logger.info(`[Crawlee] Dismissed ${clicked} modal/consent controls at stage=${stage}`);
+          }
+          return Number(clicked || 0);
+      } catch (err: any) {
+          logger.warn(`[Crawlee] Modal dismissal failed at stage=${stage}: ${err.message}`);
+          return 0;
+      }
+  }
+
+  private isSameAmazonProductContext(targetUrl: string, currentUrl: string): boolean {
+      try {
+          const target = new URL(targetUrl);
+          const current = new URL(currentUrl);
+          const targetAsin = this.extractAsinFromUrl(targetUrl);
+          const currentAsin = this.extractAsinFromUrl(currentUrl);
+
+          // Strongest signal: same ASIN means we are still on the same product context.
+          if (targetAsin && currentAsin) return targetAsin === currentAsin;
+
+          // Fallback: same host + same path if ASIN is unavailable.
+          if (target.hostname.toLowerCase() !== current.hostname.toLowerCase()) return false;
+          return target.pathname === current.pathname;
+      } catch {
+          return false;
+      }
+  }
+
+  private async ensureOnRequestedAmazonPage(page: any, requestedUrl: string, stage: string): Promise<void> {
+      try {
+          const currentUrl = String(page.url() || '');
+          if (!currentUrl || !requestedUrl.includes('amazon.')) return;
+          if (this.isSameAmazonProductContext(requestedUrl, currentUrl)) return;
+
+          logger.warn(`[Crawlee] Navigation drift detected at stage=${stage}. current=${currentUrl} requested=${requestedUrl}. Returning to requested URL.`);
+          await page.goto(requestedUrl, { waitUntil: 'domcontentloaded', timeout: 30000 });
+          await page.waitForTimeout(900);
+          await this.dismissAmazonInterruptionModals(page, `${stage}-after-restore`);
+      } catch (err: any) {
+          logger.warn(`[Crawlee] Failed to restore requested Amazon page at stage=${stage}: ${err.message}`);
+      }
+  }
+
   private async attemptLocationBypass(page: any, url: string): Promise<boolean> {
       logger.info(`[Crawlee] Price not found initially on ${url}. Attempting location bypass...`);
-      const zipCode = url.includes('amazon.com') ? '10001' : 
-                      url.includes('amazon.de') ? '10115' : 
-                      url.includes('amazon.co.uk') ? 'E1 6AN' : null;
+      const zipByDomain: Record<string, string> = {
+          'amazon.com': '10001',
+          'amazon.ca': 'M5H 2N2',
+          'amazon.com.mx': '06000',
+          'amazon.com.br': '01001-000',
+          'amazon.co.uk': 'E1 6AN',
+          'amazon.de': '10115',
+          'amazon.it': '00118',
+          'amazon.fr': '75001',
+          'amazon.es': '28001',
+          'amazon.nl': '1012',
+          'amazon.be': '1000',
+          'amazon.co.jp': '100-0001',
+          'amazon.in': '110001',
+          'amazon.com.au': '2000',
+          'amazon.sg': '018956',
+          'amazon.ae': '00000',
+          'amazon.sa': '11564',
+          'amazon.com.tr': '34000',
+          'amazon.se': '111 22',
+          'amazon.pl': '00-001',
+          'amazon.eg': '11511',
+      };
+      const zipCode = (() => {
+          try {
+              const hostname = new URL(url).hostname.toLowerCase().replace(/^www\./, '');
+              return zipByDomain[hostname] || null;
+          } catch {
+              return null;
+          }
+      })();
       
       if (!zipCode) return false;
 
-      // Handle any pre-existing modals (like cookies or location warning) before clicking the zip code popover
-      try {
-          await page.evaluate(`
-              var preModalBtns = Array.from(document.querySelectorAll('input[type="submit"], button, .a-button-input, span.a-button-inner input'));
-              var continueBtn = preModalBtns.find(el => {
-                  var text = (el.value || el.innerText || '').toLowerCase();
-                  return text.includes('continue') || text.includes('accept') || text.includes('agree');
-              });
-              if (continueBtn) continueBtn.click();
-              
-              var dismissBtn = document.querySelector('[data-action="a-popover-close"]');
-              if (dismissBtn) dismissBtn.click();
-          `);
-          await page.waitForTimeout(1000);
-      } catch(e) {}
+      await this.dismissAmazonInterruptionModals(page, 'location-bypass-start');
+      await page.waitForTimeout(400);
+      await this.ensureOnRequestedAmazonPage(page, url, 'location-bypass-start');
 
       let popoverOpened = false;
       for (let attempt = 0; attempt < 3; attempt++) {
@@ -476,9 +680,13 @@ export class CrawleeAdapter implements IScraper {
               if (continueBtn) continueBtn.click();
           `);
           await page.waitForTimeout(1500);
+          await this.dismissAmazonInterruptionModals(page, 'location-bypass-after-confirm');
+          await this.ensureOnRequestedAmazonPage(page, url, 'location-bypass-after-confirm');
           
           await page.reload({ waitUntil: 'domcontentloaded' });
           await page.waitForTimeout(3000);
+          await this.dismissAmazonInterruptionModals(page, 'location-bypass-post-reload');
+          await this.ensureOnRequestedAmazonPage(page, url, 'location-bypass-post-reload');
           return true;
       } else {
           logger.warn(`[Crawlee] Location bypass popover failed to open.`);
@@ -588,6 +796,18 @@ export class CrawleeAdapter implements IScraper {
               'button:has-text("Other sellers on Amazon")',
               'a:has-text("Other Sellers on Amazon")',
               'a:has-text("other buying options")',
+              'a:has-text("Alle Kaufoptionen")',
+              'a:has-text("Alle Angebote")',
+              'a:has-text("Andere Verkäufer")',
+              'a:has-text("Voir toutes les options")',
+              'a:has-text("Toutes les offres")',
+              'a:has-text("Autres vendeurs")',
+              'a:has-text("Vedi tutte le opzioni")',
+              'a:has-text("Tutte le offerte")',
+              'a:has-text("Altri venditori")',
+              'a:has-text("Ver todas las opciones")',
+              'a:has-text("Todas las ofertas")',
+              'a:has-text("Otros vendedores")',
               'a:has-text("New & Used")',
               'a:has-text("new from")',
               'a:has-text("See All Buying Options")',
@@ -927,6 +1147,10 @@ export class CrawleeAdapter implements IScraper {
         requestHandler: async ({ page, request, session }: PlaywrightCrawlingContext) => {
           logger.info(`[Crawlee] Navigating to: ${request.url}`);
           await page.waitForLoadState('domcontentloaded');
+          if (request.url.includes('amazon.')) {
+              await this.dismissAmazonInterruptionModals(page, 'initial-domcontentloaded');
+              await this.ensureOnRequestedAmazonPage(page, request.url, 'initial-domcontentloaded');
+          }
           
           // Simulation for lazy loading
           try {
@@ -949,6 +1173,8 @@ export class CrawleeAdapter implements IScraper {
 
               if (request.url.includes('amazon.')) {
                   await this.forceAmazonUsdCurrency(page, request.url);
+                  await this.dismissAmazonInterruptionModals(page, 'post-currency');
+                  await this.ensureOnRequestedAmazonPage(page, request.url, 'post-currency');
                   // Read main page quantity first (quantity dropdown interactions may close AOD panel)
                   playwrightMaxQty = await this.extractMainPageQuantity(page);
                   await this.expandAmazonOtherSellers(page);
@@ -1003,9 +1229,7 @@ export class CrawleeAdapter implements IScraper {
           } catch (e: any) {
               logger.warn(`[Crawlee] Post-AOD scroll failed: ${e.message}`);
           }
-          let marketplace = 'unknown';
-          if (request.url.includes('amazon')) marketplace = 'amazon';
-          else if (request.url.includes('etsy')) marketplace = 'etsy';
+          const marketplace = this.resolveMarketplaceFromUrl(request.url);
 
           if (this.isBotBlocked(true, rawHtml, request.url)) {
              session?.markBad();

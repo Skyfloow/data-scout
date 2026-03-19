@@ -185,12 +185,43 @@ export const parseStockCount = (text: string): number | null => {
   if (exactMatch && exactMatch[1]) {
     return parseInt(exactMatch[1], 10);
   }
+
+  // German: "Nur noch 3 auf Lager" / "Nur noch 3 Stück auf Lager"
+  const deMatch = lowerText.match(/nur\s+noch\s+(\d+)\s+(?:st[üu]ck\s+)?auf\s+lager/);
+  if (deMatch?.[1]) return parseInt(deMatch[1], 10);
+
+  // Italian: "Solo 3 rimasti" / "Solo 3 rimasti in magazzino"
+  const itMatch = lowerText.match(/solo\s+(\d+)\s+rimasti(?:\s+in\s+magazzino)?/);
+  if (itMatch?.[1]) return parseInt(itMatch[1], 10);
+
+  // French: "Plus que 3 en stock" / "Il ne reste plus que 3"
+  const frMatch = lowerText.match(/(?:plus\s+que\s+(\d+)\s+en\s+stock|il\s+ne\s+reste\s+plus\s+que\s+(\d+))/);
+  if (frMatch?.[1]) return parseInt(frMatch[1], 10);
+  if (frMatch?.[2]) return parseInt(frMatch[2], 10);
+
+  // Spanish: "Solo quedan 3" / "Quedan 3"
+  const esMatch = lowerText.match(/(?:solo\s+)?quedan\s+(\d+)/);
+  if (esMatch?.[1]) return parseInt(esMatch[1], 10);
   
-  if (lowerText.includes('out of stock') || lowerText.includes('currently unavailable')) {
+  if (
+    lowerText.includes('out of stock')
+    || lowerText.includes('currently unavailable')
+    || lowerText.includes('derzeit nicht verfügbar')
+    || lowerText.includes('non disponibile')
+    || lowerText.includes('actuellement indisponible')
+    || lowerText.includes('no disponible')
+  ) {
     return 0;
   }
   
-  if (lowerText.includes('in stock') || lowerText.includes('available')) {
+  if (
+    lowerText.includes('in stock')
+    || lowerText.includes('available')
+    || lowerText.includes('auf lager')
+    || lowerText.includes('disponibile')
+    || lowerText.includes('en stock')
+    || lowerText.includes('disponible')
+  ) {
     return 999; // Arbitrary high number meaning "plenty"
   }
   

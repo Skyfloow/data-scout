@@ -8,6 +8,45 @@
     "bulkAddTrackers": "Масово додати трекери",
     "singleUrlScan": "Одиночне сканування URL"
   },
+  "bulkTrack": {
+    "description": "Масово додайте товари, ключові слова або категорії для фонового відстеження та регулярних оновлень.",
+    "tabs": {
+      "product": "Товари",
+      "keyword": "Ключові слова",
+      "category": "Категорії"
+    },
+    "help": {
+      "product": "Вставте список URL або ASIN (кожен з нового рядка)",
+      "keyword": "Вставте список пошукових запитів для відстеження позицій (кожен з нового рядка)",
+      "category": "Вставте Node ID або URL категорій (кожен з нового рядка)"
+    },
+    "marketplaceLabel": "Маркетплейс",
+    "marketplacePlaceholder": "Маркетплейс",
+    "marketplaceOptions": {
+      "amazonCom": "Amazon US (.com)",
+      "amazonCoUk": "Amazon UK (.co.uk)",
+      "amazonDe": "Amazon DE (.de)",
+      "etsyCom": "Etsy (.com)"
+    },
+    "frequencyLabel": "Частота",
+    "frequencyPlaceholder": "Частота",
+    "intervalOptions": {
+      "every10min": "Кожні 10 хвилин",
+      "every30min": "Кожні 30 хвилин",
+      "every1h": "Кожну 1 годину",
+      "every3h": "Кожні 3 години",
+      "every6h": "Кожні 6 годин",
+      "every12h": "Кожні 12 годин",
+      "every24h": "Кожні 24 години",
+      "every48h": "Кожні 48 годин"
+    },
+    "cancel": "Скасувати",
+    "track": "Відстежувати",
+    "saving": "Збереження...",
+    "emptyValuesError": "Будь ласка, введіть хоча б одне значення.",
+    "successAdded": "Успішно додано {{count}} елементів до моніторингу.",
+    "saveErrorFallback": "Помилка збереження"
+  },
   "settings": {
     "title": "Налаштування",
     "subtitle": "Налаштуйте ваш DataScout Pro.",
@@ -15,7 +54,7 @@
     "scrapingEngine": "Параметри скрапінгу",
     "internalCrawler": "Внутрішній краулер (налаштовуваний)",
     "firecrawlService": "Firecrawl (хмарний сервіс)",
-    "chooseEngineHelp": "Оберіть рушій для фонового відстеження та швидкого сканування.",
+    "chooseEngineHelp": "Оберіть тип скрапінгу для фонового відстеження та швидкого сканування.",
     "antiBotStrategy": "Антибот-стратегія",
     "hybrid": "Гібридна (HTTP + Playwright fallback)",
     "fast": "Лише HTTP (швидко)",
@@ -143,7 +182,56 @@
     "parsingQuality": "Якість парсингу даних",
     "priceStability": "Стабільність цін",
     "priceStabilityTooltip": "Відсоток товарів без аномальних стрибків ціни (>30%).",
-    "anomaliesDetected": "Виявлено аномалій"
+    "anomaliesDetected": "Виявлено аномалій",
+    "charts": {
+      "productsLabel": "Товарів",
+      "rangeLabel": "Діапазон",
+      "timeLabel": "Час",
+      "priceLabel": "Ціна",
+      "reviewsLabel": "Відгуки",
+      "scoreLabel": "Бал",
+      "avgRatingAxis": "Середній рейтинг",
+      "reviewsAxis": "Відгуки",
+      "ratingAxis": "Рейтинг",
+      "discountAxis": "Знижка %",
+      "buyBox": {
+        "title": "Домінування Buy Box",
+        "tooltip": "Хто частіше утримує Buy Box за останнім зрізом унікальних товарів.",
+        "empty": "Немає даних Buy Box",
+        "amazonDirect": "Amazon напряму",
+        "fbaThirdParty": "FBA (сторонній продавець)",
+        "fbmMerchant": "FBM (продавець)"
+      },
+      "tiers": {
+        "title": "Цінові рівні",
+        "tooltip": "Розподіл унікальних товарів за ціновими діапазонами.",
+        "under25": "До $25",
+        "25to50": "$25-50",
+        "50to100": "$50-100",
+        "100to250": "$100-250",
+        "250plus": "$250+"
+      },
+      "ratingReviews": {
+        "title": "Рейтинг × Відгуки",
+        "tooltip": "Розмір бульбашки = ціна; осі = рейтинг і відгуки.",
+        "empty": "Недостатньо даних рейтингу"
+      },
+      "reviewVelocity": {
+        "title": "Динаміка відгуків (Топ-10)",
+        "tooltip": "Нормалізований бал за кількістю відгуків.",
+        "empty": "Немає даних по відгуках"
+      },
+      "discountVsRating": {
+        "title": "Знижка vs. Рейтинг",
+        "tooltip": "Товари з високим рейтингом і великою знижкою.",
+        "empty": "Немає даних по знижках"
+      },
+      "priceTrend": {
+        "title": "Тренд ціни (останні скани)",
+        "tooltip": "Останні спостереження ефективної ціни (пріоритет Buy Box).",
+        "empty": "Недостатньо точок для тренду"
+      }
+    }
   },
   "table": {
     "marketIntelligenceData": "Аналітичні дані ринку",
@@ -154,7 +242,7 @@
     "id": "ID",
     "allSources": "Усі джерела",
     "scraper": "Парсер",
-    "allEngines": "Усі рушії",
+    "allEngines": "Усі скрапери",
     "failedLoad": "Не вдалося завантажити дані.",
     "noProducts": "Поки немає зібраних товарів. Запустіть задачу парсингу вище.",
     "product": "Товар",
@@ -174,6 +262,7 @@
     "dataQuality": "Якість даних",
     "availability": "Наявність",
     "sellerType": "Тип Buy Box",
+    "sellerTypeTooltip": "Amazon: продавець Amazon. FBA: сторонній продавець, відправка через Amazon. FBM: сторонній продавець сам виконує доставку.",
     "stock": "Залишок",
     "views": "Перегляди",
     "reviewsShort": "відг.",
@@ -189,8 +278,8 @@
     "productUrlLabel": "URL товару (Amazon)",
     "urlPlaceholder": "https://amazon.com/dp/...",
     "urlHelp": "Підтримуються лише прямі URL товарів Amazon.",
-    "engineLabel": "Рушій скрапінгу",
-    "enginePlaceholder": "Оберіть рушій",
+    "engineLabel": "Тип скрапінгу",
+    "enginePlaceholder": "Оберіть тип скрапінгу",
     "engineCrawler": "Вбудований Crawler",
     "cancel": "Скасувати",
     "running": "Збір...",
@@ -250,11 +339,12 @@
     "offerPriceRangeTooltip": "Мінімальна та максимальна ціна оферів. Якщо обидві однакові, показується одна ціна.",
     "contentCoverageTooltip": "Показує, скільки характеристик витягнуто і чи є опис.",
     "badgesTooltip": "Бейджі маркетплейсу для цього товару. Climate Friendly означає, що Amazon позначив товар як більш екологічний (за критеріями програми/сертифікацій).",
-    "buyBoxTypeTooltip": "Показує, хто утримує Buy Box: Amazon, FBA або FBM.",
+    "buyBoxTypeTooltip": "Amazon: продавець Amazon. FBA: сторонній продавець, відправка через Amazon. FBM: сторонній продавець сам виконує доставку.",
     "buyBoxAmazon": "Amazon",
     "buyBoxFba": "FBA",
     "buyBoxFbm": "FBM",
     "otherSellerOffers": "Інші пропозиції продавців",
+    "otherSellerOffersLastN": "Інші пропозиції продавців (Останні {{n}})",
     "sellerColumn": "Продавець",
     "priceColumn": "Ціна",
     "conditionColumn": "Стан",

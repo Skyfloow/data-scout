@@ -143,7 +143,16 @@ export class StorageService {
     }
 
     if (filters?.source) {
-      allProducts = allProducts.filter((p) => p.marketplace === filters.source);
+      const requestedSource = filters.source.toLowerCase();
+      allProducts = allProducts.filter((p) => {
+        const marketplace = (p.marketplace || '').toLowerCase();
+        if (!marketplace) return false;
+        if (marketplace === requestedSource) return true;
+        // Backward-compatible filtering: source=amazon should include amazon.com/.de/.it etc.
+        if (requestedSource === 'amazon') return marketplace.includes('amazon');
+        if (requestedSource === 'etsy') return marketplace.includes('etsy');
+        return marketplace.includes(requestedSource);
+      });
     }
 
     // Sort by scrapedAt descending

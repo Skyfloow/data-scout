@@ -384,6 +384,7 @@ export async function exportElementToPdf(
 
 import { Product } from '../types';
 import { resolveMetricPrice } from './metrics';
+import { getMarketplaceDisplayName } from './marketplace';
 
 export function exportProductsToCsv(products: Product[]): void {
   const rows: Array<Array<string | number>> = [];
@@ -393,7 +394,7 @@ export function exportProductsToCsv(products: Product[]): void {
     rows.push([
       row.id,
       row.title,
-      row.marketplace,
+      getMarketplaceDisplayName(row.marketplace, row.url),
       price,
       row.metrics.currency || 'USD',
       row.metrics.averageRating || '',

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Badge } from './ui/badge';
 import { TD, TR } from './ui/table';
 import { MonitoredEntity, TrackerLatestData, TrackerResult } from '../types';
+import { getMarketplaceDisplayName } from '../utils/marketplace';
 
 export function hasKeywordLatestData(data: TrackerLatestData): data is { scrapedAt: string; topAsin?: string; topTitle?: string } {
   return Boolean(data && ('topAsin' in data || 'topTitle' in data));
@@ -26,6 +27,7 @@ interface TrackerResultRowProps {
 
 export function TrackerResultRow({ item, onViewHistory }: TrackerResultRowProps) {
   const { t } = useTranslation();
+  const marketplaceLabel = getMarketplaceDisplayName(item.marketplace, item.type === 'product' ? item.value : undefined);
   const keywordLatest = hasKeywordLatestData(item.latestData) ? item.latestData : null;
   const productLatest = hasProductLatestData(item.latestData) ? item.latestData : null;
   const updatedAt = item.latestData?.scrapedAt || item.lastScrapedAt;
@@ -72,7 +74,7 @@ export function TrackerResultRow({ item, onViewHistory }: TrackerResultRowProps)
         )}
       </TD>
       <TD>
-        <Badge variant="outline">{item.marketplace}</Badge>
+        <Badge variant="outline">{marketplaceLabel}</Badge>
       </TD>
       <TD>{updatedAt ? new Date(updatedAt).toLocaleString() : '—'}</TD>
       <TD className="text-right">

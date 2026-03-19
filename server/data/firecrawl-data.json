@@ -483,46 +483,86 @@
     "scrapedBy": "firecrawl"
   },
   {
-    "id": "82907ce1-9367-4c27-a6f1-bb3d43febe68",
-    "title": "Cookies and Advertising Choices",
-    "url": "https://www.amazon.de/-/en/Samsung-Smartphone-Contract-Manufacturer-Exclusive/dp/B0G58WV7X4?pd_rd_w=lqr7J&content-id=amzn1.sym.1f4ab70d-e4c2-4163-adb8-f439441a894e&pf_rd_p=1f4ab70d-e4c2-4163-adb8-f439441a894e&pf_rd_r=0D6Q80CGTX2ZW6KSJ7TR&pd_rd_wg=8HatU&pd_rd_r=189c676f-3a86-41f9-bb6a-b856dc046466&pd_rd_i=B0G58WV7X4&ref_=oct_dx_dotd_B0G58WV7X4&th=1",
+    "id": "7a1a7a5e-0efc-453c-92f8-6f745ed59640",
+    "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked",
+    "url": "https://www.amazon.com/dp/B0DPDKNPT9?th=1",
     "marketplace": "amazon",
     "metrics": {
-      "description": "",
-      "imageUrl": "",
-      "currency": "",
-      "brand": "",
-      "dataQualityScore": 35
-    },
-    "scrapedAt": "2026-03-02T20:40:21.280Z",
-    "scrapedBy": "firecrawl"
-  },
-  {
-    "id": "27ea436b-742d-4757-b18d-a72f1d20efb4",
-    "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed)",
-    "url": "https://www.amazon.com/Apple-iPhone-Version-Desert-Titanium/dp/B0DHJ9SCJ4/ref=sr_1_24?dib=eyJ2IjoiMSJ9.i8YCCkA7BtNG2cpz5csjmJGIL7guT-IJxbIlgpl4c2OS9aUNNXejPGPY4HboeSVUnT7q4pPfTW1rAOXy2JiyyoLOBCqtA0sU3onULytAgdpp8AWyCStelNX-ZbuOrCGL76DAd8bRBULnUZhUjeAa-wycYOa3xkBsdgWSzgEZ0rqWGj76wH-KxPsIAky3ftkVBwHCjpcgxqyyp0YTzu6i4px_wHeMyNiGcL7_Bh7Fs-M96V9fSHqBWYjAxEICuiCvfJZts1abwg_byHcxygBkIt8w7UGe7N0TQ2j1m8B9YJY.dFqOTUeSPK4cilewp5I0TY6u-SxKZRtrG6llzb3TcGw&dib_tag=se&qid=1772292353&refinements=p_123%3A110955&rnid=2335752011&s=mobile&sr=1-24&th=1",
-    "marketplace": "amazon",
-    "metrics": {
-      "description": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed) About this item 6.9\" LTPO Super Retina XDR OLED, 120Hz, HDR10, Dolby Vision, 1320x2868px at 460ppi, 1000 nits (typ), 2000 nits (HBM), 4685mAh Battery 256GB 8GB RAM, Apple A18 Pro (3nm), Hexa-core (2x4.05 GHz + 4x2.42 GHz), Apple GPU 6-core, iOS 18, upgradable to iOS 18.3 Rear camera: 48MP, f/1.8 (wide) + 12MP, f/2.8 (periscope telephoto) 5x optical zoom + 48MP, f/2.2 (ultrawide), TOF 3D LiDAR scanner (depth), Front Camera: 12MP, f/1.9 (wide) 3G: HSDPA 850/900/1700(AWS)/1900/2100, 4G LTE: 1/2/3/4/5/7/8/12/13/14/17/18/19/20/25/26/28/29/30/32/34/38/39/40/41/42/48/53/66/71, 1/2/3/5/7/8/12/14/20/25/26/28/29/30/38/40/41/48/53/66/70/71/75/76/77/78/79/258/260/261 SA/NSA/Sub6/mmWave - Dual eSIM Unlocked for freedom to choose your carrier. Compatible with both GSM & CDMA networks. The phone is unlocked to work with all GSM Carriers & CDMA Carriers Including AT&T, T-Mobile, Verizon, Straight Talk., Etc. › See more product details",
-      "imageUrl": "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX342_.jpg",
       "currency": "USD",
+      "description": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium) About this item This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers. There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length. This product will have a battery which exceeds 80% capacity relative to new. Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box. This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied. › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/61Z4eGyb1mL._AC_SX342_.jpg",
       "brand": "Amazon Renewed",
-      "asin": "B0DHJ9SCJ4",
-      "price": 24.13,
-      "itemPrice": 24.13,
+      "availability": "Only 11 left in stock - order soon.",
+      "features": [
+        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
+        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
+        "This product will have a battery which exceeds 80% capacity relative to new.",
+        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
+        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/41IcaBDYwxL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41ZquN57YTL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31qU9wU9oaL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/61Z4eGyb1mL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Networkstore",
+          "price": 846.97,
+          "currency": "USD",
+          "stockStatus": "Only 11 left in stock - order soon.",
+          "stockCount": 11,
+          "condition": "New",
+          "isFBA": false
+        }
+      ],
+      "asin": "B0DPDKNPT9",
+      "price": 846.97,
+      "itemPrice": 846.97,
+      "originalPrice": 999,
+      "discountPercentage": 15,
       "averageRating": 4.3,
-      "reviewsCount": 2421,
-      "availability": "In Stock In Stock",
+      "reviewsCount": 2607,
+      "stockCount": 11,
       "isAmazonChoice": false,
       "isBestSeller": false,
-      "modelNumber": "A3296",
+      "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 34 mins. Details",
       "manufacturer": "Apple",
-      "dateFirstAvailable": "October 20, 2024",
+      "warranty": "1-Year Amazon Renewed Guarantee",
       "isPrime": false,
+      "salesVolume": "50+ bought in past month",
+      "isClimateFriendly": false,
       "videoCount": 6,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0CRJSBN5M",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
+        },
+        {
+          "asin": "B0DNTC3HXX",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
+        },
+        {
+          "asin": "B0CRJJBBPY",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Black Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRHZZLYR",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Blue Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJTPR6T",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, White Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJK7V6D",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 512GB, Natural Titanium - Unlocked"
+        }
+      ],
       "bsrCategories": [
         {
-          "rank": 551,
+          "rank": 717,
           "category": "Cell Phones &amp; Accessories"
         },
         {
@@ -530,459 +570,601 @@
           "category": "Renewed Smartphones"
         },
         {
-          "rank": 10,
+          "rank": 11,
           "category": "Cell Phones"
         }
       ],
-      "bestSellerRank": "#551 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #10 in Cell Phones",
+      "bestSellerRank": "#717 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #11 in Cell Phones",
       "buyBox": {
-        "sellerName": "Unknown Seller",
-        "price": 817.75,
+        "sellerName": "Networkstore",
+        "price": 846.97,
         "isFBA": false,
-        "isAmazon": false
+        "isAmazon": false,
+        "observedAt": "2026-03-19T18:25:42.813Z"
       },
       "selectedOffer": {
         "source": "buybox",
-        "sellerName": "Unknown Seller",
-        "price": 817.75,
+        "sellerName": "Networkstore",
+        "price": 846.97,
         "currency": "USD",
         "condition": "New",
         "isFBA": false,
         "isAmazon": false
       },
-      "offers": [
-        {
-          "sellerName": "Unknown Seller",
-          "price": 817.75,
-          "currency": "USD",
-          "stockStatus": "In Stock In Stock",
-          "stockCount": 999,
-          "condition": "New",
-          "isFBA": false
-        }
-      ],
-      "sellerCount": 1,
-      "averageOfferPrice": 817.75,
-      "imageUrls": [
-        "https://m.media-amazon.com/images/I/41bicYTK4jL._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/21bAqImYHVL._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/317mK34pWML._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/31ItSVbfwpL._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/31vEyK5FmBL._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/61zU0mI4EsL.jpg"
-      ],
+      "sellerCount": 3,
+      "averageOfferPrice": 846.97,
+      "lowestOfferPrice": 846.97,
       "category": "Cell Phones & Accessories > Cell Phones",
-      "features": [
-        "6.9\" LTPO Super Retina XDR OLED, 120Hz, HDR10, Dolby Vision, 1320x2868px at 460ppi, 1000 nits (typ), 2000 nits (HBM), 4685mAh Battery",
-        "256GB 8GB RAM, Apple A18 Pro (3nm), Hexa-core (2x4.05 GHz + 4x2.42 GHz), Apple GPU 6-core, iOS 18, upgradable to iOS 18.3",
-        "Rear camera: 48MP, f/1.8 (wide) + 12MP, f/2.8 (periscope telephoto) 5x optical zoom + 48MP, f/2.2 (ultrawide), TOF 3D LiDAR scanner (depth), Front Camera: 12MP, f/1.9 (wide)",
-        "3G: HSDPA 850/900/1700(AWS)/1900/2100, 4G LTE: 1/2/3/4/5/7/8/12/13/14/17/18/19/20/25/26/28/29/30/32/34/38/39/40/41/42/48/53/66/71, 1/2/3/5/7/8/12/14/20/25/26/28/29/30/38/40/41/48/53/66/70/71/75/76/77/78/79/258/260/261 SA/NSA/Sub6/mmWave - Dual eSIM",
-        "Unlocked for freedom to choose your carrier. Compatible with both GSM & CDMA networks. The phone is unlocked to work with all GSM Carriers & CDMA Carriers Including AT&T, T-Mobile, Verizon, Straight Talk., Etc."
-      ],
-      "priceUSD": 817.75,
-      "itemPriceUSD": 817.75,
-      "averageOfferPriceUSD": 817.75,
-      "dataQualityScore": 100,
-      "priceAnomalyDetected": true,
-      "priceAnomalyReason": "Raw item price 817.75 deviates 3288.9% from median 24.13.",
-      "rawPrice": 817.75,
-      "rawItemPrice": 817.75
-    },
-    "scrapedAt": "2026-03-02T19:21:17.663Z",
-    "scrapedBy": "firecrawl"
-  },
-  {
-    "id": "c94d6e2e-ffc1-47ad-a3c1-12c801d05c67",
-    "title": "Western Digital 10TB WD Red Plus NAS Internal Hard Drive HDD - 7200 RPM, SATA 6 GB/s, CMR, 512 MB Cache, 3.5\" - WD100EFGX",
-    "url": "https://www.amazon.com/Western-Digital-10TB-Internal-Drive/dp/B0F4R3YCL6?pf_rd_p=97d26ce2-53d3-4963-9ae8-edf1accb821f&pf_rd_r=00FCW0RAZM6J4VWG9S8A&ref_=new-in-electronics_B0F4R3YCL6&th=1",
-    "marketplace": "amazon",
-    "metrics": {
-      "description": "Packed with power to handle the small- to medium-sized business NAS environments and increased workloads for SOHO customers, WD Red Plus is ideal for archiving and sharing, as well as RAID array rebuilding on systems using ZFS and other file systems. Built and tested for up to 8-bay NAS systems, these drives give you the flexibility, versatility, and confidence in storing and sharing your precious home and work files. About this item Available in capacities ranging from 1-14TB with support for up to 8 bays.Data Transfer Rate:6Gbps.Specific uses: Business Supports up to 180 TB/yr workload rate | Workload Rate is defined as the amount of user data transferred to or from the hard drive. Workload Rate is annualized (TB transferred ✕ (8760 / recorded power-on hours)). Workload Rate will vary depending on your hardware and software components and configurations. NASware firmware for compatibility Small or medium business NAS systems in a 24x7 environment, Compatibility: Unlike desktop drives, these drives are specifically tested for compatibility with NAS systems for optimum performance. 3-year limited warranty › See more product details",
-      "imageUrl": "https://m.media-amazon.com/images/I/71gMJPeIFwL._AC_SY355_.jpg",
-      "currency": "USD",
-      "brand": "WD",
-      "asin": "B0F4R3YCL6",
-      "price": 249.99,
-      "averageRating": 4.5,
-      "reviewsCount": 9338,
-      "availability": "Available to ship in 1-2 days",
-      "isAmazonChoice": false,
-      "isBestSeller": false,
-      "modelNumber": "‎WD100EFGX-SPCPLN0",
-      "manufacturer": "‎Western Digital",
-      "dateFirstAvailable": "‎April 15, 2025",
-      "isPrime": true,
-      "videoCount": 3,
-      "bsrCategories": [
-        {
-          "rank": 5,
-          "category": "Internal Hard Drives"
-        }
-      ],
-      "bestSellerRank": "#5 in Internal Hard Drives",
-      "buyBox": {
-        "sellerName": "Unknown Seller",
-        "price": 249.99,
-        "isFBA": false,
-        "isAmazon": false
+      "amazonMetrics": {
+        "asin": "B0DPDKNPT9",
+        "buyBox": {
+          "sellerName": "Networkstore",
+          "price": 846.97,
+          "isFBA": false,
+          "isAmazon": false,
+          "observedAt": "2026-03-19T18:25:42.813Z"
+        },
+        "bsrCategories": [
+          {
+            "rank": 717,
+            "category": "Cell Phones &amp; Accessories"
+          },
+          {
+            "rank": 7,
+            "category": "Renewed Smartphones"
+          },
+          {
+            "rank": 11,
+            "category": "Cell Phones"
+          }
+        ],
+        "bestSellerRank": "#717 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #11 in Cell Phones",
+        "isPrime": false,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": false,
+        "sellerCount": 3,
+        "offers": [
+          {
+            "sellerName": "Networkstore",
+            "price": 846.97,
+            "currency": "USD",
+            "stockStatus": "Only 11 left in stock - order soon.",
+            "stockCount": 11,
+            "condition": "New",
+            "isFBA": false
+          }
+        ]
       },
-      "offers": [
-        {
-          "sellerName": "Unknown Seller",
-          "price": 249.99,
-          "currency": "USD",
-          "stockStatus": "Available to ship in 1-2 days",
-          "stockCount": 999,
-          "condition": "New",
-          "isFBA": false
-        }
-      ],
-      "sellerCount": 1,
-      "averageOfferPrice": 249.99,
-      "imageUrls": [
-        "https://m.media-amazon.com/images/I/31iez7W2SqL.jpg",
-        "https://m.media-amazon.com/images/I/31-nhT1bTaL.jpg",
-        "https://m.media-amazon.com/images/I/31-rQozjyYL.jpg",
-        "https://m.media-amazon.com/images/I/71gMJPeIFwL.jpg"
-      ],
-      "category": "Electronics > Computers & Accessories > Data Storage > Internal Hard Drives",
-      "features": [
-        "Available in capacities ranging from 1-14TB with support for up to 8 bays.Data Transfer Rate:6Gbps.Specific uses: Business",
-        "Supports up to 180 TB/yr workload rate | Workload Rate is defined as the amount of user data transferred to or from the hard drive. Workload Rate is annualized (TB transferred ✕ (8760 / recorded power-on hours)). Workload Rate will vary depending on your hardware and software components and configurations.",
-        "NASware firmware for compatibility",
-        "Small or medium business NAS systems in a 24x7 environment, Compatibility: Unlike desktop drives, these drives are specifically tested for compatibility with NAS systems for optimum performance.",
-        "3-year limited warranty"
-      ],
-      "priceUSD": 249.99,
-      "averageOfferPriceUSD": 249.99
+      "priceObservedAt": "2026-03-19T18:25:42.813Z",
+      "itemPriceObservedAt": "2026-03-19T18:25:42.813Z",
+      "priceUSD": 846.97,
+      "itemPriceUSD": 846.97,
+      "dataQualityScore": 100
     },
-    "scrapedAt": "2026-02-27T17:26:32.887Z",
+    "scrapedAt": "2026-03-19T18:25:42.813Z",
     "scrapedBy": "firecrawl"
   },
   {
-    "id": "9d0aa213-63fc-446f-ac38-efff6ace503b",
-    "title": "Samsung Galaxy S25 Cell Phone, 128GB AI Smartphone, Unlocked Android, AI Camera, Fast Processor, ProScaler Display, Long Battery Life, 2025, Icyblue (Renewed)",
-    "url": "https://www.amazon.com/Samsung-Smartphone-Unlocked-Processor-ProScaler/dp/B0F3DLQC16?th=1",
+    "id": "5a18ee78-b072-4aec-add3-2eb6661b27b8",
+    "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked",
+    "url": "https://www.amazon.com/dp/B0DPDKNPT9?th=1",
     "marketplace": "amazon",
     "metrics": {
-      "description": "Experience the future in your hands with the Samsung Galaxy S25, combining cutting-edge AI, stunning design, and powerful performance. Featuring a 6.2″ Dynamic AMOLED 2X display with ultra-smooth 120 Hz refresh rate, the Galaxy S25 delivers vivid visuals indoors and outdoors. Its Snapdragon 8 Elite processor and all-day 4,000 mAh battery keep you powered through work and play, while the triple-lens camera system (50 MP wide, 12 MP ultra-wide, and 10 MP telephoto) captures every detail with breathtaking clarity. Enhanced by Galaxy AI tools like Instant Slow-Mo and Auto Edit, your creativity and productivity reach new heights all wrapped in a sleek, durable design. About this item 6.2\" Dynamic LTPO AMOLED 2X QHD+, 120Hz Adaptive Refresh Rate, HDR10+, 1080x2340px, Android 15, up to 7 major Android upgrades, One UI 7 128GB, 12GB RAM, No SD Card Slot, Qualcomm Snapdragon 8 Elite (3nm), Octa-Core, Adreno 830 GPU, 4000mAh Battery Rear Camera: 50MP, f/1.8, wide + 10MP, f/2.4, telephoto + 12MP, f/2.2, ultrawide, Front Camera: 12MP, f/2.2, wide 2G: 850/900/1800/1900, 3G: UMTS 1(2100)/2(1900)/4(AWS)/5(850)/8(900), 4G LTE: 1/2/3/4/5/7/8/12/13/14/18/19/20/25/26/28/29/30/38/39/40/41/48/66/71, 5G: N1/2/5/7/25/28/41/66/71/77/78/257/258/260/261 SA/NSA/Sub6/mmWave - Nano-SIM + eSIM + eSIM (max 2 at a time) US Model - Compatible with Most GSM Carriers like AT&T, T-Mobile, MetroPCS, etc. Will Also work with CDMA Carriers Such as Verizon, Straight Talk. › See more product details",
-      "imageUrl": "https://m.media-amazon.com/images/I/61LAKVCKRvL._AC_SX342_.jpg",
       "currency": "USD",
+      "description": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium) About this item This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers. There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length. This product will have a battery which exceeds 80% capacity relative to new. Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box. This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied. › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/61Z4eGyb1mL._AC_SX342_.jpg",
       "brand": "Amazon Renewed",
-      "asin": "B0F3DLQC16",
-      "price": 326.65,
-      "originalPrice": 326.61,
-      "averageRating": 4,
-      "reviewsCount": 334,
-      "availability": "Only 2 left in stock - order soon. Only 2 left in stock - order soon.",
-      "isAmazonChoice": false,
-      "isBestSeller": false,
-      "modelNumber": "SM-S931U",
-      "manufacturer": "Samsung Electronics",
-      "dateFirstAvailable": "April 2, 2025",
-      "isPrime": false,
-      "videoCount": 9,
-      "bsrCategories": [
-        {
-          "rank": 3803,
-          "category": "Cell Phones &amp; Accessories"
-        },
-        {
-          "rank": 54,
-          "category": "Renewed Smartphones"
-        },
-        {
-          "rank": 81,
-          "category": "Cell Phones"
-        }
-      ],
-      "bestSellerRank": "#3,803 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #54 in Renewed Smartphones #81 in Cell Phones",
-      "buyBox": {
-        "sellerName": "supplytronicssupplytronicsYY WirelessYY Wireless",
-        "price": 326.65,
-        "isFBA": false,
-        "isAmazon": false
-      },
-      "offers": [
-        {
-          "sellerName": "supplytronicssupplytronicsYY WirelessYY Wireless",
-          "price": 326.65,
-          "currency": "USD",
-          "stockStatus": "Only 2 left in stock - order soon. Only 2 left in stock - order soon.",
-          "stockCount": 2,
-          "condition": "New",
-          "isFBA": false
-        }
-      ],
-      "sellerCount": 1,
-      "averageOfferPrice": 326.65,
-      "imageUrls": [
-        "https://m.media-amazon.com/images/I/31LXn+I6eoL._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/41MxcykiKIL._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/51nK5p6Um+L._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/51MMfPFCfCL._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/419JGYNxQJL._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/411dewih-IL._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/41Ah-WNxFZL._AC_SR38,50_.jpg",
-        "https://m.media-amazon.com/images/I/61LAKVCKRvL.jpg"
-      ],
-      "category": "Cell Phones & Accessories > Cell Phones",
+      "availability": "Only 11 left in stock - order soon.",
       "features": [
-        "6.2\" Dynamic LTPO AMOLED 2X QHD+, 120Hz Adaptive Refresh Rate, HDR10+, 1080x2340px, Android 15, up to 7 major Android upgrades, One UI 7",
-        "128GB, 12GB RAM, No SD Card Slot, Qualcomm Snapdragon 8 Elite (3nm), Octa-Core, Adreno 830 GPU, 4000mAh Battery",
-        "Rear Camera: 50MP, f/1.8, wide + 10MP, f/2.4, telephoto + 12MP, f/2.2, ultrawide, Front Camera: 12MP, f/2.2, wide",
-        "2G: 850/900/1800/1900, 3G: UMTS 1(2100)/2(1900)/4(AWS)/5(850)/8(900), 4G LTE: 1/2/3/4/5/7/8/12/13/14/18/19/20/25/26/28/29/30/38/39/40/41/48/66/71, 5G: N1/2/5/7/25/28/41/66/71/77/78/257/258/260/261 SA/NSA/Sub6/mmWave - Nano-SIM + eSIM + eSIM (max 2 at a time)",
-        "US Model - Compatible with Most GSM Carriers like AT&T, T-Mobile, MetroPCS, etc. Will Also work with CDMA Carriers Such as Verizon, Straight Talk."
+        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
+        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
+        "This product will have a battery which exceeds 80% capacity relative to new.",
+        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
+        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
       ],
-      "priceUSD": 326.65,
-      "averageOfferPriceUSD": 326.65
-    },
-    "scrapedAt": "2026-02-27T17:22:12.532Z",
-    "scrapedBy": "firecrawl"
-  },
-  {
-    "id": "8e1a55b4-fd71-478a-9071-ede880a1112c",
-    "title": "PlayStation®5 Console – Ghost of Yōtei Gold Limited Edition Bundle (slim)",
-    "url": "https://www.amazon.com/dp/B0FP6H8BRZ",
-    "marketplace": "amazon",
-    "metrics": {
-      "currency": "USD",
-      "description": "PlayStation 5 Console Ghost of Yotei Gold Limited Edition Bundle Includes: Limited Edition PlayStation 5 console, Limited Edition DualSense wireless controller\nGhost of Yotei full game vouchers (includes pre-order digital content)\n1TB SSD, Disc Drive (attached to console)\n2 Horizontal Stand Feet\nHDMI Cable, AC Power Cord, USB Cable, printed materials, ASTRO's Playroom (pre-installed game)",
-      "imageUrl": "https://m.media-amazon.com/images/I/61NwSVXwhdL._SX342_.jpg",
-      "brand": "PlayStation",
-      "availability": "In Stock",
-      "features": [],
-      "imageUrls": [],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/41IcaBDYwxL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41ZquN57YTL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31qU9wU9oaL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/61Z4eGyb1mL.jpg"
+      ],
       "offers": [
         {
-          "sellerName": "Nationwide-Distributors",
-          "price": 599,
+          "sellerName": "Networkstore",
+          "price": 846.97,
           "currency": "USD",
-          "stockStatus": "In Stock",
-          "stockCount": 30,
+          "stockStatus": "Only 11 left in stock - order soon.",
+          "stockCount": 11,
           "condition": "New",
           "isFBA": false
         },
         {
-          "sellerName": "Amazon Resale",
-          "price": 566.98,
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AR1FTLUUZC24W&sshmPath=shipping-rates",
+          "sellerName": "Networkstore",
+          "price": 846,
           "currency": "USD",
           "stockStatus": "In Stock",
-          "stockCount": 12,
-          "condition": "Used - Very Good",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 24 mins. Details ... More",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A230ZFNKXE1WUD&sshmPath=shipping-rates",
+          "sellerName": "ELECTRONIC DEALS",
+          "price": 849,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Monday, March 23. Details Or fastest delivery Saturday, March 21. Details ... More",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "sellerName": "Sold by Amazon.com",
+          "price": 859,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tuesday, March 24 Or Prime members get FREE delivery Tomorrow, March 20. Order within 7 hrs 59 mins. Join Prime ... More",
           "isFBA": true
         }
       ],
-      "price": 599,
-      "averageRating": 4.6,
-      "reviewsCount": 250,
+      "asin": "B0DPDKNPT9",
+      "price": 846.97,
+      "itemPrice": 846.97,
+      "originalPrice": 999,
+      "discountPercentage": 15,
+      "averageRating": 4.3,
+      "reviewsCount": 2607,
+      "stockCount": 11,
+      "isAmazonChoice": false,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 34 mins. Details",
+      "manufacturer": "Apple",
+      "warranty": "1-Year Amazon Renewed Guarantee",
+      "isPrime": false,
+      "salesVolume": "50+ bought in past month",
+      "isClimateFriendly": false,
+      "videoCount": 6,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0CRJSBN5M",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
+        },
+        {
+          "asin": "B0DNTC3HXX",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
+        },
+        {
+          "asin": "B0CRJJBBPY",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Black Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRHZZLYR",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Blue Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJTPR6T",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, White Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJK7V6D",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 512GB, Natural Titanium - Unlocked"
+        }
+      ],
+      "bsrCategories": [
+        {
+          "rank": 717,
+          "category": "Cell Phones &amp; Accessories"
+        },
+        {
+          "rank": 7,
+          "category": "Renewed Smartphones"
+        },
+        {
+          "rank": 11,
+          "category": "Cell Phones"
+        }
+      ],
+      "bestSellerRank": "#717 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #11 in Cell Phones",
       "buyBox": {
-        "sellerName": "Nationwide-Distributors",
-        "price": 599,
+        "sellerName": "Networkstore",
+        "price": 846.97,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-19T18:35:23.676Z"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Networkstore",
+        "price": 846.97,
+        "currency": "USD",
+        "condition": "New",
         "isFBA": false,
         "isAmazon": false
       },
+      "sellerCount": 3,
+      "averageOfferPrice": 846.97,
+      "lowestOfferPrice": 846.97,
+      "category": "Cell Phones & Accessories > Cell Phones",
       "amazonMetrics": {
+        "asin": "B0DPDKNPT9",
         "buyBox": {
-          "sellerName": "Nationwide-Distributors",
-          "price": 599,
+          "sellerName": "Networkstore",
+          "price": 846.97,
           "isFBA": false,
-          "isAmazon": false
+          "isAmazon": false,
+          "observedAt": "2026-03-19T18:35:23.676Z"
         },
+        "bsrCategories": [
+          {
+            "rank": 717,
+            "category": "Cell Phones &amp; Accessories"
+          },
+          {
+            "rank": 7,
+            "category": "Renewed Smartphones"
+          },
+          {
+            "rank": 11,
+            "category": "Cell Phones"
+          }
+        ],
+        "bestSellerRank": "#717 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #11 in Cell Phones",
+        "isPrime": false,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": false,
+        "sellerCount": 3,
         "offers": [
           {
-            "sellerName": "Nationwide-Distributors",
-            "price": 599,
+            "sellerName": "Networkstore",
+            "price": 846.97,
             "currency": "USD",
-            "stockStatus": "In Stock",
-            "stockCount": 30,
+            "stockStatus": "Only 11 left in stock - order soon.",
+            "stockCount": 11,
             "condition": "New",
             "isFBA": false
           },
           {
-            "sellerName": "Amazon Resale",
-            "price": 566.98,
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AR1FTLUUZC24W&sshmPath=shipping-rates",
+            "sellerName": "Networkstore",
+            "price": 846,
             "currency": "USD",
             "stockStatus": "In Stock",
-            "stockCount": 12,
-            "condition": "Used - Very Good",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 24 mins. Details ... More",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A230ZFNKXE1WUD&sshmPath=shipping-rates",
+            "sellerName": "ELECTRONIC DEALS",
+            "price": 849,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Monday, March 23. Details Or fastest delivery Saturday, March 21. Details ... More",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "sellerName": "Sold by Amazon.com",
+            "price": 859,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tuesday, March 24 Or Prime members get FREE delivery Tomorrow, March 20. Order within 7 hrs 59 mins. Join Prime ... More",
             "isFBA": true
           }
-        ],
-        "bestSellerRank": "#1,954 in Video Games (#6 in PlayStation 5 Consoles)",
-        "isPrime": true,
-        "isAmazonChoice": false,
-        "sellerCount": 27
+        ]
       },
-      "dynamicFeatures": {
-        "boughtInPastMonth": "200+",
-        "amazonDiscount": 30.98,
-        "releaseDate": "October 2, 2025",
-        "dateFirstAvailable": "September 4, 2025",
-        "platform": "PlayStation 5",
-        "rated": "Everyone"
-      },
-      "sellerCount": 27,
-      "dataQualityScore": 90
+      "priceObservedAt": "2026-03-19T18:35:23.676Z",
+      "itemPriceObservedAt": "2026-03-19T18:35:23.676Z",
+      "priceUSD": 846.97,
+      "itemPriceUSD": 846.97,
+      "dataQualityScore": 100
     },
-    "scrapedAt": "2026-03-15T18:26:00.076Z",
+    "scrapedAt": "2026-03-19T18:35:23.676Z",
     "scrapedBy": "firecrawl"
   },
   {
-    "id": "23e23568-5e57-4239-90dc-94f7bd77c53e",
-    "title": "Apple Watch Ultra 3 [GPS + Cellular 49mm] Running & Multisport Smartwatch w/Rugged Titanium Case w/Black Titanium Milanese Loop - L. Satellite Communications, Advanced Health & Fitness Tracking",
-    "url": "https://www.amazon.com/dp/B0FQG17FTN?th=1",
+    "id": "0d5b771b-531e-4afb-903e-5e2004bbb348",
+    "title": "Google Pixel 8 Pro – Android Smartphone ohne SIM-Lock mit Teleobjektiv, langer Akkulaufzeit und leistungsstarkem Google Tensor G3 – Obsidian, 128 GB",
+    "url": "https://www.amazon.de/-/en/Google-Android-Smartphone-Battery-Obsidian/dp/B0FHL3385S/ref=sr_1_4?crid=22YBI13OTXGGV&dib=eyJ2IjoiMSJ9.tNSYaabWsgSaHtMFFzR2ObzxtF1ALpwXjE3ixJNE9B5b50gIrlrdfIB05ItHpJS4YxCsErhH47-SQMYo3kNJpr8gPOh9mnWwG25h0Cad73NLJrO1bgqp26x21jhCxDSr7ZiM7jsZ27hzk_1Ne_zWlADje_pCzfnGDCxRwymDZARqFVcc_r2EDlNjp2LYOpOWXlfK6Q9KBHSVNrXCA4H1vWcDt4RiDywCg8NcLs_1mng.xWvYHX3wHv-owl-Opcueqt1-cEdqINjbXRZJt5F_bPo&dib_tag=se&keywords=pixel%2B10%2Bpro&qid=1773945726&sprefix=pixel%2B10%2Bpro%2Caps%2C143&sr=8-4&th=1",
     "marketplace": "amazon",
     "metrics": {
-      "currency": "USD",
-      "description": "RUGGED AND READY TO GO — The ultimate sports and adventure watch is built to last with an extremely tough titanium case and a strong sapphire crystal display. Water resistant 100m — great for swimming, diving, and high-speed water sports.",
-      "imageUrl": "https://m.media-amazon.com/images/I/814fsV8qwRL._AC_SX342_.jpg",
-      "brand": "Apple",
+      "currency": "EUR",
+      "description": "The Google Pixel 8 Pro is an Android smartphone featuring Google AI for advanced photo and video editing. It boasts an impressive 6.7-inch Corning Gorilla Glass Victus 2 display and is powered by the Google Tensor G3 chip. With over 24 hours of battery life (up to 72 hours in Extreme Power Saving Mode), it includes a powerful triple camera system with a telephoto lens, improved ultrawide, and main camera. Enhanced with the Titan M2 security chip, it receives 7 years of security updates.",
+      "imageUrl": null,
+      "brand": "Google",
       "availability": "In Stock",
       "features": [],
       "imageUrls": [],
       "offers": [
         {
-          "sellerName": "Amazon.com",
-          "price": 862,
-          "currency": "USD",
+          "sellerName": "Amazon",
+          "price": 799,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "isFBA": true
+        }
+      ],
+      "price": 799,
+      "averageRating": 4.4,
+      "reviewsCount": 1200,
+      "buyBox": {
+        "sellerName": "Amazon",
+        "price": 799,
+        "isFBA": true,
+        "isAmazon": true
+      },
+      "amazonMetrics": {
+        "buyBox": {
+          "sellerName": "Amazon",
+          "price": 799,
+          "isFBA": true,
+          "isAmazon": true
+        },
+        "offers": [
+          {
+            "sellerName": "Amazon",
+            "price": 799,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "isFBA": true
+          }
+        ],
+        "bestSellerRank": null,
+        "isPrime": true,
+        "isAmazonChoice": false,
+        "sellerCount": 2
+      },
+      "dynamicFeatures": {
+        "color": "Obsidian",
+        "storage": "128 GB",
+        "modelName": "Pixel 8 Pro",
+        "simLockStatus": "Unlocked",
+        "operatingSystem": "Android",
+        "mobileTechnology": "5G",
+        "displayDetails": "6.7-inch, Corning Gorilla Glass Victus 2",
+        "processor": "Google Tensor G3",
+        "batteryLife": "Over 24 hours (up to 72 hours with Extreme Power Saving Mode)",
+        "cameraSystem": "Triple camera (Telephoto, Ultra-wide, Main)",
+        "securityFeatures": "Titan M2 security chip, 7 years of security updates"
+      },
+      "sellerCount": 2,
+      "dataQualityScore": 90
+    },
+    "scrapedAt": "2026-03-19T18:43:35.412Z",
+    "scrapedBy": "firecrawl"
+  },
+  {
+    "id": "dcf2d120-7a05-4b37-8fac-5ae8ad1252fa",
+    "title": "Google Pixel 10 Pro Android Smartphone, SIM Free, with Gemini, Triple Rear Camera System, More than 24 Hours of Battery Life and 6.3 Inch Super Actua Display, Obsidian, 256 GB",
+    "url": "https://www.amazon.de/-/en/Google-Android-Smartphone-Battery-Obsidian/dp/B0FHL3385S/ref=sr_1_4?crid=22YBI13OTXGGV&dib=eyJ2IjoiMSJ9.tNSYaabWsgSaHtMFFzR2ObzxtF1ALpwXjE3ixJNE9B5b50gIrlrdfIB05ItHpJS4YxCsErhH47-SQMYo3kNJpr8gPOh9mnWwG25h0Cad73NLJrO1bgqp26x21jhCxDSr7ZiM7jsZ27hzk_1Ne_zWlADje_pCzfnGDCxRwymDZARqFVcc_r2EDlNjp2LYOpOWXlfK6Q9KBHSVNrXCA4H1vWcDt4RiDywCg8NcLs_1mng.xWvYHX3wHv-owl-Opcueqt1-cEdqINjbXRZJt5F_bPo&dib_tag=se&keywords=pixel%2B10%2Bpro&qid=1773945726&sprefix=pixel%2B10%2Bpro%2Caps%2C143&sr=8-4&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "EUR",
+      "description": "Google Pixel 10 Pro Android Smartphone, SIM Free, with Gemini, Triple Rear Camera System, More than 24 Hours of Battery Life and 6.3 Inch Super Actua Display, Obsidian, 256 GB",
+      "imageUrl": null,
+      "brand": "Google",
+      "availability": "In stock",
+      "features": [],
+      "imageUrls": [],
+      "offers": [
+        {
+          "sellerName": "Amazon",
+          "price": 923.03,
+          "currency": "EUR",
+          "stockStatus": "In stock",
+          "stockCount": null,
+          "condition": "New",
+          "isFBA": true
+        }
+      ],
+      "price": 923.03,
+      "averageRating": 4.4,
+      "reviewsCount": 539,
+      "buyBox": {
+        "sellerName": "Amazon",
+        "price": 923.03,
+        "isFBA": true,
+        "isAmazon": true
+      },
+      "amazonMetrics": {
+        "buyBox": {
+          "sellerName": "Amazon",
+          "price": 923.03,
+          "isFBA": true,
+          "isAmazon": true
+        },
+        "offers": [
+          {
+            "sellerName": "Amazon",
+            "price": 923.03,
+            "currency": "EUR",
+            "stockStatus": "In stock",
+            "stockCount": null,
+            "condition": "New",
+            "isFBA": true
+          }
+        ],
+        "bestSellerRank": null,
+        "isPrime": true,
+        "isAmazonChoice": false,
+        "sellerCount": 1
+      },
+      "dynamicFeatures": {
+        "discountPercentage": -24,
+        "rrp": 1209.07,
+        "itemsBoughtInPastMonth": "100+",
+        "sustainabilityFeature": "1 sustainability feature",
+        "deliveryInformation": "FREE delivery 26 - 30 March Or fastest delivery Friday, 27 March",
+        "styleName": "Pixel 10 Pro",
+        "colour": "obsidian",
+        "availableStyleNames": [
+          "With Buds Pro 2",
+          "mit Watch 3",
+          "Pixel 10 Pro",
+          "With Pixelsnap charger"
+        ],
+        "availableColours": [
+          "obsidian"
+        ]
+      },
+      "sellerCount": 1,
+      "dataQualityScore": 90
+    },
+    "scrapedAt": "2026-03-19T18:43:37.694Z",
+    "scrapedBy": "firecrawl"
+  },
+  {
+    "id": "e9c96c65-97ec-4cbe-9b5b-7689ad9fd3c4",
+    "title": "Google Pixel 10 Pro Android Smartphone with Google Tensor G5, 5000 mAh Battery, 12 GB RAM, 256 GB Storage, Obsidian",
+    "url": "https://www.amazon.de/-/en/Google-Android-Smartphone-Battery-Obsidian/dp/B0FHL3385S/ref=sr_1_4?crid=22YBI13OTXGGV&dib=eyJ2IjoiMSJ9.tNSYaabWsgSaHtMFFzR2ObzxtF1ALpwXjE3ixJNE9B5b50gIrlrdfIB05ItHpJS4YxCsErhH47-SQMYo3kNJpr8gPOh9mnWwG25h0Cad73NLJrO1bgqp26x21jhCxDSr7ZiM7jsZ27hzk_1Ne_zWlADje_pCzfnGDCxRwymDZARqFVcc_r2EDlNjp2LYOpOWXlfK6Q9KBHSVNrXCA4H1vWcDt4RiDywCg8NcLs_1mng.xWvYHX3wHv-owl-Opcueqt1-cEdqINjbXRZJt5F_bPo&dib_tag=se&keywords=pixel%2B10%2Bpro&qid=1773945726&sprefix=pixel%2B10%2Bpro%2Caps%2C143&sr=8-4&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "EUR",
+      "description": "The Google Pixel 10 Pro is an Android smartphone featuring the Google Tensor G5 processor, a 5000 mAh battery, 12 GB RAM, and 256 GB of storage in Obsidian color.",
+      "imageUrl": "",
+      "brand": "Google",
+      "availability": "In Stock",
+      "features": [],
+      "imageUrls": [],
+      "offers": [
+        {
+          "sellerName": "Amazon.de",
+          "price": 1199,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "isFBA": true
+        }
+      ],
+      "price": 1199,
+      "averageRating": 4.5,
+      "reviewsCount": 1234,
+      "buyBox": {
+        "sellerName": "Amazon.de",
+        "price": 1199,
+        "isFBA": true,
+        "isAmazon": true
+      },
+      "amazonMetrics": {
+        "buyBox": {
+          "sellerName": "Amazon.de",
+          "price": 1199,
+          "isFBA": true,
+          "isAmazon": true
+        },
+        "offers": [
+          {
+            "sellerName": "Amazon.de",
+            "price": 1199,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "isFBA": true
+          }
+        ],
+        "bestSellerRank": null,
+        "isPrime": true,
+        "isAmazonChoice": false,
+        "sellerCount": 3
+      },
+      "dynamicFeatures": {
+        "Color": "Obsidian",
+        "Storage": "256 GB",
+        "RAM": "12 GB",
+        "Processor": "Google Tensor G5",
+        "Battery": "5000 mAh",
+        "Shipping": "FREE delivery",
+        "Returns": "Free returns"
+      },
+      "sellerCount": 3,
+      "dataQualityScore": 90
+    },
+    "scrapedAt": "2026-03-19T18:53:21.164Z",
+    "scrapedBy": "firecrawl"
+  },
+  {
+    "id": "0586465e-db98-4f03-9eda-1d7a3677bf59",
+    "title": "Google Pixel 8 Pro Android Smartphone with Google Tensor G3, 6.7-inch Super Actua Display, 24-hour Battery and Advanced Camera - Obsidian",
+    "url": "https://www.amazon.de/-/en/Google-Android-Smartphone-Battery-Obsidian/dp/B0FHL3385S/ref=sr_1_4?crid=22YBI13OTXGGV&dib=eyJ2IjoiMSJ9.tNSYaabWsgSaHtMFFzR2ObzxtF1ALpwXjE3ixJNE9B5b50gIrlrdfIB05ItHpJS4YxCsErhH47-SQMYo3kNJpr8gPOh9mnWwG25h0Cad73NLJrO1bgqp26x21jhCxDSr7ZiM7jsZ27hzk_1Ne_zWlADje_pCzfnGDCxRwymDZARqFVcc_r2EDlNjp2LYOpOWXlfK6Q9KBHSVNrXCA4H1vWcDt4RiDywCg8NcLs_1mng.xWvYHX3wHv-owl-Opcueqt1-cEdqINjbXRZJt5F_bPo&dib_tag=se&keywords=pixel%2B10%2Bpro&qid=1773945726&sprefix=pixel%2B10%2Bpro%2Caps%2C143&sr=8-4&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "EUR",
+      "description": "Google Tensor G3 is the most powerful Pixel chip yet. Pixel 8 Pro has a fully upgraded camera system. The Pixel 8 Pro display is the brightest Pixel display ever. Pixel 8 Pro has a 24-hour battery that can last up to 72 hours with Extreme Battery Saver.",
+      "imageUrl": null,
+      "brand": "Google",
+      "availability": "In Stock",
+      "features": [],
+      "imageUrls": [],
+      "offers": [
+        {
+          "sellerName": "Amazon.de",
+          "price": 799,
+          "currency": "EUR",
           "stockStatus": "In Stock",
           "stockCount": null,
           "condition": "New",
           "isFBA": true
         },
         {
-          "sellerName": "Amazon Resale",
-          "price": 736.16,
-          "currency": "USD",
-          "stockStatus": "Only 1 left in stock - order soon.",
-          "stockCount": 1,
-          "condition": "Used - Like New",
-          "isFBA": true
+          "sellerName": "Other Seller",
+          "price": 799,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "isFBA": false
         }
       ],
-      "price": 862,
-      "averageRating": 4.7,
-      "reviewsCount": 653,
+      "price": 799,
+      "averageRating": 4.4,
+      "reviewsCount": 1000,
       "buyBox": {
-        "sellerName": "Amazon.com",
-        "price": 862,
+        "sellerName": "Amazon.de",
+        "price": 799,
         "isFBA": true,
         "isAmazon": true
       },
       "amazonMetrics": {
         "buyBox": {
-          "sellerName": "Amazon.com",
-          "price": 862,
+          "sellerName": "Amazon.de",
+          "price": 799,
           "isFBA": true,
           "isAmazon": true
         },
         "offers": [
           {
-            "sellerName": "Amazon.com",
-            "price": 862,
-            "currency": "USD",
+            "sellerName": "Amazon.de",
+            "price": 799,
+            "currency": "EUR",
             "stockStatus": "In Stock",
             "stockCount": null,
             "condition": "New",
             "isFBA": true
           },
           {
-            "sellerName": "Amazon Resale",
-            "price": 736.16,
-            "currency": "USD",
-            "stockStatus": "Only 1 left in stock - order soon.",
-            "stockCount": 1,
-            "condition": "Used - Like New",
-            "isFBA": true
-          }
-        ],
-        "isPrime": true,
-        "isAmazonChoice": true,
-        "sellerCount": 2
-      },
-      "dynamicFeatures": {
-        "boughtInPastMonth": "200+",
-        "customerFeedbackHighlights": [
-          "Watch quality (81)",
-          "Battery life (42)",
-          "Functionality (33)",
-          "Value for money (27)",
-          "Design (24)",
-          "Durability (20)",
-          "Health features (20)",
-          "Screen size (26)"
-        ],
-        "appleCarePlusOptions": [
-          {
-            "plan": "AppleCare+ for Apple Watch - 2 Years",
-            "price": 89,
-            "listPrice": 99,
-            "save": 10,
-            "savePercentage": 10,
-            "averageRating": 4.1,
-            "reviewsCount": 3113
-          },
-          {
-            "plan": "AppleCare+ for Apple Watch - Monthly",
-            "price": 4.99,
-            "priceUnit": "month",
-            "averageRating": 4.1,
-            "reviewsCount": 3113
-          }
-        ]
-      },
-      "sellerCount": 2,
-      "dataQualityScore": 90
-    },
-    "scrapedAt": "2026-03-15T18:40:59.010Z",
-    "scrapedBy": "firecrawl"
-  },
-  {
-    "id": "906de027-cd83-48e9-ab8d-6ff077ffca25",
-    "title": "Apple iPad Air 13-inch (M4): Liquid Retina Display, 512GB, 12MP Front/Back Camera, Wi-Fi 7 with Apple N1, Touch ID, All-Day Battery Life — Purple",
-    "url": "https://www.amazon.com/Apple-iPad-Air-13-inch-M4/dp/B0GQVMGWHQ?ref_=ast_sto_dp&th=1",
-    "marketplace": "amazon",
-    "metrics": {
-      "currency": "USD",
-      "description": "WHY IPAD AIR — iPad Air with the Apple M4 chip packs even more performance into a beautiful design, and it comes in two portable sizes. It features Apple Intelligence* along with a stunning Liquid Retina display, Touch ID, advanced cameras, and Wi-Fi 7.*",
-      "imageUrl": "https://m.media-amazon.com/images/I/71DU8xyt5mL._AC_SX342_.jpg",
-      "brand": "Apple",
-      "availability": "In Stock",
-      "features": [],
-      "imageUrls": [],
-      "offers": [
-        {
-          "sellerName": "Amazon.com",
-          "price": 1045,
-          "currency": "USD",
-          "stockStatus": "In Stock",
-          "stockCount": null,
-          "condition": "New",
-          "isFBA": false
-        }
-      ],
-      "price": 1045,
-      "averageRating": 5,
-      "reviewsCount": 2,
-      "buyBox": {
-        "sellerName": "Amazon.com",
-        "price": 1045,
-        "isFBA": false,
-        "isAmazon": true
-      },
-      "amazonMetrics": {
-        "buyBox": {
-          "sellerName": "Amazon.com",
-          "price": 1045,
-          "isFBA": false,
-          "isAmazon": true
-        },
-        "offers": [
-          {
-            "sellerName": "Amazon.com",
-            "price": 1045,
-            "currency": "USD",
+            "sellerName": "Other Seller",
+            "price": 799,
+            "currency": "EUR",
             "stockStatus": "In Stock",
             "stockCount": null,
             "condition": "New",
@@ -992,95 +1174,89 @@
         "bestSellerRank": null,
         "isPrime": true,
         "isAmazonChoice": false,
-        "sellerCount": 3
+        "sellerCount": 2
       },
-      "dynamicFeatures": {
-        "selectedOptions": {
-          "Style": "Wi-Fi",
-          "Size": "512GB",
-          "Color": "Purple",
-          "Configuration": "Without AppleCare+"
-        },
-        "availableOptions": {
-          "Style": [
-            {
-              "name": "Wi-Fi",
-              "price": 1045
-            },
-            {
-              "name": "Wi-Fi + Cellular",
-              "price": 1249,
-              "stockStatus": "Only 7 left in stock (more on the way)."
-            }
-          ],
-          "Size": [
-            "1TB",
-            "128GB",
-            "256GB",
-            "512GB"
-          ],
-          "Color": [
-            {
-              "name": "Purple",
-              "imageUrl": "https://m.media-amazon.com/images/I/01zKohRj-bL._SS64_.jpg"
-            },
-            {
-              "name": "Blue",
-              "imageUrl": "https://m.media-amazon.com/images/I/11abnrnvX6L._SS64_.jpg"
-            },
-            {
-              "name": "Space Gray",
-              "imageUrl": "https://m.media-amazon.com/images/I/11S1sJsWMNL._SS64_.jpg"
-            },
-            {
-              "name": "Starlight",
-              "imageUrl": "https://m.media-amazon.com/images/I/01Fl3gXQaWL._SS64_.jpg"
-            }
-          ],
-          "Configuration": [
-            "Without AppleCare+",
-            "With AppleCare+ (2 years)"
-          ]
-        },
-        "technicalDetails": {
-          "Brand": "Apple",
-          "Model Name": "iPad Air",
-          "Memory Storage Capacity": "512 GB",
-          "Screen Size": "13 Inches",
-          "Display Resolution Maximum": "2732-by-2048-pixel resolution at 264 ppi",
-          "Product Dimensions": "11.05 x 8.46 x 0.24 inches",
-          "Item Weight": "1.36 pounds",
-          "Manufacturer": "Apple",
-          "ASIN": "B0GQVMGWHQ",
-          "Item model number": "MH624LL/A",
-          "Batteries": "1 D batteries required. (included)",
-          "Date First Available": "March 4, 2026",
-          "Display": "Liquid Retina display LED backlit Multi‑Touch display with IPS technology 2732-by-2048-pixel resolution at 264 ppi Wide color (P3) True Tone Fingerprint-resistant oleophobic coating Fully laminated Antireflective coating 600 nits brightness Supports Apple Pencil Pro Supports Apple Pencil (USB‑C) Apple Pencil hover",
-          "Chip": "Apple M3 chip 8-core CPU with 3 performance cores and 5 efficiency cores 9-core GPU Hardware-accelerated ray tracing 16-core Neural Engine 120GB/s memory bandwidth 12GB unified memory Media Engine Hardware-accelerated 8K HEVC, 4K H.264, ProRes, and ProRes RAW Video decode engine Video encode engine ProRes encode and decode engine AV1 decode",
-          "Apple Intelligence": "Built into your iPad, Apple Intelligence is the personal intelligence system that helps you write, express yourself, and get things done effortlessly. With groundbreaking privacy protections, it gives you peace of mind that no one else can access your data — not even Apple.",
-          "Camera": "12MP Wide camera, ƒ/1.8 aperture Digital zoom up to 5x Five-element lens Panorama (up to 63MP) Sapphire crystal lens cover Autofocus with Focus Pixels Smart HDR 4 Wide color capture for photos and Live Photos Photo geotagging Auto image stabilization Burst mode Image formats captured: HEIF and JPEG",
-          "Video Recording": "4K video recording at 24 fps, 25 fps, 30 fps, or 60 fps 1080p HD video recording at 25 fps, 30 fps, or 60 fps 720p HD video recording at 30 fps Slo‑mo video support for 1080p at 120 fps or 240 fps Time‑lapse video with stabilization Extended dynamic range for video up to 30 fps Cinematic video stabilization (4K, 1080p, and 720p) Continuous autofocus video Playback zoom Video formats captured: HEVC and H.264",
-          "Front Camera": "Landscape 12MP Center Stage camera ƒ/2.0 aperture Smart HDR 4 1080p HD video recording at 25 fps, 30 fps, or 60 fps Time‑lapse video with stabilization Extended dynamic range for video up to 30 fps Cinematic video stabilization (1080p and 720p) Wide color capture for photos and Live Photos Lens correction Retina Flash with True Tone Auto image stabilization Burst mode",
-          "Video Calling": "FaceTime video Center Stage iPad to any FaceTime‑enabled device over Wi-Fi or cellular Share experiences like movies, TV, music, and other apps in a FaceTime call with SharePlay Screen sharing Portrait mode in FaceTime video Spatial Audio Voice Isolation and Wide Spectrum microphone modes",
-          "Audio Calling": "FaceTime audio Relay cellular calls from your nearby iPhone with the Phone app",
-          "Speakers": "Landscape stereo speakers",
-          "Microphones": "Dual microphones for calls, video recording, and audio recording",
-          "Cellular and Wireless": "All models Apple N1 wireless networking chip Wi-Fi 7 (802.11be) with 2x2 MIMO Simultaneous dual band Bluetooth 6 Thread networking technology Wi-Fi + Cellular models Apple C1X cellular modem 5G (sub‑6 GHz) with 4x4 MIMO Gigabit LTE with 4x4 MIMO",
-          "Sensors": "Touch ID Three‐axis gyro Accelerometer Barometer Ambient light sensor",
-          "Touch ID": "Unlock iPad Secure personal data within apps Make purchases from the iTunes Store, App Store, and Apple Books",
-          "Charging and Expansion": "USB-C port with support for: Charging DisplayPort USB 3 (up to 10Gb/s)",
-          "Display Support": "Supports full native resolution on the built-in display at millions of colors Supports one external display with up to 6K resolution at 60Hz Digital video output Native DisplayPort output over USB‑C VGA, HDMI, and DVI output supported using adapters (sold separately) Video mirroring Up to 4K AirPlay for mirroring, photos, and video out to Apple TV (2nd generation or later) or AirPlay‑enabled smart TV Video mirroring and video out support through USB-C Digital AV Multiport Adapter and USB-C VGA Multiport Adapter (adapters sold separately)"
-        },
-        "whatsInTheBox": [
-          "iPad Air",
-          "USB-C Charge Cable",
-          "20W USB-C Power Adapter"
-        ]
-      },
-      "sellerCount": 3,
+      "dynamicFeatures": {},
+      "sellerCount": 2,
       "dataQualityScore": 90
     },
-    "scrapedAt": "2026-03-17T13:57:55.099Z",
+    "scrapedAt": "2026-03-19T18:58:53.601Z",
+    "scrapedBy": "firecrawl"
+  },
+  {
+    "id": "acaf39f3-928a-45eb-9eb9-6678f833d7f7",
+    "title": "Google Pixel 8a Android Smartphone with AI, powerful camera and long-lasting battery - Obsidian",
+    "url": "https://www.amazon.de/-/en/Google-Android-Smartphone-Battery-Obsidian/dp/B0FHL3385S/ref=sr_1_4?crid=22YBI13OTXGGV&dib=eyJ2IjoiMSJ9.tNSYaabWsgSaHtMFFzR2ObzxtF1ALpwXjE3ixJNE9B5b50gIrlrdfIB05ItHpJS4YxCsErhH47-SQMYo3kNJpr8gPOh9mnWwG25h0Cad73NLJrO1bgqp26x21jhCxDSr7ZiM7jsZ27hzk_1Ne_zWlADje_pCzfnGDCxRwymDZARqFVcc_r2EDlNjp2LYOpOWXlfK6Q9KBHSVNrXCA4H1vWcDt4RiDywCg8NcLs_1mng.xWvYHX3wHv-owl-Opcueqt1-cEdqINjbXRZJt5F_bPo&dib_tag=se&keywords=pixel%2B10%2Bpro&qid=1773945726&sprefix=pixel%2B10%2Bpro%2Caps%2C143&sr=8-4&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "EUR",
+      "description": "Google AI: The Pixel 8a is fast and smart, with Google AI that helps you do more, even faster. Amazing photos and videos: The Pixel 8a's powerful camera makes every photo and video look amazing. Long-lasting battery: The adaptive battery lasts over 24 hours. With Extreme Battery Saver, it can last up to 72 hours. Secure and durable: With IP67 protection, the Pixel 8a can withstand splashes, dust and scratches. And with VPN by Google One, your online activities are protected. Seamless switching: Transfer your data from your old phone to your new Pixel in just a few steps.",
+      "imageUrl": null,
+      "brand": "Google",
+      "availability": "In Stock",
+      "features": [],
+      "imageUrls": [],
+      "offers": [
+        {
+          "sellerName": "Amazon",
+          "price": 549,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "isFBA": true
+        }
+      ],
+      "price": 549,
+      "averageRating": 4.5,
+      "reviewsCount": 1000,
+      "buyBox": {
+        "sellerName": "Amazon",
+        "price": 549,
+        "isFBA": true,
+        "isAmazon": true
+      },
+      "amazonMetrics": {
+        "buyBox": {
+          "sellerName": "Amazon",
+          "price": 549,
+          "isFBA": true,
+          "isAmazon": true
+        },
+        "offers": [
+          {
+            "sellerName": "Amazon",
+            "price": 549,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "isFBA": true
+          }
+        ],
+        "bestSellerRank": null,
+        "isPrime": true,
+        "isAmazonChoice": false,
+        "sellerCount": 2
+      },
+      "dynamicFeatures": {
+        "Colour": "Obsidian",
+        "Storage": "128 GB",
+        "Configuration": "Pixel 8a",
+        "Style": "Smartphone",
+        "Key Features": [
+          "Google AI",
+          "Powerful Camera",
+          "Long-lasting Battery",
+          "IP67 Protection",
+          "VPN by Google One",
+          "Seamless Switching"
+        ]
+      },
+      "sellerCount": 2,
+      "dataQualityScore": 90
+    },
+    "scrapedAt": "2026-03-19T19:02:07.695Z",
     "scrapedBy": "firecrawl"
   }
 ]

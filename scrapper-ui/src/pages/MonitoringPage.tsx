@@ -28,6 +28,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Table, TableWrap, TBody, TD, TH, THead, TR } from '../components/ui/table';
 import { EntityHistoryDialog } from '../components/EntityHistoryDialog';
+import { getMarketplaceDisplayName } from '../utils/marketplace';
 
 import { TrackerResultRow, typeVariant } from '../components/TrackerResultRow';
 
@@ -156,7 +157,7 @@ export default function MonitoringPage() {
                       <Badge variant={typeVariant(item.type)}>{item.type.toUpperCase()}</Badge>
                     </TD>
                     <TD style={{ maxWidth: 300, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.value}</TD>
-                    <TD>{item.marketplace}</TD>
+                    <TD>{getMarketplaceDisplayName(item.marketplace, item.type === 'product' ? item.value : undefined)}</TD>
                     <TD>
                       {item.intervalHours < 1
                         ? `${Math.round(item.intervalHours * 60)} ${t('monitoring.min')}.`
@@ -212,4 +213,3 @@ export default function MonitoringPage() {
     </div>
   );
 }
-

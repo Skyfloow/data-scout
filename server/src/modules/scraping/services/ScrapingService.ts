@@ -177,11 +177,22 @@ export class ScrapingService {
       const phaseErrors: string[] = [];
 
       let crawleeResult: ProductScrapeResult = {};
+      let firecrawlResult: ProductScrapeResult = {};
       
       if (scraperType === 'firecrawl' || (url.includes('etsy.com') && config.firecrawlApiKey && config.etsyForceFirecrawl)) {
-          logger.info(`[Job ${jobId}] explicitly requested 'firecrawl' or config.etsyForceFirecrawl is true. Skipping Phase 1 Crawlee Pass.`);
-          needsHeavyFallback = true;
-          phaseErrors.push('Phase 1 (Crawlee) skipped intentionally.');
+          // Phase 1: Native Firecrawl pass (HTML + platform selectors)
+          logger.info(`[Job ${jobId}] Starting Phase 1 Firecrawl pass for ${url}`);
+          firecrawlResult = await this.firecrawlAdapter.scrapeProduct(url);
+
+          if (firecrawlResult.product && firecrawlResult.product.metrics.price) {
+             finalProduct = firecrawlResult.product;
+             logger.info(`[Job ${jobId}] Phase 1 (Firecrawl) succeeded natively!`);
+          } else {
+             needsHeavyFallback = true;
+             const p1Error = firecrawlResult.error || 'Missing critical data (price)';
+             phaseErrors.push(`Phase 1 (Firecrawl) failed: ${p1Error}`);
+             logger.warn(`[Job ${jobId}] Phase 1 (Firecrawl) missed critical data: ${p1Error}. Planning Heavy Fallback.`);
+          }
       } else {
           // Phase 1: Fast Pass (Crawlee + Cheerio + Pre-Cached Selectors)
           logger.info(`[Job ${jobId}] Starting Phase 1 Fast Pass for ${url}`);
@@ -214,12 +225,20 @@ export class ScrapingService {
       // Phase 3: Heavy Multimodal Fallback (Gemini + Firecrawl Markdown + Crawlee Screenshot)
       if (needsHeavyFallback) {
          logger.info(`[Job ${jobId}] Starting Phase 3 Multimodal Fallback. Fetching markdown...`);
-         const firecrawlResult = await this.firecrawlAdapter.scrapeProduct(url);
+         if (!firecrawlResult.markdown) {
+           firecrawlResult = await this.firecrawlAdapter.scrapeProduct(url);
+         }
          
          if (firecrawlResult.markdown) {
-             let marketplace = 'unknown';
-             if (url.includes('amazon')) marketplace = 'amazon';
-             else if (url.includes('etsy')) marketplace = 'etsy';
+             const marketplace = (() => {
+               try {
+                 return new URL(url).hostname.toLowerCase().replace(/^www\./, '');
+               } catch {
+                 if (url.includes('amazon')) return 'amazon';
+                 if (url.includes('etsy')) return 'etsy';
+                 return 'unknown';
+               }
+             })();
 
              const multimodalResult = await multimodalFallbackExtractor.extract(
                  url, 

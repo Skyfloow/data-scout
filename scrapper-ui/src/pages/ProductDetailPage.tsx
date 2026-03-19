@@ -4,7 +4,7 @@ import { AlertCircle, ArrowLeft, ExternalLink, FileDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useGetPriceHistoryQuery, useGetProductByIdQuery } from '../store/apiSlice';
 import { resolveMetricPrice } from '../utils/metrics';
-import { formatCompactNumber, formatCurrency } from '../utils/formatters';
+import { formatCompactNumber, formatCurrency, formatCurrencyByCode } from '../utils/formatters';
 import { normalizeProductForJson } from '../utils/productJson';
 import { Alert } from '../components/ui/alert';
 import { Badge } from '../components/ui/badge';
@@ -174,6 +174,12 @@ export default function ProductDetailPage() {
 
   const isAmazon = product.marketplace.toLowerCase().includes('amazon');
   const effectivePrice = resolveMetricPrice(m);
+  const localCurrency = String(m.currency || 'USD').toUpperCase();
+  const localPriceRaw = Number(m.itemPrice || m.price || m.buyBox?.price || 0);
+  const showOriginalLocalPrice = localCurrency !== 'USD' && Number.isFinite(localPriceRaw) && localPriceRaw > 0;
+  const effectivePriceDisplay = showOriginalLocalPrice
+    ? `${formatCurrency(effectivePrice)} (${formatCurrencyByCode(localPriceRaw, localCurrency)})`
+    : formatCurrency(effectivePrice);
   const observedAt = m.buyBox?.observedAt || m.priceObservedAt || m.itemPriceObservedAt || product.scrapedAt;
   const rawObservedAt = observedAt || '—';
   const rawScrapedAt = product.scrapedAt || '—';
@@ -280,7 +286,7 @@ export default function ProductDetailPage() {
   const totalOtherSellerOffers = Math.max(sortedOtherSellerOffers.length, reportedOtherSellers);
   const otherSellerOffersTitle =
     sortedOtherSellerOffers.length > 10
-      ? `${t('product.otherSellerOffers')} (Останнi 10)`
+      ? t('product.otherSellerOffersLastN', { n: 10 })
       : t('product.otherSellerOffers');
 
   const toggleOffersSort = (key: OfferSortKey) => {
@@ -439,6 +445,11 @@ export default function ProductDetailPage() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
                     <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--primary)' }}>${effectivePrice.toFixed(2)}</div>
+                    {showOriginalLocalPrice ? (
+                      <div className="muted" style={{ fontSize: '0.85rem' }}>
+                        ({formatCurrencyByCode(localPriceRaw, localCurrency)})
+                      </div>
+                    ) : null}
                     {m.originalPrice && m.originalPrice > effectivePrice ? (
                       <div style={{ textDecoration: 'line-through', color: 'var(--fg-muted)' }}>${m.originalPrice.toFixed(2)}</div>
                     ) : null}
@@ -467,7 +478,7 @@ export default function ProductDetailPage() {
             <CardTitle>{t('product.coreMetrics')}</CardTitle>
             <Separator style={{ margin: '10px 0 12px' }} />
             <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: 12 }}>
-              <MetricItem label={t('product.currentPrice')} value={formatCurrency(effectivePrice)} />
+              <MetricItem label={t('product.currentPrice')} value={effectivePriceDisplay} />
               <MetricItem label={t('product.rating')} value={m.averageRating ? m.averageRating.toFixed(1) : '—'} />
               <MetricItem label={t('product.reviews')} value={formatCompactNumber(m.reviewsCount || 0)} />
               <MetricItem label={t('product.offersCount')} value={totalOtherSellerOffers} />
@@ -529,7 +540,8 @@ export default function ProductDetailPage() {
                           trigger: 'axis',
                           axisPointer: { type: 'shadow' },
                         },
-                        grid: { left: 26, right: 20, top: 40, bottom: 86, containLabel: true },
+                        // Extra left padding + smaller name gap prevents yAxis name from being clipped in some locales.
+                        grid: { left: 44, right: 20, top: 40, bottom: 86, containLabel: true },
                         xAxis: {
                           type: 'category',
                           data: offersInsights.priceDistribution.map((row) => row.label),
@@ -549,6 +561,7 @@ export default function ProductDetailPage() {
                           type: 'value',
                           name: t('product.offerCount'),
                           minInterval: 1,
+                          nameGap: 14,
                           nameTextStyle: { color: '#64748b', padding: [0, 0, 8, 0] },
                           axisLabel: { color: '#64748b' },
                           splitLine: { lineStyle: { color: 'rgba(148, 163, 184, 0.25)' } },
@@ -570,7 +583,17 @@ export default function ProductDetailPage() {
                     />
                   </div>
                   <div style={{ border: '1px solid var(--border-soft)', borderRadius: 10, padding: 8, minWidth: 0, overflow: 'hidden' }}>
-                    <div className="muted" style={{ marginBottom: 8, fontSize: '0.82rem' }}>{t('product.sellerType')}</div>
+                    <div className="muted" style={{ marginBottom: 8, fontSize: '0.82rem', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                      {t('product.sellerType')}
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button className="icon-btn" style={{ width: 16, height: 16, borderRadius: 999 }} aria-label={t('product.buyBoxTypeTooltip')}>
+                            <AlertCircle size={10} />
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent>{t('product.buyBoxTypeTooltip')}</TooltipContent>
+                      </Tooltip>
+                    </div>
                     <LazyEChart
                       style={{ height: 280, width: '100%' }}
                       option={{

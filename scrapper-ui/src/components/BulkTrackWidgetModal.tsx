@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ListPlus } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useAddBulkTrackersMutation } from '../store/apiSlice';
 import { Alert } from './ui/alert';
 import { Button } from './ui/button';
@@ -16,6 +17,7 @@ interface BulkTrackWidgetModalProps {
 type TabType = 'product' | 'keyword' | 'category';
 
 export default function BulkTrackWidgetModal({ open, onClose }: BulkTrackWidgetModalProps) {
+  const { t } = useTranslation();
   const [tab, setTab] = useState<TabType>('product');
   const [values, setValues] = useState('');
   const [marketplace, setMarketplace] = useState('amazon.com');
@@ -41,7 +43,7 @@ export default function BulkTrackWidgetModal({ open, onClose }: BulkTrackWidgetM
       .map((v) => v.trim())
       .filter(Boolean);
     if (items.length === 0) {
-      setMessage({ type: 'error', text: 'Пожалуйста, введите хотя бы одно значение.' });
+      setMessage({ type: 'error', text: t('bulkTrack.emptyValuesError') });
       return;
     }
 
@@ -54,11 +56,11 @@ export default function BulkTrackWidgetModal({ open, onClose }: BulkTrackWidgetM
       }).unwrap();
 
       setToastSeverity('success');
-      setToastMessage(`Успешно добавлено ${data.count} элементов в мониторинг.`);
+      setToastMessage(t('bulkTrack.successAdded', { count: data.count }));
       setValues('');
       onClose();
     } catch (err: any) {
-      const errorText = err?.data?.error || err?.message || 'Ошибка сохранения';
+      const errorText = err?.data?.error || err?.message || t('bulkTrack.saveErrorFallback');
       setMessage({ type: 'error', text: errorText });
       setToastSeverity('error');
       setToastMessage(errorText);
@@ -71,10 +73,10 @@ export default function BulkTrackWidgetModal({ open, onClose }: BulkTrackWidgetM
         <DialogContent>
           <DialogHeader style={{ paddingBottom: 16 }}>
             <DialogTitle style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--fg)', display: 'flex', alignItems: 'center', gap: 8 }}>
-              <ListPlus size={18} strokeWidth={2.5} /> Добавить в мониторинг
+              <ListPlus size={18} strokeWidth={2.5} /> {t('layout.bulkAddTrackers')}
             </DialogTitle>
             <DialogDescription style={{ fontSize: 14, marginTop: 4, lineHeight: 1.5 }}>
-              Пакетно добавьте товары, ключи или категории для фонового трекинга и регулярных обновлений.
+              {t('bulkTrack.description')}
             </DialogDescription>
           </DialogHeader>
 
@@ -84,9 +86,9 @@ export default function BulkTrackWidgetModal({ open, onClose }: BulkTrackWidgetM
               setValues('');
             }}>
               <TabsList>
-                <TabsTrigger value="product">Товары</TabsTrigger>
-                <TabsTrigger value="keyword">Ключевые слова</TabsTrigger>
-                <TabsTrigger value="category">Категории</TabsTrigger>
+                <TabsTrigger value="product">{t('bulkTrack.tabs.product')}</TabsTrigger>
+                <TabsTrigger value="keyword">{t('bulkTrack.tabs.keyword')}</TabsTrigger>
+                <TabsTrigger value="category">{t('bulkTrack.tabs.category')}</TabsTrigger>
               </TabsList>
             </Tabs>
 
@@ -94,9 +96,9 @@ export default function BulkTrackWidgetModal({ open, onClose }: BulkTrackWidgetM
               {message ? <Alert variant={message.type === 'error' ? 'destructive' : 'success'}>{message.text}</Alert> : null}
 
               <div className="field-help">
-                {tab === 'product' && 'Вставьте список URL или ASIN (каждый с новой строки)'}
-                {tab === 'keyword' && 'Вставьте список поисковых запросов для отслеживания позиций (каждый с новой строки)'}
-                {tab === 'category' && 'Вставьте Node ID или URL категорий (каждый с новой строки)'}
+                {tab === 'product' && t('bulkTrack.help.product')}
+                {tab === 'keyword' && t('bulkTrack.help.keyword')}
+                {tab === 'category' && t('bulkTrack.help.category')}
               </div>
 
               <Textarea
@@ -116,35 +118,35 @@ export default function BulkTrackWidgetModal({ open, onClose }: BulkTrackWidgetM
 
               <div className="grid grid-2">
                 <div className="field">
-                  <label className="field-label">Marketplace</label>
+                  <label className="field-label">{t('bulkTrack.marketplaceLabel')}</label>
                   <Select value={marketplace} onValueChange={setMarketplace}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Marketplace" />
+                      <SelectValue placeholder={t('bulkTrack.marketplacePlaceholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="amazon.com">Amazon US (.com)</SelectItem>
-                      <SelectItem value="amazon.co.uk">Amazon UK (.co.uk)</SelectItem>
-                      <SelectItem value="amazon.de">Amazon DE (.de)</SelectItem>
-                      <SelectItem value="etsy.com">Etsy (.com)</SelectItem>
+                      <SelectItem value="amazon.com">{t('bulkTrack.marketplaceOptions.amazonCom')}</SelectItem>
+                      <SelectItem value="amazon.co.uk">{t('bulkTrack.marketplaceOptions.amazonCoUk')}</SelectItem>
+                      <SelectItem value="amazon.de">{t('bulkTrack.marketplaceOptions.amazonDe')}</SelectItem>
+                      <SelectItem value="etsy.com">{t('bulkTrack.marketplaceOptions.etsyCom')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="field">
-                  <label className="field-label">Частота</label>
+                  <label className="field-label">{t('bulkTrack.frequencyLabel')}</label>
                   <Select value={String(intervalHours)} onValueChange={(value) => setIntervalHours(Number(value))}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Частота" />
+                      <SelectValue placeholder={t('bulkTrack.frequencyPlaceholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value={String(10 / 60)}>Каждые 10 минут</SelectItem>
-                      <SelectItem value={String(30 / 60)}>Каждые 30 минут</SelectItem>
-                      <SelectItem value="1">Каждый 1 час</SelectItem>
-                      <SelectItem value="3">Каждые 3 часа</SelectItem>
-                      <SelectItem value="6">Каждые 6 часов</SelectItem>
-                      <SelectItem value="12">Каждые 12 часов</SelectItem>
-                      <SelectItem value="24">Каждые 24 часа</SelectItem>
-                      <SelectItem value="48">Каждые 48 часов</SelectItem>
+                      <SelectItem value={String(10 / 60)}>{t('bulkTrack.intervalOptions.every10min')}</SelectItem>
+                      <SelectItem value={String(30 / 60)}>{t('bulkTrack.intervalOptions.every30min')}</SelectItem>
+                      <SelectItem value="1">{t('bulkTrack.intervalOptions.every1h')}</SelectItem>
+                      <SelectItem value="3">{t('bulkTrack.intervalOptions.every3h')}</SelectItem>
+                      <SelectItem value="6">{t('bulkTrack.intervalOptions.every6h')}</SelectItem>
+                      <SelectItem value="12">{t('bulkTrack.intervalOptions.every12h')}</SelectItem>
+                      <SelectItem value="24">{t('bulkTrack.intervalOptions.every24h')}</SelectItem>
+                      <SelectItem value="48">{t('bulkTrack.intervalOptions.every48h')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -154,10 +156,10 @@ export default function BulkTrackWidgetModal({ open, onClose }: BulkTrackWidgetM
 
           <DialogFooter style={{ marginTop: 24 }}>
             <Button variant="ghost" onClick={onClose} disabled={isSubmitting} style={{ borderRadius: 6, height: 36, padding: '0 16px' }}>
-              Отмена
+              {t('bulkTrack.cancel')}
             </Button>
             <Button htmlType="submit" form="bulk-track-form" disabled={isSubmitting || !values.trim()} style={{ borderRadius: 6, height: 36, padding: '0 16px', fontWeight: 500 }} {...({} as any)}>
-              {isSubmitting ? 'Сохранение...' : 'Отслеживать'}
+              {isSubmitting ? t('bulkTrack.saving') : t('bulkTrack.track')}
             </Button>
           </DialogFooter>
         </DialogContent>

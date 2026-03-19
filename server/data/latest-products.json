@@ -1414,16 +1414,16 @@
     "scrapedBy": "firecrawl"
   },
   "https://www.amazon.com/dp/b0dpdknpt9": {
-    "id": "2ca04875-4037-40c3-9ec7-5d9420bdc7b2",
+    "id": "5a18ee78-b072-4aec-add3-2eb6661b27b8",
     "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked",
     "url": "https://www.amazon.com/dp/B0DPDKNPT9?th=1",
     "marketplace": "amazon",
     "metrics": {
       "currency": "USD",
       "description": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium) About this item This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers. There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length. This product will have a battery which exceeds 80% capacity relative to new. Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box. This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied. › See more product details",
-      "imageUrl": "https://m.media-amazon.com/images/I/61Z4eGyb1mL._AC_SX522_.jpg",
+      "imageUrl": "https://m.media-amazon.com/images/I/61Z4eGyb1mL._AC_SX342_.jpg",
       "brand": "Amazon Renewed",
-      "availability": "Only 12 left in stock - order soon.",
+      "availability": "Only 11 left in stock - order soon.",
       "features": [
         "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
         "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
@@ -1442,32 +1442,20 @@
           "sellerName": "Networkstore",
           "price": 846.97,
           "currency": "USD",
-          "stockStatus": "Only 12 left in stock - order soon.",
-          "stockCount": 12,
+          "stockStatus": "Only 11 left in stock - order soon.",
+          "stockCount": 11,
           "condition": "New",
           "isFBA": false
         },
         {
           "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AR1FTLUUZC24W&sshmPath=shipping-rates",
           "sellerName": "Networkstore",
-          "price": 846.97,
+          "price": 846,
           "currency": "USD",
           "stockStatus": "In Stock",
           "stockCount": null,
           "condition": "New",
-          "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 11 hrs 3 mins. Details ... More",
-          "isFBA": true
-        },
-        {
-          "offerId": "aod-offer",
-          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A35LLZTIT5S01N&sshmPath=shipping-rates",
-          "sellerName": "Techdeals4Less",
-          "price": 838.5,
-          "currency": "USD",
-          "stockStatus": "In Stock",
-          "stockCount": null,
-          "condition": "New",
-          "deliveryInfo": "FREE delivery Thursday, March 26. Details ... More",
+          "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 24 mins. Details ... More",
           "isFBA": false
         },
         {
@@ -1479,18 +1467,18 @@
           "stockStatus": "In Stock",
           "stockCount": null,
           "condition": "New",
-          "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 9 hrs 3 mins. Details",
+          "deliveryInfo": "FREE delivery Monday, March 23. Details Or fastest delivery Saturday, March 21. Details ... More",
           "isFBA": false
         },
         {
           "offerId": "aod-offer",
-          "sellerName": "Amazon.com",
+          "sellerName": "Sold by Amazon.com",
           "price": 859,
           "currency": "USD",
           "stockStatus": "In Stock",
           "stockCount": null,
           "condition": "New",
-          "deliveryInfo": "FREE delivery Tuesday, March 24 Or Prime members get FREE delivery Overnight 4 AM - 8 AM. Order within 12 hrs 8 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+          "deliveryInfo": "FREE delivery Tuesday, March 24 Or Prime members get FREE delivery Tomorrow, March 20. Order within 7 hrs 59 mins. Join Prime ... More",
           "isFBA": true
         }
       ],
@@ -1500,17 +1488,16 @@
       "originalPrice": 999,
       "discountPercentage": 15,
       "averageRating": 4.3,
-      "reviewsCount": 2605,
-      "stockCount": 12,
+      "reviewsCount": 2607,
+      "stockCount": 11,
       "isAmazonChoice": false,
       "isBestSeller": false,
-      "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 11 hrs 3 mins. Details",
-      "modelNumber": "A3084",
+      "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 34 mins. Details",
       "manufacturer": "Apple",
-      "dateFirstAvailable": "October 20, 2024",
+      "warranty": "1-Year Amazon Renewed Guarantee",
       "isPrime": false,
       "salesVolume": "50+ bought in past month",
-      "isClimateFriendly": true,
+      "isClimateFriendly": false,
       "videoCount": 6,
       "customersAlsoViewed": [
         {
@@ -1536,67 +1523,11 @@
         {
           "asin": "B0CRJK7V6D",
           "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 512GB, Natural Titanium - Unlocked"
-        },
-        {
-          "asin": "B0DHHXR6ZH",
-          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Natural Titanium - Unlocked (Renewed)"
-        },
-        {
-          "asin": "B0DHJ896RY",
-          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Black Titanium - Unlocked (Renewed)"
-        },
-        {
-          "asin": "B0DHJ9SCJ4",
-          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed)"
-        },
-        {
-          "asin": "B0DHHXQJQZ",
-          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, White Titanium - Unlocked (Renewed)"
-        },
-        {
-          "asin": "B0DNTC3HXX",
-          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
-        },
-        {
-          "asin": "B0DNTDQTYC",
-          "title": "Apple iPhone 16 Pro, US Version, 256GB, Natural Titanium - Unlocked (Renewed Premium)"
-        },
-        {
-          "asin": "B09CSSP9C1",
-          "title": "Ailun Screen Protector for iPhone 17e / iPhone 16e / iPhone 14 / iPhone 13 / iPhone 13 Pro [6.1 Inch] Display 3 Pack Tempered"
-        },
-        {
-          "asin": "B0FDQH511S",
-          "title": "Ailun 3 Pack Screen Protector for iPhone 17 Pro Max [6.9 inch] + 3 Pack Camera Lens Protector with Installation Frame,Dynamic"
-        },
-        {
-          "asin": "B0FH655984",
-          "title": "SUPFINE Magnetic for iPhone 17 Pro Max Case (Compatible with MagSafe)(Military Grade Drop Protection) Translucent Matte Shock"
-        },
-        {
-          "asin": "B0F8VZ7QVX",
-          "title": "NEW'C 3 Pack Designed for iPhone 17/17 Pro, iPhone 16 Pro Screen Protector (6.3 inches), Enhanced Tempered Glass Protection w"
-        },
-        {
-          "asin": "B0FDQ3PWCX",
-          "title": "FNTCASE for iPhone 17 Pro-Max Case: Clear Magnetic Phone Cases with Screen Protector Compatible with Magsafe Slim Anti Yellow"
-        },
-        {
-          "asin": "B09KR8P3L5",
-          "title": "iPhone 17 16 15 Charger Fast Charging Type C Chargers USB C Charger Block iPhone 17 16 15 Air Pro Max Chargers with 6FT Cable"
-        },
-        {
-          "asin": "B0CRJSBN5M",
-          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
-        },
-        {
-          "asin": "B0DNTC3HXX",
-          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
         }
       ],
       "bsrCategories": [
         {
-          "rank": 714,
+          "rank": 717,
           "category": "Cell Phones &amp; Accessories"
         },
         {
@@ -1608,13 +1539,13 @@
           "category": "Cell Phones"
         }
       ],
-      "bestSellerRank": "#714 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #11 in Cell Phones",
+      "bestSellerRank": "#717 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #11 in Cell Phones",
       "buyBox": {
         "sellerName": "Networkstore",
         "price": 846.97,
         "isFBA": false,
         "isAmazon": false,
-        "observedAt": "2026-03-19T07:56:28.919Z"
+        "observedAt": "2026-03-19T18:35:23.676Z"
       },
       "selectedOffer": {
         "source": "buybox",
@@ -1625,9 +1556,9 @@
         "isFBA": false,
         "isAmazon": false
       },
-      "sellerCount": 4,
-      "averageOfferPrice": 848.09,
-      "lowestOfferPrice": 838.5,
+      "sellerCount": 3,
+      "averageOfferPrice": 846.97,
+      "lowestOfferPrice": 846.97,
       "category": "Cell Phones & Accessories > Cell Phones",
       "amazonMetrics": {
         "asin": "B0DPDKNPT9",
@@ -1636,11 +1567,11 @@
           "price": 846.97,
           "isFBA": false,
           "isAmazon": false,
-          "observedAt": "2026-03-19T07:56:28.919Z"
+          "observedAt": "2026-03-19T18:35:23.676Z"
         },
         "bsrCategories": [
           {
-            "rank": 714,
+            "rank": 717,
             "category": "Cell Phones &amp; Accessories"
           },
           {
@@ -1652,43 +1583,31 @@
             "category": "Cell Phones"
           }
         ],
-        "bestSellerRank": "#714 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #11 in Cell Phones",
+        "bestSellerRank": "#717 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #11 in Cell Phones",
         "isPrime": false,
         "isAmazonChoice": false,
         "isBestSeller": false,
-        "isClimateFriendly": true,
-        "sellerCount": 4,
+        "isClimateFriendly": false,
+        "sellerCount": 3,
         "offers": [
           {
             "sellerName": "Networkstore",
             "price": 846.97,
             "currency": "USD",
-            "stockStatus": "Only 12 left in stock - order soon.",
-            "stockCount": 12,
+            "stockStatus": "Only 11 left in stock - order soon.",
+            "stockCount": 11,
             "condition": "New",
             "isFBA": false
           },
           {
             "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AR1FTLUUZC24W&sshmPath=shipping-rates",
             "sellerName": "Networkstore",
-            "price": 846.97,
+            "price": 846,
             "currency": "USD",
             "stockStatus": "In Stock",
             "stockCount": null,
             "condition": "New",
-            "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 11 hrs 3 mins. Details ... More",
-            "isFBA": true
-          },
-          {
-            "offerId": "aod-offer",
-            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A35LLZTIT5S01N&sshmPath=shipping-rates",
-            "sellerName": "Techdeals4Less",
-            "price": 838.5,
-            "currency": "USD",
-            "stockStatus": "In Stock",
-            "stockCount": null,
-            "condition": "New",
-            "deliveryInfo": "FREE delivery Thursday, March 26. Details ... More",
+            "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 24 mins. Details ... More",
             "isFBA": false
           },
           {
@@ -1700,30 +1619,30 @@
             "stockStatus": "In Stock",
             "stockCount": null,
             "condition": "New",
-            "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 9 hrs 3 mins. Details",
+            "deliveryInfo": "FREE delivery Monday, March 23. Details Or fastest delivery Saturday, March 21. Details ... More",
             "isFBA": false
           },
           {
             "offerId": "aod-offer",
-            "sellerName": "Amazon.com",
+            "sellerName": "Sold by Amazon.com",
             "price": 859,
             "currency": "USD",
             "stockStatus": "In Stock",
             "stockCount": null,
             "condition": "New",
-            "deliveryInfo": "FREE delivery Tuesday, March 24 Or Prime members get FREE delivery Overnight 4 AM - 8 AM. Order within 12 hrs 8 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+            "deliveryInfo": "FREE delivery Tuesday, March 24 Or Prime members get FREE delivery Tomorrow, March 20. Order within 7 hrs 59 mins. Join Prime ... More",
             "isFBA": true
           }
         ]
       },
-      "priceObservedAt": "2026-03-19T07:56:28.919Z",
-      "itemPriceObservedAt": "2026-03-19T07:56:28.919Z",
+      "priceObservedAt": "2026-03-19T18:35:23.676Z",
+      "itemPriceObservedAt": "2026-03-19T18:35:23.676Z",
       "priceUSD": 846.97,
       "itemPriceUSD": 846.97,
       "dataQualityScore": 100
     },
-    "scrapedAt": "2026-03-19T07:56:28.919Z",
-    "scrapedBy": "crawler"
+    "scrapedAt": "2026-03-19T18:35:23.676Z",
+    "scrapedBy": "firecrawl"
   },
   "https://www.amazon.com/dp/b0fncv56xy": {
     "id": "ea4a5116-3c57-4abe-820e-c8a103360415",
@@ -3752,5 +3671,1387 @@
     },
     "scrapedAt": "2026-03-17T13:57:55.099Z",
     "scrapedBy": "firecrawl"
+  },
+  "https://www.amazon.com/dp/b0crhzzlyr": {
+    "id": "4b348afb-e1c1-4f62-a470-a79254fbe002",
+    "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Blue Titanium - Unlocked",
+    "url": "https://www.amazon.com/dp/B0CRHZZLYR",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "USD",
+      "description": "Apple iPhone 15 Pro Max, 256GB, Blue Titanium - Unlocked (Renewed Premium) About this item 6.7inch Super Retina XDR display. ProMotion technology. Always-On display. Titanium with textured matte glass back. Action button Dynamic Island. A magical way to interact with iPhone. A17 Pro chip with 6-core GPU Pro camera system. 48MP Main | Ultra Wide| Telephoto. Super-high-resolution photos (24MP and 48MP). Next-generation portraits with Focus and Depth Control. Up to 10x optical zoom range Emergency SOS via satellite. Crash Detection. Roadside Assistance via satellite Up to 29 hours video playback. USB-C, Supports USB 3 for up to 20x faster transfers. Face ID › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/7146CfUYqPL._AC_SX522_.jpg",
+      "brand": "Amazon Renewed",
+      "availability": "In Stock",
+      "features": [
+        "6.7inch Super Retina XDR display. ProMotion technology. Always-On display. Titanium with textured matte glass back. Action button",
+        "Dynamic Island. A magical way to interact with iPhone. A17 Pro chip with 6-core GPU",
+        "Pro camera system. 48MP Main | Ultra Wide| Telephoto. Super-high-resolution photos (24MP and 48MP). Next-generation portraits with Focus and Depth Control. Up to 10x optical zoom range",
+        "Emergency SOS via satellite. Crash Detection. Roadside Assistance via satellite",
+        "Up to 29 hours video playback. USB-C, Supports USB 3 for up to 20x faster transfers. Face ID"
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/41GRVreWRSL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/21I12v7YAdL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41VWSwApYpL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41KzJjVmolL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31HPlt8swHL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/7146CfUYqPL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Unknown Seller",
+          "price": 659,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": 2,
+          "condition": "New",
+          "isFBA": false
+        },
+        {
+          "sellerName": "Amazon.com",
+          "price": 659,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tuesday, March 24 Or Prime members get FREE delivery Tomorrow 8 AM - 1 PM. Order within 14 hrs 23 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A35LLZTIT5S01N&sshmPath=shipping-rates",
+          "sellerName": "Techdeals4Less",
+          "price": 652.41,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Thursday, March 26. Details ... More",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AT1DRI0SUE1WL&sshmPath=shipping-rates",
+          "sellerName": "Chubbiestech",
+          "price": 669.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 8 hrs 48 mins. Details",
+          "isFBA": false
+        }
+      ],
+      "asin": "B0CRHZZLYR",
+      "price": 659,
+      "itemPrice": 659,
+      "averageRating": 4.2,
+      "reviewsCount": 245,
+      "stockCount": 2,
+      "isAmazonChoice": false,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery Tuesday, March 24 Or Prime members get FREE delivery Tomorrow 8 AM - 1 PM. Order within 14 hrs 23 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); }));",
+      "modelNumber": "A2849",
+      "manufacturer": "Apple",
+      "dateFirstAvailable": "January 4, 2024",
+      "isPrime": false,
+      "salesVolume": "200+ bought in past month",
+      "isClimateFriendly": true,
+      "videoCount": 6,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0CRJ3HN3X",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 512GB, Blue Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CMZDBVWT",
+          "title": "Apple iPhone 15 Pro Max, 256GB, Blue Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0CRJSBN5M",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJJBBPY",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Black Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJK7V6D",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 512GB, Natural Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJTPR6T",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, White Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CMZ4FQL4",
+          "title": "Apple iPhone 15 Pro Max, 256GB, Black Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0CMZDBVWT",
+          "title": "Apple iPhone 15 Pro Max, 256GB, Blue Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DHJ896RY",
+          "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Black Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DPDK3JVN",
+          "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Black Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CMYXFK3R",
+          "title": "Apple iPhone 15 Pro, 256GB, Blue Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0CRJRNTNS",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro, 256GB, Black Titanium - Unlocked"
+        },
+        {
+          "asin": "B0BN92S2ZZ",
+          "title": "Apple iPhone 14 Pro Max, 256GB, Deep Purple - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B09CSSP9C1",
+          "title": "Ailun Screen Protector for iPhone 17e / iPhone 16e / iPhone 14 / iPhone 13 / iPhone 13 Pro [6.1 Inch] Display 3 Pack Tempered"
+        },
+        {
+          "asin": "B0FDQH511S",
+          "title": "Ailun 3 Pack Screen Protector for iPhone 17 Pro Max [6.9 inch] + 3 Pack Camera Lens Protector with Installation Frame,Dynamic"
+        },
+        {
+          "asin": "B0FH655984",
+          "title": "SUPFINE Magnetic for iPhone 17 Pro Max Case (Compatible with MagSafe)(Military Grade Drop Protection) Translucent Matte Shock"
+        },
+        {
+          "asin": "B0F8VZ7QVX",
+          "title": "NEW'C 3 Pack Designed for iPhone 17/17 Pro, iPhone 16 Pro Screen Protector (6.3 inches), Enhanced Tempered Glass Protection w"
+        },
+        {
+          "asin": "B0FDQ3PWCX",
+          "title": "FNTCASE for iPhone 17 Pro-Max Case: Clear Magnetic Phone Cases with Screen Protector Compatible with Magsafe Slim Anti Yellow"
+        },
+        {
+          "asin": "B09KR8P3L5",
+          "title": "iPhone 17 16 15 Charger Fast Charging Type C Chargers USB C Charger Block iPhone 17 16 15 Air Pro Max Chargers with 6FT Cable"
+        },
+        {
+          "asin": "B0FDQH15KW",
+          "title": "Ailun 3 Pack for iPhone 17 Pro Max Privacy Screen Protector [6.9 inch]+ 3 Pack Camera Lens Protector with Installation Frame,"
+        }
+      ],
+      "bsrCategories": [
+        {
+          "rank": 7906,
+          "category": "Cell Phones &amp; Accessories"
+        },
+        {
+          "rank": 103,
+          "category": "Renewed Smartphones"
+        },
+        {
+          "rank": 152,
+          "category": "Cell Phones"
+        }
+      ],
+      "bestSellerRank": "#7,906 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #103 in Renewed Smartphones #152 in Cell Phones",
+      "buyBox": {
+        "sellerName": "Amazon.com",
+        "price": 659,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-19T10:12:13.816Z"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Amazon.com",
+        "price": 659,
+        "currency": "USD",
+        "condition": "New",
+        "isFBA": false,
+        "isAmazon": false
+      },
+      "sellerCount": 3,
+      "averageOfferPrice": 660.1,
+      "lowestOfferPrice": 652.41,
+      "category": "Cell Phones & Accessories > Cell Phones",
+      "amazonMetrics": {
+        "asin": "B0CRHZZLYR",
+        "buyBox": {
+          "sellerName": "Amazon.com",
+          "price": 659,
+          "isFBA": false,
+          "isAmazon": false,
+          "observedAt": "2026-03-19T10:12:13.816Z"
+        },
+        "bsrCategories": [
+          {
+            "rank": 7906,
+            "category": "Cell Phones &amp; Accessories"
+          },
+          {
+            "rank": 103,
+            "category": "Renewed Smartphones"
+          },
+          {
+            "rank": 152,
+            "category": "Cell Phones"
+          }
+        ],
+        "bestSellerRank": "#7,906 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #103 in Renewed Smartphones #152 in Cell Phones",
+        "isPrime": false,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 3,
+        "offers": [
+          {
+            "sellerName": "Unknown Seller",
+            "price": 659,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": 2,
+            "condition": "New",
+            "isFBA": false
+          },
+          {
+            "sellerName": "Amazon.com",
+            "price": 659,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tuesday, March 24 Or Prime members get FREE delivery Tomorrow 8 AM - 1 PM. Order within 14 hrs 23 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A35LLZTIT5S01N&sshmPath=shipping-rates",
+            "sellerName": "Techdeals4Less",
+            "price": 652.41,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Thursday, March 26. Details ... More",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AT1DRI0SUE1WL&sshmPath=shipping-rates",
+            "sellerName": "Chubbiestech",
+            "price": 669.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tomorrow, March 20. Order within 8 hrs 48 mins. Details",
+            "isFBA": false
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-19T10:12:13.816Z",
+      "itemPriceObservedAt": "2026-03-19T10:12:13.816Z",
+      "priceUSD": 659,
+      "itemPriceUSD": 659,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-19T10:12:13.816Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.de/-/en/google-android-smartphone-battery-obsidian/dp/b0fhl3385s/ref=sr_1_4": {
+    "id": "acaf39f3-928a-45eb-9eb9-6678f833d7f7",
+    "title": "Google Pixel 8a Android Smartphone with AI, powerful camera and long-lasting battery - Obsidian",
+    "url": "https://www.amazon.de/-/en/Google-Android-Smartphone-Battery-Obsidian/dp/B0FHL3385S/ref=sr_1_4?crid=22YBI13OTXGGV&dib=eyJ2IjoiMSJ9.tNSYaabWsgSaHtMFFzR2ObzxtF1ALpwXjE3ixJNE9B5b50gIrlrdfIB05ItHpJS4YxCsErhH47-SQMYo3kNJpr8gPOh9mnWwG25h0Cad73NLJrO1bgqp26x21jhCxDSr7ZiM7jsZ27hzk_1Ne_zWlADje_pCzfnGDCxRwymDZARqFVcc_r2EDlNjp2LYOpOWXlfK6Q9KBHSVNrXCA4H1vWcDt4RiDywCg8NcLs_1mng.xWvYHX3wHv-owl-Opcueqt1-cEdqINjbXRZJt5F_bPo&dib_tag=se&keywords=pixel%2B10%2Bpro&qid=1773945726&sprefix=pixel%2B10%2Bpro%2Caps%2C143&sr=8-4&th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "EUR",
+      "description": "Google AI: The Pixel 8a is fast and smart, with Google AI that helps you do more, even faster. Amazing photos and videos: The Pixel 8a's powerful camera makes every photo and video look amazing. Long-lasting battery: The adaptive battery lasts over 24 hours. With Extreme Battery Saver, it can last up to 72 hours. Secure and durable: With IP67 protection, the Pixel 8a can withstand splashes, dust and scratches. And with VPN by Google One, your online activities are protected. Seamless switching: Transfer your data from your old phone to your new Pixel in just a few steps.",
+      "imageUrl": null,
+      "brand": "Google",
+      "availability": "In Stock",
+      "features": [],
+      "imageUrls": [],
+      "offers": [
+        {
+          "sellerName": "Amazon",
+          "price": 549,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "isFBA": true
+        }
+      ],
+      "price": 549,
+      "averageRating": 4.5,
+      "reviewsCount": 1000,
+      "buyBox": {
+        "sellerName": "Amazon",
+        "price": 549,
+        "isFBA": true,
+        "isAmazon": true
+      },
+      "amazonMetrics": {
+        "buyBox": {
+          "sellerName": "Amazon",
+          "price": 549,
+          "isFBA": true,
+          "isAmazon": true
+        },
+        "offers": [
+          {
+            "sellerName": "Amazon",
+            "price": 549,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "isFBA": true
+          }
+        ],
+        "bestSellerRank": null,
+        "isPrime": true,
+        "isAmazonChoice": false,
+        "sellerCount": 2
+      },
+      "dynamicFeatures": {
+        "Colour": "Obsidian",
+        "Storage": "128 GB",
+        "Configuration": "Pixel 8a",
+        "Style": "Smartphone",
+        "Key Features": [
+          "Google AI",
+          "Powerful Camera",
+          "Long-lasting Battery",
+          "IP67 Protection",
+          "VPN by Google One",
+          "Seamless Switching"
+        ]
+      },
+      "sellerCount": 2,
+      "dataQualityScore": 90
+    },
+    "scrapedAt": "2026-03-19T19:02:07.695Z",
+    "scrapedBy": "firecrawl"
+  },
+  "https://www.amazon.de/dp/b0fhl3385s": {
+    "id": "a4774318-e70a-4277-85dd-bab5125d74dd",
+    "title": "Google Pixel 10 Pro Android Smartphone, SIM Free, with Gemini, Triple Rear Camera System, More than 24 Hours of Battery Life and 6.3 Inch Super Actua Display, Obsidian, 256 GB",
+    "url": "https://www.amazon.de/dp/B0FHL3385S?th=1",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "EUR",
+      "description": "About this item The most advanced AI on pixels Professional camera for photos and videos in the best quality The largest pixel processor update yet—for breakthrough performance Perfect design in two different sizes 7 years of new features and updates with Pixel Drops › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/616RT2pEACL._AC_SX679_.jpg",
+      "brand": "Google",
+      "availability": "In stock",
+      "features": [
+        "The most advanced AI on pixels",
+        "Professional camera for photos and videos in the best quality",
+        "The largest pixel processor update yet—for breakthrough performance",
+        "Perfect design in two different sizes",
+        "7 years of new features and updates with Pixel Drops"
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/318G3Bz69DL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/21f3pggm3gL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41rWCDF0nVL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51putTIQEXL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51tvu8kEarL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/410G1WU0BdL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/61E4edOZBaL.SX38_SY50_CR,0,0,38,50_BG85,85,85_BR-120_PKdp-play-icon-overlay__.jpg",
+        "https://m.media-amazon.com/images/I/616RT2pEACL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Amazon Retourenkauf",
+          "price": 923.03,
+          "currency": "EUR",
+          "stockStatus": "In stock",
+          "stockCount": 2,
+          "condition": "New",
+          "isFBA": true
+        },
+        {
+          "offerUrl": "https://www.amazon.de/-/en/gp/help/customer/display.html?nodeID=15015721#aag_returns",
+          "sellerName": "Return policy",
+          "price": 923.03,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery 26 - 30 March Or fastest delivery Friday, 27 March ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.de/-/en/Warehouse-Deals/b?ie=UTF8&node=3581963031",
+          "sellerName": "Amazon Retourenkauf",
+          "price": 756.89,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery 26 - 30 March",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.de/-/en/Warehouse-Deals/b?ie=UTF8&node=3581963031",
+          "sellerName": "Amazon Retourenkauf",
+          "price": 895.34,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery 26 March - 8 April Or fastest delivery Friday, 27 March",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.de/-/en/Warehouse-Deals/b?ie=UTF8&node=3581963031",
+          "sellerName": "Amazon Retourenkauf",
+          "price": 904.57,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery 26 - 30 March",
+          "isFBA": false
+        }
+      ],
+      "asin": "B0FHL3385S",
+      "price": 923.03,
+      "itemPrice": 923.03,
+      "originalPrice": 1209.07,
+      "discountPercentage": 24,
+      "averageRating": 4.4,
+      "reviewsCount": 539,
+      "stockCount": 2,
+      "isAmazonChoice": false,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery 26 - 30 March Or fastest delivery Friday, 27 March FREE delivery 26 - 30 March Or fastest delivery Friday, 27 March FREE delivery 26 - 30 March",
+      "isPrime": false,
+      "salesVolume": "100+ bought in past month",
+      "isClimateFriendly": true,
+      "videoCount": 2,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0FGNKRYYF",
+          "title": "Case with Pixel Snap for Google Pixel 10 & Pixel 10 Pro, Durable Protection, One Case for All Cases, Obsidian (Made by Google"
+        },
+        {
+          "asin": "B0FGPKC21W",
+          "title": "Google Pixelsnap Charger with Stand Mount - 25W Qi2 Wireless Charger and Stand Mount (Made by Google)"
+        },
+        {
+          "asin": "B0D8LHH8CX",
+          "title": "Google Pixel Buds Pro 2 - Wireless Earbuds with Active Noise Cancellation - Bluetooth Headphones - Hazel"
+        },
+        {
+          "asin": "B0FPFV47W3",
+          "title": "JETech Magnetic Case for Google Pixel 10/10 Pro 2025, Compatible with MagSafe and Pixelsnap Charger, Translucent Matte Back S"
+        },
+        {
+          "asin": "B0FB3DYND3",
+          "title": "SPARIN Pack of 3 + 2 Screen Protectors for Google Pixel 10 Pro Tempered Glass with Camera Protection and Mounting Frame, 9H H"
+        },
+        {
+          "asin": "B0FJFWMVSG",
+          "title": "Google Pixel Watch 4 (45mm) - Android Smart Watch with Comprehensive Health and Fitness Tracking and Gemini Support - Matte B"
+        },
+        {
+          "asin": "B087DJ43K3",
+          "title": "HP 305 Original Ink Cartridge"
+        },
+        {
+          "asin": "B08T1HR5CS",
+          "title": "HP Inkjet Printer Black with Tricolour Multipack"
+        },
+        {
+          "asin": "B0000C73CQ",
+          "title": "Instax Fujifilm Mini Instant Film, White, 2 x 10 Sheets (20 Sheets)"
+        },
+        {
+          "asin": "B0DGHYDYJL",
+          "title": "Apple AirPods 4 Wireless Headphones, Bluetooth Headphones with Active Noise Cancellation, Adaptive Audio, Personalised 3D Aud"
+        },
+        {
+          "asin": "B00LH3DMUO",
+          "title": "amazon basics High Performance 1.5 V AAA Alkaline Batteries, Pack of 36 (Appearance May Vary)"
+        },
+        {
+          "asin": "B0DCNWN8NZ",
+          "title": "Apple EarPods (USB-C) ​​​​​​"
+        }
+      ],
+      "buyBox": {
+        "sellerName": "Amazon Retourenkauf",
+        "price": 923.03,
+        "isFBA": true,
+        "isAmazon": false,
+        "observedAt": "2026-03-19T19:05:09.908Z",
+        "shipsFrom": "Amazon"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Amazon Retourenkauf",
+        "price": 923.03,
+        "currency": "EUR",
+        "condition": "New",
+        "isFBA": true,
+        "isAmazon": false
+      },
+      "sellerCount": 4,
+      "averageOfferPrice": 880.57,
+      "lowestOfferPrice": 756.89,
+      "category": "Electronics & Photo > Mobile Phones & Communication > Mobile Phones & Smartphones > SIM-Free & Unlocked Mobile Phones",
+      "amazonMetrics": {
+        "asin": "B0FHL3385S",
+        "buyBox": {
+          "sellerName": "Amazon Retourenkauf",
+          "price": 923.03,
+          "isFBA": true,
+          "isAmazon": false,
+          "observedAt": "2026-03-19T19:05:09.908Z",
+          "shipsFrom": "Amazon"
+        },
+        "isPrime": false,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 4,
+        "offers": [
+          {
+            "sellerName": "Amazon Retourenkauf",
+            "price": 923.03,
+            "currency": "EUR",
+            "stockStatus": "In stock",
+            "stockCount": 2,
+            "condition": "New",
+            "isFBA": true
+          },
+          {
+            "offerUrl": "https://www.amazon.de/-/en/gp/help/customer/display.html?nodeID=15015721#aag_returns",
+            "sellerName": "Return policy",
+            "price": 923.03,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery 26 - 30 March Or fastest delivery Friday, 27 March ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.de/-/en/Warehouse-Deals/b?ie=UTF8&node=3581963031",
+            "sellerName": "Amazon Retourenkauf",
+            "price": 756.89,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery 26 - 30 March",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.de/-/en/Warehouse-Deals/b?ie=UTF8&node=3581963031",
+            "sellerName": "Amazon Retourenkauf",
+            "price": 895.34,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery 26 March - 8 April Or fastest delivery Friday, 27 March",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.de/-/en/Warehouse-Deals/b?ie=UTF8&node=3581963031",
+            "sellerName": "Amazon Retourenkauf",
+            "price": 904.57,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery 26 - 30 March",
+            "isFBA": false
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-19T19:05:09.908Z",
+      "itemPriceObservedAt": "2026-03-19T19:05:09.908Z",
+      "priceUSD": 1006.1,
+      "itemPriceUSD": 1006.1,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-19T19:05:09.908Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.it/dp/b0fhl3385s": {
+    "id": "8d726063-9a63-4011-8adb-19a6033a171c",
+    "title": "Google Pixel 10 Pro - Unlocked Android Smartphone with Gemini, Triple Rear Camera System, 24+ Hours Runtime and 6.3\" Super Actua Display - Obsidian Black, 256GB",
+    "url": "https://www.amazon.it/dp/B0FHL3385S",
+    "marketplace": "amazon",
+    "metrics": {
+      "currency": "EUR",
+      "description": "About this item The most advanced AI on Pixel. Professional camera for photos and videos of the highest quality. Pixel's biggest chip upgrade for revolutionary performance. Flawless design in two sizes. 7 years of features and updates with Pixel Drop. › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/616RT2pEACL._AC_SX679_.jpg",
+      "brand": "Google",
+      "availability": "In stock",
+      "features": [
+        "The most advanced AI on Pixel.",
+        "Professional camera for photos and videos of the highest quality.",
+        "Pixel's biggest chip upgrade for revolutionary performance.",
+        "Flawless design in two sizes.",
+        "7 years of features and updates with Pixel Drop."
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/318G3Bz69DL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/21f3pggm3gL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/519txlmoXDL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51gjwyAnV-L._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51vEau3aFzL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41Ik8gFkd3L._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/61E4edOZBaL.SX38_SY50_CR,0,0,38,50_BG85,85,85_BR-120_PKdp-play-icon-overlay__.jpg",
+        "https://m.media-amazon.com/images/I/616RT2pEACL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Amazon Seconda mano",
+          "price": 849,
+          "currency": "EUR",
+          "stockStatus": "In stock",
+          "stockCount": 3,
+          "condition": "New",
+          "isFBA": true
+        },
+        {
+          "sellerName": "Amazon",
+          "price": 849,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "€11.06 Delivery 27 March - 2 April Or fastest delivery Friday, 27 March ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.it/-/en/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581999031",
+          "sellerName": "Amazon Seconda mano",
+          "price": 696.18,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "€11.06 Delivery 27 - 30 March",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.it/-/en/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581999031",
+          "sellerName": "Amazon Seconda mano",
+          "price": 823.53,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "€11.06 Delivery 27 March - 1 April Or fastest delivery Friday, 27 March",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.it/-/en/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581999031",
+          "sellerName": "Amazon Seconda mano",
+          "price": 832.02,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "€11.06 Delivery 27 - 30 March",
+          "isFBA": false
+        }
+      ],
+      "asin": "B0FHL3385S",
+      "price": 849,
+      "itemPrice": 849,
+      "originalPrice": 1199,
+      "discountPercentage": 29,
+      "averageRating": 4.4,
+      "reviewsCount": 533,
+      "stockCount": 3,
+      "isAmazonChoice": false,
+      "isBestSeller": false,
+      "deliveryInfo": "€11.06 Delivery 27 March - 2 April Or fastest delivery Friday, 27 March €11.06 Delivery 27 - 30 March",
+      "isPrime": false,
+      "salesVolume": "100+ bought in past month",
+      "isClimateFriendly": true,
+      "videoCount": 2,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0DGHWD7CT",
+          "title": "Apple AirPods 4 Wireless Earphones, Bluetooth Earphones, Custom Space Audio, Sweat and Water Resistance, USB-C Charging Case,"
+        },
+        {
+          "asin": "B0DGHYDYJL",
+          "title": "Apple AirPods 4 Wireless Earphones, Bluetooth Earphones, Active Noise Cancellation, Adaptive Audio, Transparency, Custom Spac"
+        },
+        {
+          "asin": "B0000C73CQ",
+          "title": "Fujifilm Instax MINI FILM 10 F. 2 Pack Pellicola Instantanea per Instax MINI 7S e MINI 25"
+        },
+        {
+          "asin": "B087DJ43K3",
+          "title": "HP 305 Black, 3YM61AE, Original 120 Page Cartridge, Compatible with HP DeskJet 2700, 4100, HP Envy 6020, 6030, 6420, 6430 Ser"
+        },
+        {
+          "asin": "B08T1HR5CS",
+          "title": "HP 305 Cartucho de Tinta Original Pack Black/Tricolour"
+        },
+        {
+          "asin": "B01EA0EG3W",
+          "title": "HP 304 Black, N9K06AE, Original 120 Page Cartridge, Compatible with DeskJet 2200, 2600, 3700 Series and HP Envy 5050 Series P"
+        },
+        {
+          "asin": "B0FHL23X3Z",
+          "title": "Google Pixel 10 - Unlocked Android Smartphone with Gemini, Advanced Triple Rear Camera, 24+ Hours Runtime and 6.3\" Actua Disp"
+        },
+        {
+          "asin": "B0FHLVP7J2",
+          "title": "Google Pixel 10 Pro XL - Unlocked Android Smartphone with Gemini, Triple Rear Camera, 24+ Hours Runtime and 6.8\" Super Actua"
+        },
+        {
+          "asin": "B0FGNKRYYF",
+          "title": "Pixelsnap Cover for Google Pixel 10 & Pixel 10 Pro - Durable protection - Made to protect with style - Obsidian Black (Made b"
+        },
+        {
+          "asin": "B0FPFV47W3",
+          "title": "JETech Magnetic Cover for Google Pixel 10/10 Pro 2025, Compatible with MagSafe and Pixelsnap Charger, Translucent Matte Retro"
+        },
+        {
+          "asin": "B0FVM67QVQ",
+          "title": "Google Pixel 10 Pro - Unlocked Android Smartphone with Gemini, Triple Rear Camera System, 24+ Hours Runtime and 6.3\" Super Ac"
+        },
+        {
+          "asin": "B0D851Z6N8",
+          "title": "Spigen Glas.tR EZ Fit Tempered Glass Compatible with Google Pixel 10/9, Pixel 10 Pro/ 9 Pro, 2 Pieces, Easy Installation, Cry"
+        }
+      ],
+      "buyBox": {
+        "sellerName": "Amazon Seconda mano",
+        "price": 849,
+        "isFBA": true,
+        "isAmazon": false,
+        "observedAt": "2026-03-19T19:06:43.285Z",
+        "shipsFrom": "Amazon"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Amazon Seconda mano",
+        "price": 849,
+        "currency": "EUR",
+        "condition": "New",
+        "isFBA": true,
+        "isAmazon": false
+      },
+      "sellerCount": 4,
+      "averageOfferPrice": 809.95,
+      "lowestOfferPrice": 696.18,
+      "category": "Electronics > Mobile Phones & Communication > SIM-Free & Unlocked Mobile Phones",
+      "amazonMetrics": {
+        "asin": "B0FHL3385S",
+        "buyBox": {
+          "sellerName": "Amazon Seconda mano",
+          "price": 849,
+          "isFBA": true,
+          "isAmazon": false,
+          "observedAt": "2026-03-19T19:06:43.285Z",
+          "shipsFrom": "Amazon"
+        },
+        "isPrime": false,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 4,
+        "offers": [
+          {
+            "sellerName": "Amazon Seconda mano",
+            "price": 849,
+            "currency": "EUR",
+            "stockStatus": "In stock",
+            "stockCount": 3,
+            "condition": "New",
+            "isFBA": true
+          },
+          {
+            "sellerName": "Amazon",
+            "price": 849,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "€11.06 Delivery 27 March - 2 April Or fastest delivery Friday, 27 March ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.it/-/en/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581999031",
+            "sellerName": "Amazon Seconda mano",
+            "price": 696.18,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "€11.06 Delivery 27 - 30 March",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.it/-/en/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581999031",
+            "sellerName": "Amazon Seconda mano",
+            "price": 823.53,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "€11.06 Delivery 27 March - 1 April Or fastest delivery Friday, 27 March",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.it/-/en/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581999031",
+            "sellerName": "Amazon Seconda mano",
+            "price": 832.02,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "€11.06 Delivery 27 - 30 March",
+            "isFBA": false
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-19T19:06:43.285Z",
+      "itemPriceObservedAt": "2026-03-19T19:06:43.285Z",
+      "priceUSD": 925.41,
+      "itemPriceUSD": 925.41,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-19T19:06:43.285Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.co.uk/dp/b0fhl2xpxs": {
+    "id": "074009a4-8d52-4c8a-ab07-d01079e347ec",
+    "title": "Google Pixel 10 Pro - Unlocked Android Smartphone with Gemini, Triple Rear Camera System, 24+ Hour Battery and 6.3\" Super Actua Display - Obsidian, 128GB",
+    "url": "https://www.amazon.co.uk/dp/B0FHL2XPXS",
+    "marketplace": "amazon.co.uk",
+    "metrics": {
+      "currency": "GBP",
+      "description": "About this item The most advanced AI on Pixel. Pro camera for our highest-quality photos and videos. Pixel’s biggest chip upgrade yet for breakthrough performance. Impeccably designed in two sizes. Seven years of features and updates with Pixel Drops. › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/616RT2pEACL._AC_SX679_.jpg",
+      "brand": "Google",
+      "availability": "In stock",
+      "features": [
+        "The most advanced AI on Pixel.",
+        "Pro camera for our highest-quality photos and videos.",
+        "Pixel’s biggest chip upgrade yet for breakthrough performance.",
+        "Impeccably designed in two sizes.",
+        "Seven years of features and updates with Pixel Drops."
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/318G3Bz69DL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/21f3pggm3gL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51-i7PY1lML._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51rxBXgEdKL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41HmMYc17CL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41k+ndD0MjL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/61E4edOZBaL.SX38_SY50_CR,0,0,38,50_BG85,85,85_BR-120_PKdp-play-icon-overlay__.jpg",
+        "https://m.media-amazon.com/images/I/616RT2pEACL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Amazon Resale",
+          "price": 799,
+          "currency": "GBP",
+          "stockStatus": "In stock",
+          "stockCount": 30,
+          "condition": "New",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.co.uk/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581866031",
+          "sellerName": "Amazon Resale",
+          "price": 655.18,
+          "currency": "GBP",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "£15.38 delivery Wednesday, 1 April. Details",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.co.uk/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581866031",
+          "sellerName": "Amazon Resale",
+          "price": 775.03,
+          "currency": "GBP",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "£15.38 delivery Wednesday, 1 April. Details",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.co.uk/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581866031",
+          "sellerName": "Amazon Resale",
+          "price": 783.02,
+          "currency": "GBP",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "£15.38 delivery Wednesday, 1 April. Details",
+          "isFBA": false
+        }
+      ],
+      "asin": "B0FHL2XPXS",
+      "price": 799,
+      "itemPrice": 799,
+      "originalPrice": 999,
+      "discountPercentage": 20,
+      "averageRating": 4.4,
+      "reviewsCount": 519,
+      "stockCount": 30,
+      "isAmazonChoice": true,
+      "isBestSeller": false,
+      "deliveryInfo": "£15.38 delivery Wednesday, 1 April. Details £15.38 delivery Wednesday, 1 April. Details",
+      "isPrime": false,
+      "salesVolume": "bought in past month",
+      "isClimateFriendly": true,
+      "videoCount": 2,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0FJL9J43M",
+          "title": "JETech Screen Protector for iPhone 17 6.3-Inch, Tempered Glass Film with Easy Installation Tool, 9H Hardness, Case-Friendly,"
+        },
+        {
+          "asin": "B0F8VZ7QVX",
+          "title": "NEW'C 3 Pack Designed for iPhone 17, 17 Pro, iPhone 16 Pro Screen Protector (6.3 inches), Enhanced Tempered Glass Protection"
+        },
+        {
+          "asin": "B0FDKXNZCQ",
+          "title": "TOCOL Magnetic for iPhone 17 Case, Compatible with MagSafe, Full Camera Protection, Built-in Magnetic Ring, Drop Protection S"
+        },
+        {
+          "asin": "B09P8KM9Z6",
+          "title": "INIU USB C Charger Cable, 2m Type C Cable Fast Charging, Braided USB A to USB-C Phone Charger Cable USBC for iPhone 17 16 15"
+        },
+        {
+          "asin": "B0DK4MJRF3",
+          "title": "iPhone Charger Cable 2M, MFi Certified Lightning Cable Fast Charging iPhone Charger Nylon USB iphone Charging Cable Lead for"
+        },
+        {
+          "asin": "B09QQ6ZBFT",
+          "title": "2Pack 1.8M iPhone Charger Cable [Apple MFi Certified] Lightning to USB Cable Lead 6 Foot, 2.4A Fast Charging Cable for iPhone"
+        },
+        {
+          "asin": "B0FGNKRYYF",
+          "title": "Pixelsnap Case for Google Pixel 10 & Pixel 10 Pro - Durable Protection - Built to Protect. Beautifully - Obsidian (Made by Go"
+        },
+        {
+          "asin": "B0FPFV47W3",
+          "title": "JETech Magnetic Case for Google Pixel 10/10 Pro 2025, Compatible with MagSafe and Pixelsnap Charger, Translucent Matte Back S"
+        },
+        {
+          "asin": "B0FK5DH8DR",
+          "title": "LK 2+2 Pack Screen Protector for Google Pixel 10 Pro, 2pcs Tempered Glass Screen Protector & 2 Camera Lens Protector for 10 P"
+        },
+        {
+          "asin": "B0D8LHH8CX",
+          "title": "Google Pixel Buds Pro 2 - Wireless Earbuds with Active Noise Cancellation – Bluetooth Headphones - Hazel"
+        },
+        {
+          "asin": "B0FKMPQML4",
+          "title": "UniqueMe for Google Pixel 10 Pro Screen Protector - 2+2 Pack Tempered Glass Screen Protectors + Camera Lens Protector【Support"
+        },
+        {
+          "asin": "B0FH7PCRZB",
+          "title": "OtterBox Defender Series Pro XT Case with Pixelsnap for Google Pixel 10/Pixel 10 Pro, Shockproof, Drop proof, Ultra-Rugged, P"
+        }
+      ],
+      "buyBox": {
+        "sellerName": "Amazon Resale",
+        "price": 799,
+        "isFBA": true,
+        "isAmazon": false,
+        "observedAt": "2026-03-19T19:19:05.338Z",
+        "shipsFrom": "Amazon"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Amazon Resale",
+        "price": 799,
+        "currency": "GBP",
+        "condition": "New",
+        "isFBA": true,
+        "isAmazon": false
+      },
+      "sellerCount": 4,
+      "averageOfferPrice": 753.06,
+      "lowestOfferPrice": 655.18,
+      "category": "Electronics & Photo > Mobile Phones & Communication > Mobile Phones & Smartphones > SIM-Free & Unlocked Mobile Phones",
+      "amazonMetrics": {
+        "asin": "B0FHL2XPXS",
+        "buyBox": {
+          "sellerName": "Amazon Resale",
+          "price": 799,
+          "isFBA": true,
+          "isAmazon": false,
+          "observedAt": "2026-03-19T19:19:05.338Z",
+          "shipsFrom": "Amazon"
+        },
+        "isPrime": false,
+        "isAmazonChoice": true,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 4,
+        "offers": [
+          {
+            "sellerName": "Amazon Resale",
+            "price": 799,
+            "currency": "GBP",
+            "stockStatus": "In stock",
+            "stockCount": 30,
+            "condition": "New",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.co.uk/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581866031",
+            "sellerName": "Amazon Resale",
+            "price": 655.18,
+            "currency": "GBP",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "£15.38 delivery Wednesday, 1 April. Details",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.co.uk/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581866031",
+            "sellerName": "Amazon Resale",
+            "price": 775.03,
+            "currency": "GBP",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "£15.38 delivery Wednesday, 1 April. Details",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.co.uk/Amazon-Warehouse-Deals/b?ie=UTF8&node=3581866031",
+            "sellerName": "Amazon Resale",
+            "price": 783.02,
+            "currency": "GBP",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "£15.38 delivery Wednesday, 1 April. Details",
+            "isFBA": false
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-19T19:19:05.338Z",
+      "itemPriceObservedAt": "2026-03-19T19:19:05.338Z",
+      "priceUSD": 1012.69,
+      "itemPriceUSD": 1012.69,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-19T19:19:05.338Z",
+    "scrapedBy": "crawler"
+  },
+  "https://www.amazon.fr/dp/b0fhl2xpxs": {
+    "id": "a915dcdd-183d-45b4-bdc8-0ebe9546b513",
+    "title": "Google Pixel 10 Pro - Unlocked Android Smartphone with Gemini, Triple Rear Camera, 24+ Hours of Battery Life and 6.3-inch Super Actua Display - Volcanic Black, 128GB",
+    "url": "https://www.amazon.fr/dp/B0FHL2XPXS?th=1",
+    "marketplace": "amazon.fr",
+    "metrics": {
+      "currency": "EUR",
+      "description": "About this item The most advanced AI on Google Pixel. A professional quality camera for the highest quality photos and videos. The most powerful Pixel chip yet, for revolutionary performance. Precision-designed, available in two sizes. Enjoy 7 years of updates and features with Pixel Drops. › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/616RT2pEACL._AC_SX679_.jpg",
+      "brand": "Google",
+      "availability": "In stock",
+      "features": [
+        "The most advanced AI on Google Pixel.",
+        "A professional quality camera for the highest quality photos and videos.",
+        "The most powerful Pixel chip yet, for revolutionary performance.",
+        "Precision-designed, available in two sizes.",
+        "Enjoy 7 years of updates and features with Pixel Drops."
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/318G3Bz69DL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/21f3pggm3gL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51nE5URH0cL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51RIuepuavL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/416XGVrv3OL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41EuonKf+EL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/61E4edOZBaL.SX38_SY50_CR,0,0,38,50_BG85,85,85_BR-120_PKdp-play-icon-overlay__.jpg",
+        "https://m.media-amazon.com/images/I/616RT2pEACL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Amazon Seconde main",
+          "price": 899,
+          "currency": "EUR",
+          "stockStatus": "In stock",
+          "stockCount": 3,
+          "condition": "New",
+          "isFBA": true
+        },
+        {
+          "sellerName": "Amazon",
+          "price": 899,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "€11.03 delivery 26 - 27 March ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.fr/-/en/Amazon-Offres-Reconditionnees/b?ie=UTF8&node=3581943031",
+          "sellerName": "Amazon Seconde main",
+          "price": 737.18,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "€33.30 delivery Friday, 27 March. Details",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.fr/-/en/Amazon-Offres-Reconditionnees/b?ie=UTF8&node=3581943031",
+          "sellerName": "Amazon Seconde main",
+          "price": 854.05,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "€11.03 delivery 26 - 30 March",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.fr/-/en/Amazon-Offres-Reconditionnees/b?ie=UTF8&node=3581943031",
+          "sellerName": "Amazon Seconde main",
+          "price": 872.03,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "€33.30 delivery Monday, 30 March. Details",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.fr/-/en/Amazon-Offres-Reconditionnees/b?ie=UTF8&node=3581943031",
+          "sellerName": "Amazon Seconde main",
+          "price": 881.02,
+          "currency": "EUR",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "€11.03 delivery 26 - 30 March",
+          "isFBA": false
+        }
+      ],
+      "asin": "B0FHL2XPXS",
+      "price": 899,
+      "itemPrice": 899,
+      "originalPrice": 1099,
+      "discountPercentage": 18,
+      "averageRating": 4.4,
+      "reviewsCount": 524,
+      "stockCount": 3,
+      "isAmazonChoice": false,
+      "isBestSeller": false,
+      "couponText": "Savings Google Trade-In Bonus: €100 extra Shop items .cxcwEmphasisLink { padding-left: 6px; padding-right: 12px !important; display: inline-block; } .cxcwEmphasisLink::after { bottom: 6.5px !important; margin-left: 2px !important; } Savings Google Trade-In Bonus: €100 extra Shop items .cxcwEmphasisLink { padding-left: 6px; padding-right: 12px !important; display: inline-block; } .cxcwEmphasisLink::after { bottom: 6.5px !important; margin-left: 2px !important; }",
+      "deliveryInfo": "€11.03 delivery 26 - 27 March €11.03 delivery 26 - 27 March €11.03 delivery 26 - 30 March",
+      "isPrime": false,
+      "isClimateFriendly": true,
+      "videoCount": 2,
+      "customersAlsoViewed": [
+        {
+          "asin": "B08T1HR5CS",
+          "title": "HP 305, Pack of 2 Original Ink Cartridges, 6ZD17AE, Black, Cyan, Yellow, Magenta, Compatible with HP DeskJet 2700/ 4100, HP E"
+        },
+        {
+          "asin": "B087DJ43K3",
+          "title": "HP 305 Original Black Ink Cartridges, 3YM61AE, Compatible with HP DeskJet 2300 / 2700 / 2800 / 4100 / 4200, HP Deskjet Plus 4"
+        },
+        {
+          "asin": "B09F3P3DQD",
+          "title": "NEW'C Pack of 3 Tempered Glass Screen Protectors for iPhone 14, iPhone 13, iPhone 13 Pro (6.1 Inches), Bubble-Free - Ultra Re"
+        },
+        {
+          "asin": "B00LH3DMUO",
+          "title": "Amazon Basics 36 x AAA High Performance Alkaline Batteries, 1.5V, 10 Year Shelf Life"
+        },
+        {
+          "asin": "B0000C73CQ",
+          "title": "instax Mini Film Bipack - Instant Films (2 x 10 Sheets)"
+        },
+        {
+          "asin": "B0FQF32239",
+          "title": "Apple AirPods Pro 3 Wireless Earbuds, Active Noise Cancelling, Heart Rate Detection, Bluetooth Earbuds, Space Audio, High-Fid"
+        },
+        {
+          "asin": "B0FGNKRYYF",
+          "title": "Pixelsnap Case for Google Pixel 10 & Pixel 10 Pro - Durable Protection - Designed to Protect in Style - Volcanic Black (Made"
+        },
+        {
+          "asin": "B0FH4LFB23",
+          "title": "Lutree Tempered Glass for Google Pixel 10 Pro, 3+3 Pieces Screen Protector + Rear Camera Protector Film, 9H Hardness HD Anti-"
+        },
+        {
+          "asin": "B0FPFV47W3",
+          "title": "JETech Magnetic Case for Google Pixel 10/10 Pro 2025, Compatible with MagSafe and Pixelsnap Charger, Translucent Matte Back S"
+        },
+        {
+          "asin": "B0D8LHH8CX",
+          "title": "Google Pixel Buds Pro 2 - Wireless Earphones with Active Noise Cancelling - Bluetooth Earphones - Sage Green"
+        },
+        {
+          "asin": "B0FJFWRVWJ",
+          "title": "Google Pixel Watch 4 (41mm) - Android Smartwatch, Full Health & Fitness Data Tracking - Matte Black Aluminum Case - Volcanic"
+        },
+        {
+          "asin": "B071S33CLL",
+          "title": "Brother PT-H110 Portable and Playful Compact Labeling Machine Ideal for Office Use | Comes with 1 x 12mm Black/White Tze Tape"
+        }
+      ],
+      "buyBox": {
+        "sellerName": "Amazon Seconde main",
+        "price": 899,
+        "isFBA": true,
+        "isAmazon": false,
+        "observedAt": "2026-03-19T19:24:34.145Z",
+        "shipsFrom": "Amazon"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Amazon Seconde main",
+        "price": 899,
+        "currency": "EUR",
+        "condition": "New",
+        "isFBA": true,
+        "isAmazon": false
+      },
+      "sellerCount": 5,
+      "averageOfferPrice": 857.05,
+      "lowestOfferPrice": 737.18,
+      "category": "Electronics > Mobile Phones & Communication > SIM-Free & Unlocked Mobile Phones",
+      "amazonMetrics": {
+        "asin": "B0FHL2XPXS",
+        "buyBox": {
+          "sellerName": "Amazon Seconde main",
+          "price": 899,
+          "isFBA": true,
+          "isAmazon": false,
+          "observedAt": "2026-03-19T19:24:34.145Z",
+          "shipsFrom": "Amazon"
+        },
+        "isPrime": false,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 5,
+        "offers": [
+          {
+            "sellerName": "Amazon Seconde main",
+            "price": 899,
+            "currency": "EUR",
+            "stockStatus": "In stock",
+            "stockCount": 3,
+            "condition": "New",
+            "isFBA": true
+          },
+          {
+            "sellerName": "Amazon",
+            "price": 899,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "€11.03 delivery 26 - 27 March ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.fr/-/en/Amazon-Offres-Reconditionnees/b?ie=UTF8&node=3581943031",
+            "sellerName": "Amazon Seconde main",
+            "price": 737.18,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "€33.30 delivery Friday, 27 March. Details",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.fr/-/en/Amazon-Offres-Reconditionnees/b?ie=UTF8&node=3581943031",
+            "sellerName": "Amazon Seconde main",
+            "price": 854.05,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "€11.03 delivery 26 - 30 March",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.fr/-/en/Amazon-Offres-Reconditionnees/b?ie=UTF8&node=3581943031",
+            "sellerName": "Amazon Seconde main",
+            "price": 872.03,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "€33.30 delivery Monday, 30 March. Details",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.fr/-/en/Amazon-Offres-Reconditionnees/b?ie=UTF8&node=3581943031",
+            "sellerName": "Amazon Seconde main",
+            "price": 881.02,
+            "currency": "EUR",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "€11.03 delivery 26 - 30 March",
+            "isFBA": false
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-19T19:24:34.145Z",
+      "itemPriceObservedAt": "2026-03-19T19:24:34.145Z",
+      "priceUSD": 979.91,
+      "itemPriceUSD": 979.91,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-19T19:24:34.145Z",
+    "scrapedBy": "crawler"
   }
 }

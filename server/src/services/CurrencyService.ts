@@ -11,7 +11,28 @@ import { logger as baseLogger } from '../utils/logger';
 const logger = baseLogger.child({ module: 'CurrencyService' });
 
 // Rates relative to EUR: e.g., { USD: 1.09, GBP: 0.86 } means 1 EUR = 1.09 USD
-let ratesFromEur: Record<string, number> = { USD: 1.09, EUR: 1.0 }; // Default fallback rates
+// Keep a broad fallback set so USD conversion still works when ECB is temporarily unavailable.
+let ratesFromEur: Record<string, number> = {
+  EUR: 1.0,
+  USD: 1.09,
+  GBP: 0.86,
+  CAD: 1.48,
+  AUD: 1.66,
+  JPY: 162.0,
+  INR: 90.0,
+  PLN: 4.28,
+  SEK: 11.2,
+  NOK: 11.6,
+  DKK: 7.46,
+  CHF: 0.95,
+  MXN: 18.4,
+  BRL: 6.1,
+  SGD: 1.45,
+  AED: 4.0,
+  SAR: 4.1,
+  EGP: 52.0,
+  TRY: 39.0,
+}; // Default fallback rates
 const REFRESH_INTERVAL_MS = 24 * 60 * 60 * 1000; // 24 hours
 let refreshTimer: NodeJS.Timeout | null = null;
 

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Trash2 } from 'lucide-react';
 import { useCompare } from '../context/CompareContext';
 import { resolveMetricPrice } from '../utils/metrics';
+import { getMarketplaceDisplayName } from '../utils/marketplace';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 
@@ -30,6 +31,10 @@ export default function ComparePage() {
 
   const validRatings = products.map(p => p.metrics.averageRating).filter((r): r is number => typeof r === 'number');
   const maxRating = validRatings.length > 0 ? Math.max(...validRatings) : -Infinity;
+  const validReviews = products
+    .map((p) => Number(p.metrics.reviewsCount || 0))
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const maxReviews = validReviews.length > 0 ? Math.max(...validReviews) : 0;
   const normalizeSeller = (name?: string) => {
     if (!name) return '';
     const cleaned = name.replace(/^sold by\s+/i, '').trim();
@@ -54,6 +59,28 @@ export default function ComparePage() {
   const getOfferCount = (product: (typeof products)[number]) => {
     const offers = product.metrics.amazonMetrics?.offers || product.metrics.offers || [];
     return product.metrics.sellerCount || offers.length || null;
+  };
+  const validStockCounts = products
+    .map((product) => getStockCount(product))
+    .filter((value): value is number => typeof value === 'number' && value > 0);
+  const maxStockCount = validStockCounts.length > 0 ? Math.max(...validStockCounts) : 0;
+  const validOfferCounts = products
+    .map((product) => getOfferCount(product))
+    .filter((value): value is number => typeof value === 'number' && value > 0);
+  const maxOfferCount = validOfferCounts.length > 0 ? Math.max(...validOfferCounts) : 0;
+
+  const bestValuePillStyle: React.CSSProperties = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 28,
+    padding: '4px 10px',
+    borderRadius: 999,
+    background: 'color-mix(in oklab, var(--success) 18%, transparent)',
+    border: '1px solid color-mix(in oklab, var(--success) 40%, transparent)',
+    color: 'var(--success)',
+    fontWeight: 800,
+    boxShadow: '0 0 0 2px color-mix(in oklab, var(--success) 12%, transparent)',
   };
 
   return (
@@ -127,7 +154,7 @@ export default function ComparePage() {
                   </td>
                   {products.map(p => (
                     <td key={`platform-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
-                      <Badge variant="outline">{p.marketplace}</Badge>
+                      <Badge variant="outline">{getMarketplaceDisplayName(p.marketplace, p.url)}</Badge>
                     </td>
                   ))}
                 </tr>
@@ -147,7 +174,11 @@ export default function ComparePage() {
                           color: isBest ? 'var(--success, #16a34a)' : 'inherit',
                           fontSize: isBest ? '1.15rem' : '1rem'
                         }}>
-                          ${price.toFixed(2)}
+                          {isBest && products.length > 1 ? (
+                            <span style={bestValuePillStyle}>${price.toFixed(2)}</span>
+                          ) : (
+                            `$${price.toFixed(2)}`
+                          )}
                         </div>
                         {isBest && products.length > 1 && (
                           <div style={{ color: 'var(--success, #16a34a)', fontSize: '0.75rem', fontWeight: 600, marginTop: 4 }}>
@@ -176,7 +207,11 @@ export default function ComparePage() {
                               color: isBest ? 'var(--success, #16a34a)' : 'var(--warning, #eab308)',
                               fontSize: isBest ? '1.15rem' : '1rem'
                             }}>
-                              ★ {rating.toFixed(1)}
+                              {isBest && products.length > 1 ? (
+                                <span style={bestValuePillStyle}>★ {rating.toFixed(1)}</span>
+                              ) : (
+                                `★ ${rating.toFixed(1)}`
+                              )}
                             </div>
                             {isBest && products.length > 1 && (
                               <div style={{ color: 'var(--success, #16a34a)', fontSize: '0.75rem', fontWeight: 600, marginTop: 4 }}>
@@ -197,11 +232,22 @@ export default function ComparePage() {
                   <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
                     {t('compare.reviews', 'Reviews')}
                   </td>
-                  {products.map(p => (
+                  {products.map(p => {
+                    const reviewsCount = Number(p.metrics.reviewsCount || 0);
+                    const isBest = reviewsCount > 0 && reviewsCount === maxReviews && products.length > 1;
+                    return (
                     <td key={`reviews-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
-                      {p.metrics.reviewsCount ? p.metrics.reviewsCount.toLocaleString() : <span className="muted">—</span>}
+                      {reviewsCount > 0 ? (
+                        isBest ? (
+                          <span style={bestValuePillStyle}>{reviewsCount.toLocaleString()}</span>
+                        ) : (
+                          reviewsCount.toLocaleString()
+                        )
+                      ) : (
+                        <span className="muted">—</span>
+                      )}
                     </td>
-                  ))}
+                  )})}
                 </tr>
 
                 <tr className="table-row">
@@ -244,22 +290,44 @@ export default function ComparePage() {
                   <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
                     {t('table.stock', 'Stock')}
                   </td>
-                  {products.map(p => (
+                  {products.map(p => {
+                    const stockCount = getStockCount(p);
+                    const isBest = typeof stockCount === 'number' && stockCount > 0 && stockCount === maxStockCount && products.length > 1;
+                    return (
                     <td key={`stock-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
-                      {getStockCount(p) ?? <span className="muted">—</span>}
+                      {stockCount != null ? (
+                        isBest ? (
+                          <span style={bestValuePillStyle}>{stockCount}</span>
+                        ) : (
+                          stockCount
+                        )
+                      ) : (
+                        <span className="muted">—</span>
+                      )}
                     </td>
-                  ))}
+                  )})}
                 </tr>
 
                 <tr className="table-row">
                   <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
                     {t('product.offersCount', 'Offers / Sellers')}
                   </td>
-                  {products.map(p => (
+                  {products.map(p => {
+                    const offerCount = getOfferCount(p);
+                    const isBest = typeof offerCount === 'number' && offerCount > 0 && offerCount === maxOfferCount && products.length > 1;
+                    return (
                     <td key={`offers-count-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
-                      {getOfferCount(p) ?? <span className="muted">—</span>}
+                      {offerCount != null ? (
+                        isBest ? (
+                          <span style={bestValuePillStyle}>{offerCount}</span>
+                        ) : (
+                          offerCount
+                        )
+                      ) : (
+                        <span className="muted">—</span>
+                      )}
                     </td>
-                  ))}
+                  )})}
                 </tr>
 
                 <tr className="table-row">

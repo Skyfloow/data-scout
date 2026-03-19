@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Product } from '../../../types';
 import { resolveMetricPrice } from '../../../utils/metrics';
+import { formatCurrencyByCode } from '../../../utils/formatters';
+import { getMarketplaceDisplayName } from '../../../utils/marketplace';
 import { Badge } from '../../../components/ui/badge';
 import { Checkbox } from '../../../components/ui/checkbox';
 import { TR, TD } from '../../../components/ui/table';
@@ -19,6 +21,10 @@ interface ProductTableRowProps {
 export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTableRowProps) {
   const { t } = useTranslation();
   const price = resolveMetricPrice(row.metrics);
+  const localCurrency = String(row.metrics.currency || 'USD').toUpperCase();
+  const localPriceRaw = Number(row.metrics.itemPrice || row.metrics.price || row.metrics.buyBox?.price || 0);
+  const showOriginalLocalPrice = localCurrency !== 'USD' && Number.isFinite(localPriceRaw) && localPriceRaw > 0;
+  const marketplaceLabel = getMarketplaceDisplayName(row.marketplace, row.url);
   const { products: compareProducts, addProduct, removeProduct } = useCompare();
 
   const isCompared = compareProducts.some(p => p.id === row.id);
@@ -84,7 +90,7 @@ export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTabl
           </Link>
         </div>
         <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-          <Badge variant="outline" style={{ fontSize: '0.65rem' }}>{row.marketplace.toUpperCase()}</Badge>
+          <Badge variant="outline" style={{ fontSize: '0.65rem' }}>{marketplaceLabel}</Badge>
           <span style={{ fontSize: '0.65rem', color: 'var(--fg-muted)', fontWeight: 500 }}>
             {t('table.id')}: {asin || t('product.unknown')}
           </span>
@@ -100,6 +106,11 @@ export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTabl
           <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--fg)' }}>
             ${price.toFixed(2)}
           </div>
+          {showOriginalLocalPrice ? (
+            <div style={{ fontSize: '0.72rem', color: 'var(--fg-muted)' }}>
+              ({formatCurrencyByCode(localPriceRaw, localCurrency)})
+            </div>
+          ) : null}
           {row.metrics.discountPercentage ? (
             <div style={{ 
               color: 'var(--success)', 

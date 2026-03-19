@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import * as cheerio from 'cheerio';
-import { parsePrice } from '../src/utils/parsers';
+import { parsePrice, parseStockCount } from '../src/utils/parsers';
+import { convertToUSD } from '../src/services/CurrencyService';
 import { amazonExtractor } from '../src/modules/scraping/selectors/amazon';
 
 describe('parsePrice', () => {
@@ -30,6 +31,40 @@ describe('parsePrice', () => {
 
   it('ignores unit price and returns product price', () => {
     expect(parsePrice('$23.99 ($2.40 / Ounce)')).toBeCloseTo(23.99, 2);
+  });
+});
+
+describe('parseStockCount (localized)', () => {
+  it('parses English stock strings', () => {
+    expect(parseStockCount('Only 3 left in stock')).toBe(3);
+    expect(parseStockCount('In Stock')).toBe(999);
+    expect(parseStockCount('Currently unavailable')).toBe(0);
+  });
+
+  it('parses German stock strings', () => {
+    expect(parseStockCount('Nur noch 3 auf Lager')).toBe(3);
+    expect(parseStockCount('Auf Lager')).toBe(999);
+    expect(parseStockCount('Derzeit nicht verfügbar')).toBe(0);
+  });
+
+  it('parses Italian stock strings', () => {
+    expect(parseStockCount('Solo 2 rimasti in magazzino')).toBe(2);
+    expect(parseStockCount('Disponibile')).toBe(999);
+    expect(parseStockCount('Non disponibile')).toBe(0);
+  });
+
+  it('parses French and Spanish stock strings', () => {
+    expect(parseStockCount('Plus que 4 en stock')).toBe(4);
+    expect(parseStockCount('En stock')).toBe(999);
+    expect(parseStockCount('Solo quedan 5')).toBe(5);
+    expect(parseStockCount('No disponible')).toBe(0);
+  });
+});
+
+describe('convertToUSD fallback rates', () => {
+  it('converts GBP to USD even without ECB refresh', () => {
+    const converted = convertToUSD(100, 'GBP');
+    expect(converted).toBeGreaterThan(100);
   });
 });
 

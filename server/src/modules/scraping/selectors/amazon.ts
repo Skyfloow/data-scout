@@ -1513,8 +1513,9 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
     $('#dynamic-aod-ingress-box, #dynamic-aod-ingress-box_feature_div, #aod-asin-count, #olp_feature_div, #olp-upd-new-used').length > 0 ||
     /other sellers on amazon|other buying options/i.test($('body').text());
 
-  const shouldTryRemoteAod = process.env.NODE_ENV !== 'test' && /amazon\./i.test(url);
-  if (metrics.asin && (hasOtherSellersSignal || shouldTryRemoteAod)) {
+  const shouldTryRemoteAod = /amazon\./i.test(url);
+  const allowRemoteAodFetch = process.env.NODE_ENV !== 'test' && shouldTryRemoteAod;
+  if (metrics.asin && allowRemoteAodFetch) {
     try {
       const remoteOffers = await fetchAmazonOffers(metrics.asin, metrics.currency!, url);
       for (const remoteOffer of remoteOffers) {
