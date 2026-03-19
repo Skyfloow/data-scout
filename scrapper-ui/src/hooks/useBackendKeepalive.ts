@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { API_BASE_URL } from '../store/apiSlice';
 
-const DEFAULT_INTERVAL_MS = 20 * 60 * 1000;
+const DEFAULT_INTERVAL_MS = 10 * 60 * 1000;
 const DEFAULT_TIMEOUT_MS = 10 * 1000;
 const MIN_VISIBLE_PING_GAP_MS = 2 * 60 * 1000;
 
