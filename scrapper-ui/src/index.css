@@ -436,3 +436,72 @@ body.ant-scrolling-effect .fab-container {
   border: 1px solid var(--border);
   color: var(--fg-muted);
 }
+
+.app-tooltip .ant-tooltip-inner {
+  background: var(--bg-elevated) !important;
+  color: var(--fg) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18) !important;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+.app-tooltip .ant-tooltip-arrow::before {
+  background: var(--bg-elevated) !important;
+}
+
+:root.dark .app-tooltip .ant-tooltip-inner {
+  background: color-mix(in oklab, var(--bg-elevated) 92%, black 8%) !important;
+  color: #f8fafc !important;
+  border-color: color-mix(in oklab, var(--border) 82%, white 18%) !important;
+}
+
+:root.dark .app-tooltip .ant-tooltip-inner * {
+  color: #f8fafc !important;
+}
+
+:root.dark .tooltip-trigger-btn {
+  color: #f8fafc !important;
+  border-color: color-mix(in oklab, var(--border) 72%, white 28%) !important;
+}
+
+:root.dark .ant-tooltip .ant-tooltip-inner,
+:root.dark .ant-tooltip .ant-tooltip-inner * {
+  color: #f8fafc !important;
+}
+
+:root.dark .ant-btn.export-pdf-btn,
+:root.dark .ant-btn.export-pdf-btn span,
+:root.dark .ant-btn.export-pdf-btn svg {
+  color: #09090b !important;
+}
+
+@media (max-width: 768px) {
+  .compare-page {
+    padding: 14px 10px !important;
+    gap: 14px !important;
+  }
+
+  .compare-page .table-wrap {
+    border-radius: 10px;
+  }
+
+  .compare-page .table {
+    min-width: 680px !important;
+  }
+
+  .compare-page .table-th,
+  .compare-page .table-td {
+    padding: 8px 8px;
+    font-size: 0.78rem;
+  }
+
+  .compare-page .compare-product-image {
+    width: 86px !important;
+    height: 86px !important;
+  }
+
+  .compare-page .compare-product-title {
+    font-size: 0.8rem !important;
+  }
+}

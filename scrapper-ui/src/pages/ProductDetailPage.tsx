@@ -1,10 +1,11 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AlertCircle, ArrowLeft, ExternalLink, FileDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useGetPriceHistoryQuery, useGetProductByIdQuery } from '../store/apiSlice';
 import { resolveMetricPrice } from '../utils/metrics';
 import { formatCompactNumber, formatCurrency, formatCurrencyByCode } from '../utils/formatters';
+import { resolveAppLocale } from '../utils/locale';
 import { normalizeProductForJson } from '../utils/productJson';
 import { Alert } from '../components/ui/alert';
 import { Badge } from '../components/ui/badge';
@@ -16,6 +17,11 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../com
 
 type OfferSortKey = 'seller' | 'price' | 'condition' | 'stock' | 'fba';
 type SortDirection = 'asc' | 'desc';
+
+function colorVar(name: string, fallback: string): string {
+  if (typeof window === 'undefined') return fallback;
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+}
 
 function MetricItem({ label, value, tooltip }: { label: string; value: string | number; tooltip?: string }) {
   return (
@@ -120,6 +126,43 @@ export default function ProductDetailPage() {
   const [isExportingPdf, setIsExportingPdf] = useState(false);
   const [offersSortKey, setOffersSortKey] = useState<OfferSortKey>('price');
   const [offersSortDirection, setOffersSortDirection] = useState<SortDirection>('asc');
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
+
+  const chartPalette = useMemo(() => ({
+    text: colorVar('--fg', '#e2e8f0'),
+    muted: colorVar('--fg-muted', '#94a3b8'),
+    border: colorVar('--border', 'rgba(148, 163, 184, 0.3)'),
+    blue: colorVar('--primary', '#2563eb'),
+    cyan: colorVar('--info', '#0ea5e9'),
+    green: colorVar('--success', '#16a34a'),
+    amber: colorVar('--warning', '#f59e0b'),
+  }), []);
+  const chartTooltipBase = useMemo(() => ({
+    backgroundColor: colorVar('--bg-elevated', '#0f172a'),
+    borderColor: chartPalette.border,
+    borderWidth: 1,
+    textStyle: { color: '#ffffff', fontSize: 12 },
+    extraCssText: 'color:#ffffff !important; box-shadow: 0 8px 20px rgba(0,0,0,0.28);',
+  }), [chartPalette.border]);
+  const wrapTooltipHtml = (html: string) => `<span style="color:#ffffff;">${html}</span>`;
+  const formatMobilePriceAxis = (value: number): string => {
+    const numeric = Number(value || 0);
+    if (!Number.isFinite(numeric)) return '';
+    if (Math.abs(numeric) >= 1000) {
+      const compact = numeric / 1000;
+      return `$${compact >= 10 ? compact.toFixed(0) : compact.toFixed(1)}k`;
+    }
+    return `$${Math.round(numeric)}`;
+  };
 
   const historyStats = useMemo(() => {
     const history = Array.isArray(historyData?.history) ? historyData.history : [];
@@ -173,6 +216,7 @@ export default function ProductDetailPage() {
   }
 
   const isAmazon = product.marketplace.toLowerCase().includes('amazon');
+  const appLocale = resolveAppLocale(i18n.resolvedLanguage || i18n.language);
   const effectivePrice = resolveMetricPrice(m);
   const localCurrency = String(m.currency || 'USD').toUpperCase();
   const localPriceRaw = Number(m.itemPrice || m.price || m.buyBox?.price || 0);
@@ -183,8 +227,8 @@ export default function ProductDetailPage() {
   const observedAt = m.buyBox?.observedAt || m.priceObservedAt || m.itemPriceObservedAt || product.scrapedAt;
   const rawObservedAt = observedAt || '—';
   const rawScrapedAt = product.scrapedAt || '—';
-  const rawObservedAtDisplay = formatDisplayDate(rawObservedAt, i18n.language);
-  const rawScrapedAtDisplay = formatDisplayDate(rawScrapedAt, i18n.language);
+  const rawObservedAtDisplay = formatDisplayDate(rawObservedAt, appLocale);
+  const rawScrapedAtDisplay = formatDisplayDate(rawScrapedAt, appLocale);
   const buyBox = m.amazonMetrics?.buyBox || m.buyBox;
   const buyBoxType = buyBox?.isAmazon
     ? t('product.buyBoxAmazon')
@@ -194,8 +238,8 @@ export default function ProductDetailPage() {
         ? t('product.buyBoxFbm')
         : t('product.unknown');
   const buyBoxSeller = normalizeSellerDisplayName(buyBox?.sellerName);
-  const observedAgo = formatTimeAgo(observedAt, i18n.language);
-  const scrapedAgo = formatTimeAgo(product.scrapedAt, i18n.language);
+  const observedAgo = formatTimeAgo(observedAt, appLocale);
+  const scrapedAgo = formatTimeAgo(product.scrapedAt, appLocale);
   const savingAmount = m.originalPrice && m.originalPrice > effectivePrice ? m.originalPrice - effectivePrice : 0;
   const savingsDisplay = savingAmount > 0 ? formatCurrency(savingAmount) : t('product.noSavings');
   const offers = m.amazonMetrics?.offers || m.offers || [];
@@ -265,11 +309,11 @@ export default function ProductDetailPage() {
 
       switch (offersSortKey) {
         case 'seller':
-          return direction * leftSeller.localeCompare(rightSeller, i18n.language);
+          return direction * leftSeller.localeCompare(rightSeller, appLocale);
         case 'price':
           return direction * (leftPrice - rightPrice);
         case 'condition':
-          return direction * leftCondition.localeCompare(rightCondition, i18n.language);
+          return direction * leftCondition.localeCompare(rightCondition, appLocale);
         case 'stock':
           return direction * (leftStock - rightStock);
         case 'fba':
@@ -415,7 +459,7 @@ export default function ProductDetailPage() {
         <Button variant="outline" onClick={() => navigate(-1)}>
           <ArrowLeft size={16} /> {t('product.backToDashboard')}
         </Button>
-        <Button onClick={exportProductPdf} disabled={isExportingPdf}>
+        <Button className="export-pdf-btn" onClick={exportProductPdf} disabled={isExportingPdf}>
           <FileDown size={16} />
           {isExportingPdf ? t('product.exportingPdf') : t('product.exportPdf')}
         </Button>
@@ -428,12 +472,44 @@ export default function ProductDetailPage() {
       <div ref={pdfRef} className="stack-col" style={{ gap: 14 }}>
         <Card data-pdf-block>
           <CardContent>
-            <div className="grid" style={{ gridTemplateColumns: 'minmax(100px, 160px) 1fr', gap: 14 }}>
+            <div
+              className="grid"
+              style={{
+                gridTemplateColumns: isMobile ? '88px minmax(0, 1fr)' : 'minmax(100px, 160px) 1fr',
+                gap: isMobile ? 10 : 14,
+                alignItems: 'start',
+              }}
+            >
               <div>
-                {m.imageUrl ? <img src={m.imageUrl} alt={product.title} style={{ width: '100%', borderRadius: 12, objectFit: 'contain' }} /> : null}
+                {m.imageUrl ? (
+                  <img
+                    src={m.imageUrl}
+                    alt={product.title}
+                    style={{
+                      width: '100%',
+                      maxWidth: isMobile ? 88 : 160,
+                      borderRadius: 12,
+                      objectFit: 'contain',
+                      background: 'var(--bg-soft)',
+                      border: '1px solid var(--border-soft)',
+                    }}
+                  />
+                ) : null}
               </div>
               <div className="stack-col" style={{ gap: 8 }}>
-                <h2 style={{ fontSize: '1.25rem', lineHeight: 1.35 }}>{product.title}</h2>
+                <h2
+                  style={{
+                    fontSize: isMobile ? '1rem' : '1.25rem',
+                    lineHeight: 1.3,
+                    margin: 0,
+                    display: '-webkit-box',
+                    WebkitLineClamp: isMobile ? 3 : 4,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {product.title}
+                </h2>
                 <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                   {m.asin ? <Badge variant="outline">ASIN: {m.asin}</Badge> : null}
                   <Badge variant="secondary">{m.currency || 'USD'}</Badge>
@@ -444,9 +520,9 @@ export default function ProductDetailPage() {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-                    <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--primary)' }}>${effectivePrice.toFixed(2)}</div>
+                    <div style={{ fontSize: isMobile ? '1.45rem' : '2rem', fontWeight: 800, color: 'var(--primary)' }}>${effectivePrice.toFixed(2)}</div>
                     {showOriginalLocalPrice ? (
-                      <div className="muted" style={{ fontSize: '0.85rem' }}>
+                      <div className="muted" style={{ fontSize: isMobile ? '0.78rem' : '0.85rem' }}>
                         ({formatCurrencyByCode(localPriceRaw, localCurrency)})
                       </div>
                     ) : null}
@@ -465,8 +541,8 @@ export default function ProductDetailPage() {
                     {t('table.openMarketplace')}
                   </a>
                 </div>
-                <div className="muted" style={{ fontSize: '0.84rem' }}>
-                  {t('product.priceObserved')}: {formatDisplayDate(observedAt, i18n.language)}
+                <div className="muted" style={{ fontSize: isMobile ? '0.76rem' : '0.84rem' }}>
+                  {t('product.priceObserved')}: {formatDisplayDate(observedAt, appLocale)}
                 </div>
               </div>
             </div>
@@ -484,7 +560,7 @@ export default function ProductDetailPage() {
               <MetricItem label={t('product.offersCount')} value={totalOtherSellerOffers} />
               <MetricItem label={t('product.stockCount')} value={stockCountDisplay} />
               <MetricItem label={t('product.buyBoxType')} value={buyBoxType} tooltip={t('product.buyBoxTypeTooltip')} />
-              <MetricItem label={t('product.scrapedAt')} value={formatDisplayDate(product.scrapedAt, i18n.language)} />
+              <MetricItem label={t('product.scrapedAt')} value={formatDisplayDate(product.scrapedAt, appLocale)} />
             </div>
           </CardContent>
         </Card>
@@ -530,15 +606,22 @@ export default function ProductDetailPage() {
                   <MetricItem label={t('product.fbaShare')} value={`${offersInsights.fbaShare.toFixed(1)}%`} />
                 </div>
                 <Separator style={{ margin: '2px 0 0' }} />
-                <div className="grid" style={{ gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 12 }}>
+                <div className="grid" style={{ gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, minmax(0, 1fr))', gap: 12 }}>
                   <div style={{ border: '1px solid var(--border-soft)', borderRadius: 10, padding: 8, minWidth: 0, overflow: 'hidden' }}>
                     <div className="muted" style={{ marginBottom: 8, fontSize: '0.82rem' }}>{t('product.priceDistribution')}</div>
                     <LazyEChart
-                      style={{ height: 280, width: '100%' }}
+                      style={{ height: isMobile ? 280 : 280, width: '100%' }}
                       option={{
                         tooltip: {
+                          ...chartTooltipBase,
                           trigger: 'axis',
                           axisPointer: { type: 'shadow' },
+                          formatter: (params: any) => {
+                            const first = Array.isArray(params) ? params[0] : params;
+                            const count = Number(first?.value || 0);
+                            const range = String(first?.axisValue || '');
+                            return wrapTooltipHtml(`${range}<br/>${t('product.offerCount')}: <b>${count}</b>`);
+                          },
                         },
                         // Extra left padding + smaller name gap prevents yAxis name from being clipped in some locales.
                         grid: { left: 44, right: 20, top: 40, bottom: 86, containLabel: true },
@@ -553,7 +636,7 @@ export default function ProductDetailPage() {
                             hideOverlap: true,
                             overflow: 'truncate',
                             width: 120,
-                            color: '#64748b',
+                            color: chartPalette.muted,
                             margin: 14,
                           },
                         },
@@ -562,19 +645,19 @@ export default function ProductDetailPage() {
                           name: t('product.offerCount'),
                           minInterval: 1,
                           nameGap: 14,
-                          nameTextStyle: { color: '#64748b', padding: [0, 0, 8, 0] },
-                          axisLabel: { color: '#64748b' },
-                          splitLine: { lineStyle: { color: 'rgba(148, 163, 184, 0.25)' } },
+                          nameTextStyle: { color: chartPalette.muted, padding: [0, 0, 8, 0] },
+                          axisLabel: { color: chartPalette.muted },
+                          splitLine: { lineStyle: { color: chartPalette.border } },
                         },
                         series: [{
                           type: 'bar',
                           data: offersInsights.priceDistribution.map((row) => row.count),
-                          itemStyle: { color: '#2563eb', borderRadius: [6, 6, 0, 0] },
+                          itemStyle: { color: chartPalette.blue, borderRadius: [6, 6, 0, 0] },
                           barMaxWidth: 34,
                           label: {
                             show: true,
                             position: 'top',
-                            color: '#1e293b',
+                            color: chartPalette.text,
                             fontWeight: 600,
                             distance: 6,
                           },
@@ -595,19 +678,24 @@ export default function ProductDetailPage() {
                       </Tooltip>
                     </div>
                     <LazyEChart
-                      style={{ height: 280, width: '100%' }}
+                      style={{ height: isMobile ? 260 : 280, width: '100%' }}
                       option={{
-                        tooltip: { trigger: 'item' },
-                        legend: { bottom: 4, left: 'center' },
+                        tooltip: {
+                          ...chartTooltipBase,
+                          trigger: 'item',
+                          formatter: (params: any) => wrapTooltipHtml(`${params?.name || ''}: <b>${params?.value || 0}</b>`),
+                        },
+                        legend: { bottom: isMobile ? 0 : 4, left: 'center', textStyle: { color: chartPalette.text } },
                         series: [{
                           type: 'pie',
-                          radius: ['45%', '70%'],
-                          center: ['50%', '42%'],
+                          radius: isMobile ? ['40%', '62%'] : ['45%', '70%'],
+                          center: isMobile ? ['50%', '46%'] : ['50%', '42%'],
                           avoidLabelOverlap: true,
-                          label: { formatter: '{b}: {c}' },
+                          label: { formatter: '{b}: {c}', color: chartPalette.text, fontWeight: 600 },
+                          labelLine: { lineStyle: { color: chartPalette.muted } },
                           data: [
-                            { name: t('product.fbaLabel'), value: offersInsights.fbaCount, itemStyle: { color: '#16a34a' } },
-                            { name: t('product.fbmLabel'), value: offersInsights.fbmCount, itemStyle: { color: '#f59e0b' } },
+                            { name: t('product.fbaLabel'), value: offersInsights.fbaCount, itemStyle: { color: chartPalette.green } },
+                            { name: t('product.fbmLabel'), value: offersInsights.fbmCount, itemStyle: { color: chartPalette.amber } },
                           ],
                         }],
                       }}
@@ -616,48 +704,60 @@ export default function ProductDetailPage() {
                   <div style={{ gridColumn: '1 / -1' }}>
                     <Separator style={{ margin: '2px 0 0' }} />
                   </div>
-                  <div style={{ border: '1px solid var(--border-soft)', borderRadius: 10, padding: 8, gridColumn: '1 / -1', minWidth: 0, overflow: 'hidden' }}>
+                  <div style={{ border: '1px solid var(--border-soft)', borderRadius: 10, padding: isMobile ? 4 : 8, gridColumn: '1 / -1', minWidth: 0, overflow: 'hidden' }}>
                     <div className="muted" style={{ marginBottom: 8, fontSize: '0.82rem' }}>{t('product.cheapestOffersChart')}</div>
                     <LazyEChart
-                      style={{ height: 320, width: '100%' }}
+                      style={{ height: isMobile ? 340 : 320, width: '100%' }}
                       option={{
                         tooltip: {
+                          ...chartTooltipBase,
                           trigger: 'axis',
                           axisPointer: { type: 'shadow' },
-                          valueFormatter: (value: number) => formatCurrency(Number(value || 0)),
+                          formatter: (params: any) => {
+                            const first = Array.isArray(params) ? params[0] : params;
+                            const seller = String(first?.name || '');
+                            const value = Number(first?.value || 0);
+                            return wrapTooltipHtml(`${seller}<br/>${formatCurrency(value)}`);
+                          },
                         },
-                        grid: { left: 128, right: 48, top: 26, bottom: 28, containLabel: true },
+                        grid: { left: isMobile ? 48 : 128, right: isMobile ? 12 : 48, top: 24, bottom: 24, containLabel: true },
                         xAxis: {
                           type: 'value',
                           name: m.currency || 'USD',
                           nameLocation: 'middle',
-                          nameGap: 30,
+                          nameGap: isMobile ? 22 : 30,
+                          splitNumber: isMobile ? 3 : 5,
                           axisLabel: {
-                            color: '#64748b',
-                            formatter: (value: number) => formatCurrency(Number(value || 0)),
+                            color: chartPalette.muted,
+                            hideOverlap: true,
+                            fontSize: isMobile ? 10 : 12,
+                            formatter: (value: number) => (isMobile ? formatMobilePriceAxis(value) : formatCurrency(Number(value || 0))),
                           },
-                          splitLine: { lineStyle: { color: 'rgba(148, 163, 184, 0.25)' } },
+                          splitLine: { lineStyle: { color: chartPalette.border } },
                         },
                         yAxis: {
                           type: 'category',
                           data: offersInsights.cheapestOffers.map((row) => row.seller),
                           inverse: true,
                           axisLabel: {
-                            width: 100,
+                            width: isMobile ? 52 : 100,
                             overflow: 'truncate',
-                            color: '#64748b',
-                            formatter: (value: string) => (value.length > 22 ? `${value.slice(0, 22)}...` : value),
+                            color: chartPalette.muted,
+                            formatter: (value: string) => {
+                              const maxLen = isMobile ? 14 : 22;
+                              return value.length > maxLen ? `${value.slice(0, maxLen)}...` : value;
+                            },
                           },
                         },
                         series: [{
                           type: 'bar',
                           data: offersInsights.cheapestOffers.map((row) => row.price),
-                          itemStyle: { color: '#0ea5e9', borderRadius: [0, 6, 6, 0] },
-                          barMaxWidth: 20,
+                          itemStyle: { color: chartPalette.cyan, borderRadius: [0, 6, 6, 0] },
+                          barMaxWidth: isMobile ? 16 : 20,
                           label: {
-                            show: true,
+                            show: !isMobile,
                             position: 'right',
-                            color: '#1e293b',
+                            color: chartPalette.text,
                             fontWeight: 600,
                             formatter: (params: any) => formatCurrency(Number(params.value || 0)),
                           },
@@ -734,7 +834,7 @@ export default function ProductDetailPage() {
                           {offer.isFBA ? t('product.yes') : t('product.no')}
                         </td>
                         <td style={{ padding: '8px 6px', borderBottom: '1px solid var(--border-soft)', textAlign: 'right' }}>
-                          {formatDisplayDate(product.scrapedAt, i18n.language)}
+                          {formatDisplayDate(product.scrapedAt, appLocale)}
                         </td>
                         <td style={{ padding: '8px 6px', borderBottom: '1px solid var(--border-soft)', textAlign: 'center' }}>
                           <a href={buildOfferLink(offer)} target="_blank" rel="noreferrer" style={{ color: 'var(--primary)', display: 'inline-flex', alignItems: 'center' }} title={t('product.openOfferOnAmazon')}>
@@ -797,8 +897,8 @@ export default function ProductDetailPage() {
                 <MetricItem label={t('product.minPrice')} value={formatCurrency(historyStats.min)} />
                 <MetricItem label={t('product.maxPrice')} value={formatCurrency(historyStats.max)} />
                 <MetricItem label={t('product.historyPoints')} value={historyStats.pointsCount} />
-                <MetricItem label={t('product.firstObserved')} value={formatDisplayDate(historyStats.firstObserved || undefined, i18n.language)} />
-                <MetricItem label={t('product.lastObserved')} value={formatDisplayDate(historyStats.lastObserved || undefined, i18n.language)} />
+                <MetricItem label={t('product.firstObserved')} value={formatDisplayDate(historyStats.firstObserved || undefined, appLocale)} />
+                <MetricItem label={t('product.lastObserved')} value={formatDisplayDate(historyStats.lastObserved || undefined, appLocale)} />
               </div>
             )}
           </CardContent>

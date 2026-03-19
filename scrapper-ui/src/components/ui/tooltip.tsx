@@ -21,11 +21,20 @@ export function TooltipTrigger({ asChild, children }: { asChild?: boolean; child
   const ctx = React.useContext(TooltipContext);
   if (!ctx) return <>{children}</>;
 
+  const tooltipProps = {
+    title: ctx.content,
+    overlayClassName: 'app-tooltip',
+    classNames: { root: 'app-tooltip' },
+  } as const;
+
   if (asChild && React.isValidElement(children)) {
-    return <AntTooltip title={ctx.content}>{children}</AntTooltip>;
+    const childProps = (children.props || {}) as Record<string, any>;
+    const mergedClassName = [childProps.className, 'tooltip-trigger-btn'].filter(Boolean).join(' ');
+    const enhancedChild = React.cloneElement(children as React.ReactElement<any>, { className: mergedClassName });
+    return <AntTooltip {...tooltipProps}>{enhancedChild}</AntTooltip>;
   }
 
-  return <AntTooltip title={ctx.content}><span>{children}</span></AntTooltip>;
+  return <AntTooltip {...tooltipProps}><span className="tooltip-trigger-btn">{children}</span></AntTooltip>;
 }
 
 export const TooltipContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ children }, _ref) => {

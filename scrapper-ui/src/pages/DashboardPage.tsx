@@ -28,7 +28,7 @@ export default function DashboardPage() {
   return (
     <div className="stack-col" style={{ gap: 18 }}>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Button onClick={exportMarketPdf} disabled={productsLoading || metricsLoading || isExportingPdf}>
+        <Button className="export-pdf-btn" onClick={exportMarketPdf} disabled={productsLoading || metricsLoading || isExportingPdf}>
           <FileDown size={16} />
           {isExportingPdf ? 'Exporting PDF...' : 'Export PDF'}
         </Button>

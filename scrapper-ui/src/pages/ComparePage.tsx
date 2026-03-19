@@ -5,11 +5,12 @@ import { ArrowLeft, Trash2 } from 'lucide-react';
 import { useCompare } from '../context/CompareContext';
 import { resolveMetricPrice } from '../utils/metrics';
 import { getMarketplaceDisplayName } from '../utils/marketplace';
+import { formatNumber } from '../utils/locale';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 
 export default function ComparePage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { products, removeProduct, clearCompare } = useCompare();
 
@@ -84,7 +85,7 @@ export default function ComparePage() {
   };
 
   return (
-    <div className="stack-col" style={{ padding: '24px 20px', gap: 24, maxWidth: 1400, margin: '0 auto' }}>
+    <div className="stack-col compare-page" style={{ padding: '24px 20px', gap: 24, maxWidth: 1400, margin: '0 auto' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <Button variant="outline" size="sm" onClick={() => navigate('/')}>
@@ -110,6 +111,7 @@ export default function ComparePage() {
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, gap: 12, paddingTop: 8 }}>
                            {p.metrics.imageUrl && (
                               <img 
+                                className="compare-product-image"
                                 src={p.metrics.imageUrl} 
                                 alt={p.title} 
                                 style={{ width: 120, height: 120, objectFit: 'contain', borderRadius: 8, background: '#fff', border: '1px solid var(--border)' }} 
@@ -119,7 +121,7 @@ export default function ComparePage() {
                              href={p.url} 
                              target="_blank" 
                              rel="noopener noreferrer" 
-                             className="link" 
+                             className="link compare-product-title" 
                              style={{ fontWeight: 600, fontSize: '0.9rem', lineHeight: 1.4, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
                              title={p.title}
                            >
@@ -239,9 +241,9 @@ export default function ComparePage() {
                     <td key={`reviews-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
                       {reviewsCount > 0 ? (
                         isBest ? (
-                          <span style={bestValuePillStyle}>{reviewsCount.toLocaleString()}</span>
+                          <span style={bestValuePillStyle}>{formatNumber(reviewsCount, i18n.language)}</span>
                         ) : (
-                          reviewsCount.toLocaleString()
+                          formatNumber(reviewsCount, i18n.language)
                         )
                       ) : (
                         <span className="muted">—</span>

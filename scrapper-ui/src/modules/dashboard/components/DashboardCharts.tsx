@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { AlertCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useGetProductsQuery } from '../../../store/apiSlice';
 import { Product } from '../../../types';
 import { formatCompactNumber } from '../../../utils/formatters';
 import { getEffectivePrice, getLatestUniqueProducts } from '../../../utils/productAnalytics';
+import { formatChartTime } from '../../../utils/locale';
 import { Card, CardContent } from '../../../components/ui/card';
 import LazyEChart from '../../../components/charts/LazyEChart';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../components/ui/tooltip';
@@ -57,6 +58,16 @@ function EmptyChart({ label }: { label: string }) {
 export default function DashboardCharts() {
   const { t, i18n } = useTranslation();
   const { data, isLoading } = useGetProductsQuery({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
 
   const palette = useMemo(() => {
     if (typeof window === 'undefined') {
@@ -166,6 +177,14 @@ export default function DashboardCharts() {
   const amber = palette.warning;
   const green = palette.success;
   const slate = palette.muted;
+  const echartsTooltip = {
+    backgroundColor: colorVar('--bg-elevated', '#0f172a'),
+    borderColor: borderColor,
+    borderWidth: 1,
+    textStyle: { color: '#ffffff', fontSize: 12 },
+    extraCssText: 'color:#ffffff !important; box-shadow: 0 8px 20px rgba(0,0,0,0.28);',
+  };
+  const wrapTooltipHtml = (html: string) => `<span style="color:#ffffff;">${html}</span>`;
 
   const tierKeys = ['under25', '25to50', '50to100', '100to250', '250plus'] as const;
   const tierLabels: Record<(typeof tierKeys)[number], string> = {
@@ -189,9 +208,10 @@ export default function DashboardCharts() {
 
   const dominanceOpt = {
     tooltip: {
+      ...echartsTooltip,
       trigger: 'item' as const,
       formatter: (p: any) =>
-        `<b>${p.name}</b><br/>${t('dashboard.charts.productsLabel')}: <b>${p.value}</b> (${p.percent}%)`,
+        wrapTooltipHtml(`<b>${p.name}</b><br/>${t('dashboard.charts.productsLabel')}: <b>${p.value}</b> (${p.percent}%)`),
     },
     legend: { bottom: 0, textStyle: { color: textColor }, itemGap: 12 },
     series: [
@@ -209,9 +229,10 @@ export default function DashboardCharts() {
 
   const tierOpt = {
     tooltip: {
+      ...echartsTooltip,
       trigger: 'axis' as const,
       formatter: (p: any) =>
-        `${t('dashboard.charts.rangeLabel')} <b>${p[0].axisValue}</b><br/><b>${p[0].value}</b> ${t('dashboard.charts.productsLabel').toLowerCase()}`,
+        wrapTooltipHtml(`${t('dashboard.charts.rangeLabel')} <b>${p[0].axisValue}</b><br/><b>${p[0].value}</b> ${t('dashboard.charts.productsLabel').toLowerCase()}`),
     },
     xAxis: {
       type: 'category' as const,
@@ -244,8 +265,9 @@ export default function DashboardCharts() {
 
   const bubbleOpt = {
     tooltip: {
+      ...echartsTooltip,
       formatter: (p: any) =>
-        `<b>${p.data.name}</b><br/>⭐ ${p.data.value[0]}<br/>${t('dashboard.charts.reviewsLabel')}: ${formatCompactNumber(p.data.value[1])}<br/>💰 $${p.data.value[2]}`,
+        wrapTooltipHtml(`<b>${p.data.name}</b><br/>⭐ ${p.data.value[0]}<br/>${t('dashboard.charts.reviewsLabel')}: ${formatCompactNumber(p.data.value[1])}<br/>💰 $${p.data.value[2]}`),
     },
     xAxis: {
       name: `⭐ ${t('dashboard.charts.avgRatingAxis')}`,
@@ -277,11 +299,12 @@ export default function DashboardCharts() {
 
   const velocityOpt = {
     tooltip: {
+      ...echartsTooltip,
       trigger: 'axis' as const,
       formatter: (p: any) =>
-        `<b>${p[0].name}</b><br/>${t('dashboard.charts.scoreLabel')}: <b>${p[0].value}/100</b><br/>${t('dashboard.charts.reviewsLabel')}: <b>${formatCompactNumber(
+        wrapTooltipHtml(`<b>${p[0].name}</b><br/>${t('dashboard.charts.scoreLabel')}: <b>${p[0].value}/100</b><br/>${t('dashboard.charts.reviewsLabel')}: <b>${formatCompactNumber(
           chartData.velocityData[p[0].dataIndex]?.reviews || 0
-        )}</b>`,
+        )}</b>`),
     },
     xAxis: {
       type: 'value' as const,
@@ -314,8 +337,9 @@ export default function DashboardCharts() {
 
   const discountOpt = {
     tooltip: {
+      ...echartsTooltip,
       formatter: (p: any) =>
-        `<b>${p.data.name}</b><br/>⭐ ${p.data.value[0]}<br/>🏷️ ${p.data.value[1]}%<br/>💰 $${p.data.value[2]}`,
+        wrapTooltipHtml(`<b>${p.data.name}</b><br/>⭐ ${p.data.value[0]}<br/>🏷️ ${p.data.value[1]}%<br/>💰 $${p.data.value[2]}`),
     },
     xAxis: {
       name: `⭐ ${t('dashboard.charts.ratingAxis')}`,
@@ -348,16 +372,17 @@ export default function DashboardCharts() {
 
   const trendOpt = {
     tooltip: {
+      ...echartsTooltip,
       trigger: 'axis' as const,
       formatter: (p: any) =>
-        `${t('dashboard.charts.timeLabel')}: <b>${p[0].axisValue}</b><br/>${t('dashboard.charts.priceLabel')}: <b>$${p[0].value}</b>`,
+        wrapTooltipHtml(`${t('dashboard.charts.timeLabel')}: <b>${p[0].axisValue}</b><br/>${t('dashboard.charts.priceLabel')}: <b>$${p[0].value}</b>`),
     },
     xAxis: {
       type: 'category' as const,
       data: chartData.priceTrend.map((x) =>
-        x.time.toLocaleString([], { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })
+        formatChartTime(x.time, i18n.language)
       ),
-      axisLabel: { color: textColor, rotate: 20, fontSize: 10 },
+      axisLabel: { color: textColor, rotate: isMobile ? 38 : 20, fontSize: isMobile ? 9 : 10 },
       axisLine: { show: false },
       axisTick: { show: false },
     },
@@ -379,7 +404,7 @@ export default function DashboardCharts() {
         itemStyle: { color: amber },
       },
     ],
-    grid: { left: '2%', right: '2%', bottom: '8%', containLabel: true },
+    grid: { left: isMobile ? 8 : '2%', right: isMobile ? 12 : '2%', bottom: isMobile ? '14%' : '8%', containLabel: true },
   };
 
   const hasBuyBox = chartData.dominance.length > 0;
@@ -392,28 +417,28 @@ export default function DashboardCharts() {
     <TooltipProvider>
       <div className="stack-col" style={{ gap: 18, width: '100%', minWidth: 0 }}>
         <div data-pdf-block className="grid grid-3" style={{ minWidth: 0 }}>
-          <ChartCard title={t('dashboard.charts.buyBox.title')} tooltip={t('dashboard.charts.buyBox.tooltip')} excludeFromPdf={!hasBuyBox}>
+          <ChartCard title={t('dashboard.charts.buyBox.title')} tooltip={t('dashboard.charts.buyBox.tooltip')} height={isMobile ? 270 : 300} excludeFromPdf={!hasBuyBox}>
             {hasBuyBox ? <LazyEChart option={dominanceOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label={t('dashboard.charts.buyBox.empty')} />}
           </ChartCard>
-          <ChartCard title={t('dashboard.charts.tiers.title')} tooltip={t('dashboard.charts.tiers.tooltip')}>
+          <ChartCard title={t('dashboard.charts.tiers.title')} tooltip={t('dashboard.charts.tiers.tooltip')} height={isMobile ? 270 : 300}>
             <LazyEChart option={tierOpt} style={{ height: '100%', width: '100%' }} />
           </ChartCard>
-          <ChartCard title={t('dashboard.charts.ratingReviews.title')} tooltip={t('dashboard.charts.ratingReviews.tooltip')} excludeFromPdf={!hasBubble}>
+          <ChartCard title={t('dashboard.charts.ratingReviews.title')} tooltip={t('dashboard.charts.ratingReviews.tooltip')} height={isMobile ? 280 : 300} excludeFromPdf={!hasBubble}>
             {hasBubble ? <LazyEChart option={bubbleOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label={t('dashboard.charts.ratingReviews.empty')} />}
           </ChartCard>
         </div>
 
         <div data-pdf-block className="grid grid-2" style={{ minWidth: 0 }}>
-          <ChartCard title={t('dashboard.charts.reviewVelocity.title')} tooltip={t('dashboard.charts.reviewVelocity.tooltip')} height={340} excludeFromPdf={!hasVelocity}>
+          <ChartCard title={t('dashboard.charts.reviewVelocity.title')} tooltip={t('dashboard.charts.reviewVelocity.tooltip')} height={isMobile ? 300 : 340} excludeFromPdf={!hasVelocity}>
             {hasVelocity ? <LazyEChart option={velocityOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label={t('dashboard.charts.reviewVelocity.empty')} />}
           </ChartCard>
-          <ChartCard title={t('dashboard.charts.discountVsRating.title')} tooltip={t('dashboard.charts.discountVsRating.tooltip')} height={340} excludeFromPdf={!hasDiscount}>
+          <ChartCard title={t('dashboard.charts.discountVsRating.title')} tooltip={t('dashboard.charts.discountVsRating.tooltip')} height={isMobile ? 300 : 340} excludeFromPdf={!hasDiscount}>
             {hasDiscount ? <LazyEChart option={discountOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label={t('dashboard.charts.discountVsRating.empty')} />}
           </ChartCard>
         </div>
 
         <div data-pdf-block style={{ minWidth: 0 }}>
-          <ChartCard title={t('dashboard.charts.priceTrend.title')} tooltip={t('dashboard.charts.priceTrend.tooltip')} height={320} excludeFromPdf={!hasTrend}>
+          <ChartCard title={t('dashboard.charts.priceTrend.title')} tooltip={t('dashboard.charts.priceTrend.tooltip')} height={isMobile ? 300 : 320} excludeFromPdf={!hasTrend}>
             {hasTrend ? <LazyEChart option={trendOpt} style={{ height: '100%', width: '100%' }} /> : <EmptyChart label={t('dashboard.charts.priceTrend.empty')} />}
           </ChartCard>
         </div>

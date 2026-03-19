@@ -3,6 +3,7 @@ import { Copy } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useGetPriceHistoryQuery } from '../store/apiSlice';
 import { PriceHistoryPoint } from '../types';
+import { formatDateTime } from '../utils/locale';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/dialog';
 import { Table, TableWrap, TBody, TD, TH, THead, TR } from './ui/table';
@@ -13,7 +14,7 @@ interface ProductHistoryDialogProps {
 }
 
 export function ProductHistoryDialog({ url, onClose }: ProductHistoryDialogProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { data: historyData, isFetching } = useGetPriceHistoryQuery(url);
   const [copied, setCopied] = useState(false);
 
@@ -61,7 +62,7 @@ export function ProductHistoryDialog({ url, onClose }: ProductHistoryDialogProps
                 <TBody>
                   {(historyData?.history ?? []).map((h: PriceHistoryPoint, i: number) => (
                     <TR key={`${h.scrapedAt}-${i}`}>
-                      <TD>{new Date(h.scrapedAt).toLocaleString()}</TD>
+                      <TD>{formatDateTime(h.scrapedAt, i18n.language)}</TD>
                       <TD>{h.price}</TD>
                       <TD>{h.currency}</TD>
                       <TD>${h.priceUSD || h.price}</TD>

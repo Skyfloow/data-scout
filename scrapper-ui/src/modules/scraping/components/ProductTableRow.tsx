@@ -1,12 +1,12 @@
 import React from 'react';
 import { ExternalLink, Scale } from 'lucide-react';
-import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Product } from '../../../types';
 import { resolveMetricPrice } from '../../../utils/metrics';
 import { formatCurrencyByCode } from '../../../utils/formatters';
 import { getMarketplaceDisplayName } from '../../../utils/marketplace';
+import { formatDateTimeCompact, formatNumber } from '../../../utils/locale';
 import { Badge } from '../../../components/ui/badge';
 import { Checkbox } from '../../../components/ui/checkbox';
 import { TR, TD } from '../../../components/ui/table';
@@ -19,7 +19,7 @@ interface ProductTableRowProps {
 }
 
 export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTableRowProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const price = resolveMetricPrice(row.metrics);
   const localCurrency = String(row.metrics.currency || 'USD').toUpperCase();
   const localPriceRaw = Number(row.metrics.itemPrice || row.metrics.price || row.metrics.buyBox?.price || 0);
@@ -136,8 +136,8 @@ export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTabl
                 <span style={{ color: 'var(--warning)', fontSize: '0.9rem' }}>★</span>
                 <span style={{ fontWeight: 700, fontSize: '0.85rem' }}>{row.metrics.averageRating.toFixed(1)}</span>
               </div>
-              <span className="muted" style={{ fontSize: '0.65rem' }}>
-                {(row.metrics.reviewsCount || 0).toLocaleString()} {t('table.reviewsShort')}
+                <span className="muted" style={{ fontSize: '0.65rem' }}>
+                {formatNumber(row.metrics.reviewsCount || 0, i18n.language)} {t('table.reviewsShort')}
               </span>
             </div>
             <div className="sentiment-bar" style={{ 
@@ -170,7 +170,7 @@ export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTabl
         </Badge>
       </TD>
       <TD>{resolvedStockCount ?? '—'}</TD>
-      <TD>{row.scrapedAt ? format(new Date(row.scrapedAt), 'MMM dd, HH:mm') : '—'}</TD>
+      <TD>{formatDateTimeCompact(row.scrapedAt, i18n.language)}</TD>
       <TD className="text-right" data-pdf-exclude>
         <div style={{ display: 'flex', gap: 6, justifyContent: 'flex-end' }}>
           <button 

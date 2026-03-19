@@ -81,7 +81,7 @@ export function openPrintReport(options: PrintReportOptions): void {
       </head>
       <body>
         <h1>${escapeHtml(options.title)}</h1>
-        <div class="meta">${escapeHtml(options.subtitle || `Generated: ${new Date().toLocaleString()}`)}</div>
+        <div class="meta">${escapeHtml(options.subtitle || `Generated: ${new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date())}`)}</div>
         ${cardsHtml ? `<div class="grid">${cardsHtml}</div>` : ''}
         ${options.table ? `<h3>${escapeHtml(options.table.title || 'Table')}</h3>` : ''}
         ${

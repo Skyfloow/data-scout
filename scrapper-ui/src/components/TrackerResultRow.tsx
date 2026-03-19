@@ -5,6 +5,7 @@ import { Badge } from './ui/badge';
 import { TD, TR } from './ui/table';
 import { MonitoredEntity, TrackerLatestData, TrackerResult } from '../types';
 import { getMarketplaceDisplayName } from '../utils/marketplace';
+import { formatDateTime } from '../utils/locale';
 
 export function hasKeywordLatestData(data: TrackerLatestData): data is { scrapedAt: string; topAsin?: string; topTitle?: string } {
   return Boolean(data && ('topAsin' in data || 'topTitle' in data));
@@ -26,7 +27,7 @@ interface TrackerResultRowProps {
 }
 
 export function TrackerResultRow({ item, onViewHistory }: TrackerResultRowProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const marketplaceLabel = getMarketplaceDisplayName(item.marketplace, item.type === 'product' ? item.value : undefined);
   const keywordLatest = hasKeywordLatestData(item.latestData) ? item.latestData : null;
   const productLatest = hasProductLatestData(item.latestData) ? item.latestData : null;
@@ -76,7 +77,7 @@ export function TrackerResultRow({ item, onViewHistory }: TrackerResultRowProps)
       <TD>
         <Badge variant="outline">{marketplaceLabel}</Badge>
       </TD>
-      <TD>{updatedAt ? new Date(updatedAt).toLocaleString() : '—'}</TD>
+      <TD>{updatedAt ? formatDateTime(updatedAt, i18n.language) : '—'}</TD>
       <TD className="text-right">
         <button className="icon-btn" onClick={handleHistory} title={t('monitoring.history')}>
           {item.type === 'keyword' ? <TrendingUp size={16} /> : <History size={16} />}

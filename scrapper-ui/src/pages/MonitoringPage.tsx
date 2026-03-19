@@ -29,11 +29,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { Table, TableWrap, TBody, TD, TH, THead, TR } from '../components/ui/table';
 import { EntityHistoryDialog } from '../components/EntityHistoryDialog';
 import { getMarketplaceDisplayName } from '../utils/marketplace';
+import { formatDateTime } from '../utils/locale';
 
 import { TrackerResultRow, typeVariant } from '../components/TrackerResultRow';
 
 export default function MonitoringPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [tab, setTab] = useState('results');
 
   const { data: trackersData, isLoading: isLoadingSettings } = useGetTrackersQuery(undefined, {
@@ -168,12 +169,12 @@ export default function MonitoringPage() {
                         {item.status === 'paused' ? t('monitoring.paused') : t('monitoring.active')}
                       </Badge>
                     </TD>
-                    <TD>{new Date(item.addedAt).toLocaleString()}</TD>
+                    <TD>{formatDateTime(item.addedAt, i18n.language)}</TD>
                     <TD>
                       {item.lastScrapedAt ? (
                         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                           <CheckCircle2 size={14} color="var(--success)" />
-                          {new Date(item.lastScrapedAt).toLocaleString()}
+                          {formatDateTime(item.lastScrapedAt, i18n.language)}
                         </span>
                       ) : (
                         <span className="muted">{t('monitoring.pending')}</span>

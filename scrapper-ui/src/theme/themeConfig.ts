@@ -33,7 +33,7 @@ export function getAntdThemeConfig(mode: 'light' | 'dark'): ThemeConfig {
     algorithm: mode === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
     token: {
       colorPrimary: mode === 'dark' ? '#fafafa' : '#18181b',
-      colorTextLightSolid: mode === 'dark' ? '#09090b' : '#ffffff',
+      colorTextLightSolid: mode === 'dark' ? '#fafafa' : '#ffffff',
       borderRadius: 6,
       borderRadiusLG: 8,
       fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
@@ -53,6 +53,11 @@ export function getAntdThemeConfig(mode: 'light' | 'dark'): ThemeConfig {
       controlHeight: 36,
       boxShadow: mode === 'dark' ? '0 10px 15px -3px rgba(0, 0, 0, 0.5)' : '0 10px 15px -3px rgba(0, 0, 0, 0.03), 0 4px 6px -4px rgba(0, 0, 0, 0.03)',
       boxShadowSecondary: mode === 'dark' ? '0 4px 6px -1px rgba(0, 0, 0, 0.5)' : '0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.02)',
+    },
+    components: {
+      Tooltip: {
+        colorTextLightSolid: mode === 'dark' ? '#fafafa' : '#ffffff',
+      },
     },
   };
 }

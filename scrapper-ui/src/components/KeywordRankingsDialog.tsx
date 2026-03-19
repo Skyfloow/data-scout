@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useGetKeywordRankingsQuery } from '../store/apiSlice';
 import { SerpResult } from '../types';
 import { getMarketplaceDisplayName } from '../utils/marketplace';
+import { formatDateTime } from '../utils/locale';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
@@ -17,7 +18,7 @@ interface KeywordRankingsDialogProps {
 }
 
 export function KeywordRankingsDialog({ keyword, marketplace, onClose }: KeywordRankingsDialogProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const marketplaceLabel = getMarketplaceDisplayName(marketplace);
   const { data: rankingData, isFetching } = useGetKeywordRankingsQuery({ keyword, marketplace });
   const [expandedScans, setExpandedScans] = useState<Record<string, boolean>>({});
@@ -64,7 +65,7 @@ export function KeywordRankingsDialog({ keyword, marketplace, onClose }: Keyword
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                       <Badge variant="warning">{t('monitoring.sponsored')}: {totalSponsored}</Badge>
                       <Badge variant="success">{t('monitoring.organic')}: {totalResults - totalSponsored}</Badge>
-                      <Badge variant="outline">{t('monitoring.latestScan')}: {latestScanAt ? new Date(latestScanAt).toLocaleString() : '—'}</Badge>
+                      <Badge variant="outline">{t('monitoring.latestScan')}: {latestScanAt ? formatDateTime(latestScanAt, i18n.language) : '—'}</Badge>
                     </div>
                   </div>
                 </CardContent>
@@ -79,7 +80,7 @@ export function KeywordRankingsDialog({ keyword, marketplace, onClose }: Keyword
                   <Card key={snap.scrapedAt}>
                     <CardContent>
                       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
-                        <div className="muted" style={{ fontWeight: 600 }}>{t('monitoring.scannedAt')} {new Date(snap.scrapedAt).toLocaleString()}</div>
+                        <div className="muted" style={{ fontWeight: 600 }}>{t('monitoring.scannedAt')} {formatDateTime(snap.scrapedAt, i18n.language)}</div>
                         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
                           <Badge variant="outline">{t('monitoring.resultsCount')}: {snap.rankings?.length || 0}</Badge>
                           <Badge variant="warning">{t('monitoring.sponsored')}: {sponsoredCount}</Badge>
