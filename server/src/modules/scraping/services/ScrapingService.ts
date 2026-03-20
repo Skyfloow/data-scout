@@ -170,6 +170,62 @@ export class ScrapingService {
     return next;
   }
 
+  private hasValidPrice(product?: Product): boolean {
+    const value = Number(product?.metrics?.price || product?.metrics?.itemPrice || 0);
+    return Number.isFinite(value) && value > 0;
+  }
+
+  private isAmazonUrl(url: string): boolean {
+    try {
+      return new URL(url).hostname.toLowerCase().includes('amazon.');
+    } catch {
+      return url.includes('amazon.');
+    }
+  }
+
+  private isAmazonOwnedSellerName(name?: string): boolean {
+    const normalized = String(name || '').trim().toLowerCase();
+    if (!normalized) return false;
+    return /^amazon(?:\.[a-z]{2,3})?$/.test(normalized)
+      || normalized.includes('sold by amazon')
+      || normalized.includes('amazon resale')
+      || normalized.includes('warehouse deals');
+  }
+
+  private getPrimarySellerName(product?: Product): string {
+    const metrics = product?.metrics as ProductMetrics | undefined;
+    return String(
+      metrics?.buyBox?.sellerName
+      || metrics?.selectedOffer?.sellerName
+      || metrics?.offers?.[0]?.sellerName
+      || ''
+    ).trim();
+  }
+
+  private shouldPreferCrawleeAmazonResult(firecrawlProduct?: Product, crawleeProduct?: Product): boolean {
+    if (!this.hasValidPrice(crawleeProduct)) return false;
+    if (!this.hasValidPrice(firecrawlProduct)) return true;
+
+    const fireSeller = this.getPrimarySellerName(firecrawlProduct);
+    const crawleeSeller = this.getPrimarySellerName(crawleeProduct);
+    const fireAmazon = this.isAmazonOwnedSellerName(fireSeller);
+    const crawleeAmazon = this.isAmazonOwnedSellerName(crawleeSeller);
+
+    if (!fireAmazon && crawleeAmazon) return true;
+
+    const firePrice = Number(firecrawlProduct?.metrics?.price || firecrawlProduct?.metrics?.itemPrice || 0);
+    const crawleePrice = Number(crawleeProduct?.metrics?.price || crawleeProduct?.metrics?.itemPrice || 0);
+    const avgBase = Math.max(1, (firePrice + crawleePrice) / 2);
+    const deltaRatio = Math.abs(crawleePrice - firePrice) / avgBase;
+    if (crawleeAmazon && deltaRatio >= 0.01) return true;
+
+    const fireOffers = Number(firecrawlProduct?.metrics?.offers?.length || 0);
+    const crawleeOffers = Number(crawleeProduct?.metrics?.offers?.length || 0);
+    if (crawleeOffers >= 3 && fireOffers <= 1) return true;
+
+    return false;
+  }
+
   private async processJob(jobId: string, url: string, scraperType: ScraperType): Promise<void> {
     try {
       let finalProduct: Product | undefined;
@@ -187,11 +243,46 @@ export class ScrapingService {
           if (firecrawlResult.product && firecrawlResult.product.metrics.price) {
              finalProduct = firecrawlResult.product;
              logger.info(`[Job ${jobId}] Phase 1 (Firecrawl) succeeded natively!`);
+
+             // Phase 1.25: Amazon reconciliation pass.
+             // Firecrawl snapshots can capture a non-primary seller/price block.
+             // Run Crawlee as verifier and prefer it only when it is clearly better.
+             if (this.isAmazonUrl(url)) {
+               try {
+                 crawleeResult = await this.crawleeAdapter.scrapeProduct(url);
+                 if (this.shouldPreferCrawleeAmazonResult(finalProduct, crawleeResult.product)) {
+                   finalProduct = crawleeResult.product;
+                   logger.info(`[Job ${jobId}] Phase 1.25 (Crawlee reconcile) replaced Firecrawl result for Amazon quality.`);
+                 } else {
+                   logger.info(`[Job ${jobId}] Phase 1.25 (Crawlee reconcile) kept Firecrawl result.`);
+                 }
+               } catch (reconcileError: any) {
+                 logger.warn(`[Job ${jobId}] Phase 1.25 (Crawlee reconcile) failed: ${reconcileError?.message || 'unknown error'}`);
+               }
+             }
           } else {
-             needsHeavyFallback = true;
              const p1Error = firecrawlResult.error || 'Missing critical data (price)';
              phaseErrors.push(`Phase 1 (Firecrawl) failed: ${p1Error}`);
-             logger.warn(`[Job ${jobId}] Phase 1 (Firecrawl) missed critical data: ${p1Error}. Planning Heavy Fallback.`);
+
+             // Phase 1.5: Amazon reliability fallback (Crawlee)
+             // Firecrawl may return incomplete Amazon snapshots (price=0/missing metrics) for some ASIN pages.
+             // In this case, run Crawlee to recover complete metrics before expensive multimodal fallback.
+             if (url.includes('amazon')) {
+               logger.warn(`[Job ${jobId}] Phase 1 (Firecrawl) missed critical data: ${p1Error}. Trying Crawlee fallback for Amazon...`);
+               crawleeResult = await this.crawleeAdapter.scrapeProduct(url);
+               if (crawleeResult.product && crawleeResult.product.metrics.price) {
+                 finalProduct = crawleeResult.product;
+                 logger.info(`[Job ${jobId}] Phase 1.5 (Crawlee fallback) succeeded for Firecrawl flow.`);
+               } else {
+                 needsHeavyFallback = true;
+                 const p15Error = crawleeResult.error || 'Missing critical data (price)';
+                 phaseErrors.push(`Phase 1.5 (Crawlee fallback) failed: ${p15Error}`);
+                 logger.warn(`[Job ${jobId}] Phase 1.5 (Crawlee fallback) failed: ${p15Error}. Planning Heavy Fallback.`);
+               }
+             } else {
+               needsHeavyFallback = true;
+               logger.warn(`[Job ${jobId}] Phase 1 (Firecrawl) missed critical data: ${p1Error}. Planning Heavy Fallback.`);
+             }
           }
       } else {
           // Phase 1: Fast Pass (Crawlee + Cheerio + Pre-Cached Selectors)

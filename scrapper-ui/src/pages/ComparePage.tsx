@@ -376,17 +376,6 @@ export default function ComparePage() {
                   ))}
                 </tr>
 
-                <tr className="table-row">
-                  <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)' }}>
-                    BSR
-                  </td>
-                  {products.map(p => (
-                    <td key={`bsr-${p.id}`} className="table-td" style={{ textAlign: 'center' }}>
-                      {p.metrics.bestSellerRank || (p.metrics.bsrCategories?.[0] ? `#${p.metrics.bsrCategories[0].rank}` : <span className="muted">—</span>)}
-                    </td>
-                  ))}
-                </tr>
-
                 {/* Seller / Brand Row (Last Row) */}
                 <tr className="table-row">
                   <td className="table-td" style={{ position: 'sticky', left: 0, zIndex: 10, background: 'var(--bg-elevated)', fontWeight: 600, borderRight: '1px solid var(--border)', borderBottom: 'none' }}>

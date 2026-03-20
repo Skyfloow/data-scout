@@ -99,6 +99,9 @@ export function parseAmazonAodOffersHtml(html: string, currency: string, origin:
     const priceText = $(el).find('.a-price .a-offscreen').first().text().trim()
                    || $(el).find('.aod-offer-price .a-offscreen').first().text().trim()
                    || $(el).find('.a-price-whole').first().text().trim();
+    const whole = $(el).find('.a-price-whole').first().text().replace(/[^\d]/g, '').trim();
+    const fraction = $(el).find('.a-price-fraction').first().text().replace(/[^\d]/g, '').trim();
+    const normalizedPriceText = priceText || (whole ? `${whole}.${fraction || '00'}` : '');
     
     const sellerName = $(el).find('#aod-offer-soldBy a[aria-label]').first().text().trim()
                     || $(el).find('#aod-offer-soldBy a').first().text().trim()
@@ -132,8 +135,8 @@ export function parseAmazonAodOffersHtml(html: string, currency: string, origin:
         : `${origin}${offerHref.startsWith('/') ? '' : '/'}${offerHref}`
       : undefined;
     
-    if (priceText) {
-      const price = parsePrice(priceText);
+    if (normalizedPriceText) {
+      const price = parsePrice(normalizedPriceText);
       const elText = $(el).text().toLowerCase();
       const offerIsFBA = elText.includes('fulfilled by amazon') || elText.includes('amazon.com');
       const stockCount = resolveOfferStockCount(parseStockCount(stockText), extractOfferQuantity($, el));

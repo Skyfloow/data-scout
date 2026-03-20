@@ -1983,5 +1983,816 @@
     },
     "scrapedAt": "2026-03-19T19:24:34.145Z",
     "scrapedBy": "crawler"
+  },
+  {
+    "id": "f59339d7-4be4-4f0c-9edf-6a8c79f30e78",
+    "title": "Google Pixel 10 Pro - Unlocked Android Smartphone - Gemini AI Assistant, Triple Rear Camera System, Fast-Charging 24+ Hour Battery, and 6.3\" Super Actua Display - Obsidian - 256 GB (2025 Model)",
+    "url": "https://www.amazon.com/dp/B0FFTQGTCK",
+    "marketplace": "amazon.com",
+    "metrics": {
+      "currency": "USD",
+      "description": "Pixel 10 Pro XL is the ultimate Pixel experience, featuring unprecedented AI - Gemini, unbelievable camera quality, impeccable design, and the next-gen Google Tensor G5 chip.[1] About this item Google Pixel 10 Pro is the ultimate Pixel experience, featuring advanced AI - Gemini, unbelievable camera quality, impeccable design in two sizes, and the next-gen Google Tensor G5 chip[1] Unlocked Android phone gives you the flexibility to change carriers and choose your own data plan[2]; it works - Google Fi, Verizon, T-Mobile, AT&T, and other major carriers Pixel’s pro camera system makes everything look amazing, even in low light; capture more of the scene - advanced Google AI models, and bring out incredible details - 100x Pro Res Zoom, stunning 50 MP images, and super steady videos in 8K[10] Pixel 10 Pro is built - durable aluminum and Corning Gorilla Glass Victus 2 for scratch and drop resistance; the 6.3-inch Super Actua display - 3,300-nit peak brightness is easy on the eyes, even in direct sunlight[3,13,18] Instead of typing, use Gemini Live to have a natural, free-flowing conversation; point your camera at what you’re curious about – like a sea creature at the aquarium – or chat - Gemini to brainstorm ideas or get things done across apps[4] › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/61OyKi98IuL._AC_SX679_.jpg",
+      "brand": "Google",
+      "availability": "In Stock",
+      "features": [
+        "Google Pixel 10 Pro is the ultimate Pixel experience, featuring advanced AI - Gemini, unbelievable camera quality, impeccable design in two sizes, and the next-gen Google Tensor G5 chip[1]",
+        "Unlocked Android phone gives you the flexibility to change carriers and choose your own data plan[2]; it works - Google Fi, Verizon, T-Mobile, AT&T, and other major carriers",
+        "Pixel’s pro camera system makes everything look amazing, even in low light; capture more of the scene - advanced Google AI models, and bring out incredible details - 100x Pro Res Zoom, stunning 50 MP images, and super steady videos in 8K[10]",
+        "Pixel 10 Pro is built - durable aluminum and Corning Gorilla Glass Victus 2 for scratch and drop resistance; the 6.3-inch Super Actua display - 3,300-nit peak brightness is easy on the eyes, even in direct sunlight[3,13,18]",
+        "Instead of typing, use Gemini Live to have a natural, free-flowing conversation; point your camera at what you’re curious about – like a sea creature at the aquarium – or chat - Gemini to brainstorm ideas or get things done across apps[4]"
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/31WZYU74l2L._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51emV6Exx2L._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/41iUnEAIfFL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51HjjY9lxXL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/51xNrpsAjJL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/417SLN0f5XL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/71LAPcDeP8L.SX38_SY50_CR,0,0,38,50_BG85,85,85_BR-120_PKdp-play-icon-overlay__.png",
+        "https://m.media-amazon.com/images/I/61OyKi98IuL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "Amazon Resale",
+          "price": 849,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": 9,
+          "condition": "New",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+          "sellerName": "Amazon Resale",
+          "price": 670.71,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Wednesday, March 25",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+          "sellerName": "Amazon Resale",
+          "price": 781.08,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Wednesday, March 25 ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/main?ie=UTF8&seller=A1E8ZQ1YY52UPT&isAmazonFulfilled=1&asin=B0FFTQGTCK&ref_=olp_merch_name_3",
+          "sellerName": "Emily's Store (SN Recorded)",
+          "price": 1049,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Wednesday, March 25 ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3PXEAW87KM09L&sshmPath=shipping-rates",
+          "sellerName": "Super Prime Shop",
+          "price": 1079.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tomorrow, March 21. Order within 8 hrs 8 mins. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A26R4S4P0T9XHG&sshmPath=shipping-rates",
+          "sellerName": "Worldwide Shipping (Record S/N)",
+          "price": 1299.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Monday, March 30. Details Or fastest delivery Monday, March 23. Order within 8 hrs 8 mins. Details ... More",
+          "isFBA": true
+        }
+      ],
+      "asin": "B0FFTQGTCK",
+      "price": 849,
+      "itemPrice": 849,
+      "originalPrice": 1099,
+      "discountPercentage": 23,
+      "averageRating": 4.3,
+      "reviewsCount": 64,
+      "stockCount": 9,
+      "isAmazonChoice": true,
+      "isBestSeller": false,
+      "couponText": "Savings Save extra $100 with Trade-in Shop items .cxcwEmphasisLink { padding-left: 6px; padding-right: 12px !important; display: inline-block; } .cxcwEmphasisLink::after { bottom: 6.5px !important; margin-left: 2px !important; } Savings Save extra $100 with Trade-in Shop items .cxcwEmphasisLink { padding-left: 6px; padding-right: 12px !important; display: inline-block; } .cxcwEmphasisLink::after { bottom: 6.5px !important; margin-left: 2px !important; }",
+      "deliveryInfo": "FREE delivery Wednesday, March 25 Or Prime members get FREE delivery Tomorrow, March 21. Order within 14 hrs 38 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); FREE delivery Wednesday, March 25 Or Prime members get FREE delivery Tomorrow, March 21. Order within 4 hrs 28 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); }));",
+      "modelNumber": "G4QUR",
+      "manufacturer": "Google",
+      "dateFirstAvailable": "August 20, 2025",
+      "isPrime": true,
+      "salesVolume": "100+ bought in past month",
+      "isClimateFriendly": true,
+      "videoCount": 7,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0FFTR9DST",
+          "title": "Google Pixel 10 - Unlocked Android Smartphone - Gemini AI Assistant - Advanced Triple Rear Camera, Fast-Charging 24+ Hour Bat"
+        },
+        {
+          "asin": "B0FSLVQWYP",
+          "title": "Google Pixel 10 Pro - Unlocked Android Smartphone - Gemini AI Assistant, Triple Rear Camera System, and 6.3\" Super Actua Disp"
+        },
+        {
+          "asin": "B0D7HVZVRZ",
+          "title": "Google Pixel 9 Pro - Unlocked Android Smartphone with Gemini, Triple Rear Camera System, 24-Hour Battery, and 6.3\" Super Actu"
+        },
+        {
+          "asin": "B0FTZT2P24",
+          "title": "Google Pixel 10 Pro - Unlocked Android Smartphone - Gemini AI Assistant, Triple Rear Camera System, and 6.3\" Super Actua Disp"
+        },
+        {
+          "asin": "B0DKPH4Z5T",
+          "title": "Google Pixel 9 Pro - Unlocked Android Smartphone, Triple Rear Camera System, 24-Hour Battery, and 6.3\" Super Actua Display -"
+        },
+        {
+          "asin": "B0FFTNCY4Z",
+          "title": "Google Pixel 10 Pro Fold - Unlocked Android Smartphone - Gemini AI Assistant - Advanced Triple Rear Camera System - 24+ Hour"
+        },
+        {
+          "asin": "B09CSSP9C1",
+          "title": "Ailun Screen Protector for iPhone 17e / iPhone 16e / iPhone 14 / iPhone 13 / iPhone 13 Pro [6.1 Inch] Display 3 Pack Tempered"
+        },
+        {
+          "asin": "B0FDQH511S",
+          "title": "Ailun 3 Pack Screen Protector for iPhone 17 Pro Max [6.9 inch] + 3 Pack Camera Lens Protector with Installation Frame,Dynamic"
+        },
+        {
+          "asin": "B0FH655984",
+          "title": "SUPFINE Magnetic for iPhone 17 Pro Max Case (Compatible with MagSafe)(Military Grade Drop Protection) Translucent Matte Shock"
+        },
+        {
+          "asin": "B0F8VZ7QVX",
+          "title": "NEW'C 3 Pack Designed for iPhone 17/17 Pro, iPhone 16 Pro Screen Protector (6.3 inches), Enhanced Tempered Glass Protection w"
+        },
+        {
+          "asin": "B0FDQ3PWCX",
+          "title": "FNTCASE for iPhone 17 Pro-Max Case: Clear Magnetic Phone Cases with Screen Protector Compatible with Magsafe Slim Anti Yellow"
+        },
+        {
+          "asin": "B09KR8P3L5",
+          "title": "iPhone 17 16 15 Charger Fast Charging Type C Chargers USB C Charger Block iPhone 17 16 15 Air Pro Max Chargers with 6FT Cable"
+        },
+        {
+          "asin": "B0FFTQGTCK",
+          "title": "Google Pixel 10 Pro - Unlocked Android Smartphone - Gemini AI Assistant, Triple Rear Camera System, Fast-Charging 24+ Hour Ba"
+        },
+        {
+          "asin": "B0D7HVZVRZ",
+          "title": "Google Pixel 9 Pro - Unlocked Android Smartphone with Gemini, Triple Rear Camera System, 24-Hour Battery, and 6.3\" Super Actu"
+        },
+        {
+          "asin": "B0FFTR9DST",
+          "title": "Google Pixel 10 - Unlocked Android Smartphone - Gemini AI Assistant - Advanced Triple Rear Camera, Fast-Charging 24+ Hour Bat"
+        },
+        {
+          "asin": "B0FFTNCY4Z",
+          "title": "Google Pixel 10 Pro Fold - Unlocked Android Smartphone - Gemini AI Assistant - Advanced Triple Rear Camera System - 24+ Hour"
+        },
+        {
+          "asin": "B0D7HWJDQM",
+          "title": "Google Pixel 9 - Unlocked Android Smartphone with Gemini, 24-Hour Battery, Advanced Camera, and 6.3\" Actua Display - Obsidian"
+        },
+        {
+          "asin": "B0DVHV67XH",
+          "title": "Google Pixel 9a with Gemini - Unlocked Android Smartphone with Incredible Camera and AI Photo Editing, All-Day Battery, and P"
+        }
+      ],
+      "bsrCategories": [
+        {
+          "rank": 10929,
+          "category": "Cell Phones &amp; Accessories"
+        },
+        {
+          "rank": 199,
+          "category": "Cell Phones"
+        }
+      ],
+      "bestSellerRank": "#10,929 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #199 in Cell Phones",
+      "buyBox": {
+        "sellerName": "Amazon Resale",
+        "price": 849,
+        "isFBA": true,
+        "isAmazon": false,
+        "observedAt": "2026-03-20T08:52:05.759Z",
+        "shipsFrom": "Amazon"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "Amazon Resale",
+        "price": 849,
+        "currency": "USD",
+        "condition": "New",
+        "isFBA": true,
+        "isAmazon": false
+      },
+      "sellerCount": 6,
+      "averageOfferPrice": 954.96,
+      "lowestOfferPrice": 670.71,
+      "category": "Cell Phones & Accessories > Cell Phones",
+      "amazonMetrics": {
+        "asin": "B0FFTQGTCK",
+        "buyBox": {
+          "sellerName": "Amazon Resale",
+          "price": 849,
+          "isFBA": true,
+          "isAmazon": false,
+          "observedAt": "2026-03-20T08:52:05.759Z",
+          "shipsFrom": "Amazon"
+        },
+        "bsrCategories": [
+          {
+            "rank": 10929,
+            "category": "Cell Phones &amp; Accessories"
+          },
+          {
+            "rank": 199,
+            "category": "Cell Phones"
+          }
+        ],
+        "bestSellerRank": "#10,929 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #199 in Cell Phones",
+        "isPrime": true,
+        "isAmazonChoice": true,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 6,
+        "offers": [
+          {
+            "sellerName": "Amazon Resale",
+            "price": 849,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": 9,
+            "condition": "New",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+            "sellerName": "Amazon Resale",
+            "price": 670.71,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Wednesday, March 25",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/Warehouse-Deals/b?ie=UTF8&node=10158976011",
+            "sellerName": "Amazon Resale",
+            "price": 781.08,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Wednesday, March 25 ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/main?ie=UTF8&seller=A1E8ZQ1YY52UPT&isAmazonFulfilled=1&asin=B0FFTQGTCK&ref_=olp_merch_name_3",
+            "sellerName": "Emily's Store (SN Recorded)",
+            "price": 1049,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Wednesday, March 25 ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3PXEAW87KM09L&sshmPath=shipping-rates",
+            "sellerName": "Super Prime Shop",
+            "price": 1079.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tomorrow, March 21. Order within 8 hrs 8 mins. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A26R4S4P0T9XHG&sshmPath=shipping-rates",
+            "sellerName": "Worldwide Shipping (Record S/N)",
+            "price": 1299.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Monday, March 30. Details Or fastest delivery Monday, March 23. Order within 8 hrs 8 mins. Details ... More",
+            "isFBA": true
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-20T08:52:05.759Z",
+      "itemPriceObservedAt": "2026-03-20T08:52:05.759Z",
+      "priceUSD": 849,
+      "itemPriceUSD": 849,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-20T08:52:05.759Z",
+    "scrapedBy": "crawler"
+  },
+  {
+    "id": "594b84c2-7654-4b83-97e5-4e23a1b340be",
+    "title": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed)",
+    "url": "https://www.amazon.com/dp/B0DHJ9SCJ4?th=1",
+    "marketplace": "amazon.com",
+    "metrics": {
+      "currency": "USD",
+      "description": "Apple iPhone 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked (Renewed) About this item This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers. There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length. This product will have a battery which exceeds 80% capacity relative to new. Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box. This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied. › See more product details",
+      "imageUrl": "https://m.media-amazon.com/images/I/61zU0mI4EsL._AC_SX679_.jpg",
+      "brand": "Amazon Renewed",
+      "availability": "In Stock",
+      "features": [
+        "This pre-owned product is not Apple certified, but has been professionally inspected, tested and cleaned by Amazon-qualified suppliers.",
+        "There will be no visible cosmetic imperfections when held at an arm’s length. There will be no visible cosmetic imperfections when held at an arm’s length.",
+        "This product will have a battery which exceeds 80% capacity relative to new.",
+        "Accessories will not be original, but will be compatible and fully functional. Product may come in generic Box.",
+        "This product is eligible for a replacement or refund within 90 days of receipt if you are not satisfied."
+      ],
+      "imageUrls": [
+        "https://m.media-amazon.com/images/I/41bicYTK4jL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/21bAqImYHVL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/317mK34pWML._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31ItSVbfwpL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/31vEyK5FmBL._AC_SR38,50_.jpg",
+        "https://m.media-amazon.com/images/I/61zU0mI4EsL.jpg"
+      ],
+      "offers": [
+        {
+          "sellerName": "WirelessSource",
+          "price": 829.86,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": 3,
+          "condition": "New",
+          "isFBA": false
+        },
+        {
+          "sellerName": "Amazon.com",
+          "price": 829.86,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Wednesday, March 25 Or Prime members get FREE Same-Day delivery Today 6 PM - 11 PM. Order within 3 hrs 24 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3J9LL0SKEEIO0&sshmPath=shipping-rates",
+          "sellerName": "WirelessSource",
+          "price": 788.97,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tuesday, March 24. Order within 14 hrs 19 mins. Details",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AR1FTLUUZC24W&sshmPath=shipping-rates",
+          "sellerName": "Networkstore",
+          "price": 789.97,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tuesday, March 24. Order within 9 hrs 49 mins. Details",
+          "isFBA": false
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A1APMGLUPT74RB&sshmPath=shipping-rates",
+          "sellerName": "ItsWorthMore",
+          "price": 809.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tuesday, March 24. Details Or fastest delivery Tomorrow, March 21. Order within 7 hrs 49 mins. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A1MHFCO2PIHZJC&sshmPath=shipping-rates",
+          "sellerName": "Tech Specials Direct",
+          "price": 810,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery March 25 - 27. Details Or fastest delivery March 24 - 25. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AUA7F6JLX2JA1&sshmPath=shipping-rates",
+          "sellerName": "DirectCertified",
+          "price": 823.46,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery March 25 - 26. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AAARZTGJKFYIP&sshmPath=shipping-rates",
+          "sellerName": "Power-On-Deals",
+          "price": 830,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Thursday, March 26. Details Or fastest delivery Tomorrow, March 21. Order within 7 hrs 49 mins. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AAARZTGJKFYIP&sshmPath=shipping-rates",
+          "sellerName": "Power-On-Deals",
+          "price": 830.47,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Thursday, March 26. Details Or fastest delivery Tomorrow, March 21. Order within 7 hrs 49 mins. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3J9LL0SKEEIO0&sshmPath=shipping-rates",
+          "sellerName": "WirelessSource",
+          "price": 835.97,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tuesday, March 24. Order within 14 hrs 19 mins. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AR1FTLUUZC24W&sshmPath=shipping-rates",
+          "sellerName": "Networkstore",
+          "price": 836.97,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Tuesday, March 24. Order within 9 hrs 49 mins. Details ... More",
+          "isFBA": true
+        },
+        {
+          "offerId": "aod-offer",
+          "offerUrl": "https://www.amazon.com/gp/aag/main?ie=UTF8&seller=A1KWJVS57NX03I&isAmazonFulfilled=1&asin=B0DHJ9SCJ4&ref_=olp_merch_name_10",
+          "sellerName": "Woot",
+          "price": 840.99,
+          "currency": "USD",
+          "stockStatus": "In Stock",
+          "stockCount": null,
+          "condition": "New",
+          "deliveryInfo": "FREE delivery Wednesday, March 25 Or Prime members get FREE delivery Monday, March 23. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+          "isFBA": true
+        }
+      ],
+      "asin": "B0DHJ9SCJ4",
+      "price": 829.86,
+      "itemPrice": 829.86,
+      "averageRating": 4.3,
+      "reviewsCount": 2616,
+      "stockCount": 3,
+      "isAmazonChoice": false,
+      "isBestSeller": false,
+      "deliveryInfo": "FREE delivery Wednesday, March 25 Or Prime members get FREE delivery Today 6 PM - 11 PM. Order within 3 hrs 24 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); FREE delivery Tuesday, March 24. Order within 14 hrs 19 mins. Details",
+      "modelNumber": "A3296",
+      "manufacturer": "Apple",
+      "dateFirstAvailable": "October 20, 2024",
+      "isPrime": false,
+      "salesVolume": "500+ bought in past month",
+      "isClimateFriendly": true,
+      "videoCount": 26,
+      "customersAlsoViewed": [
+        {
+          "asin": "B0DNTC3HXX",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
+        },
+        {
+          "asin": "B0CMZDBVWT",
+          "title": "Apple iPhone 15 Pro Max, 256GB, Blue Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0FTC2PRVZ",
+          "title": "Apple iPhone 17 Pro Max, US Version, 256GB, eSIM, Cosmic Orange- Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0CRJK7V6D",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 512GB, Natural Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRJSBN5M",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Natural Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CRHZZLYR",
+          "title": "Apple iPhone (Renewed Premium) 15 Pro Max, 256GB, Blue Titanium - Unlocked"
+        },
+        {
+          "asin": "B0DPDK3JVN",
+          "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Black Titanium - Unlocked"
+        },
+        {
+          "asin": "B0DPDK8T2J",
+          "title": "Apple iPhone (Renewed Premium) 16 Pro Max, US Version, 256GB, Desert Titanium - Unlocked"
+        },
+        {
+          "asin": "B0CMZDBVWT",
+          "title": "Apple iPhone 15 Pro Max, 256GB, Blue Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DNTC3HXX",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
+        },
+        {
+          "asin": "B0DHJDPYYR",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Black Titanium - Unlocked (Renewed)"
+        },
+        {
+          "asin": "B0DHJC1VZ5",
+          "title": "Apple iPhone 16 Pro, US Version, 128GB, Desert Titanium - Unlocked (Renewed) | 149.6 mm"
+        },
+        {
+          "asin": "B09CSSP9C1",
+          "title": "Ailun Screen Protector for iPhone 17e / iPhone 16e / iPhone 14 / iPhone 13 / iPhone 13 Pro [6.1 Inch] Display 3 Pack Tempered"
+        },
+        {
+          "asin": "B0FDQH511S",
+          "title": "Ailun 3 Pack Screen Protector for iPhone 17 Pro Max [6.9 inch] + 3 Pack Camera Lens Protector with Installation Frame,Dynamic"
+        },
+        {
+          "asin": "B0FH655984",
+          "title": "SUPFINE Magnetic for iPhone 17 Pro Max Case (Compatible with MagSafe)(Military Grade Drop Protection) Translucent Matte Shock"
+        },
+        {
+          "asin": "B0F8VZ7QVX",
+          "title": "NEW'C 3 Pack Designed for iPhone 17/17 Pro, iPhone 16 Pro Screen Protector (6.3 inches), Enhanced Tempered Glass Protection w"
+        },
+        {
+          "asin": "B0FDQ3PWCX",
+          "title": "FNTCASE for iPhone 17 Pro-Max Case: Clear Magnetic Phone Cases with Screen Protector Compatible with Magsafe Slim Anti Yellow"
+        },
+        {
+          "asin": "B09KR8P3L5",
+          "title": "iPhone 17 16 15 Charger Fast Charging Type C Chargers USB C Charger Block iPhone 17 16 15 Air Pro Max Chargers with 6FT Cable"
+        },
+        {
+          "asin": "B0DNTC3HXX",
+          "title": "Apple iPhone 16 Pro, US Version, 256GB, Desert Titanium - Unlocked (Renewed Premium)"
+        },
+        {
+          "asin": "B0CMZDBVWT",
+          "title": "Apple iPhone 15 Pro Max, 256GB, Blue Titanium - Unlocked (Renewed)"
+        }
+      ],
+      "bsrCategories": [
+        {
+          "rank": 701,
+          "category": "Cell Phones &amp; Accessories"
+        },
+        {
+          "rank": 7,
+          "category": "Renewed Smartphones"
+        },
+        {
+          "rank": 12,
+          "category": "Cell Phones"
+        }
+      ],
+      "bestSellerRank": "#701 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #12 in Cell Phones",
+      "buyBox": {
+        "sellerName": "WirelessSource",
+        "price": 829.86,
+        "isFBA": false,
+        "isAmazon": false,
+        "observedAt": "2026-03-20T09:11:13.686Z"
+      },
+      "selectedOffer": {
+        "source": "buybox",
+        "sellerName": "WirelessSource",
+        "price": 829.86,
+        "currency": "USD",
+        "condition": "New",
+        "isFBA": false,
+        "isAmazon": false
+      },
+      "sellerCount": 17,
+      "averageOfferPrice": 821.38,
+      "lowestOfferPrice": 788.97,
+      "category": "Cell Phones & Accessories > Cell Phones",
+      "amazonMetrics": {
+        "asin": "B0DHJ9SCJ4",
+        "buyBox": {
+          "sellerName": "WirelessSource",
+          "price": 829.86,
+          "isFBA": false,
+          "isAmazon": false,
+          "observedAt": "2026-03-20T09:11:13.686Z"
+        },
+        "bsrCategories": [
+          {
+            "rank": 701,
+            "category": "Cell Phones &amp; Accessories"
+          },
+          {
+            "rank": 7,
+            "category": "Renewed Smartphones"
+          },
+          {
+            "rank": 12,
+            "category": "Cell Phones"
+          }
+        ],
+        "bestSellerRank": "#701 in Cell Phones & Accessories (See Top 100 in Cell Phones & Accessories) #7 in Renewed Smartphones #12 in Cell Phones",
+        "isPrime": false,
+        "isAmazonChoice": false,
+        "isBestSeller": false,
+        "isClimateFriendly": true,
+        "sellerCount": 17,
+        "offers": [
+          {
+            "sellerName": "WirelessSource",
+            "price": 829.86,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": 3,
+            "condition": "New",
+            "isFBA": false
+          },
+          {
+            "sellerName": "Amazon.com",
+            "price": 829.86,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Wednesday, March 25 Or Prime members get FREE Same-Day delivery Today 6 PM - 11 PM. Order within 3 hrs 24 mins. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3J9LL0SKEEIO0&sshmPath=shipping-rates",
+            "sellerName": "WirelessSource",
+            "price": 788.97,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tuesday, March 24. Order within 14 hrs 19 mins. Details",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AR1FTLUUZC24W&sshmPath=shipping-rates",
+            "sellerName": "Networkstore",
+            "price": 789.97,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tuesday, March 24. Order within 9 hrs 49 mins. Details",
+            "isFBA": false
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A1APMGLUPT74RB&sshmPath=shipping-rates",
+            "sellerName": "ItsWorthMore",
+            "price": 809.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tuesday, March 24. Details Or fastest delivery Tomorrow, March 21. Order within 7 hrs 49 mins. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A1MHFCO2PIHZJC&sshmPath=shipping-rates",
+            "sellerName": "Tech Specials Direct",
+            "price": 810,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery March 25 - 27. Details Or fastest delivery March 24 - 25. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AUA7F6JLX2JA1&sshmPath=shipping-rates",
+            "sellerName": "DirectCertified",
+            "price": 823.46,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery March 25 - 26. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AAARZTGJKFYIP&sshmPath=shipping-rates",
+            "sellerName": "Power-On-Deals",
+            "price": 830,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Thursday, March 26. Details Or fastest delivery Tomorrow, March 21. Order within 7 hrs 49 mins. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AAARZTGJKFYIP&sshmPath=shipping-rates",
+            "sellerName": "Power-On-Deals",
+            "price": 830.47,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Thursday, March 26. Details Or fastest delivery Tomorrow, March 21. Order within 7 hrs 49 mins. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=A3J9LL0SKEEIO0&sshmPath=shipping-rates",
+            "sellerName": "WirelessSource",
+            "price": 835.97,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tuesday, March 24. Order within 14 hrs 19 mins. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/details/?seller=AR1FTLUUZC24W&sshmPath=shipping-rates",
+            "sellerName": "Networkstore",
+            "price": 836.97,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Tuesday, March 24. Order within 9 hrs 49 mins. Details ... More",
+            "isFBA": true
+          },
+          {
+            "offerId": "aod-offer",
+            "offerUrl": "https://www.amazon.com/gp/aag/main?ie=UTF8&seller=A1KWJVS57NX03I&isAmazonFulfilled=1&asin=B0DHJ9SCJ4&ref_=olp_merch_name_10",
+            "sellerName": "Woot",
+            "price": 840.99,
+            "currency": "USD",
+            "stockStatus": "In Stock",
+            "stockCount": null,
+            "condition": "New",
+            "deliveryInfo": "FREE delivery Wednesday, March 25 Or Prime members get FREE delivery Monday, March 23. Join Prime (function(f) {var _np=(window.P._namespace(\"udm-sfx-prime-signup-ingress-script\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('ready').execute(\"udm-sfx-prime-signup-ingress-handler\", () => { P.load.js(\"https://d2lbyuknrhysf9.cloudfront.net/SFXInjectableScript.js\"); P.when(\"sfx-injectable\").execute(\"udm-sfx-prime-signup-ingress-flow\", async (api) => { const clientId = \"DetailPage\"; const ingressId = \"sdmPrimeUpsell\"; const redirectURL = btoa(window.location.pathname); const linkId = \"udm-sfx-prime-signup-trigger\"; const experienceUUID = api.initiate({ clientId, ingressId, redirectURL, planOptimizationId: \"default\" }, {}); const ingressButtons = document.querySelectorAll(\"#\" + linkId); ingressButtons.forEach(button => { button.onclick = () => { api.show(experienceUUID); }; }); /* look at the query params to see if we need to open the injectable immediately in the case of sign-in redirect */ const queryString = window.location.search; const urlParams = new URLSearchParams(queryString); const loadInjectableValue = urlParams.get('loadInjectable'); if (loadInjectableValue) { const [currClientId, currIngressId] = loadInjectableValue.split(\"_\"); if (currClientId === clientId && currIngressId === ingressId) { api.show(experienceUUID); } } }); }); })); ... More",
+            "isFBA": true
+          }
+        ]
+      },
+      "priceObservedAt": "2026-03-20T09:11:13.686Z",
+      "itemPriceObservedAt": "2026-03-20T09:11:13.686Z",
+      "priceUSD": 829.86,
+      "itemPriceUSD": 829.86,
+      "dataQualityScore": 100
+    },
+    "scrapedAt": "2026-03-20T09:11:13.686Z",
+    "scrapedBy": "crawler"
   }
 ]

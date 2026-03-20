@@ -82,14 +82,14 @@ function MetricsCards() {
           subtitle={`${t('dashboard.withPrice')}: ${formatCompactNumber(data?.productsWithPrice || 0)}`}
           loading={isLoading}
         />
-        <MetricCard
+        {/* <MetricCard
           title={t('dashboard.medianPrice')}
           value={formatCurrency(data?.medianPrice || 0)}
           icon={<BarChart3 size={16} />}
           tooltip={t('dashboard.medianPriceTooltip')}
           subtitle={t('dashboard.medianPriceSubtitle')}
           loading={isLoading}
-        />
+        /> */}
         <MetricCard
           title={t('dashboard.amazonProducts')}
           value={formatCompactNumber(data?.amazonProducts || 0)}
@@ -98,7 +98,7 @@ function MetricsCards() {
           subtitle={t('dashboard.percentOfBase', { value: data?.marketplaceShare?.amazon || 0 })}
           loading={isLoading}
         />
-        <MetricCard
+        {/* <MetricCard
           title={t('dashboard.amazonShare')}
           value={`${data?.marketplaceShare?.amazon || 0}%`}
           icon={<Star size={16} />}
@@ -106,7 +106,7 @@ function MetricsCards() {
           subtitle={t('dashboard.fromUniqueProducts', { value: formatCompactNumber(data?.uniqueProducts || 0) })}
           loading={isLoading}
           accent="var(--success)"
-        />
+        /> */}
         <MetricCard
           title={t('dashboard.withRating')}
           value={formatCompactNumber(data?.productsWithRating || 0)}

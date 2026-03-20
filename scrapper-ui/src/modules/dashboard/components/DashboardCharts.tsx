@@ -181,10 +181,9 @@ export default function DashboardCharts() {
     backgroundColor: colorVar('--bg-elevated', '#0f172a'),
     borderColor: borderColor,
     borderWidth: 1,
-    textStyle: { color: '#ffffff', fontSize: 12 },
-    extraCssText: 'color:#ffffff !important; box-shadow: 0 8px 20px rgba(0,0,0,0.28);',
+    textStyle: { color: textColor, fontSize: 12 },
+    extraCssText: 'box-shadow: 0 8px 20px rgba(0,0,0,0.28);',
   };
-  const wrapTooltipHtml = (html: string) => `<span style="color:#ffffff;">${html}</span>`;
 
   const tierKeys = ['under25', '25to50', '50to100', '100to250', '250plus'] as const;
   const tierLabels: Record<(typeof tierKeys)[number], string> = {
@@ -211,7 +210,7 @@ export default function DashboardCharts() {
       ...echartsTooltip,
       trigger: 'item' as const,
       formatter: (p: any) =>
-        wrapTooltipHtml(`<b>${p.name}</b><br/>${t('dashboard.charts.productsLabel')}: <b>${p.value}</b> (${p.percent}%)`),
+        `<b>${p.name}</b><br/>${t('dashboard.charts.productsLabel')}: <b>${p.value}</b> (${p.percent}%)`,
     },
     legend: { bottom: 0, textStyle: { color: textColor }, itemGap: 12 },
     series: [
@@ -232,7 +231,7 @@ export default function DashboardCharts() {
       ...echartsTooltip,
       trigger: 'axis' as const,
       formatter: (p: any) =>
-        wrapTooltipHtml(`${t('dashboard.charts.rangeLabel')} <b>${p[0].axisValue}</b><br/><b>${p[0].value}</b> ${t('dashboard.charts.productsLabel').toLowerCase()}`),
+        `${t('dashboard.charts.rangeLabel')} <b>${p[0].axisValue}</b><br/><b>${p[0].value}</b> ${t('dashboard.charts.productsLabel').toLowerCase()}`,
     },
     xAxis: {
       type: 'category' as const,
@@ -267,7 +266,7 @@ export default function DashboardCharts() {
     tooltip: {
       ...echartsTooltip,
       formatter: (p: any) =>
-        wrapTooltipHtml(`<b>${p.data.name}</b><br/>⭐ ${p.data.value[0]}<br/>${t('dashboard.charts.reviewsLabel')}: ${formatCompactNumber(p.data.value[1])}<br/>💰 $${p.data.value[2]}`),
+        `<b>${p.data.name}</b><br/>⭐ ${p.data.value[0]}<br/>${t('dashboard.charts.reviewsLabel')}: ${formatCompactNumber(p.data.value[1])}<br/>💰 $${p.data.value[2]}`,
     },
     xAxis: {
       name: `⭐ ${t('dashboard.charts.avgRatingAxis')}`,
@@ -302,9 +301,9 @@ export default function DashboardCharts() {
       ...echartsTooltip,
       trigger: 'axis' as const,
       formatter: (p: any) =>
-        wrapTooltipHtml(`<b>${p[0].name}</b><br/>${t('dashboard.charts.scoreLabel')}: <b>${p[0].value}/100</b><br/>${t('dashboard.charts.reviewsLabel')}: <b>${formatCompactNumber(
+        `<b>${p[0].name}</b><br/>${t('dashboard.charts.scoreLabel')}: <b>${p[0].value}/100</b><br/>${t('dashboard.charts.reviewsLabel')}: <b>${formatCompactNumber(
           chartData.velocityData[p[0].dataIndex]?.reviews || 0
-        )}</b>`),
+        )}</b>`,
     },
     xAxis: {
       type: 'value' as const,
@@ -339,7 +338,7 @@ export default function DashboardCharts() {
     tooltip: {
       ...echartsTooltip,
       formatter: (p: any) =>
-        wrapTooltipHtml(`<b>${p.data.name}</b><br/>⭐ ${p.data.value[0]}<br/>🏷️ ${p.data.value[1]}%<br/>💰 $${p.data.value[2]}`),
+        `<b>${p.data.name}</b><br/>⭐ ${p.data.value[0]}<br/>🏷️ ${p.data.value[1]}%<br/>💰 $${p.data.value[2]}`,
     },
     xAxis: {
       name: `⭐ ${t('dashboard.charts.ratingAxis')}`,
@@ -375,7 +374,7 @@ export default function DashboardCharts() {
       ...echartsTooltip,
       trigger: 'axis' as const,
       formatter: (p: any) =>
-        wrapTooltipHtml(`${t('dashboard.charts.timeLabel')}: <b>${p[0].axisValue}</b><br/>${t('dashboard.charts.priceLabel')}: <b>$${p[0].value}</b>`),
+        `${t('dashboard.charts.timeLabel')}: <b>${p[0].axisValue}</b><br/>${t('dashboard.charts.priceLabel')}: <b>$${p[0].value}</b>`,
     },
     xAxis: {
       type: 'category' as const,

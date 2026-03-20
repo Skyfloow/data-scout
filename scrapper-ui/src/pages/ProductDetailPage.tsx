@@ -85,6 +85,23 @@ function normalizeSellerDisplayName(name?: string): string {
   return cleaned;
 }
 
+function normalizeCategoryDisplayName(raw?: string): string {
+  const value = String(raw || '')
+    .replace(/\s+/g, ' ')
+    .replace(/^[#•·\-–—\s]+/, '')
+    .replace(/#\s?\d[\d,.]*/g, '')
+    .replace(/\b(?:best sellers rank|in|im|en|nel|dans)\b/gi, ' ')
+    .replace(/[|•·]/g, ' > ')
+    .trim();
+  if (!value) return '';
+  const parts = value
+    .split(/[>›»]/g)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  const leaf = parts.length ? parts[parts.length - 1] : value;
+  return leaf.replace(/[^\p{L}\p{N}&,.'()\-\/\s]/gu, '').replace(/\s+/g, ' ').trim();
+}
+
 function getMedian(values: number[]): number {
   if (!values.length) return 0;
   const sorted = [...values].sort((a, b) => a - b);
@@ -150,10 +167,9 @@ export default function ProductDetailPage() {
     backgroundColor: colorVar('--bg-elevated', '#0f172a'),
     borderColor: chartPalette.border,
     borderWidth: 1,
-    textStyle: { color: '#ffffff', fontSize: 12 },
-    extraCssText: 'color:#ffffff !important; box-shadow: 0 8px 20px rgba(0,0,0,0.28);',
-  }), [chartPalette.border]);
-  const wrapTooltipHtml = (html: string) => `<span style="color:#ffffff;">${html}</span>`;
+    textStyle: { color: chartPalette.text, fontSize: 12 },
+    extraCssText: 'box-shadow: 0 8px 20px rgba(0,0,0,0.28);',
+  }), [chartPalette.border, chartPalette.text]);
   const formatMobilePriceAxis = (value: number): string => {
     const numeric = Number(value || 0);
     if (!Number.isFinite(numeric)) return '';
@@ -366,9 +382,14 @@ export default function ProductDetailPage() {
     m.isClimateFriendly ? t('product.climateFriendly') : null,
   ].filter(Boolean);
   const badgesDisplay = badges.length ? badges.join(', ') : t('product.noBadges');
-  const rankDisplay = m.bsrCategories?.[0]
-    ? `#${m.bsrCategories[0].rank} · ${m.bsrCategories[0].category}`
-    : m.bestSellerRank || '—';
+  const rankDisplay = (() => {
+    const candidates = [
+      normalizeCategoryDisplayName(m.category),
+      normalizeCategoryDisplayName(m.bsrCategories?.[0]?.category),
+      normalizeCategoryDisplayName(m.bestSellerRank),
+    ].filter(Boolean);
+    return candidates[0] || '—';
+  })();
   const rawProductJson = JSON.stringify(normalizeProductForJson(product), null, 2);
   const highlightedRawProductJson = highlightJson(rawProductJson);
   const offersInsights = (() => {
@@ -598,11 +619,11 @@ export default function ProductDetailPage() {
                   <MetricItem label={t('product.offersWithPrice')} value={offersInsights.offersWithPriceCount} />
                   <MetricItem label={t('product.uniqueSellers')} value={offersInsights.uniqueSellers} />
                   <MetricItem label={t('product.cheapestOffer')} value={formatCurrency(offersInsights.minPrice)} />
-                  <MetricItem label={t('product.medianOffer')} value={formatCurrency(offersInsights.medianPrice)} />
+                  {/* <MetricItem label={t('product.medianOffer')} value={formatCurrency(offersInsights.medianPrice)} /> */}
                   <MetricItem label={t('product.averageOffer')} value={formatCurrency(offersInsights.avgPrice)} />
                   <MetricItem label={t('product.highestOffer')} value={formatCurrency(offersInsights.maxPrice)} />
                   <MetricItem label={t('product.priceSpread')} value={`${formatCurrency(offersInsights.priceSpread)} (${offersInsights.priceSpreadPct.toFixed(1)}%)`} />
-                  <MetricItem label={t('product.belowBuyBox')} value={offersInsights.belowBuyBoxCount} />
+                  {/* <MetricItem label={t('product.belowBuyBox')} value={offersInsights.belowBuyBoxCount} /> */}
                   <MetricItem label={t('product.fbaShare')} value={`${offersInsights.fbaShare.toFixed(1)}%`} />
                 </div>
                 <Separator style={{ margin: '2px 0 0' }} />
@@ -620,7 +641,7 @@ export default function ProductDetailPage() {
                             const first = Array.isArray(params) ? params[0] : params;
                             const count = Number(first?.value || 0);
                             const range = String(first?.axisValue || '');
-                            return wrapTooltipHtml(`${range}<br/>${t('product.offerCount')}: <b>${count}</b>`);
+                            return `${range}<br/>${t('product.offerCount')}: <b>${count}</b>`;
                           },
                         },
                         // Extra left padding + smaller name gap prevents yAxis name from being clipped in some locales.
@@ -683,7 +704,7 @@ export default function ProductDetailPage() {
                         tooltip: {
                           ...chartTooltipBase,
                           trigger: 'item',
-                          formatter: (params: any) => wrapTooltipHtml(`${params?.name || ''}: <b>${params?.value || 0}</b>`),
+                          formatter: (params: any) => `${params?.name || ''}: <b>${params?.value || 0}</b>`,
                         },
                         legend: { bottom: isMobile ? 0 : 4, left: 'center', textStyle: { color: chartPalette.text } },
                         series: [{
@@ -717,7 +738,7 @@ export default function ProductDetailPage() {
                             const first = Array.isArray(params) ? params[0] : params;
                             const seller = String(first?.name || '');
                             const value = Number(first?.value || 0);
-                            return wrapTooltipHtml(`${seller}<br/>${formatCurrency(value)}`);
+                            return `${seller}<br/>${formatCurrency(value)}`;
                           },
                         },
                         grid: { left: isMobile ? 48 : 128, right: isMobile ? 12 : 48, top: 24, bottom: 24, containLabel: true },
@@ -885,7 +906,7 @@ export default function ProductDetailPage() {
           </CardContent>
         </Card>
 
-        <Card data-pdf-block>
+        {/* <Card data-pdf-block>
           <CardContent>
             <CardTitle>{t('product.priceHistorySummary')}</CardTitle>
             <Separator style={{ margin: '10px 0 12px' }} />
@@ -902,7 +923,7 @@ export default function ProductDetailPage() {
               </div>
             )}
           </CardContent>
-        </Card>
+        </Card> */}
 
         {m.features?.length ? (
           <Card data-pdf-block>

@@ -526,6 +526,11 @@ const extractRemoteAodPayloadOffers = ($: cheerio.CheerioAPI, currency: string, 
         root.find('.aod-offer-price .a-offscreen').first().text().trim() ||
         root.find('[id^="aod-price-"] .a-offscreen').first().text().trim();
       if (!priceText) {
+        const whole = root.find('.a-price-whole').first().text().replace(/[^\d]/g, '').trim();
+        const fraction = root.find('.a-price-fraction').first().text().replace(/[^\d]/g, '').trim();
+        if (whole) priceText = `${whole}.${fraction || '00'}`;
+      }
+      if (!priceText) {
         const fromText = normalizeText(root.text()).match(/(?:[$€£]|USD|EUR|GBP)\s?\d[\d,.]*/i)?.[0];
         if (fromText) priceText = fromText;
       }
@@ -1457,6 +1462,13 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
       offerRoot.find('.aod-offer-price .a-offscreen').first().text().trim() ||
       offerRoot.find('[id^="aod-price-"] .a-offscreen').first().text().trim();
     if (!priceText) {
+      const whole = offerRoot.find('.a-price-whole').first().text().replace(/[^\d]/g, '').trim();
+      const fraction = offerRoot.find('.a-price-fraction').first().text().replace(/[^\d]/g, '').trim();
+      if (whole) {
+        priceText = `${whole}.${fraction || '00'}`;
+      }
+    }
+    if (!priceText) {
       const fromText = normalizeText(offerRoot.text()).match(/(?:[$€£]|USD|EUR|GBP)\s?\d[\d,.]*/i)?.[0];
       if (fromText) priceText = fromText;
     }
@@ -1576,6 +1588,25 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
         buyBoxSeller = namedOffer.sellerName;
         if (metrics.buyBox) metrics.buyBox.sellerName = namedOffer.sellerName;
         if (metrics.selectedOffer?.source === 'buybox') metrics.selectedOffer.sellerName = namedOffer.sellerName;
+      }
+    }
+
+    const currentPrice = Number(metrics.price || metrics.itemPrice || 0);
+    if (currentPrice > 0) {
+      const samePriceOffers = metrics.offers!.filter((offer) => Math.abs(Number(offer.price || 0) - currentPrice) <= 0.05);
+      const amazonAtDisplayedPrice = samePriceOffers.find((offer) => isAmazonOwnedSellerName(offer.sellerName));
+      if (amazonAtDisplayedPrice && !isAmazonOwnedSellerName(buyBoxSeller)) {
+        buyBoxSeller = normalizeSellerName(amazonAtDisplayedPrice.sellerName);
+        if (metrics.buyBox) {
+          metrics.buyBox.sellerName = buyBoxSeller;
+          metrics.buyBox.isAmazon = true;
+          metrics.buyBox.isFBA = true;
+        }
+        if (metrics.selectedOffer?.source === 'buybox') {
+          metrics.selectedOffer.sellerName = buyBoxSeller;
+          metrics.selectedOffer.isAmazon = true;
+          metrics.selectedOffer.isFBA = true;
+        }
       }
     }
 

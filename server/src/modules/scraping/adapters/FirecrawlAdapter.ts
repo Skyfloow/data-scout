@@ -274,6 +274,59 @@ async function fetchAmazonOffersViaFirecrawl(params: {
   return offers;
 }
 
+const hasValidPositivePrice = (value: unknown): value is number => {
+  const numeric = Number(value);
+  return Number.isFinite(numeric) && numeric > 0;
+};
+
+function hydrateAmazonPriceFromOffers(product: Product): Product {
+  if (!String(product.marketplace || '').toLowerCase().includes('amazon')) return product;
+  const metrics = product.metrics || ({} as ProductMetrics);
+  if (hasValidPositivePrice(metrics.price)) return product;
+
+  const offers = Array.isArray(metrics.offers)
+    ? metrics.offers.filter((offer) => hasValidPositivePrice((offer as any)?.price))
+    : [];
+  if (offers.length === 0) return product;
+
+  const preferredOffer = offers.find((offer) => /amazon/i.test(String(offer.sellerName || '')))
+    || [...offers].sort((left, right) => Number(left.price || 0) - Number(right.price || 0))[0];
+  if (!preferredOffer || !hasValidPositivePrice(preferredOffer.price)) return product;
+
+  const currency = String(metrics.currency || preferredOffer.currency || 'USD').toUpperCase();
+  const derivedPrice = Number(preferredOffer.price);
+  metrics.currency = currency;
+  metrics.price = derivedPrice;
+  metrics.itemPrice = derivedPrice;
+  metrics.priceUSD = convertToUSD(derivedPrice, currency);
+  metrics.itemPriceUSD = convertToUSD(derivedPrice, currency);
+  metrics.sellerCount = Math.max(Number(metrics.sellerCount || 0), offers.length);
+
+  if (!metrics.buyBox || !hasValidPositivePrice(metrics.buyBox.price)) {
+    metrics.buyBox = {
+      sellerName: String(preferredOffer.sellerName || 'Unknown Seller'),
+      price: derivedPrice,
+      isFBA: Boolean(preferredOffer.isFBA),
+      isAmazon: /amazon/i.test(String(preferredOffer.sellerName || '')),
+      observedAt: product.scrapedAt,
+    };
+  }
+
+  if (!metrics.selectedOffer || !hasValidPositivePrice((metrics.selectedOffer as any).price)) {
+    metrics.selectedOffer = {
+      source: 'offer',
+      sellerName: String(preferredOffer.sellerName || ''),
+      price: derivedPrice,
+      currency,
+      condition: String(preferredOffer.condition || 'New'),
+      isFBA: Boolean(preferredOffer.isFBA),
+      isAmazon: /amazon/i.test(String(preferredOffer.sellerName || '')),
+    };
+  }
+
+  return { ...product, metrics };
+}
+
 export class FireCrawlAdapter implements IScraper {
   private apiKey: string;
 
@@ -360,6 +413,7 @@ export class FireCrawlAdapter implements IScraper {
               }
             }
           }
+          product = hydrateAmazonPriceFromOffers(product);
         } catch (error: any) {
           extractionError = `FireCrawl html extraction failed: ${error.message}`;
         }
