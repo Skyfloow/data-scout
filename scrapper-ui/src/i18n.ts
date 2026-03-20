@@ -24,6 +24,11 @@ i18n
     load: 'languageOnly',
     cleanCode: true,
     fallbackLng: 'en',
+    detection: {
+      // Keep explicit user choice, otherwise fall back to English.
+      order: ['localStorage', 'querystring', 'cookie'],
+      caches: ['localStorage'],
+    },
     interpolation: {
       escapeValue: false,
     },

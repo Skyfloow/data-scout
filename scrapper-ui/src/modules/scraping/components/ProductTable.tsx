@@ -158,16 +158,18 @@ function ProductTable() {
                 <FileSpreadsheet size={14} /> {t('table.exportCsv')}
               </Button>
 
-              <Select value={filterScraper} onValueChange={setFilterScraper}>
-                <SelectTrigger style={{ width: 140 }}>
-                  <SelectValue placeholder={t('table.scraper')} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">{t('table.allEngines')}</SelectItem>
-                  <SelectItem value="crawler">Crawler</SelectItem>
-                  <SelectItem value="firecrawl">Firecrawl</SelectItem>
-                </SelectContent>
-              </Select>
+              {!isProduction ? (
+                <Select value={filterScraper} onValueChange={setFilterScraper}>
+                  <SelectTrigger style={{ width: 140 }}>
+                    <SelectValue placeholder={t('table.scraper')} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">{t('table.allEngines')}</SelectItem>
+                    <SelectItem value="crawler">Crawler</SelectItem>
+                    <SelectItem value="firecrawl">Firecrawl</SelectItem>
+                  </SelectContent>
+                </Select>
+              ) : null}
             </div>
           </div>
 
