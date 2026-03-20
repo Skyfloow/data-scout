@@ -16,32 +16,43 @@ const logger = baseLogger.child({ module: 'FirecrawlAdapter' });
 
 function extractCountryCodeFromUrl(url: string): string | undefined {
   try {
-    const host = new URL(url).hostname.toLowerCase();
-    if (host.endsWith('.it')) return 'IT';
-    if (host.endsWith('.de')) return 'DE';
-    if (host.endsWith('.fr')) return 'FR';
-    if (host.endsWith('.es')) return 'ES';
-    if (host.endsWith('.ca')) return 'CA';
-    if (host.endsWith('.co.uk')) return 'GB';
-    if (host.endsWith('.com.mx')) return 'MX';
-    if (host.endsWith('.co.jp')) return 'JP';
-    if (host.endsWith('.in')) return 'IN';
-    if (host.endsWith('.com.au')) return 'AU';
-    if (host.endsWith('.com.br')) return 'BR';
-    if (host.endsWith('.nl')) return 'NL';
-    if (host.endsWith('.se')) return 'SE';
-    if (host.endsWith('.pl')) return 'PL';
-    if (host.endsWith('.com.tr')) return 'TR';
-    if (host.endsWith('.ae')) return 'AE';
-    if (host.endsWith('.sa')) return 'SA';
-    if (host.endsWith('.sg')) return 'SG';
-    if (host.endsWith('.eg')) return 'EG';
-    if (host.endsWith('.com')) return 'US';
+    const host = new URL(url).hostname.toLowerCase().replace(/^www\./, '');
+    if (!host.includes('amazon.')) return undefined;
+    if (host === 'amazon.it') return 'IT';
+    if (host === 'amazon.de') return 'DE';
+    if (host === 'amazon.fr') return 'FR';
+    if (host === 'amazon.es') return 'ES';
+    if (host === 'amazon.ca') return 'CA';
+    if (host === 'amazon.co.uk') return 'GB';
+    if (host === 'amazon.com.mx') return 'MX';
+    if (host === 'amazon.co.jp') return 'JP';
+    if (host === 'amazon.in') return 'IN';
+    if (host === 'amazon.com.au') return 'AU';
+    if (host === 'amazon.com.br') return 'BR';
+    if (host === 'amazon.nl') return 'NL';
+    if (host === 'amazon.com.be' || host === 'amazon.be') return 'BE';
+    if (host === 'amazon.se') return 'SE';
+    if (host === 'amazon.pl') return 'PL';
+    if (host === 'amazon.com.tr') return 'TR';
+    if (host === 'amazon.ae') return 'AE';
+    if (host === 'amazon.com.sa' || host === 'amazon.sa') return 'SA';
+    if (host === 'amazon.sg') return 'SG';
+    if (host === 'amazon.eg') return 'EG';
+    if (host === 'amazon.com') return 'US';
   } catch {
     // ignore
   }
   return undefined;
 }
+
+const shouldForceEnglishAod = (originOrUrl: string): boolean => {
+  try {
+    const host = new URL(originOrUrl).hostname.toLowerCase().replace(/^www\./, '');
+    return host !== 'amazon.com';
+  } catch {
+    return true;
+  }
+};
 
 const normalizeUrlForFirecrawl = (inputUrl: string): string => {
   try {
@@ -274,7 +285,7 @@ async function fetchAmazonOffersViaFirecrawl(params: {
     (html.match(/id="aod-offer"|class="[^"]*aod-information-block[^"]*"|id="aod-pinned-offer"|class="[^"]*olpOffer[^"]*"/g) || []).length;
 
   for (let pageNo = 1; pageNo <= maxPages; pageNo += 1) {
-    const langParam = !origin.includes('amazon.com') ? '&language=en_GB' : '';
+    const langParam = shouldForceEnglishAod(origin) ? '&language=en_GB' : '';
     const endpointCandidates = [
       `${origin}/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${params.asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,
       `${origin}/gp/product/ajax/ref=aod_page_${pageNo}?asin=${params.asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,

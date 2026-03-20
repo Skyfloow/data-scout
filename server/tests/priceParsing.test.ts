@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import * as cheerio from 'cheerio';
-import { parsePrice, parseStockCount, detectCurrencyFromUrlParam } from '../src/utils/parsers';
+import { parsePrice, parseStockCount, detectCurrencyFromUrlParam, detectCurrencyFromDomain } from '../src/utils/parsers';
 import { convertToUSD } from '../src/services/CurrencyService';
 import { amazonExtractor } from '../src/modules/scraping/selectors/amazon';
 
@@ -72,6 +72,11 @@ describe('currency detection overrides', () => {
   it('detects currency from URL query params', () => {
     expect(detectCurrencyFromUrlParam('https://www.amazon.co.uk/dp/B0TEST?currency=USD')).toBe('USD');
     expect(detectCurrencyFromUrlParam('https://www.amazon.de/dp/B0TEST?currencyCode=EUR')).toBe('EUR');
+  });
+
+  it('detects currency for amazon.com.be and amazon.com.sa domains', () => {
+    expect(detectCurrencyFromDomain('https://www.amazon.com.be/dp/B0TEST')).toBe('EUR');
+    expect(detectCurrencyFromDomain('https://www.amazon.com.sa/dp/B0TEST')).toBe('SAR');
   });
 });
 

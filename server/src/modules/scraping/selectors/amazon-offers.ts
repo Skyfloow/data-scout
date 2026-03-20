@@ -4,6 +4,14 @@ import { parsePrice, parseStockCount } from '../../../utils/parsers';
 import { fetcher } from '../network/Fetcher';
 
 const normalizeText = (input: string): string => input.replace(/\s+/g, ' ').trim();
+const shouldForceEnglishAod = (origin: string): boolean => {
+  try {
+    const hostname = new URL(origin).hostname.toLowerCase().replace(/^www\./, '');
+    return hostname !== 'amazon.com';
+  } catch {
+    return true;
+  }
+};
 const isInvalidOfferSellerLabel = (raw: string): boolean => {
   const normalized = normalizeText(raw).toLowerCase();
   if (!normalized) return true;
@@ -237,7 +245,7 @@ export async function fetchAmazonOffers(asin: string, currency: string, marketpl
     (html.match(/id="aod-offer"|class="[^"]*aod-information-block[^"]*"|id="aod-pinned-offer"|class="[^"]*olpOffer[^"]*"/g) || []).length;
 
   for (let pageNo = 1; pageNo <= maxPages; pageNo += 1) {
-    const langParam = !origin.includes('amazon.com') ? '&language=en_GB' : '';
+    const langParam = shouldForceEnglishAod(origin) ? '&language=en_GB' : '';
     const endpointCandidates = [
       `${origin}/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,
       `${origin}/gp/product/ajax/ref=aod_page_${pageNo}?asin=${asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,

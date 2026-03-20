@@ -30,6 +30,40 @@ const logger = baseLogger.child({ module: 'CrawleeAdapter' });
 log.setLevel(log.LEVELS.WARNING);
 
 export class CrawleeAdapter implements IScraper {
+  private resolveAmazonRegion(url: string): string {
+      try {
+          const hostname = new URL(url).hostname.toLowerCase().replace(/^www\./, '');
+          const regionByHost: Record<string, string> = {
+              'amazon.com': 'us',
+              'amazon.ca': 'ca',
+              'amazon.com.mx': 'mx',
+              'amazon.com.br': 'br',
+              'amazon.co.uk': 'uk',
+              'amazon.de': 'de',
+              'amazon.it': 'it',
+              'amazon.fr': 'fr',
+              'amazon.es': 'es',
+              'amazon.nl': 'nl',
+              'amazon.com.be': 'be',
+              'amazon.be': 'be',
+              'amazon.co.jp': 'jp',
+              'amazon.in': 'in',
+              'amazon.com.au': 'au',
+              'amazon.sg': 'sg',
+              'amazon.ae': 'ae',
+              'amazon.com.sa': 'sa',
+              'amazon.sa': 'sa',
+              'amazon.com.tr': 'tr',
+              'amazon.se': 'se',
+              'amazon.pl': 'pl',
+              'amazon.eg': 'eg',
+          };
+          return regionByHost[hostname] || 'us';
+      } catch {
+          return 'us';
+      }
+  }
+
   private resolveMarketplaceFromUrl(url: string): string {
       try {
           const hostname = new URL(url).hostname.toLowerCase();
@@ -105,7 +139,8 @@ export class CrawleeAdapter implements IScraper {
                   (html.match(/id=\"aod-offer\"|class=\"[^\"]*aod-information-block[^\"]*\"|id=\"aod-pinned-offer\"|class=\"[^\"]*olpOffer[^\"]*\"/g) || []).length;
 
               for (let pageNo = 1; pageNo <= maxPagesInPage; pageNo += 1) {
-                  const langParam = !window.location.hostname.includes('amazon.com') ? '&language=en_GB' : '';
+                  const normalizedHost = (window.location.hostname || '').toLowerCase().replace(/^www\./, '');
+                  const langParam = normalizedHost !== 'amazon.com' ? '&language=en_GB' : '';
                   const endpoints = [
                       `/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${asinInPage}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,
                       `/gp/product/ajax/ref=aod_page_${pageNo}?asin=${asinInPage}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,
@@ -629,12 +664,14 @@ export class CrawleeAdapter implements IScraper {
           'amazon.es': '28001',
           'amazon.nl': '1012',
           'amazon.be': '1000',
+          'amazon.com.be': '1000',
           'amazon.co.jp': '100-0001',
           'amazon.in': '110001',
           'amazon.com.au': '2000',
           'amazon.sg': '018956',
           'amazon.ae': '00000',
           'amazon.sa': '11564',
+          'amazon.com.sa': '11564',
           'amazon.com.tr': '34000',
           'amazon.se': '111 22',
           'amazon.pl': '00-001',
@@ -1105,12 +1142,7 @@ export class CrawleeAdapter implements IScraper {
       let screenshotBase64 = '';
       let playwrightMaxQty: number | null = null;
 
-      let region = 'us';
-      if (url.includes('amazon.de')) region = 'de';
-      else if (url.includes('amazon.co.uk')) region = 'uk';
-      else if (url.includes('amazon.it')) region = 'it';
-      else if (url.includes('amazon.fr')) region = 'fr';
-      else if (url.includes('amazon.es')) region = 'es';
+      const region = this.resolveAmazonRegion(url);
 
       const proxyString = await proxyManager.getProxyString(region);
       const proxyConfiguration = proxyString 

@@ -1597,7 +1597,7 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
   // Prefer AOD-provided count ("New & Used (N) from ...") over inferred visible rows.
   const declaredSellerCount = extractAodSellerCount($);
   if (Number.isFinite(declaredSellerCount) && declaredSellerCount! > 0) {
-    metrics.sellerCount = declaredSellerCount;
+    metrics.sellerCount = Math.max(metrics.offers!.length, declaredSellerCount);
   }
 
   // Average Offer Price
@@ -1684,6 +1684,9 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
     }
 
   }
+
+  // Guardrail: never report fewer sellers than the number of unique extracted offers.
+  metrics.sellerCount = Math.max(Number(metrics.sellerCount || 0), metrics.offers!.length);
 
   // ═══════════════════════════════════════════════════════════════
   // ─── CONTENT ───
