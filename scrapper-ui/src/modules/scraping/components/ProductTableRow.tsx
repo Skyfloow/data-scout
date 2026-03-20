@@ -20,6 +20,7 @@ interface ProductTableRowProps {
 
 export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTableRowProps) {
   const { t, i18n } = useTranslation();
+  const isProduction = import.meta.env.PROD;
   const price = resolveMetricPrice(row.metrics);
   const localCurrency = String(row.metrics.currency || 'USD').toUpperCase();
   const localPriceRaw = Number(row.metrics.itemPrice || row.metrics.price || row.metrics.buyBox?.price || 0);
@@ -96,11 +97,13 @@ export function ProductTableRow({ row, isSelected, onSelectChange }: ProductTabl
           </span>
         </div>
       </TD>
-      <TD>
-        <Badge variant={row.scrapedBy === 'firecrawl' ? 'warning' : 'secondary'} style={{ fontSize: '0.65rem' }}>
-          {row.scrapedBy}
-        </Badge>
-      </TD>
+      {!isProduction ? (
+        <TD>
+          <Badge variant={row.scrapedBy === 'firecrawl' ? 'warning' : 'secondary'} style={{ fontSize: '0.65rem' }}>
+            {row.scrapedBy}
+          </Badge>
+        </TD>
+      ) : null}
       <TD>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--fg)' }}>

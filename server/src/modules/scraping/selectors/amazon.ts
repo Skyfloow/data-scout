@@ -9,7 +9,7 @@ import {
   LightningDeal,
   AmazonMarketplaceMetrics,
 } from '../../../types';
-import { parsePrice, parseCurrency, parseStockCount, detectCurrencyFromDomain } from '../../../utils/parsers';
+import { parsePrice, parseCurrency, parseStockCount, detectCurrencyFromDomain, detectCurrencyFromUrlParam, detectCurrencyFromText } from '../../../utils/parsers';
 import { extractAsin, fetchAmazonOffers } from './amazon-offers';
 import * as cheerio from 'cheerio';
 
@@ -418,12 +418,58 @@ const isAmazonOwnedSellerName = (name: string): boolean => {
     || normalized.includes('amazon resale')
     || normalized.includes('warehouse deals');
 };
+const isInvalidOfferSellerName = (name: string): boolean => {
+  const normalized = normalizeText(name).toLowerCase();
+  if (!normalized) return true;
+  return /^(return policy|payment|condition|delivery|details|quantity|ships from|sold by)$/i.test(normalized)
+    || /^save with used\b/i.test(normalized)
+    || /^used\s*-\s*good$/i.test(normalized);
+};
 
-const extractTabularAttributeValue = ($: cheerio.CheerioAPI, attributeName: string): string => {
+const BUYBOX_TABULAR_SCOPE_SELECTORS = [
+  '#tabular-buybox',
+  '#tabular-buybox-container',
+  '#exports_desktop_qualifiedBuybox_feature_div',
+  '#exports_desktop_qualifiedBuybox_buybox',
+  '#desktop_buybox',
+  '#buybox',
+  '#apex_desktop',
+  '#apex_offerDisplay_desktop',
+];
+
+const isSecondaryOfferContext = ($: cheerio.CheerioAPI, node: cheerio.Cheerio<any>): boolean => {
+  if (
+    node.closest(
+      '#all-offers-display, #aod-offer-list, #aod-offer, .aod-offer, .aod-offer-row, .aod-information-block, #olp_feature_div, #olp-upd-new-used, #olp-upd-used, #olp-upd-new, #mbc'
+    ).length > 0
+  ) {
+    return true;
+  }
+
+  const containerId = normalizeText(node.closest('[id]').attr('id') || '').toLowerCase();
+  if (containerId && /(used|aod|all-offers|offer-listing|olp)/i.test(containerId)) {
+    return true;
+  }
+
+  const localText = normalizeText(node.closest('[role="row"], tr, .a-row, .tabular-buybox-row, li, div').text()).toLowerCase();
+  if (!localText) return false;
+  if (/save with used|used\s*-\s*good|pre-owned|renewed/.test(localText)) return true;
+  return false;
+};
+
+const extractTabularAttributeValue = (
+  $: cheerio.CheerioAPI,
+  attributeName: string,
+  scopeSelectors: string[] = []
+): string => {
   const escapedName = attributeName.replace(/"/g, '\\"');
-  const attrNodes = $(`[tabular-attribute-name="${escapedName}"]`).toArray();
+  const attrSelector = `[tabular-attribute-name="${escapedName}"]`;
+  const attrNodes = scopeSelectors.length > 0
+    ? scopeSelectors.flatMap((selector) => $(selector).find(attrSelector).toArray())
+    : $(attrSelector).toArray();
 
   for (const node of attrNodes) {
+    if (isSecondaryOfferContext($, $(node))) continue;
     const labelEl = $(node);
     const directValue = labelEl.next('[tabular-attribute-value], .tabular-buybox-text').first();
     const directLink = directValue.find('a').first().text().trim();
@@ -792,10 +838,17 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
   const asin = extractAsin(url);
   if (asin) metrics.asin = asin;
 
-  // ─── 3. Currency — domain-based detection (primary) ───
+  // ─── 3. Currency — URL override first, then page text, then domain fallback ───
+  const urlCurrency = detectCurrencyFromUrlParam(url);
   const domainCurrency = detectCurrencyFromDomain(url);
-  const symbolText = $('.a-price-symbol').first().text().trim();
-  metrics.currency = domainCurrency || parseCurrency(symbolText) || 'USD';
+  const symbolText = [
+    $('.a-price-symbol').first().text(),
+    $('#corePrice_feature_div .a-offscreen').first().text(),
+    $('#priceblock_ourprice, #priceblock_dealprice, #price_inside_buybox').first().text(),
+    $('meta[property="product:price:currency"]').attr('content') || '',
+  ].join(' ');
+  const pageCurrency = detectCurrencyFromText(symbolText);
+  metrics.currency = pageCurrency || urlCurrency || domainCurrency || 'USD';
 
   // ─── 4. Base Price ───
   const structuredPrice = extractStructuredPrice($);
@@ -1183,17 +1236,17 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
 
   // 22a. Tabular buybox "Shipper / Seller" (Buy Now section) — highest priority on modern layouts
   if (!buyBoxSeller) {
-    buyBoxSeller = extractTabularAttributeValue($, 'Shipper / Seller');
+    buyBoxSeller = extractTabularAttributeValue($, 'Shipper / Seller', BUYBOX_TABULAR_SCOPE_SELECTORS);
   }
   if (!buyBoxSeller) {
     buyBoxSeller = extractSellerFromTabularText(
-      $('#tabular-buybox, #tabular-buybox-container, #exports_desktop_qualifiedBuybox_feature_div').text()
+      $('#tabular-buybox, #tabular-buybox-container, #exports_desktop_qualifiedBuybox_feature_div, #desktop_buybox, #buybox').text()
     );
   }
 
   // 22b. Tabular buybox "Sold by"
   if (!buyBoxSeller) {
-    buyBoxSeller = extractTabularAttributeValue($, 'Sold by');
+    buyBoxSeller = extractTabularAttributeValue($, 'Sold by', BUYBOX_TABULAR_SCOPE_SELECTORS);
   }
 
   // 22c. #sellerProfileTriggerId — prefer inner <a> to avoid hidden/aria span duplication
@@ -1274,7 +1327,7 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
   
   // Attempt to parse tabular buybox for accurate ships from
   // Primary: attribute-based selector
-  const shipsFromTabular = extractTabularAttributeValue($, 'Ships from');
+  const shipsFromTabular = extractTabularAttributeValue($, 'Ships from', BUYBOX_TABULAR_SCOPE_SELECTORS);
   if (shipsFromTabular) shipsFrom = deduplicateSellerName(shipsFromTabular);
   
   // Fallback: cell iteration
@@ -1389,6 +1442,7 @@ export const amazonExtractor = async (context: ExtractorContext): Promise<Extrac
       ...candidate,
       sellerName: normalizeSellerName(candidate.sellerName || '') || 'Third-party Seller',
     };
+    if (isInvalidOfferSellerName(normalizedCandidate.sellerName)) return;
     const dedupKey = makeOfferDedupKey(normalizedCandidate);
     if (seenOfferKeys.has(dedupKey)) return;
     seenOfferKeys.add(dedupKey);

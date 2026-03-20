@@ -156,24 +156,51 @@ export const detectCurrencyFromDomain = (url: string): string | null => {
   }
 };
 
+const extractCurrencyFromText = (text: string): string | null => {
+  if (!text) return null;
+  const lower = text.toLowerCase();
+  if (text.includes('C$') || /(?:\bcad\b|can\$)/i.test(text)) return 'CAD';
+  if (text.includes('A$') || /\baud\b/i.test(text)) return 'AUD';
+  if (text.includes('R$') || lower.includes('brl')) return 'BRL';
+  if (text.includes('€') || lower.includes('eur')) return 'EUR';
+  if (text.includes('£') || lower.includes('gbp')) return 'GBP';
+  if (text.includes('₹') || lower.includes('inr')) return 'INR';
+  if (text.includes('₺') || lower.includes('try')) return 'TRY';
+  if (text.includes('zł') || lower.includes('pln')) return 'PLN';
+  if (text.includes('kr') || lower.includes('sek')) return 'SEK';
+  if (text.includes('¥') || lower.includes('jpy') || lower.includes('cny')) return 'JPY';
+  if (text.includes('$') || /\busd\b|us\$/i.test(text)) return 'USD';
+  return null;
+};
+
+export const detectCurrencyFromText = (text: string): string | null => {
+  return extractCurrencyFromText(text);
+};
+
+export const detectCurrencyFromUrlParam = (url: string): string | null => {
+  try {
+    const parsed = new URL(url);
+    const keys = ['currency', 'currencyCode', 'currencycode', 'curr'];
+    for (const key of keys) {
+      const raw = parsed.searchParams.get(key);
+      if (!raw) continue;
+      const normalized = raw.trim().toUpperCase();
+      if (/^[A-Z]{3}$/.test(normalized)) return normalized;
+      const fromText = extractCurrencyFromText(raw);
+      if (fromText) return fromText;
+    }
+  } catch {
+    // ignore
+  }
+  return null;
+};
+
 /**
  * Detects currency from the price symbol text.
  * Only used as a fallback when domain-based detection is not available.
  */
 export const parseCurrency = (text: string): string => {
-  if (!text) return 'USD';
-  if (text.includes('$') && !text.includes('R$') && !text.includes('C$') && !text.includes('A$')) return 'USD';
-  if (text.includes('C$') || text.includes('CAD')) return 'CAD';
-  if (text.includes('A$') || text.includes('AUD')) return 'AUD';
-  if (text.includes('R$') || text.toLowerCase().includes('brl')) return 'BRL';
-  if (text.includes('€') || text.toLowerCase().includes('eur')) return 'EUR';
-  if (text.includes('£') || text.toLowerCase().includes('gbp')) return 'GBP';
-  if (text.includes('¥') || text.toLowerCase().includes('jpy') || text.toLowerCase().includes('cny')) return 'JPY';
-  if (text.includes('₹') || text.toLowerCase().includes('inr')) return 'INR';
-  if (text.includes('₺') || text.toLowerCase().includes('try')) return 'TRY';
-  if (text.includes('zł') || text.toLowerCase().includes('pln')) return 'PLN';
-  if (text.includes('kr') || text.toLowerCase().includes('sek')) return 'SEK';
-  return 'USD';
+  return extractCurrencyFromText(text) || 'USD';
 };
 
 export const parseStockCount = (text: string): number | null => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import * as cheerio from 'cheerio';
-import { parsePrice, parseStockCount } from '../src/utils/parsers';
+import { parsePrice, parseStockCount, detectCurrencyFromUrlParam } from '../src/utils/parsers';
 import { convertToUSD } from '../src/services/CurrencyService';
 import { amazonExtractor } from '../src/modules/scraping/selectors/amazon';
 
@@ -65,6 +65,13 @@ describe('convertToUSD fallback rates', () => {
   it('converts GBP to USD even without ECB refresh', () => {
     const converted = convertToUSD(100, 'GBP');
     expect(converted).toBeGreaterThan(100);
+  });
+});
+
+describe('currency detection overrides', () => {
+  it('detects currency from URL query params', () => {
+    expect(detectCurrencyFromUrlParam('https://www.amazon.co.uk/dp/B0TEST?currency=USD')).toBe('USD');
+    expect(detectCurrencyFromUrlParam('https://www.amazon.de/dp/B0TEST?currencyCode=EUR')).toBe('EUR');
   });
 });
 
@@ -183,6 +190,50 @@ describe('amazonExtractor price resolution', () => {
     const $ = cheerio.load(html);
     const result = await amazonExtractor({ $, html, url: 'https://www.amazon.com/dp/B000000005' });
     expect(result.metrics.price).toBeCloseTo(321.45, 2);
+  });
+
+  it('uses URL currency when page does not provide explicit currency signal', async () => {
+    const html = `
+      <html>
+        <head></head>
+        <body>
+          <span id="productTitle">Currency Override Product</span>
+          <div id="corePrice_feature_div">
+            <span class="priceToPay"><span class="a-offscreen">$999.99</span></span>
+          </div>
+        </body>
+      </html>
+    `;
+    const $ = cheerio.load(html);
+    const result = await amazonExtractor({
+      $,
+      html,
+      url: 'https://www.amazon.co.uk/dp/B000000099?th=1&currency=USD',
+    });
+    expect(result.metrics.currency).toBe('USD');
+    expect(result.metrics.price).toBeCloseTo(999.99, 2);
+  });
+
+  it('prefers page currency over conflicting URL currency param', async () => {
+    const html = `
+      <html>
+        <head></head>
+        <body>
+          <span id="productTitle">Currency Conflict Product</span>
+          <div id="corePrice_feature_div">
+            <span class="priceToPay"><span class="a-offscreen">€999.99</span></span>
+          </div>
+        </body>
+      </html>
+    `;
+    const $ = cheerio.load(html);
+    const result = await amazonExtractor({
+      $,
+      html,
+      url: 'https://www.amazon.co.uk/dp/B000000100?th=1&currency=USD',
+    });
+    expect(result.metrics.currency).toBe('EUR');
+    expect(result.metrics.price).toBeCloseTo(999.99, 2);
   });
 
   it('cleans markdown image links from title and uses textual fallback', async () => {

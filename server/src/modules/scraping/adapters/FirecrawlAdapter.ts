@@ -6,12 +6,42 @@ import { v4 as uuidv4 } from 'uuid';
 import * as cheerio from 'cheerio';
 import { PlatformExtractor } from '../extractors/PlatformExtractor';
 import { metadataExtractor } from '../extractors/MetadataExtractor';
-import { detectCurrencyFromDomain } from '../../../utils/parsers';
+import { detectCurrencyFromDomain, detectCurrencyFromUrlParam, parsePrice } from '../../../utils/parsers';
 import { syncMetricsPriceFromBuyBox } from '../../../utils/price';
 import { convertToUSD } from '../../../services/CurrencyService';
-import { extractAsin, parseAmazonAodOffersHtml } from '../selectors/amazon-offers';
+import { extractAsin, parseAmazonAodOffersHtml, fetchAmazonOffers } from '../selectors/amazon-offers';
+import { CrawleeAdapter } from './CrawleeAdapter';
 
 const logger = baseLogger.child({ module: 'FirecrawlAdapter' });
+
+function extractCountryCodeFromUrl(url: string): string | undefined {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    if (host.endsWith('.it')) return 'IT';
+    if (host.endsWith('.de')) return 'DE';
+    if (host.endsWith('.fr')) return 'FR';
+    if (host.endsWith('.es')) return 'ES';
+    if (host.endsWith('.ca')) return 'CA';
+    if (host.endsWith('.co.uk')) return 'GB';
+    if (host.endsWith('.com.mx')) return 'MX';
+    if (host.endsWith('.co.jp')) return 'JP';
+    if (host.endsWith('.in')) return 'IN';
+    if (host.endsWith('.com.au')) return 'AU';
+    if (host.endsWith('.com.br')) return 'BR';
+    if (host.endsWith('.nl')) return 'NL';
+    if (host.endsWith('.se')) return 'SE';
+    if (host.endsWith('.pl')) return 'PL';
+    if (host.endsWith('.com.tr')) return 'TR';
+    if (host.endsWith('.ae')) return 'AE';
+    if (host.endsWith('.sa')) return 'SA';
+    if (host.endsWith('.sg')) return 'SG';
+    if (host.endsWith('.eg')) return 'EG';
+    if (host.endsWith('.com')) return 'US';
+  } catch {
+    // ignore
+  }
+  return undefined;
+}
 
 const normalizeUrlForFirecrawl = (inputUrl: string): string => {
   try {
@@ -20,11 +50,28 @@ const normalizeUrlForFirecrawl = (inputUrl: string): string => {
 
     if (host.includes('amazon.')) {
       const asin = extractAsin(inputUrl);
-      if (asin) {
-        const normalized = new URL(`${parsed.protocol}//${parsed.host}/dp/${asin}`);
+        if (asin) {
+        let langPrefix = '';
+        const match = parsed.pathname.match(/^(\/-\/[a-zA-Z]{2}(?:-[a-zA-Z]{2})?\/)/);
+        if (match) {
+          langPrefix = match[1];
+        } else if (!host.includes('amazon.com') && !parsed.searchParams.has('language')) {
+          parsed.searchParams.set('language', 'en_GB');
+        }
+
+        const normalizedBasePath = langPrefix || '/';
+        const normalized = new URL(`${parsed.protocol}//${parsed.host}${normalizedBasePath}dp/${asin}`);
         const th = parsed.searchParams.get('th');
         if (th && /^[0-9A-Za-z_-]{1,8}$/.test(th)) {
           normalized.searchParams.set('th', th);
+        }
+        if (parsed.searchParams.has('language')) {
+          normalized.searchParams.set('language', parsed.searchParams.get('language')!);
+        }
+        for (const key of ['currency', 'currencyCode', 'currencycode', 'curr']) {
+          if (parsed.searchParams.has(key)) {
+            normalized.searchParams.set(key, parsed.searchParams.get(key)!);
+          }
         }
         return normalized.toString();
       }
@@ -87,9 +134,10 @@ async function extractProductFromHtml(url: string, html: string): Promise<Produc
 
   const scrapedAt = new Date().toISOString();
   const domainCurrency = detectCurrencyFromDomain(url) || 'USD';
+  const urlCurrency = detectCurrencyFromUrlParam(url);
 
   const mergedMetrics = { ...metaResult.metrics, ...platformResult.metrics } as Partial<ProductMetrics>;
-  mergedMetrics.currency = mergedMetrics.currency || domainCurrency;
+  mergedMetrics.currency = mergedMetrics.currency || urlCurrency || domainCurrency;
   const stabilized = syncMetricsPriceFromBuyBox(mergedMetrics as ProductMetrics, scrapedAt);
 
   if (stabilized.price) {
@@ -101,7 +149,7 @@ async function extractProductFromHtml(url: string, html: string): Promise<Produc
   }
 
   const finalMetrics: ProductMetrics = {
-    currency: stabilized.currency || domainCurrency,
+    currency: stabilized.currency || urlCurrency || domainCurrency,
     description: stabilized.description || '',
     imageUrl: stabilized.imageUrl || '',
     brand: stabilized.brand || '',
@@ -150,6 +198,10 @@ async function firecrawlScrapeHtml(targetUrl: string, apiKey: string, timeoutMs:
         url: targetUrl,
         formats: ['html'],
         waitFor: 0,
+        location: extractCountryCodeFromUrl(targetUrl) ? { country: extractCountryCodeFromUrl(targetUrl) } : undefined,
+        headers: {
+          'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
+        },
       }),
     });
     if (!response.ok) {
@@ -222,11 +274,12 @@ async function fetchAmazonOffersViaFirecrawl(params: {
     (html.match(/id="aod-offer"|class="[^"]*aod-information-block[^"]*"|id="aod-pinned-offer"|class="[^"]*olpOffer[^"]*"/g) || []).length;
 
   for (let pageNo = 1; pageNo <= maxPages; pageNo += 1) {
+    const langParam = !origin.includes('amazon.com') ? '&language=en_GB' : '';
     const endpointCandidates = [
-      `${origin}/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${params.asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}`,
-      `${origin}/gp/product/ajax/ref=aod_page_${pageNo}?asin=${params.asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}`,
-      `${origin}/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${params.asin}&pc=dp&experienceId=aodAjaxMain`,
-      `${origin}/gp/offer-listing/${params.asin}/ref=dp_olp_NEW_mbc?ie=UTF8&condition=new&pageno=${pageNo}`,
+      `${origin}/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${params.asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,
+      `${origin}/gp/product/ajax/ref=aod_page_${pageNo}?asin=${params.asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,
+      `${origin}/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${params.asin}&pc=dp&experienceId=aodAjaxMain${langParam}`,
+      `${origin}/gp/offer-listing/${params.asin}/ref=dp_olp_NEW_mbc?ie=UTF8&condition=new&pageno=${pageNo}${langParam}`,
     ];
 
     let html = '';
@@ -277,6 +330,34 @@ async function fetchAmazonOffersViaFirecrawl(params: {
 const hasValidPositivePrice = (value: unknown): value is number => {
   const numeric = Number(value);
   return Number.isFinite(numeric) && numeric > 0;
+};
+const isInvalidOfferSellerLabel = (raw: string): boolean => {
+  const normalized = String(raw || '').replace(/\s+/g, ' ').trim().toLowerCase();
+  if (!normalized) return true;
+  return /^(return policy|payment|condition|delivery|details|quantity|ships from|sold by)$/i.test(normalized)
+    || /^save with used\b/i.test(normalized)
+    || /^used\s*-\s*good$/i.test(normalized)
+    || normalized.includes('return policy')
+    || normalized.endsWith('see less')
+    || normalized.endsWith('see more');
+};
+const dedupeOffers = (offers: Offer[]): Offer[] => {
+  const seen = new Set<string>();
+  const out: Offer[] = [];
+  for (const offer of offers) {
+    const seller = String(offer.sellerName || '').replace(/\s+/g, ' ').trim().toLowerCase();
+    const url = String(offer.offerUrl || '').trim().toLowerCase();
+    const key = [
+      url || 'no-url',
+      seller || 'no-seller',
+      Number(offer.price || 0).toFixed(2),
+      String(offer.condition || '').trim().toLowerCase(),
+    ].join('|');
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(offer);
+  }
+  return out;
 };
 
 function hydrateAmazonPriceFromOffers(product: Product): Product {
@@ -357,6 +438,10 @@ export class FireCrawlAdapter implements IScraper {
           url: targetUrl,
           formats: ['html', 'markdown'],
           waitFor: 3000,
+          location: extractCountryCodeFromUrl(targetUrl) ? { country: extractCountryCodeFromUrl(targetUrl) } : undefined,
+          headers: {
+            'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
+          },
         }),
       });
 
@@ -397,19 +482,147 @@ export class FireCrawlAdapter implements IScraper {
 
             const shouldFetchAod =
               Boolean(asin)
-              && hasOtherSellersSignal
-              && (offersCount < 3 || (reportedSellerCount > 0 && offersCount < reportedSellerCount));
+              && (
+                hasOtherSellersSignal
+                || offersCount < 3
+                || (reportedSellerCount > 0 && offersCount < reportedSellerCount)
+              );
 
             if (shouldFetchAod) {
-              const remoteOffers = await fetchAmazonOffersViaFirecrawl({
-                url,
-                asin,
-                currency,
-                apiKey: this.apiKey,
-              });
+              const origin = (() => {
+                try {
+                  return new URL(url).origin;
+                } catch {
+                  return 'https://www.amazon.com';
+                }
+              })();
+              const ingressHref =
+                $('#dynamic-aod-ingress-box a[href], #dynamic-aod-ingress-box_feature_div a[href], #aod-ingress-link[href]')
+                  .first()
+                  .attr('href')
+                  ?.trim() || '';
+
+              let remoteOffers: Offer[] = [];
+              if (ingressHref) {
+                const ingressUrl = ingressHref.startsWith('http')
+                  ? ingressHref
+                  : `${origin}${ingressHref.startsWith('/') ? '' : '/'}${ingressHref}`;
+                const ingressHtml = await firecrawlScrapeHtml(ingressUrl, this.apiKey, 45_000);
+                if (ingressHtml) {
+                  remoteOffers = parseAmazonAodOffersHtml(ingressHtml, currency, origin);
+                }
+              }
+              if (process.env.NODE_ENV !== 'test') {
+                try {
+                  if (remoteOffers.length === 0) {
+                    remoteOffers = await fetchAmazonOffers(asin, currency, url);
+                  }
+                } catch {
+                  // Fallback to Firecrawl-mediated endpoint scraping below.
+                }
+              }
+              if (remoteOffers.length === 0) {
+                remoteOffers = await fetchAmazonOffersViaFirecrawl({
+                  url,
+                  asin,
+                  currency,
+                  apiKey: this.apiKey,
+                });
+              }
               if (remoteOffers.length > 0) {
-                product.metrics.offers = [...(product.metrics.offers || []), ...remoteOffers];
-                product.metrics.sellerCount = Math.max(product.metrics.sellerCount || 0, product.metrics.offers.length);
+                const merged = dedupeOffers(
+                  [...(product.metrics.offers || []), ...remoteOffers]
+                    .filter((offer) => !isInvalidOfferSellerLabel(String(offer?.sellerName || '')))
+                );
+                product.metrics.offers = merged;
+                product.metrics.sellerCount = Math.max(product.metrics.sellerCount || 0, merged.length);
+              } else {
+                const ingressText = $('#dynamic-aod-ingress-box, #dynamic-aod-ingress-box_feature_div')
+                  .first()
+                  .text()
+                  .replace(/\s+/g, ' ')
+                  .trim();
+                if (ingressText) {
+                  const countMatch = ingressText.match(/\(([\d,]+)\)/);
+                  const declaredCount = Number.parseInt((countMatch?.[1] || '').replace(/,/g, ''), 10);
+                  const fromPriceMatch = ingressText.match(/from\s*([$€£]\s?[\d.,]+)/i);
+                  const parsedFromPrice = parsePrice(fromPriceMatch?.[1] || '');
+                  if (Number.isFinite(declaredCount) && declaredCount > 0) {
+                    product.metrics.sellerCount = Math.max(product.metrics.sellerCount || 0, declaredCount);
+                  }
+                  if (parsedFromPrice > 0) {
+                    const syntheticOffer: Offer = {
+                      sellerName: 'Other sellers on Amazon',
+                      price: parsedFromPrice,
+                      currency,
+                      stockStatus: 'In Stock',
+                      stockCount: null,
+                      condition: 'New/Used',
+                      isFBA: false,
+                    };
+                    product.metrics.offers = [...(product.metrics.offers || []), syntheticOffer];
+                  }
+                }
+              }
+
+              const currentOfferCount = Array.isArray(product.metrics.offers) ? product.metrics.offers.length : 0;
+              const currentSellerCount = Number(product.metrics.sellerCount || 0);
+              const shouldTryCrawleeAodFallback =
+                process.env.NODE_ENV !== 'test'
+                && hasOtherSellersSignal
+                && (currentOfferCount < Math.max(3, currentSellerCount));
+              if (shouldTryCrawleeAodFallback) {
+                try {
+                  const crawlee = new CrawleeAdapter();
+                  const crawleeResult = await crawlee.scrapeProduct(url);
+                  const crawleeOffers = Array.isArray(crawleeResult.product?.metrics?.offers)
+                    ? crawleeResult.product!.metrics.offers!
+                    : [];
+                  if (crawleeOffers.length > 0) {
+                    const cleanedCrawleeOffers = dedupeOffers(
+                      crawleeOffers.filter((offer) => !isInvalidOfferSellerLabel(String(offer?.sellerName || '')))
+                    );
+                    const crawleeCurrency = String(
+                      crawleeResult.product?.metrics?.currency
+                      || cleanedCrawleeOffers.find((offer) => Boolean(offer.currency))?.currency
+                      || ''
+                    ).trim().toUpperCase();
+                    const currentCurrency = String(product.metrics.currency || '').trim().toUpperCase();
+
+                    if (crawleeCurrency && currentCurrency && crawleeCurrency !== currentCurrency) {
+                      // Avoid mixed-currency offer sets in Firecrawl output.
+                      product.metrics.currency = crawleeCurrency;
+                      if (typeof crawleeResult.product?.metrics?.price === 'number' && crawleeResult.product.metrics.price > 0) {
+                        product.metrics.price = crawleeResult.product.metrics.price;
+                        product.metrics.itemPrice = crawleeResult.product.metrics.itemPrice || crawleeResult.product.metrics.price;
+                      }
+                      if (crawleeResult.product?.metrics?.buyBox) {
+                        product.metrics.buyBox = crawleeResult.product.metrics.buyBox;
+                      }
+                      if (crawleeResult.product?.metrics?.selectedOffer) {
+                        product.metrics.selectedOffer = crawleeResult.product.metrics.selectedOffer;
+                      }
+                      product.metrics.offers = cleanedCrawleeOffers;
+                      product.metrics.sellerCount = Math.max(
+                        Number(crawleeResult.product?.metrics?.sellerCount || 0),
+                        cleanedCrawleeOffers.length
+                      );
+                    } else {
+                      const merged = dedupeOffers(
+                        [...(product.metrics.offers || []), ...cleanedCrawleeOffers]
+                          .filter((offer) => !isInvalidOfferSellerLabel(String(offer?.sellerName || '')))
+                      );
+                      product.metrics.offers = merged;
+                      product.metrics.sellerCount = Math.max(
+                        product.metrics.sellerCount || 0,
+                        Number(crawleeResult.product?.metrics?.sellerCount || 0),
+                        merged.length
+                      );
+                    }
+                  }
+                } catch {
+                  // Keep Firecrawl-native result when Crawlee fallback fails.
+                }
               }
             }
           }

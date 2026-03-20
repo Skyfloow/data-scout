@@ -11,7 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 
 export default function ScrapeForm() {
   const [url, setUrl] = useState('');
-  const [scraper, setScraper] = useState<ScraperType>('crawler');
+  const [scraper, setScraper] = useState<ScraperType>('firecrawl');
+  const isProduction = import.meta.env.PROD;
   const [currentJobId, setCurrentJobId] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -77,15 +78,17 @@ export default function ScrapeForm() {
               required
             />
 
-            <Select value={scraper} onValueChange={(value) => setScraper(value as ScraperType)}>
-              <SelectTrigger style={{ width: 172 }}>
-                <SelectValue placeholder="Scraper Engine" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="crawler">Native Crawler</SelectItem>
-                <SelectItem value="firecrawl">Firecrawl (LLM)</SelectItem>
-              </SelectContent>
-            </Select>
+            {!isProduction ? (
+              <Select value={scraper} onValueChange={(value) => setScraper(value as ScraperType)}>
+                <SelectTrigger style={{ width: 172 }}>
+                  <SelectValue placeholder="Scraper Engine" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="crawler">Native Crawler</SelectItem>
+                  <SelectItem value="firecrawl">Firecrawl (LLM)</SelectItem>
+                </SelectContent>
+              </Select>
+            ) : null}
 
             <Button htmlType="submit" disabled={isStarting || isPolling || !url}>
               <Send size={15} />

@@ -14,6 +14,7 @@ import { Switch } from '../components/ui/switch';
 export default function SettingsPage() {
   const { mode, toggleTheme } = useThemeMode();
   const { t, i18n } = useTranslation();
+  const showScrapingSettings = !import.meta.env.PROD;
   const [strategy, setStrategy] = useState('hybrid');
   const [scraper, setScraper] = useState('crawler');
   const [proxyMode, setProxyMode] = useState('direct');
@@ -23,6 +24,11 @@ export default function SettingsPage() {
   const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'warning'>('success');
 
   useEffect(() => {
+    if (!showScrapingSettings) {
+      setLoading(false);
+      return;
+    }
+
     fetch(`${API_BASE_URL}settings/`)
       .then((res) => res.json())
       .then((data) => {
@@ -32,7 +38,7 @@ export default function SettingsPage() {
       })
       .catch((err) => logger.error('Failed to load settings', err))
       .finally(() => setLoading(false));
-  }, []);
+  }, [showScrapingSettings]);
 
   useEffect(() => {
     if (!snackbarMessage) return;
@@ -97,86 +103,88 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('settings.scrapingEngine')}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {loading ? (
-            <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem 0' }}>
-              <span className="loader loader-dark" />
-            </div>
-          ) : (
-            <div className="stack-col" style={{ gap: 14 }}>
-              <div className="field">
-                <label className="field-label">{t('settings.scrapingEngine')}</label>
-                <Select
-                  value={scraper}
-                  onValueChange={(newVal) => {
-                    setScraper(newVal);
-                    saveSettings(strategy, newVal, proxyMode);
-                  }}
-                  disabled={isSaving}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder={t('settings.scrapingEngine')} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="crawler">{t('settings.internalCrawler')}</SelectItem>
-                    <SelectItem value="firecrawl">{t('settings.firecrawlService')}</SelectItem>
-                  </SelectContent>
-                </Select>
-                <div className="field-help">{t('settings.chooseEngineHelp')}</div>
+      {showScrapingSettings ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('settings.scrapingEngine')}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {loading ? (
+              <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem 0' }}>
+                <span className="loader loader-dark" />
               </div>
-
-              {scraper === 'crawler' ? (
+            ) : (
+              <div className="stack-col" style={{ gap: 14 }}>
                 <div className="field">
-                  <label className="field-label">{t('settings.antiBotStrategy')}</label>
+                  <label className="field-label">{t('settings.scrapingEngine')}</label>
                   <Select
-                    value={strategy}
+                    value={scraper}
                     onValueChange={(newVal) => {
-                      setStrategy(newVal);
-                      saveSettings(newVal, scraper, proxyMode);
+                      setScraper(newVal);
+                      saveSettings(strategy, newVal, proxyMode);
                     }}
                     disabled={isSaving}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder={t('settings.antiBotStrategy')} />
+                      <SelectValue placeholder={t('settings.scrapingEngine')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="hybrid">{t('settings.hybrid')}</SelectItem>
-                      <SelectItem value="fast">{t('settings.fast')}</SelectItem>
-                      <SelectItem value="stealth">{t('settings.stealth')}</SelectItem>
+                      <SelectItem value="crawler">{t('settings.internalCrawler')}</SelectItem>
+                      <SelectItem value="firecrawl">{t('settings.firecrawlService')}</SelectItem>
                     </SelectContent>
                   </Select>
-                  <div className="field-help">{t('settings.hybridHelp')}</div>
+                  <div className="field-help">{t('settings.chooseEngineHelp')}</div>
                 </div>
-              ) : null}
 
-              <div className="field">
-                <label className="field-label">{t('settings.proxyConfig')}</label>
-                <Select
-                  value={proxyMode}
-                  onValueChange={(newVal) => {
-                    setProxyMode(newVal);
-                    saveSettings(strategy, scraper, newVal);
-                  }}
-                  disabled={isSaving}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder={t('settings.proxyConfig')} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="direct">{t('settings.directConnection')}</SelectItem>
-                    <SelectItem value="free">{t('settings.freeProxy')}</SelectItem>
-                  </SelectContent>
-                </Select>
-                <div className="field-help">{t('settings.proxyHelp')}</div>
+                {scraper === 'crawler' ? (
+                  <div className="field">
+                    <label className="field-label">{t('settings.antiBotStrategy')}</label>
+                    <Select
+                      value={strategy}
+                      onValueChange={(newVal) => {
+                        setStrategy(newVal);
+                        saveSettings(newVal, scraper, proxyMode);
+                      }}
+                      disabled={isSaving}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder={t('settings.antiBotStrategy')} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="hybrid">{t('settings.hybrid')}</SelectItem>
+                        <SelectItem value="fast">{t('settings.fast')}</SelectItem>
+                        <SelectItem value="stealth">{t('settings.stealth')}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <div className="field-help">{t('settings.hybridHelp')}</div>
+                  </div>
+                ) : null}
+
+                <div className="field">
+                  <label className="field-label">{t('settings.proxyConfig')}</label>
+                  <Select
+                    value={proxyMode}
+                    onValueChange={(newVal) => {
+                      setProxyMode(newVal);
+                      saveSettings(strategy, scraper, newVal);
+                    }}
+                    disabled={isSaving}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder={t('settings.proxyConfig')} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="direct">{t('settings.directConnection')}</SelectItem>
+                      <SelectItem value="free">{t('settings.freeProxy')}</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <div className="field-help">{t('settings.proxyHelp')}</div>
+                </div>
               </div>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+            )}
+          </CardContent>
+        </Card>
+      ) : null}
 
       <Card>
         <CardHeader>

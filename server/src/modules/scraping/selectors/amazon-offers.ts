@@ -4,6 +4,16 @@ import { parsePrice, parseStockCount } from '../../../utils/parsers';
 import { fetcher } from '../network/Fetcher';
 
 const normalizeText = (input: string): string => input.replace(/\s+/g, ' ').trim();
+const isInvalidOfferSellerLabel = (raw: string): boolean => {
+  const normalized = normalizeText(raw).toLowerCase();
+  if (!normalized) return true;
+  return /^(return policy|payment|condition|delivery|details|quantity|ships from|sold by)$/i.test(normalized)
+    || /^save with used\b/i.test(normalized)
+    || /^used\s*-\s*good$/i.test(normalized)
+    || normalized.includes('return policy')
+    || normalized.endsWith('see less')
+    || normalized.endsWith('see more');
+};
 const extractSellerIdFromOfferUrl = (offerUrl?: string): string => {
   const raw = normalizeText(offerUrl || '');
   if (!raw) return '';
@@ -103,13 +113,16 @@ export function parseAmazonAodOffersHtml(html: string, currency: string, origin:
     const fraction = $(el).find('.a-price-fraction').first().text().replace(/[^\d]/g, '').trim();
     const normalizedPriceText = priceText || (whole ? `${whole}.${fraction || '00'}` : '');
     
-    const sellerName = $(el).find('#aod-offer-soldBy a[aria-label]').first().text().trim()
+    let sellerName = $(el).find('#aod-offer-soldBy a[aria-label]').first().text().trim()
                     || $(el).find('#aod-offer-soldBy a').first().text().trim()
                     || $(el).find('.aod-offer-soldBy a').first().text().trim()
                     || normalizeText($(el).find('#aod-offer-soldBy, .aod-offer-soldBy').text())
                     || extractSellerFromText($(el).text())
-                    || $(el).find('.aod-information-block a').first().text().trim()
                     || '';
+    if (isInvalidOfferSellerLabel(sellerName)) {
+      const extractedFromText = extractSellerFromText($(el).text()) || '';
+      sellerName = isInvalidOfferSellerLabel(extractedFromText) ? '' : extractedFromText;
+    }
 
     const condition = $(el).find('#aod-offer-heading h5').text().trim()
                    || $(el).find('.aod-offer-heading').text().trim()
@@ -145,7 +158,7 @@ export function parseAmazonAodOffersHtml(html: string, currency: string, origin:
         offers.push({
           offerId,
           offerUrl,
-          sellerName: sellerName.replace(/\s+/g, ' ').trim() || 'Third-party Seller',
+          sellerName: normalizeText(sellerName) || 'Third-party Seller',
           price,
           currency,
           stockStatus: stockText || 'In Stock',
@@ -224,12 +237,13 @@ export async function fetchAmazonOffers(asin: string, currency: string, marketpl
     (html.match(/id="aod-offer"|class="[^"]*aod-information-block[^"]*"|id="aod-pinned-offer"|class="[^"]*olpOffer[^"]*"/g) || []).length;
 
   for (let pageNo = 1; pageNo <= maxPages; pageNo += 1) {
+    const langParam = !origin.includes('amazon.com') ? '&language=en_GB' : '';
     const endpointCandidates = [
-      `${origin}/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}`,
-      `${origin}/gp/product/ajax/ref=aod_page_${pageNo}?asin=${asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}`,
-      `${origin}/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${asin}&pc=dp&experienceId=aodAjaxMain`,
-      `${origin}/gp/offer-listing/${asin}/ref=dp_olp_NEW_mbc?ie=UTF8&condition=new&pageno=${pageNo}`,
-      `${origin}/gp/offer-listing/${asin}?startIndex=${(pageNo - 1) * 10}`,
+      `${origin}/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,
+      `${origin}/gp/product/ajax/ref=aod_page_${pageNo}?asin=${asin}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,
+      `${origin}/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${asin}&pc=dp&experienceId=aodAjaxMain${langParam}`,
+      `${origin}/gp/offer-listing/${asin}/ref=dp_olp_NEW_mbc?ie=UTF8&condition=new&pageno=${pageNo}${langParam}`,
+      `${origin}/gp/offer-listing/${asin}?startIndex=${(pageNo - 1) * 10}${langParam}`,
     ];
 
     let html = '';

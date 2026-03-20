@@ -19,8 +19,9 @@ interface ScrapWidgetModalProps {
 
 export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProps) {
   const { t } = useTranslation();
+  const isProduction = import.meta.env.PROD;
   const [url, setUrl] = useState('');
-  const [scraper, setScraper] = useState<ScraperType>('crawler');
+  const [scraper, setScraper] = useState<ScraperType>('firecrawl');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState('');
   const [toastSeverity, setToastSeverity] = useState<'success' | 'error' | 'warning'>('success');
@@ -40,13 +41,14 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
     onError: onJobError,
   });
 
-  const { data: settingsData } = useGetSettingsQuery();
+  const { data: settingsData } = useGetSettingsQuery(undefined, { skip: isProduction });
 
   useEffect(() => {
+    if (isProduction) return;
     if (settingsData?.defaultScraper) {
       setScraper(settingsData.defaultScraper);
     }
-  }, [settingsData]);
+  }, [settingsData, isProduction]);
 
   useEffect(() => {
     if (!open) return;
@@ -119,18 +121,20 @@ export default function ScrapWidgetModal({ open, onClose }: ScrapWidgetModalProp
                 <div className="field-help">{t('scrape.urlHelp')}</div>
               </div>
 
-              <div className="field">
-                <label className="field-label">{t('scrape.engineLabel')}</label>
-                <Select value={scraper} onValueChange={(value) => setScraper(value as ScraperType)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder={t('scrape.enginePlaceholder')} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="crawler">{t('scrape.engineCrawler')}</SelectItem>
-                    <SelectItem value="firecrawl">Firecrawl (LLM)</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+              {!isProduction ? (
+                <div className="field">
+                  <label className="field-label">{t('scrape.engineLabel')}</label>
+                  <Select value={scraper} onValueChange={(value) => setScraper(value as ScraperType)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder={t('scrape.enginePlaceholder')} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="crawler">{t('scrape.engineCrawler')}</SelectItem>
+                      <SelectItem value="firecrawl">Firecrawl (LLM)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              ) : null}
             </form>
           </div>
 

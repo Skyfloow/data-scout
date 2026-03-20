@@ -457,6 +457,41 @@ export default function ProductDetailPage() {
       cheapestOffers,
     };
   })();
+  const offerInsightsMetrics = (() => {
+    if (!offersInsights) return [];
+
+    const metrics: Array<{ label: string; value: string | number }> = [];
+    const addIfPositiveNumber = (label: string, value: number) => {
+      if (Number.isFinite(value) && value > 0) {
+        metrics.push({ label, value });
+      }
+    };
+    const addIfPositiveCurrency = (label: string, value: number) => {
+      if (Number.isFinite(value) && value > 0) {
+        metrics.push({ label, value: formatCurrency(value) });
+      }
+    };
+
+    addIfPositiveNumber(t('product.offersAnalyzed'), offersInsights.offersCount);
+    addIfPositiveNumber(t('product.offersWithPrice'), offersInsights.offersWithPriceCount);
+    addIfPositiveNumber(t('product.uniqueSellers'), offersInsights.uniqueSellers);
+    addIfPositiveCurrency(t('product.cheapestOffer'), offersInsights.minPrice);
+    addIfPositiveCurrency(t('product.averageOffer'), offersInsights.avgPrice);
+    addIfPositiveCurrency(t('product.highestOffer'), offersInsights.maxPrice);
+
+    if (Number.isFinite(offersInsights.priceSpread) && offersInsights.priceSpread > 0) {
+      metrics.push({
+        label: t('product.priceSpread'),
+        value: `${formatCurrency(offersInsights.priceSpread)} (${offersInsights.priceSpreadPct.toFixed(1)}%)`,
+      });
+    }
+
+    if (Number.isFinite(offersInsights.fbaShare) && offersInsights.fbaShare > 0) {
+      metrics.push({ label: t('product.fbaShare'), value: `${offersInsights.fbaShare.toFixed(1)}%` });
+    }
+
+    return metrics;
+  })();
 
   const exportProductPdf = async () => {
     if (!pdfRef.current) return;
@@ -537,7 +572,6 @@ export default function ProductDetailPage() {
                   {m.isAmazonChoice ? <Badge variant="secondary">{t('product.amazonChoice')}</Badge> : null}
                   {m.isBestSeller ? <Badge variant="warning">{t('table.bestSeller')}</Badge> : null}
                   {m.isPrime ? <Badge variant="default">{t('table.prime')}</Badge> : null}
-                  <Badge variant="outline">{product.scrapedBy}</Badge>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
@@ -615,16 +649,13 @@ export default function ProductDetailPage() {
             ) : (
               <div className="stack-col" style={{ gap: 14 }}>
                 <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: 12 }}>
-                  <MetricItem label={t('product.offersAnalyzed')} value={offersInsights.offersCount} />
-                  <MetricItem label={t('product.offersWithPrice')} value={offersInsights.offersWithPriceCount} />
-                  <MetricItem label={t('product.uniqueSellers')} value={offersInsights.uniqueSellers} />
-                  <MetricItem label={t('product.cheapestOffer')} value={formatCurrency(offersInsights.minPrice)} />
-                  {/* <MetricItem label={t('product.medianOffer')} value={formatCurrency(offersInsights.medianPrice)} /> */}
-                  <MetricItem label={t('product.averageOffer')} value={formatCurrency(offersInsights.avgPrice)} />
-                  <MetricItem label={t('product.highestOffer')} value={formatCurrency(offersInsights.maxPrice)} />
-                  <MetricItem label={t('product.priceSpread')} value={`${formatCurrency(offersInsights.priceSpread)} (${offersInsights.priceSpreadPct.toFixed(1)}%)`} />
-                  {/* <MetricItem label={t('product.belowBuyBox')} value={offersInsights.belowBuyBoxCount} /> */}
-                  <MetricItem label={t('product.fbaShare')} value={`${offersInsights.fbaShare.toFixed(1)}%`} />
+                  {offerInsightsMetrics.length === 0 ? (
+                    <div className="muted">—</div>
+                  ) : (
+                    offerInsightsMetrics.map((metric) => (
+                      <MetricItem key={metric.label} label={metric.label} value={metric.value} />
+                    ))
+                  )}
                 </div>
                 <Separator style={{ margin: '2px 0 0' }} />
                 <div className="grid" style={{ gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, minmax(0, 1fr))', gap: 12 }}>
@@ -794,7 +825,24 @@ export default function ProductDetailPage() {
 
         <Card data-pdf-block>
           <CardContent>
-            <CardTitle>{otherSellerOffersTitle}</CardTitle>
+            <CardTitle>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                {otherSellerOffersTitle}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button
+                      type="button"
+                      className="icon-btn"
+                      style={{ width: 16, height: 16, borderRadius: 999 }}
+                      aria-label={t('product.otherSellerOffersLimitTooltip')}
+                    >
+                      <AlertCircle size={10} />
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent>{t('product.otherSellerOffersLimitTooltip')}</TooltipContent>
+                </Tooltip>
+              </span>
+            </CardTitle>
             <Separator style={{ margin: '10px 0 12px' }} />
             {otherSellerOffers.length === 0 ? (
               <div className="muted">—</div>

@@ -345,6 +345,7 @@
     "buyBoxFbm": "FBM",
     "otherSellerOffers": "Other Seller Offers",
     "otherSellerOffersLastN": "Other Seller Offers (Last {{n}})",
+    "otherSellerOffersLimitTooltip": "For technical reasons, the table currently shows only the latest 10 entries.",
     "sellerColumn": "Seller",
     "priceColumn": "Price",
     "conditionColumn": "Condition",

@@ -6,7 +6,7 @@ import { storageService } from '../../storage/services/StorageService';
 import { proxyManager } from '../../proxy/services/ProxyManager';
 import { convertToUSD } from '../../../services/CurrencyService';
 import { logger as baseLogger } from '../../../utils/logger';
-import { detectCurrencyFromDomain } from '../../../utils/parsers';
+import { detectCurrencyFromDomain, detectCurrencyFromUrlParam } from '../../../utils/parsers';
 import { syncMetricsPriceFromBuyBox } from '../../../utils/price';
 import path from 'path';
 import fs from 'fs';
@@ -63,6 +63,11 @@ export class CrawleeAdapter implements IScraper {
           if (th && /^[0-9A-Za-z_-]{1,8}$/.test(th)) {
               normalized.searchParams.set('th', th);
           }
+          for (const key of ['currency', 'currencyCode', 'currencycode', 'curr', 'language']) {
+              if (parsed.searchParams.has(key)) {
+                  normalized.searchParams.set(key, parsed.searchParams.get(key)!);
+              }
+          }
           return normalized.toString();
       } catch {
           return rawUrl;
@@ -100,11 +105,12 @@ export class CrawleeAdapter implements IScraper {
                   (html.match(/id=\"aod-offer\"|class=\"[^\"]*aod-information-block[^\"]*\"|id=\"aod-pinned-offer\"|class=\"[^\"]*olpOffer[^\"]*\"/g) || []).length;
 
               for (let pageNo = 1; pageNo <= maxPagesInPage; pageNo += 1) {
+                  const langParam = !window.location.hostname.includes('amazon.com') ? '&language=en_GB' : '';
                   const endpoints = [
-                      `/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${asinInPage}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}`,
-                      `/gp/product/ajax/ref=aod_page_${pageNo}?asin=${asinInPage}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}`,
-                      `/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${asinInPage}&pc=dp&experienceId=aodAjaxMain`,
-                      `/gp/offer-listing/${asinInPage}/ref=dp_olp_NEW_mbc?ie=UTF8&condition=new&pageno=${pageNo}`,
+                      `/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${asinInPage}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,
+                      `/gp/product/ajax/ref=aod_page_${pageNo}?asin=${asinInPage}&pc=dp&experienceId=aodAjaxMain&pageno=${pageNo}${langParam}`,
+                      `/gp/product/ajax/ref=aod_page_${pageNo - 1}?asin=${asinInPage}&pc=dp&experienceId=aodAjaxMain${langParam}`,
+                      `/gp/offer-listing/${asinInPage}/ref=dp_olp_NEW_mbc?ie=UTF8&condition=new&pageno=${pageNo}${langParam}`,
                   ];
                   let html = '';
                   for (const endpoint of endpoints) {
@@ -1278,7 +1284,8 @@ export class CrawleeAdapter implements IScraper {
           }
 
           const domainCurrency = detectCurrencyFromDomain(request.url) || 'USD';
-          metrics.currency = metrics.currency || domainCurrency;
+          const urlCurrency = detectCurrencyFromUrlParam(request.url);
+          metrics.currency = metrics.currency || urlCurrency || domainCurrency;
           metrics = syncMetricsPriceFromBuyBox(metrics, scrapedAt);
 
           if (metrics.price) {
@@ -1292,7 +1299,7 @@ export class CrawleeAdapter implements IScraper {
           
           // Make sure required defaults are filled
           const finalMetrics: ProductMetrics = {
-             currency: metrics.currency || domainCurrency,
+             currency: metrics.currency || urlCurrency || domainCurrency,
              description: metrics.description || '',
              imageUrl: metrics.imageUrl || '',
              brand: metrics.brand || '',

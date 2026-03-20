@@ -43,6 +43,7 @@ const EMPTY_PRODUCTS: Product[] = [];
 
 function ProductTable() {
   const { t } = useTranslation();
+  const isProduction = import.meta.env.PROD;
   const [filterScraper, setFilterScraper] = useState<string>('all');
 
   const params = {
@@ -73,7 +74,7 @@ function ProductTable() {
 
   const renderTable = () => (
     <TableWrap data-pdf-expand-scroll data-pdf-table style={{ maxHeight: 600 }}>
-      <Table style={{ minWidth: 1100 }}>
+      <Table style={{ minWidth: isProduction ? 1000 : 1100 }}>
         <THead>
           <TR>
             <TH style={{ width: 42 }} data-pdf-exclude>
@@ -88,7 +89,7 @@ function ProductTable() {
                 {t('table.product')}
               </SortButton>
             </TH>
-            <TH style={{ width: 100 }}>{t('table.source')}</TH>
+            {!isProduction ? <TH style={{ width: 100 }}>{t('table.source')}</TH> : null}
             <TH style={{ width: 140 }}>
               <SortButton active={sortKey === 'price'} order={sortOrder} onClick={() => handleSort('price')}>
                 {t('table.price')}

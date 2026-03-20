@@ -243,46 +243,11 @@ export class ScrapingService {
           if (firecrawlResult.product && firecrawlResult.product.metrics.price) {
              finalProduct = firecrawlResult.product;
              logger.info(`[Job ${jobId}] Phase 1 (Firecrawl) succeeded natively!`);
-
-             // Phase 1.25: Amazon reconciliation pass.
-             // Firecrawl snapshots can capture a non-primary seller/price block.
-             // Run Crawlee as verifier and prefer it only when it is clearly better.
-             if (this.isAmazonUrl(url)) {
-               try {
-                 crawleeResult = await this.crawleeAdapter.scrapeProduct(url);
-                 if (this.shouldPreferCrawleeAmazonResult(finalProduct, crawleeResult.product)) {
-                   finalProduct = crawleeResult.product;
-                   logger.info(`[Job ${jobId}] Phase 1.25 (Crawlee reconcile) replaced Firecrawl result for Amazon quality.`);
-                 } else {
-                   logger.info(`[Job ${jobId}] Phase 1.25 (Crawlee reconcile) kept Firecrawl result.`);
-                 }
-               } catch (reconcileError: any) {
-                 logger.warn(`[Job ${jobId}] Phase 1.25 (Crawlee reconcile) failed: ${reconcileError?.message || 'unknown error'}`);
-               }
-             }
           } else {
              const p1Error = firecrawlResult.error || 'Missing critical data (price)';
              phaseErrors.push(`Phase 1 (Firecrawl) failed: ${p1Error}`);
-
-             // Phase 1.5: Amazon reliability fallback (Crawlee)
-             // Firecrawl may return incomplete Amazon snapshots (price=0/missing metrics) for some ASIN pages.
-             // In this case, run Crawlee to recover complete metrics before expensive multimodal fallback.
-             if (url.includes('amazon')) {
-               logger.warn(`[Job ${jobId}] Phase 1 (Firecrawl) missed critical data: ${p1Error}. Trying Crawlee fallback for Amazon...`);
-               crawleeResult = await this.crawleeAdapter.scrapeProduct(url);
-               if (crawleeResult.product && crawleeResult.product.metrics.price) {
-                 finalProduct = crawleeResult.product;
-                 logger.info(`[Job ${jobId}] Phase 1.5 (Crawlee fallback) succeeded for Firecrawl flow.`);
-               } else {
-                 needsHeavyFallback = true;
-                 const p15Error = crawleeResult.error || 'Missing critical data (price)';
-                 phaseErrors.push(`Phase 1.5 (Crawlee fallback) failed: ${p15Error}`);
-                 logger.warn(`[Job ${jobId}] Phase 1.5 (Crawlee fallback) failed: ${p15Error}. Planning Heavy Fallback.`);
-               }
-             } else {
-               needsHeavyFallback = true;
-               logger.warn(`[Job ${jobId}] Phase 1 (Firecrawl) missed critical data: ${p1Error}. Planning Heavy Fallback.`);
-             }
+             needsHeavyFallback = true;
+             logger.warn(`[Job ${jobId}] Phase 1 (Firecrawl) missed critical data: ${p1Error}. Planning Heavy Fallback.`);
           }
       } else {
           // Phase 1: Fast Pass (Crawlee + Cheerio + Pre-Cached Selectors)
